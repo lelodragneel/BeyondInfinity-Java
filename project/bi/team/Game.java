@@ -34,7 +34,7 @@ public class Game extends JFrame {
 		panel_top.setLayout(null);
 		contentPane.add(panel_top);
 
-		// create bottom panel with buttons for upgrades
+		// create bottom panel to display buttons for upgrades
 		JPanel panel_bottom = new JPanel();
 		panel_bottom.setBounds(10, 362, 854, 68);
 		contentPane.add(panel_bottom);
@@ -44,7 +44,7 @@ public class Game extends JFrame {
 		panel_right.setBounds(633, 59, 231, 292);
 		contentPane.add(panel_right);
 
-		// create middle panel to output event changes
+		// create middle panel for displaying output event changes
 		JPanel panel_middle = new JPanel();
 		panel_middle.setBounds(250, 59, 373, 292);
 		contentPane.add(panel_middle);
