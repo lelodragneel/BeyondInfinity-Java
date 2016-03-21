@@ -1,12 +1,19 @@
 Text Based Adventure Role-playing
 CSCI1101 Project
 
-Desc:
-A player would read some text and be able to make decisions and it would allow the player to customize the adventure. A neat twist would be to add "mistakes" or "errors" so that if a player chooses some combination (not just a singular event) then they will die, or their adventure is over and the game should backtrack the first choice which attributed to the mistake.
-
 Dev Team:
 - Jeffrey D.
 - Lawrence A.
 - Riley V.
 - Marlee D.
 - Laciphina C.
+
+
+---------- Game Setup ----------<br />
+everything is subject to change
+
+User Health Scaling:<br />
+let x represent the cost<br />
+let y represent the amount of health of the player<br />
+![Alt text](https://i.gyazo.com/2ef828530457c3936a9b206f10d7a107.png "health formula")
+![Alt text](https://i.gyazo.com/bf3975472d1a891ba60b0cab6a3601a0.png "health")
