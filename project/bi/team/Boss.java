@@ -3,11 +3,11 @@ package bi.team;
 public class Boss {
 
 	// initialize variables
-	private double health, totalhealth, damage, energy, totalenergy;
+	private double health, totalhealth, damage, energy, energyregeneration;
 
 	// constructor
-	public Boss(double totalhealth, double totaldamage, double energy) {
-
+	public Boss() {
+		
 	}
 
 	// return boss's total health
@@ -30,14 +30,9 @@ public class Boss {
 		this.damage = damage;
 	}
 
-	// return boss's total energy
-	public double getTotalEnergy() {
-		return totalenergy;
-	}
-
-	// set boss's total energy
-	public void setTotalEnergy(double energy) {
-		this.totalenergy = energy;
+	// set boss's energy
+	public void setEnergy(double energy) {
+		this.energy = energy;
 	}
 
 	// return boss's energy
@@ -45,9 +40,14 @@ public class Boss {
 		return energy;
 	}
 
-	// set boss's energy
-	public void setEnergy(double energy) {
-		this.energy = energy;
+	// set boss's energy regeneration
+	public void setEnergyRegeneration(double energyregeneration) {
+		this.energyregeneration = energyregeneration;
+	}
+	
+	// return boss's energy regeneration
+	public double getEnergyRegeneration() {
+		return energyregeneration;
 	}
 
 	// return boss's health
