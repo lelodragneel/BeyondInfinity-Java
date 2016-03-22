@@ -2,6 +2,8 @@ package bi.team;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,7 +16,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 
 @SuppressWarnings("serial")
-public class Game extends JFrame {
+public class Game extends JFrame implements ActionListener {
 
 	// init variables
 	private static int kills;
@@ -25,12 +27,12 @@ public class Game extends JFrame {
 	private JPanel panel_bottom;
 	private JPanel panel_right;
 	private JPanel panel_actions;
-	private JButton btn_Strike;
-	private JButton btn_Rejuvenate;
-	private JButton btn_HeroicStrike;
-	private JButton btn_Evade;
-	private JButton btn_ToxicSpit;
-	private JButton btn_Annihilate;
+	private JButton btn_strike;
+	private JButton btn_rejuvenate;
+	private JButton btn_heroicStrike;
+	private JButton btn_evade;
+	private JButton btn_toxicSpit;
+	private JButton btn_annihilate;
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerHealth;
 	private JProgressBar progBar_enemyHealth;
@@ -98,40 +100,46 @@ public class Game extends JFrame {
 		contentPane.add(panel_actions);
 
 		// create attack button #1
-		btn_Strike = new JButton("Strike");
-		btn_Strike.setFocusable(false);
-		btn_Strike.setVisible(true);
-		panel_actions.add(btn_Strike);
+		btn_strike = new JButton("Strike");
+		btn_strike.setFocusable(false);
+		btn_strike.setVisible(true);
+		btn_strike.addActionListener(this);
+		panel_actions.add(btn_strike);
 
 		// create attack button #2
-		btn_Rejuvenate = new JButton("Rejuvenate");
-		btn_Rejuvenate.setFocusable(false);
-		btn_Rejuvenate.setVisible(true);
-		panel_actions.add(btn_Rejuvenate);
+		btn_rejuvenate = new JButton("Rejuvenate");
+		btn_rejuvenate.setFocusable(false);
+		btn_rejuvenate.setVisible(true);
+		btn_rejuvenate.addActionListener(this);
+		panel_actions.add(btn_rejuvenate);
 
 		// create attack button #3
-		btn_HeroicStrike = new JButton("Heroic Strike");
-		btn_HeroicStrike.setFocusable(false);
-		btn_HeroicStrike.setVisible(true);
-		panel_actions.add(btn_HeroicStrike);
+		btn_heroicStrike = new JButton("Heroic Strike");
+		btn_heroicStrike.setFocusable(false);
+		btn_heroicStrike.setVisible(true);
+		btn_heroicStrike.addActionListener(this);
+		panel_actions.add(btn_heroicStrike);
 
 		// create attack button #4
-		btn_Evade = new JButton("Evade");
-		btn_Evade.setFocusable(false);
-		btn_Evade.setVisible(true);
-		panel_actions.add(btn_Evade);
+		btn_evade = new JButton("Evade");
+		btn_evade.setFocusable(false);
+		btn_evade.setVisible(true);
+		btn_evade.addActionListener(this);
+		panel_actions.add(btn_evade);
 
 		// create attack button #5
-		btn_ToxicSpit = new JButton("Toxic Spit");
-		btn_ToxicSpit.setFocusable(false);
-		btn_ToxicSpit.setVisible(true);
-		panel_actions.add(btn_ToxicSpit);
+		btn_toxicSpit = new JButton("Toxic Spit");
+		btn_toxicSpit.setFocusable(false);
+		btn_toxicSpit.setVisible(true);
+		btn_toxicSpit.addActionListener(this);
+		panel_actions.add(btn_toxicSpit);
 
 		// create attack button #6
-		btn_Annihilate = new JButton("Annihilate");
-		btn_Annihilate.setFocusable(false);
-		btn_Annihilate.setVisible(true);
-		panel_actions.add(btn_Annihilate);
+		btn_annihilate = new JButton("Annihilate");
+		btn_annihilate.setFocusable(false);
+		btn_annihilate.setVisible(true);
+		btn_annihilate.addActionListener(this);
+		panel_actions.add(btn_annihilate);
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
@@ -181,8 +189,8 @@ public class Game extends JFrame {
 		textArea.setEditable(false);
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setBounds(229, 59, 416, 236);
-		contentPane.add(scroll);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		contentPane.add(scroll);
 
 		// test
 		appendMessage("hi");
@@ -190,6 +198,24 @@ public class Game extends JFrame {
 		appendMessage("hi");
 		appendMessage("hi again");
 
+	}
+
+	// create action listener
+	public void actionPerformed(ActionEvent evt) {
+		
+		if (evt.getSource().equals(btn_strike)) {
+			appendMessage("clicked strike");
+		} else if (evt.getSource().equals(btn_rejuvenate)) {
+			appendMessage("clicked rejuvenate");
+		} else if (evt.getSource().equals(btn_heroicStrike)) {
+			appendMessage("clicked heroic strike");
+		} else if (evt.getSource().equals(btn_evade)) {
+			appendMessage("clicked evade");
+		} else if (evt.getSource().equals(btn_toxicSpit)) {
+			appendMessage("clicked toxic spit");
+		} else if (evt.getSource().equals(btn_annihilate)) {
+			appendMessage("clicked annihilate");
+		}
 	}
 
 	// append a message to the middle display area
