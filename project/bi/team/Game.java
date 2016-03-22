@@ -38,7 +38,7 @@ public class Game extends JFrame {
 
 		// create left panel for displaying hero info
 		panel_left = new JPanel();
-		panel_left.setBounds(10, 59, 230, 292);
+		panel_left.setBounds(10, 59, 209, 292);
 		contentPane.add(panel_left);
 
 		// create top panel to display health bars
@@ -54,17 +54,17 @@ public class Game extends JFrame {
 
 		// create right panel for displaying enemy info
 		panel_right = new JPanel();
-		panel_right.setBounds(633, 59, 231, 292);
+		panel_right.setBounds(655, 59, 209, 292);
 		contentPane.add(panel_right);
 
 		// create middle panel for displaying output event changes
 		panel_middle = new JPanel();
-		panel_middle.setBounds(250, 59, 373, 236);
+		panel_middle.setBounds(229, 59, 416, 236);
 		contentPane.add(panel_middle);
 
 		// create actions panel for displaying action buttons
 		panel_actions = new JPanel();
-		panel_actions.setBounds(250, 306, 373, 45);
+		panel_actions.setBounds(229, 306, 416, 45);
 		contentPane.add(panel_actions);
 
 	}
