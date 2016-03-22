@@ -27,13 +27,14 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_bottom;
 	private JPanel panel_right;
 	private JPanel panel_actions;
-	private JButton btn_strike;
-	private JButton btn_rejuvenate;
-	private JButton btn_heroicStrike;
-	private JButton btn_evade;
-	private JButton btn_toxicSpit;
-	private JButton btn_annihilate;
-	private JProgressBar progBar_loading;
+	private static JButton btn_strike;
+	private static JButton btn_rejuvenate;
+	private static JButton btn_heroicStrike;
+	private static JButton btn_evade;
+	private static JButton btn_toxicSpit;
+	private static JButton btn_annihilate;
+	private static JProgressBar progBar_loading;
+
 	private JProgressBar progBar_playerHealth;
 	private JProgressBar progBar_enemyHealth;
 	private JLabel lbl_playerName;
@@ -145,6 +146,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_loading = new JProgressBar();
 		progBar_loading.setBounds(0, 0, 884, 12);
 		progBar_loading.setBorder(null);
+		progBar_loading.setValue(100);
 		progBar_loading.setVisible(true);
 		contentPane.add(progBar_loading);
 
@@ -192,35 +194,71 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);
 
-		// test
-		appendMessage("hi");
-		appendMessage("hi again");
-		appendMessage("hi");
-		appendMessage("hi again");
-
 	}
 
 	// create action listener
 	public void actionPerformed(ActionEvent evt) {
-		
+
 		if (evt.getSource().equals(btn_strike)) {
 			appendMessage("clicked strike");
+			startLoading();
 		} else if (evt.getSource().equals(btn_rejuvenate)) {
 			appendMessage("clicked rejuvenate");
+			startLoading();
 		} else if (evt.getSource().equals(btn_heroicStrike)) {
 			appendMessage("clicked heroic strike");
+			startLoading();
 		} else if (evt.getSource().equals(btn_evade)) {
 			appendMessage("clicked evade");
+			startLoading();
 		} else if (evt.getSource().equals(btn_toxicSpit)) {
 			appendMessage("clicked toxic spit");
+			startLoading();
 		} else if (evt.getSource().equals(btn_annihilate)) {
 			appendMessage("clicked annihilate");
+			startLoading();
 		}
+	}
+
+	// set all attack buttons to inactive
+	public static void disableButtons() {
+		btn_strike.setEnabled(false);
+		btn_rejuvenate.setEnabled(false);
+		btn_heroicStrike.setEnabled(false);
+		btn_evade.setEnabled(false);
+		btn_toxicSpit.setEnabled(false);
+		btn_annihilate.setEnabled(false);
+	}
+
+	// set all attack buttons to active
+	public static void enableButtons() {
+		btn_strike.setEnabled(true);
+		btn_rejuvenate.setEnabled(true);
+		btn_heroicStrike.setEnabled(true);
+		btn_evade.setEnabled(true);
+		btn_toxicSpit.setEnabled(true);
+		btn_annihilate.setEnabled(true);
+	}
+
+	// initiate the loading animation
+	public void startLoading() {
+		new Thread(new ThreadLoadingBar()).start();
 	}
 
 	// append a message to the middle display area
 	public void appendMessage(String s) {
 		textArea.append(" > " + s + "\n");
+	}
+
+	// return the loading bar's value
+	// public static int getProgBar_loading() {
+	// return progBar_loading.getValue();
+	// }
+
+	// set value for the loading bar
+	public static void setProgBar_loading(int val) {
+		progBar_loading.setValue(val);
+		progBar_loading.repaint();
 	}
 
 	// return total kills
