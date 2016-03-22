@@ -9,6 +9,7 @@ public class Game extends JFrame {
 
 	// init variables
 	private static int kills;
+	private static String turn;
 
 	private JPanel contentPane;
 	private JPanel panel_left;
@@ -76,6 +77,14 @@ public class Game extends JFrame {
 	// set total kills
 	public static void setKills(int kills) {
 		Game.kills = kills;
+	}
+
+	public static String getTurn() {
+		return turn;
+	}
+
+	public static void setTurn(String turn) {
+		Game.turn = turn;
 	}
 
 }
