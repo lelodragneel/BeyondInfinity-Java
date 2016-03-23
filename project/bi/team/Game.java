@@ -27,13 +27,13 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_bottom;
 	private JPanel panel_right;
 	private JPanel panel_actions;
-	private static JButton btn_strike;
-	private static JButton btn_rejuvenate;
-	private static JButton btn_heroicStrike;
-	private static JButton btn_evade;
-	private static JButton btn_toxicSpit;
-	private static JButton btn_annihilate;
-	private static JProgressBar progBar_loading;
+	private JButton btn_strike;
+	private JButton btn_rejuvenate;
+	private JButton btn_heroicStrike;
+	private JButton btn_evade;
+	private JButton btn_toxicSpit;
+	private JButton btn_annihilate;
+	private JProgressBar progBar_loading;
 
 	private JProgressBar progBar_playerHealth;
 	private JProgressBar progBar_enemyHealth;
@@ -42,10 +42,14 @@ public class Game extends JFrame implements ActionListener {
 	private JLabel lbl_playerImage;
 	private JLabel lbl_enemyImage;
 	private JTextArea textArea;
+	
+	private Load load;
 
 	// create the frame
 	public Game() {
 
+		load = new Load(this);
+		
 		// frame initializing
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -200,28 +204,33 @@ public class Game extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent evt) {
 
 		if (evt.getSource().equals(btn_strike)) {
+			load.start();
 			appendMessage("clicked strike");
-			startLoading();
 		} else if (evt.getSource().equals(btn_rejuvenate)) {
+			load.start();
 			appendMessage("clicked rejuvenate");
-			startLoading();
 		} else if (evt.getSource().equals(btn_heroicStrike)) {
+			load.start();
 			appendMessage("clicked heroic strike");
-			startLoading();
 		} else if (evt.getSource().equals(btn_evade)) {
+			load.start();
 			appendMessage("clicked evade");
-			startLoading();
 		} else if (evt.getSource().equals(btn_toxicSpit)) {
+			load.start();
 			appendMessage("clicked toxic spit");
-			startLoading();
 		} else if (evt.getSource().equals(btn_annihilate)) {
+			load.start();
 			appendMessage("clicked annihilate");
-			startLoading();
 		}
 	}
 
+
+	public void executeTasks() {
+		enableButtons();
+	}
+
 	// set all attack buttons to inactive
-	public static void disableButtons() {
+	public void disableButtons() {
 		btn_strike.setEnabled(false);
 		btn_rejuvenate.setEnabled(false);
 		btn_heroicStrike.setEnabled(false);
@@ -231,7 +240,7 @@ public class Game extends JFrame implements ActionListener {
 	}
 
 	// set all attack buttons to active
-	public static void enableButtons() {
+	public void enableButtons() {
 		btn_strike.setEnabled(true);
 		btn_rejuvenate.setEnabled(true);
 		btn_heroicStrike.setEnabled(true);
@@ -240,23 +249,13 @@ public class Game extends JFrame implements ActionListener {
 		btn_annihilate.setEnabled(true);
 	}
 
-	// initiate the loading animation
-	public void startLoading() {
-		new Thread(new ThreadLoadingBar()).start();
-	}
-
 	// append a message to the middle display area
 	public void appendMessage(String s) {
 		textArea.append(" > " + s + "\n");
 	}
 
-	// return the loading bar's value
-	// public static int getProgBar_loading() {
-	// return progBar_loading.getValue();
-	// }
-
 	// set value for the loading bar
-	public static void setProgBar_loading(int val) {
+	public void setProgBar_loading(int val) {
 		progBar_loading.setValue(val);
 		progBar_loading.repaint();
 	}
@@ -280,4 +279,5 @@ public class Game extends JFrame implements ActionListener {
 	public static void toggleTurn() {
 		Game.turn = !turn;
 	}
+
 }
