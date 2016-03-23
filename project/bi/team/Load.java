@@ -7,14 +7,16 @@ import javax.swing.Timer;
 
 public class Load {
 
+	// init variables
 	private Timer timer;
-	private int i;
+	private int i = 0;
 	private Game parent;
-	
+
+	// constructor
 	public Load(Game parent) {
 		this.parent = parent;
 	}
-	
+
 	public void start() {
 
 		// disable buttons to limit the game to one thread
@@ -22,19 +24,19 @@ public class Load {
 
 		// reset loading bar
 		parent.setProgBar_loading(0);
-		i = 0;
 
 		ActionListener listener = new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				parent.setProgBar_loading(i++);
+
 				if (i > 100) {
 					timer.stop();
 					parent.executeTasks();
-				} else
-					parent.setProgBar_loading(i++);
-
+				}
 			}
 		};
+		
 		// timer which triggers the actionlistener every 15ms
 		timer = new Timer(15, listener);
 		timer.start();
