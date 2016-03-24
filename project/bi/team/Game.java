@@ -160,12 +160,14 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerHealth = new JProgressBar();
 		progBar_playerHealth.setBounds(10, 11, 189, 14);
 		progBar_playerHealth.setVisible(true);
+		progBar_playerHealth.setValue(100);
 		panel_left.add(progBar_playerHealth);
 
 		// create progress bar to display the enemy's health
 		progBar_enemyHealth = new JProgressBar();
 		progBar_enemyHealth.setBounds(10, 11, 189, 14);
 		progBar_enemyHealth.setVisible(true);
+		progBar_enemyHealth.setValue(100);
 		panel_right.add(progBar_enemyHealth);
 
 		// create label to display enemy's name
