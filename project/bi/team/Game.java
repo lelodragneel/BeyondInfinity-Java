@@ -111,6 +111,7 @@ public class Game extends JFrame implements ActionListener {
 		btn_strike.setFocusable(false);
 		btn_strike.setVisible(true);
 		btn_strike.addActionListener(this);
+		//btn_strike.paintImmediately(10, 10, 10, 10);
 		panel_actions.add(btn_strike);
 
 		// create attack button #2
@@ -160,6 +161,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerHealth = new JProgressBar();
 		progBar_playerHealth.setBounds(10, 11, 189, 14);
 		progBar_playerHealth.setVisible(true);
+		progBar_playerHealth.setBorder(null);
 		progBar_playerHealth.setValue(100);
 		panel_left.add(progBar_playerHealth);
 
@@ -167,6 +169,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_enemyHealth = new JProgressBar();
 		progBar_enemyHealth.setBounds(10, 11, 189, 14);
 		progBar_enemyHealth.setVisible(true);
+		progBar_enemyHealth.setBorder(null);
 		progBar_enemyHealth.setValue(100);
 		panel_right.add(progBar_enemyHealth);
 
@@ -183,7 +186,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_right.add(lbl_enemyImage);
 
 		// create label to display player's name
-		lbl_playerName = new JLabel(" name");
+		lbl_playerName = new JLabel(" You");
 		lbl_playerName.setBounds(10, 25, 189, 20);
 		lbl_playerName.setVisible(true);
 		panel_left.add(lbl_playerName);
@@ -209,22 +212,16 @@ public class Game extends JFrame implements ActionListener {
 
 		if (evt.getSource().equals(btn_strike)) {
 			load.start(btn_strike);
-			appendMessage("clicked strike");
 		} else if (evt.getSource().equals(btn_rejuvenate)) {
 			load.start(btn_rejuvenate);
-			appendMessage("clicked rejuvenate");
-		} else if (evt.getSource().equals(btn_heroicStrike)) {
+		} else if (evt.getSource().equals(btn_heroicStrike)) {	
 			load.start(btn_heroicStrike);
-			appendMessage("clicked heroic strike");
 		} else if (evt.getSource().equals(btn_evade)) {
 			load.start(btn_evade);
-			appendMessage("clicked evade");
 		} else if (evt.getSource().equals(btn_toxicSpit)) {
 			load.start(btn_toxicSpit);
-			appendMessage("clicked toxic spit");
 		} else if (evt.getSource().equals(btn_annihilate)) {
 			load.start(btn_annihilate);
-			appendMessage("clicked annihilate");
 		}
 	}
 
@@ -237,8 +234,6 @@ public class Game extends JFrame implements ActionListener {
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
 		load.start(null);
-		// re-enable buttons
-		enableButtons();
 	}
 
 	//
