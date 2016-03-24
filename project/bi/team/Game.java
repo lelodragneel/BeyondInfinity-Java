@@ -20,7 +20,9 @@ public class Game extends JFrame implements ActionListener {
 
 	// init variables
 	private static int kills;
-	private static boolean turn;
+	private static boolean turn = true; // true for player's turn. false for
+										// enemy's
+	// turn
 	private JPanel contentPane;
 	private JPanel panel_left;
 	private JPanel panel_top;
@@ -34,7 +36,6 @@ public class Game extends JFrame implements ActionListener {
 	private JButton btn_toxicSpit;
 	private JButton btn_annihilate;
 	private JProgressBar progBar_loading;
-
 	private JProgressBar progBar_playerHealth;
 	private JProgressBar progBar_enemyHealth;
 	private JLabel lbl_playerName;
@@ -42,14 +43,15 @@ public class Game extends JFrame implements ActionListener {
 	private JLabel lbl_playerImage;
 	private JLabel lbl_enemyImage;
 	private JTextArea textArea;
-	
+
 	private Load load;
 
 	// create the frame
 	public Game() {
 
+		// instantiate objects
 		load = new Load(this);
-		
+
 		// frame initializing
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -204,28 +206,48 @@ public class Game extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent evt) {
 
 		if (evt.getSource().equals(btn_strike)) {
-			load.start();
+			load.start(btn_strike);
 			appendMessage("clicked strike");
 		} else if (evt.getSource().equals(btn_rejuvenate)) {
-			load.start();
+			load.start(btn_rejuvenate);
 			appendMessage("clicked rejuvenate");
 		} else if (evt.getSource().equals(btn_heroicStrike)) {
-			load.start();
+			load.start(btn_heroicStrike);
 			appendMessage("clicked heroic strike");
 		} else if (evt.getSource().equals(btn_evade)) {
-			load.start();
+			load.start(btn_evade);
 			appendMessage("clicked evade");
 		} else if (evt.getSource().equals(btn_toxicSpit)) {
-			load.start();
+			load.start(btn_toxicSpit);
 			appendMessage("clicked toxic spit");
 		} else if (evt.getSource().equals(btn_annihilate)) {
-			load.start();
+			load.start(btn_annihilate);
 			appendMessage("clicked annihilate");
 		}
 	}
 
+	//
+	public void attackEnemy(JButton button) {
+		appendMessage("enemy took x damage");
 
-	public void executeTasks() {
+		// TODO enemy health takes damage
+
+		// toggle turns then let enemy attack you
+		Game.toggleTurn();
+		load.start(null);
+		// re-enable buttons
+		enableButtons();
+	}
+
+	//
+	public void attackPlayer() {
+		appendMessage("you took x damage");
+
+		// TODO you take damage
+
+		// toggle turns
+		Game.toggleTurn();
+		// re-enable buttons
 		enableButtons();
 	}
 
@@ -276,8 +298,12 @@ public class Game extends JFrame implements ActionListener {
 	}
 
 	// change turn to the other
+	// true for player's turn. false for enemy's turn
 	public static void toggleTurn() {
-		Game.turn = !turn;
+		if (turn)
+			turn = false;
+		else
+			turn = true;
 	}
 
 }
