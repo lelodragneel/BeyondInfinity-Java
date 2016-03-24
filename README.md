@@ -1,4 +1,4 @@
-A role-playing adventure game
+A role-playing adventure game  
 CSCI1101 Project
 
 Dev Team:
