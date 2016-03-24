@@ -48,14 +48,16 @@ public class Game extends JFrame implements ActionListener {
 	private JLabel lbl_playerImage;
 	private JLabel lbl_enemyImage;
 	private JTextArea textArea;
+	private String playerName;
 
 	private Load load;
 
 	// create the frame
-	public Game() {
+	public Game(String name) {
 
 		// instantiate objects
 		load = new Load(this);
+		playerName = name;
 
 		// frame initializing
 		setResizable(false);
@@ -64,7 +66,6 @@ public class Game extends JFrame implements ActionListener {
 		setBounds(100, 100, 890, 480);
 		setTitle("BeyondInfinity - Group Project for CS1100");
 		getContentPane().setLayout(null);
-		setVisible(true);
 
 		// create a root panel
 		contentPane = new JPanel();
@@ -196,7 +197,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_right.add(lbl_enemyImage);
 
 		// create label to display player's name
-		lbl_playerName = new JLabel(" You");
+		lbl_playerName = new JLabel(playerName);
 		lbl_playerName.setBounds(10, 25, 189, 20);
 		lbl_playerName.setVisible(true);
 		panel_left.add(lbl_playerName);
@@ -220,6 +221,9 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);
 
+		// finally show frame
+		setVisible(true);
+		
 	}
 
 	// create action listener
@@ -316,6 +320,16 @@ public class Game extends JFrame implements ActionListener {
 			turn = false;
 		else
 			turn = true;
+	}
+
+	// return the player's name
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	// set the player name
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
 	}
 
 }
