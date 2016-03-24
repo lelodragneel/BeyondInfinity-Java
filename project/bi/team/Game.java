@@ -1,6 +1,8 @@
 package bi.team;
 
 import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,6 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.TitledBorder;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -66,11 +71,12 @@ public class Game extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		contentPane.setBounds(0, 0, 884, 451);
 		contentPane.setVisible(true);
+		contentPane.setBackground(new Color(236, 240, 241));
 		getContentPane().add(contentPane);
 
 		// create left panel for displaying hero info
 		panel_left = new JPanel();
-		panel_left.setBackground(new Color(143, 188, 143));
+		panel_left.setBackground(new Color(204, 255, 153));
 		panel_left.setBounds(10, 59, 209, 236);
 		panel_left.setLayout(null);
 		panel_left.setVisible(true);
@@ -91,7 +97,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create right panel for displaying enemy info
 		panel_right = new JPanel();
-		panel_right.setBackground(new Color(255, 160, 122));
+		panel_right.setBackground(new Color(204, 255, 153));
 		panel_right.setBounds(655, 59, 209, 236);
 		panel_right.setLayout(null);
 		panel_right.setVisible(true);
@@ -101,7 +107,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
 		panel_actions.setBounds(10, 306, 854, 68);
-		panel_actions.setBackground(new Color(100, 149, 237));
+		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		panel_actions.setVisible(true);
 		contentPane.add(panel_actions);
@@ -111,7 +117,6 @@ public class Game extends JFrame implements ActionListener {
 		btn_strike.setFocusable(false);
 		btn_strike.setVisible(true);
 		btn_strike.addActionListener(this);
-		//btn_strike.paintImmediately(10, 10, 10, 10);
 		panel_actions.add(btn_strike);
 
 		// create attack button #2
@@ -151,25 +156,30 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 884, 12);
+		progBar_loading.setBounds(0, 0, 884, 10);
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
+		progBar_loading.setForeground(new Color(52, 73, 94));
 		progBar_loading.setVisible(true);
 		contentPane.add(progBar_loading);
 
 		// create the player's health bar
 		progBar_playerHealth = new JProgressBar();
-		progBar_playerHealth.setBounds(10, 11, 189, 14);
+		progBar_playerHealth.setBounds(10, 11, 189, 15);
 		progBar_playerHealth.setVisible(true);
 		progBar_playerHealth.setBorder(null);
+		progBar_playerHealth.setForeground(new Color(30, 139, 195));
+		progBar_playerHealth.setBorderPainted(false);
 		progBar_playerHealth.setValue(100);
 		panel_left.add(progBar_playerHealth);
 
 		// create progress bar to display the enemy's health
 		progBar_enemyHealth = new JProgressBar();
-		progBar_enemyHealth.setBounds(10, 11, 189, 14);
+		progBar_enemyHealth.setBounds(10, 11, 189, 15);
 		progBar_enemyHealth.setVisible(true);
 		progBar_enemyHealth.setBorder(null);
+		progBar_enemyHealth.setForeground(new Color(236,100,75));
+		progBar_enemyHealth.setBorderPainted(false);
 		progBar_enemyHealth.setValue(100);
 		panel_right.add(progBar_enemyHealth);
 
@@ -199,9 +209,14 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the area which displays event changes
 		textArea = new JTextArea(0, 0);
+		textArea.setLineWrap(true);
 		textArea.setEditable(false);
+		textArea.setBorder(new EmptyBorder(4, 4, 4, 4));
+		textArea.setFont(new Font("Comic Sans MS", 0, 12));
+		textArea.setBackground(new Color(218, 223, 225));
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setBounds(229, 59, 416, 236);
+		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);
 
@@ -214,7 +229,7 @@ public class Game extends JFrame implements ActionListener {
 			load.start(btn_strike);
 		} else if (evt.getSource().equals(btn_rejuvenate)) {
 			load.start(btn_rejuvenate);
-		} else if (evt.getSource().equals(btn_heroicStrike)) {	
+		} else if (evt.getSource().equals(btn_heroicStrike)) {
 			load.start(btn_heroicStrike);
 		} else if (evt.getSource().equals(btn_evade)) {
 			load.start(btn_evade);
@@ -270,7 +285,7 @@ public class Game extends JFrame implements ActionListener {
 
 	// append a message to the middle display area
 	public void appendMessage(String s) {
-		textArea.append(" > " + s + "\n");
+		textArea.append("> " + s + "\n");
 	}
 
 	// set value for the loading bar
