@@ -1,4 +1,4 @@
-Text Based Adventure Role-playing
+A role-playing adventure game
 CSCI1101 Project
 
 Dev Team:
