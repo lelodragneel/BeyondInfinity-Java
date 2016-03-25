@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class WelcomeFrame extends JFrame implements ActionListener {
@@ -51,7 +52,7 @@ public class WelcomeFrame extends JFrame implements ActionListener {
 		nameField = new JTextField();
 		nameField.setBounds(213, 139, 167, 20);
 		nameField.setColumns(10);
-		nameField.setBorder(null);
+		nameField.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.add(nameField);
 
 		// create a button to submit player name
@@ -75,7 +76,7 @@ public class WelcomeFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 		if (e.getSource().equals(btnSubmit)) {
-			// start the game
+			// safely start the game frame
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
 					// TODO textfield validation
@@ -90,7 +91,7 @@ public class WelcomeFrame extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 
-		// start welcoming screen
+		// safely start welcoming screen
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				new WelcomeFrame();
