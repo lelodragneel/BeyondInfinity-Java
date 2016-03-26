@@ -26,12 +26,20 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 	public BeyondInfinity() {
 
+
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				// TODO textfield validation
+				new Game(nameField.getText());
+			}
+		});
+			
 		// frame initializing
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setBounds(100, 100, 600, 300);
-		setTitle("BeyondInfinity - Group Project for CS1100");
+		setTitle("BeyondInfinity - by Lelo");
 		getContentPane().setLayout(null);
 
 		// create a root panel
@@ -75,17 +83,17 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	// actionlistener for the submit button
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource().equals(btnSubmit)) {
-			// safely start the game frame
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					// TODO textfield validation
-					new Game(nameField.getText());
-				}
-			});
-			// close this frame
-			dispose();
-		}
+//		if (e.getSource().equals(btnSubmit)) {
+//			// safely start the game frame
+//			SwingUtilities.invokeLater(new Runnable() {
+//				public void run() {
+//					// TODO textfield validation
+//					new Game(nameField.getText());
+//				}
+//			});
+//			// close this frame
+//			dispose();
+//		}
 
 	}
 

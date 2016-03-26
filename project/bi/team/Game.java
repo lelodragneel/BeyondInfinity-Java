@@ -26,9 +26,8 @@ public class Game extends JFrame implements ActionListener {
 
 	// init variables
 	private static int kills;
-	private static boolean turn = true; // true for player's turn. false for
-										// enemy's
-	// turn
+	// true for player's turn. false for enemy's turn
+	private static boolean turn = true;
 	private JPanel contentPane;
 	private JPanel panel_left;
 	private JPanel panel_top;
@@ -65,7 +64,7 @@ public class Game extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setBounds(100, 100, 890, 480);
-		setTitle("BeyondInfinity - Group Project for CS1100");
+		setTitle("BeyondInfinity - by Lelo");
 		getContentPane().setLayout(null);
 
 		// create a root panel
@@ -103,7 +102,7 @@ public class Game extends JFrame implements ActionListener {
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 306, 854, 68);
+		panel_actions.setBounds(10, 306, 864, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
