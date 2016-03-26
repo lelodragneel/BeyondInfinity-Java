@@ -16,7 +16,7 @@ import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class BeyondInfinity extends JFrame implements ActionListener {
-	// test
+	// testtest
 	// init variables
 	private JPanel contentPane;
 	private JLabel lblTitle;
