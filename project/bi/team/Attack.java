@@ -17,7 +17,7 @@ public class Attack {
 	// if this button has sufficient energy, activate then subtract energy
 	public boolean activate() {
 		if (energy == 20) {
-			energy = 0;
+			energy = -5;
 			return true;
 		} else
 			return false;
