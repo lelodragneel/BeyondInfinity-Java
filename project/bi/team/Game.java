@@ -362,7 +362,7 @@ public class Game extends JFrame implements ActionListener {
 		contentPane.add(scroll);
 
 		// create the button that toggles map
-		btnShowMap = new JButton("Map >");
+		btnShowMap = new JButton("Map");
 		btnShowMap.setBounds(774, 0, 80, 29);
 		btnShowMap.setFocusable(false);
 		btnShowMap.addActionListener(this);
