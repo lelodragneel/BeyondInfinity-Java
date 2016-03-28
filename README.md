@@ -1,12 +1,6 @@
 A role-playing adventure game  
-CSCI1101 Project
+Personal project for fun :)
 
-Dev Team:
-- Jeffrey D.
-- Lawrence A.
-- Riley V.
-- Marlee D.
-- Laciphina C.
 
 Boss health scaling (exponential): green  
 Boss damage scaling (exponential): red  
