@@ -22,6 +22,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.Insets;
 import javax.swing.JSplitPane;
+import javax.swing.border.BevelBorder;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -55,6 +56,16 @@ public class Game extends JFrame implements ActionListener {
 	private boolean isMapShown;
 
 	private Load load;
+	private JLabel lblHealhIcon;
+	private JLabel lblDamageIcon;
+	private JLabel lblArmorIcon;
+	private JLabel lblCritDamageIcon;
+	private JLabel lblCritChanceIcon;
+	private JButton btnUpgradehealth;
+	private JButton btnUpgradeDamage;
+	private JButton btnUpgradeArmor;
+	private JButton btnUpgradeCritDamage;
+	private JButton btnCritChance;
 
 	// create the frame
 	public Game(String name) {
@@ -95,39 +106,109 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats = new JPanel();
 		panel_stats.setBounds(10, 306, 854, 55);
 		contentPane.add(panel_stats);
-		panel_stats.setLayout(null);
 
+		/* ------------- health stat subpanel ------------- */
+		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		// create subpanel (of panel_stats) for health
 		JPanel subpanel_health = new JPanel();
 		subpanel_health.setBorder(new TitledBorder(null, "Health", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_health.setBounds(0, 0, 150, 55);
 		panel_stats.add(subpanel_health);
+		subpanel_health.setLayout(null);
 
+		// create health icon
+		lblHealhIcon = new JLabel("");
+		lblHealhIcon.setBounds(10, 16, 30, 28);
+		subpanel_health.add(lblHealhIcon);
+
+		// create health upgrade button
+		btnUpgradehealth = new JButton("+");
+		btnUpgradehealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradehealth.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradehealth.setFocusable(false);
+		btnUpgradehealth.setBounds(132, 16, 28, 28);
+		subpanel_health.add(btnUpgradehealth);
+
+		/* ------------- damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for damage
 		JPanel subpanel_damage = new JPanel();
 		subpanel_damage.setBorder(new TitledBorder(null, "Damage", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_damage.setBounds(160, 0, 150, 55);
+		subpanel_damage.setLayout(null);
 		panel_stats.add(subpanel_damage);
 
+		// create damage icon
+		lblDamageIcon = new JLabel("");
+		lblDamageIcon.setBounds(10, 16, 30, 28);
+		subpanel_damage.add(lblDamageIcon);
+
+		// create damage upgrade button
+		btnUpgradeDamage = new JButton("+");
+		btnUpgradeDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeDamage.setFocusable(false);
+		btnUpgradeDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeDamage.setBounds(132, 16, 28, 28);
+		subpanel_damage.add(btnUpgradeDamage);
+
+		/* ------------- armor stat subpanel ------------- */
 		// create subpanel (of panel_stats) for armor
 		JPanel subpanel_armor = new JPanel();
 		subpanel_armor.setBorder(new TitledBorder(null, "Armor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_armor.setBounds(320, 0, 150, 55);
+		subpanel_armor.setLayout(null);
 		panel_stats.add(subpanel_armor);
 
+		// create armor icon
+		lblArmorIcon = new JLabel("");
+		lblArmorIcon.setBounds(10, 16, 30, 28);
+		subpanel_armor.add(lblArmorIcon);
+
+		// create armor upgrade button
+		btnUpgradeArmor = new JButton("+");
+		btnUpgradeArmor.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeArmor.setFocusable(false);
+		btnUpgradeArmor.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeArmor.setBounds(132, 16, 28, 28);
+		subpanel_armor.add(btnUpgradeArmor);
+
+		/* ------------- critical damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical damage
 		JPanel subpanel_critdamage = new JPanel();
 		subpanel_critdamage.setBorder(
 				new TitledBorder(null, "Critical Damage", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_critdamage.setBounds(480, 0, 150, 55);
+		subpanel_critdamage.setLayout(null);
 		panel_stats.add(subpanel_critdamage);
 
+		// create critical damage icon
+		lblCritDamageIcon = new JLabel("");
+		lblCritDamageIcon.setBounds(10, 16, 30, 28);
+		subpanel_critdamage.add(lblCritDamageIcon);
+
+		// create critical damage upgrade button
+		btnUpgradeCritDamage = new JButton("+");
+		btnUpgradeCritDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeCritDamage.setFocusable(false);
+		btnUpgradeCritDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeCritDamage.setBounds(132, 16, 28, 28);
+		subpanel_critdamage.add(btnUpgradeCritDamage);
+
+		/* ------------- critical chance stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical chance
 		JPanel subpanel_critchance = new JPanel();
 		subpanel_critchance.setBorder(
 				new TitledBorder(null, "Critical Chance", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_critchance.setBounds(640, 0, 150, 55);
+		subpanel_critchance.setLayout(null);
 		panel_stats.add(subpanel_critchance);
+
+		// create critical chance icon
+		lblCritChanceIcon = new JLabel("");
+		lblCritChanceIcon.setBounds(10, 16, 30, 28);
+		subpanel_critchance.add(lblCritChanceIcon);
+
+		// create critical chance upgrade button
+		btnCritChance = new JButton("+");
+		btnCritChance.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnCritChance.setFocusable(false);
+		btnCritChance.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnCritChance.setBounds(132, 16, 28, 28);
+		subpanel_critchance.add(btnCritChance);
 
 		// create right panel for displaying enemy info
 		panel_right = new JPanel();
