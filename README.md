@@ -10,7 +10,7 @@ Dev Team:
 
 Boss health scaling: green  
 Boss damage scaling: red  
-Boss armor scaling: blue  
+Boss armor scaling: purple  
 ![alt tag](https://i.gyazo.com/cd64dd6d073f7f3a97da1fc3b3476440.png)
 
 Overall visual  
