@@ -2,6 +2,7 @@ package bi.team;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.Insets;
+import javax.swing.JSplitPane;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -31,7 +33,7 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JPanel panel_left;
 	private JPanel panel_top;
-	private JPanel panel_bottom;
+	private JPanel panel_stats;
 	private JPanel panel_right;
 	private JPanel panel_actions;
 	private Attack attack_strike;
@@ -49,6 +51,8 @@ public class Game extends JFrame implements ActionListener {
 	private JLabel lbl_enemyImage;
 	private JTextArea textArea;
 	private String playerName;
+	private JButton btnShowMap;
+	private boolean isMapShown;
 
 	private Load load;
 
@@ -63,14 +67,14 @@ public class Game extends JFrame implements ActionListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 890, 480);
+		setBounds(100, 100, 880, 480);
 		setTitle("BeyondInfinity - by Lelo");
 		getContentPane().setLayout(null);
 
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 884, 451);
+		contentPane.setBounds(0, 0, 874, 451);
 		contentPane.setBackground(new Color(236, 240, 241));
 		getContentPane().add(contentPane);
 
@@ -83,14 +87,47 @@ public class Game extends JFrame implements ActionListener {
 
 		// create top panel to display health bars
 		panel_top = new JPanel();
-		panel_top.setBounds(10, 23, 854, 27);
+		panel_top.setBounds(10, 21, 854, 29);
 		panel_top.setLayout(null);
 		contentPane.add(panel_top);
 
 		// create bottom panel to display buttons for upgrades
-		panel_bottom = new JPanel();
-		panel_bottom.setBounds(10, 391, 854, 39);
-		contentPane.add(panel_bottom);
+		panel_stats = new JPanel();
+		panel_stats.setBounds(10, 306, 854, 55);
+		contentPane.add(panel_stats);
+		panel_stats.setLayout(null);
+
+		// create subpanel (of panel_stats) for health
+		JPanel subpanel_health = new JPanel();
+		subpanel_health.setBorder(new TitledBorder(null, "Health", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		subpanel_health.setBounds(0, 0, 150, 55);
+		panel_stats.add(subpanel_health);
+
+		// create subpanel (of panel_stats) for damage
+		JPanel subpanel_damage = new JPanel();
+		subpanel_damage.setBorder(new TitledBorder(null, "Damage", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		subpanel_damage.setBounds(160, 0, 150, 55);
+		panel_stats.add(subpanel_damage);
+
+		// create subpanel (of panel_stats) for armor
+		JPanel subpanel_armor = new JPanel();
+		subpanel_armor.setBorder(new TitledBorder(null, "Armor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		subpanel_armor.setBounds(320, 0, 150, 55);
+		panel_stats.add(subpanel_armor);
+
+		// create subpanel (of panel_stats) for critical damage
+		JPanel subpanel_critdamage = new JPanel();
+		subpanel_critdamage.setBorder(
+				new TitledBorder(null, "Critical Damage", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		subpanel_critdamage.setBounds(480, 0, 150, 55);
+		panel_stats.add(subpanel_critdamage);
+
+		// create subpanel (of panel_stats) for critical chance
+		JPanel subpanel_critchance = new JPanel();
+		subpanel_critchance.setBorder(
+				new TitledBorder(null, "Critical Chance", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		subpanel_critchance.setBounds(640, 0, 150, 55);
+		panel_stats.add(subpanel_critchance);
 
 		// create right panel for displaying enemy info
 		panel_right = new JPanel();
@@ -102,7 +139,7 @@ public class Game extends JFrame implements ActionListener {
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 306, 864, 68);
+		panel_actions.setBounds(10, 372, 854, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
@@ -157,7 +194,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 884, 10);
+		progBar_loading.setBounds(0, 0, 864, 10);
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
@@ -216,6 +253,13 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);
 
+		// create the button that toggles map
+		btnShowMap = new JButton("Map >");
+		btnShowMap.setBounds(774, 0, 80, 29);
+		btnShowMap.setFocusable(false);
+		panel_top.add(btnShowMap);
+		btnShowMap.addActionListener(this);
+
 		// finally show frame
 		setVisible(true);
 
@@ -224,19 +268,30 @@ public class Game extends JFrame implements ActionListener {
 	// create action listener
 	public void actionPerformed(ActionEvent evt) {
 
-		if (evt.getSource().equals(attack_strike.getButton())) {
+		if (evt.getSource().equals(attack_strike.getButton()))
 			activateAttack(attack_strike);
-		} else if (evt.getSource().equals(attack_rejuvenate.getButton())) {
+		else if (evt.getSource().equals(attack_rejuvenate.getButton()))
 			activateAttack(attack_rejuvenate);
-		} else if (evt.getSource().equals(attack_heroicStrike.getButton())) {
+		else if (evt.getSource().equals(attack_heroicStrike.getButton()))
 			activateAttack(attack_heroicStrike);
-		} else if (evt.getSource().equals(attack_evade.getButton())) {
+		else if (evt.getSource().equals(attack_evade.getButton()))
 			activateAttack(attack_evade);
-		} else if (evt.getSource().equals(attack_toxicSpit.getButton())) {
+		else if (evt.getSource().equals(attack_toxicSpit.getButton()))
 			activateAttack(attack_toxicSpit);
-		} else if (evt.getSource().equals(attack_annihilate.getButton())) {
+		else if (evt.getSource().equals(attack_annihilate.getButton()))
 			activateAttack(attack_annihilate);
-		}
+		else if (evt.getSource().equals(btnShowMap))
+			toggleMap();
+
+	}
+
+	// toggle the bounds of frame and its map
+	public void toggleMap() {
+		if (isMapShown)
+			setSize(880, 480);
+		else
+			setSize(1300, 480);
+		isMapShown = !isMapShown;
 	}
 
 	// check if button has sufficient energy to be activated
@@ -330,10 +385,7 @@ public class Game extends JFrame implements ActionListener {
 	// change turn to the other
 	// true for player's turn. false for enemy's turn
 	public static void toggleTurn() {
-		if (turn)
-			turn = false;
-		else
-			turn = true;
+		turn = !turn;
 	}
 
 	// return the player's name
@@ -345,5 +397,4 @@ public class Game extends JFrame implements ActionListener {
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
 	}
-
 }
