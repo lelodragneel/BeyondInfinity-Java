@@ -32,10 +32,10 @@ public class Game extends JFrame implements ActionListener {
 	// true for player's turn. false for enemy's turn
 	private static boolean turn = true;
 	private JPanel contentPane;
-	private JPanel panel_left;
+	private JPanel panel_player;
 	private JPanel panel_top;
 	private JPanel panel_stats;
-	private JPanel panel_right;
+	private JPanel panel_enemy;
 	private JPanel panel_actions;
 	private Attack attack_strike;
 	private Attack attack_rejuvenate;
@@ -61,7 +61,7 @@ public class Game extends JFrame implements ActionListener {
 	private JLabel lblArmorIcon;
 	private JLabel lblCritDamageIcon;
 	private JLabel lblCritChanceIcon;
-	private JButton btnUpgradehealth;
+	private JButton btnUpgradeHealth;
 	private JButton btnUpgradeDamage;
 	private JButton btnUpgradeArmor;
 	private JButton btnUpgradeCritDamage;
@@ -90,11 +90,11 @@ public class Game extends JFrame implements ActionListener {
 		getContentPane().add(contentPane);
 
 		// create left panel for displaying hero info
-		panel_left = new JPanel();
-		panel_left.setBackground(new Color(204, 255, 153));
-		panel_left.setBounds(10, 59, 209, 236);
-		panel_left.setLayout(null);
-		contentPane.add(panel_left);
+		panel_player = new JPanel();
+		panel_player.setBackground(new Color(204, 255, 153));
+		panel_player.setBounds(10, 59, 209, 236);
+		panel_player.setLayout(null);
+		contentPane.add(panel_player);
 
 		// create top panel to display health bars
 		panel_top = new JPanel();
@@ -112,8 +112,8 @@ public class Game extends JFrame implements ActionListener {
 		// create subpanel (of panel_stats) for health
 		JPanel subpanel_health = new JPanel();
 		subpanel_health.setBorder(new TitledBorder(null, "Health", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_stats.add(subpanel_health);
 		subpanel_health.setLayout(null);
+		panel_stats.add(subpanel_health);
 
 		// create health icon
 		lblHealhIcon = new JLabel("");
@@ -121,12 +121,13 @@ public class Game extends JFrame implements ActionListener {
 		subpanel_health.add(lblHealhIcon);
 
 		// create health upgrade button
-		btnUpgradehealth = new JButton("+");
-		btnUpgradehealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnUpgradehealth.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradehealth.setFocusable(false);
-		btnUpgradehealth.setBounds(132, 16, 28, 28);
-		subpanel_health.add(btnUpgradehealth);
+		btnUpgradeHealth = new JButton("+");
+		btnUpgradeHealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeHealth.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeHealth.setFocusable(false);
+		btnUpgradeHealth.setBounds(132, 16, 28, 28);
+		btnUpgradeHealth.setVisible(false);
+		subpanel_health.add(btnUpgradeHealth);
 
 		/* ------------- damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for damage
@@ -146,6 +147,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeDamage.setFocusable(false);
 		btnUpgradeDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeDamage.setBounds(132, 16, 28, 28);
+		btnUpgradeDamage.setVisible(false);
 		subpanel_damage.add(btnUpgradeDamage);
 
 		/* ------------- armor stat subpanel ------------- */
@@ -166,6 +168,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeArmor.setFocusable(false);
 		btnUpgradeArmor.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeArmor.setBounds(132, 16, 28, 28);
+		btnUpgradeArmor.setVisible(false);
 		subpanel_armor.add(btnUpgradeArmor);
 
 		/* ------------- critical damage stat subpanel ------------- */
@@ -187,6 +190,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritDamage.setFocusable(false);
 		btnUpgradeCritDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeCritDamage.setBounds(132, 16, 28, 28);
+		btnUpgradeCritDamage.setVisible(false);
 		subpanel_critdamage.add(btnUpgradeCritDamage);
 
 		/* ------------- critical chance stat subpanel ------------- */
@@ -208,14 +212,15 @@ public class Game extends JFrame implements ActionListener {
 		btnCritChance.setFocusable(false);
 		btnCritChance.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnCritChance.setBounds(132, 16, 28, 28);
+		btnCritChance.setVisible(false);
 		subpanel_critchance.add(btnCritChance);
 
 		// create right panel for displaying enemy info
-		panel_right = new JPanel();
-		panel_right.setBackground(new Color(204, 255, 153));
-		panel_right.setBounds(655, 59, 209, 236);
-		panel_right.setLayout(null);
-		contentPane.add(panel_right);
+		panel_enemy = new JPanel();
+		panel_enemy.setBackground(new Color(204, 255, 153));
+		panel_enemy.setBounds(655, 59, 209, 236);
+		panel_enemy.setLayout(null);
+		contentPane.add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
@@ -275,7 +280,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 864, 10);
+		progBar_loading.setBounds(0, 0, 874, 10);
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
@@ -290,7 +295,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerHealth.setForeground(new Color(30, 139, 195));
 		progBar_playerHealth.setBorderPainted(false);
 		progBar_playerHealth.setValue(100);
-		panel_left.add(progBar_playerHealth);
+		panel_player.add(progBar_playerHealth);
 
 		// create progress bar to display the enemy's health
 		progBar_enemyHealth = new JProgressBar();
@@ -299,27 +304,27 @@ public class Game extends JFrame implements ActionListener {
 		progBar_enemyHealth.setForeground(new Color(236, 100, 75));
 		progBar_enemyHealth.setBorderPainted(false);
 		progBar_enemyHealth.setValue(100);
-		panel_right.add(progBar_enemyHealth);
+		panel_enemy.add(progBar_enemyHealth);
 
 		// create label to display enemy's name
 		lbl_enemyName = new JLabel(" name");
 		lbl_enemyName.setBounds(10, 25, 189, 20);
-		panel_right.add(lbl_enemyName);
+		panel_enemy.add(lbl_enemyName);
 
 		// create the enemy's picture
 		lbl_enemyImage = new JLabel("");
 		lbl_enemyImage.setBounds(10, 56, 189, 169);
-		panel_right.add(lbl_enemyImage);
+		panel_enemy.add(lbl_enemyImage);
 
 		// create label to display player's name
 		lbl_playerName = new JLabel(playerName);
 		lbl_playerName.setBounds(10, 25, 189, 20);
-		panel_left.add(lbl_playerName);
+		panel_player.add(lbl_playerName);
 
 		// create the player's picture
 		lbl_playerImage = new JLabel("");
 		lbl_playerImage.setBounds(10, 56, 189, 169);
-		panel_left.add(lbl_playerImage);
+		panel_player.add(lbl_playerImage);
 
 		// create the area which displays event changes
 		textArea = new JTextArea(0, 0);
