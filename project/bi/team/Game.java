@@ -23,6 +23,14 @@ import javax.swing.border.TitledBorder;
 import java.awt.Insets;
 import javax.swing.JSplitPane;
 import javax.swing.border.BevelBorder;
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.JTable;
+import javax.swing.JSeparator;
+import javax.swing.JLayeredPane;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -66,6 +74,8 @@ public class Game extends JFrame implements ActionListener {
 	private JButton btnUpgradeArmor;
 	private JButton btnUpgradeCritDamage;
 	private JButton btnCritChance;
+	JLayeredPane layeredPane_map;
+	private JLabel lblNewLabel;
 
 	// create the frame
 	public Game(String name) {
@@ -88,6 +98,18 @@ public class Game extends JFrame implements ActionListener {
 		contentPane.setBounds(0, 0, 874, 451);
 		contentPane.setBackground(new Color(236, 240, 241));
 		getContentPane().add(contentPane);
+
+		// create the map
+		layeredPane_map = new JLayeredPane();
+		layeredPane_map.setBounds(207, 50, 460, 350);
+		layeredPane_map.setLayout(new GridLayout(8, 10, 0, 0));
+		layeredPane_map.setVisible(false);
+		contentPane.add(layeredPane_map);
+
+		lblNewLabel = new JLabel("New label");
+		layeredPane_map.add(lblNewLabel);
+
+		// TODO create all jlabels
 
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
@@ -343,8 +365,8 @@ public class Game extends JFrame implements ActionListener {
 		btnShowMap = new JButton("Map >");
 		btnShowMap.setBounds(774, 0, 80, 29);
 		btnShowMap.setFocusable(false);
-		panel_top.add(btnShowMap);
 		btnShowMap.addActionListener(this);
+		panel_top.add(btnShowMap);
 
 		// finally show frame
 		setVisible(true);
@@ -371,13 +393,10 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
-	// toggle the bounds of frame and its map
+	// toggle the map
 	public void toggleMap() {
-		if (isMapShown)
-			setSize(880, 480);
-		else
-			setSize(1300, 480);
 		isMapShown = !isMapShown;
+		layeredPane_map.setVisible(isMapShown);
 	}
 
 	// check if button has sufficient energy to be activated
