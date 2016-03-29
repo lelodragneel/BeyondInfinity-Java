@@ -25,8 +25,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JLabel lblOne;
 
 	public BeyondInfinity() {
-
-
+		
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				// TODO textfield validation
@@ -84,7 +83,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 
 //		if (e.getSource().equals(btnSubmit)) {
-//			// safely start the game frame
+//			// safely instantiate the game frame
 //			SwingUtilities.invokeLater(new Runnable() {
 //				public void run() {
 //					// TODO textfield validation
