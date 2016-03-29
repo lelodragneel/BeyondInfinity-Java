@@ -2,35 +2,23 @@ package bi.team;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
-import java.awt.Insets;
-import javax.swing.JSplitPane;
-import javax.swing.border.BevelBorder;
-import java.awt.Component;
-import javax.swing.Box;
-import javax.swing.JTable;
-import javax.swing.JSeparator;
-import javax.swing.JLayeredPane;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Rectangle;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
