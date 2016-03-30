@@ -118,39 +118,39 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnWarrior)){
 			heroAttacks.clear();
-			heroAttacks.add(new Attack("Strike", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Swing", 1.0, 1.0, 1, 1.0, 1));				// Basic Attack
+			heroAttacks.add(new Attack("Cleave", 1.0, 1.0, 1, 1.0, 1));				// Secondary Attack
+			heroAttacks.add(new Attack("Healing Potion", 1.0, 1.0, 1, 1.0, 1)); 	// Health
+			heroAttacks.add(new Attack("Block", 1.0, 1.0, 1, 1.0, 1));				// Evade
+			heroAttacks.add(new Attack("Offensive Stance", 1.0, 1.0, 1, 1.0, 1));	// Increase Damage
+			heroAttacks.add(new Attack("True Strike", 1.0, 1.0, 1, 1.0, 1));		// Ultimate Attack
 			classChosen = true;
 		}else if(e.getSource().equals(btnMage)){
 			heroAttacks.clear();
-			heroAttacks.add(new Attack("Magic Missile", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Wack with Staff", 1.0, 1.0, 1, 1.0, 1));	// Basic Attack
+			heroAttacks.add(new Attack("Magic Missile", 1.0, 1.0, 1, 1.0, 1));		// Secondary Attack
+			heroAttacks.add(new Attack("Rejuvenate Self", 1.0, 1.0, 1, 1.0, 1));	// Rejuvenate Self
+			heroAttacks.add(new Attack("Invisibility", 1.0, 1.0, 1, 1.0, 1));		// Evade
+			heroAttacks.add(new Attack("Magic Armour", 1.0, 1.0, 1, 1.0, 1));		// Increase Defense
+			heroAttacks.add(new Attack("Fireball", 1.0, 1.0, 1, 1.0, 1));			// Ultimate Attack
 			classChosen = true;
 		}else if(e.getSource().equals(btnRanger)){
 			heroAttacks.clear();
-			heroAttacks.add(new Attack("Arrow", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Bow & Arrow", 1.0, 1.0, 1, 1.0, 1));		// Basic Attack
+			heroAttacks.add(new Attack("Rapid Fire", 1.0, 1.0, 1, 1.0, 1));			// Secondary Attack
+			heroAttacks.add(new Attack("Nature's Healing", 1.0, 1.0, 1, 1.0, 1));	// Heal
+			heroAttacks.add(new Attack("Lay Bear Trap", 1.0, 1.0, 1, 1.0, 1));		// Evade i.e. caught in a bear trap
+			heroAttacks.add(new Attack("Vital Shot", 1.0, 1.0, 1, 1.0, 1));			// Increase Crit & Crit Chance
+			heroAttacks.add(new Attack("True Shot", 1.0, 1.0, 1, 1.0, 1));			// Ultimate Attack
 			classChosen = true;
 		}else if(e.getSource().equals(btnCleric)){
 			heroAttacks.clear();
-			heroAttacks.add(new Attack("Smite", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
-			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Smite", 1.0, 1.0, 1, 1.0, 1));				// Basic Attack
+			heroAttacks.add(new Attack("Drain Life", 1.0, 1.0, 1, 1.0, 1));			// Secondary Attack + Shit Heal
+			heroAttacks.add(new Attack("Regenerate Body", 1.0, 1.0, 1, 1.0, 1));	// Greater Heal
+			heroAttacks.add(new Attack("Blinding Light", 1.0, 1.0, 1, 1.0, 1));		// Evade
+			heroAttacks.add(new Attack("Divine Favor", 1.0, 1.0, 1, 1.0, 1));		// Increase All Stats
+			heroAttacks.add(new Attack("Divine Intervention", 1.0, 1.0, 1, 1.0, 1));// Ultimate Attack
 			classChosen = true;
 		}else if (e.getSource().equals(btnSubmit) && classChosen) {
 			// safely instantiate the game frame
