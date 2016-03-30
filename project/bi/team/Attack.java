@@ -1,7 +1,5 @@
 package bi.team;
 
-import java.awt.Insets;
-
 import javax.swing.JButton;
 
 public class Attack {
@@ -19,7 +17,7 @@ public class Attack {
 
 	// constructor
 	public Attack(String name, double damage, double energyCost, int coolDown, double heal, int turnEvade) {
-		makeButton();
+		button = new JButton(name);
 		this.name = name;
 		this.damage = damage;
 		this.energyCost = energyCost;
@@ -36,14 +34,6 @@ public class Attack {
 		this.turnCoolDown = 0;
 		this.heal = 0;
 		this.turnEvade = 0;
-	}
-
-	// makes button
-	public void makeButton(){
-		button = new JButton(name);
-		button.setFocusable(false);
-		button.setMargin(new Insets(0, 0, 0, 0));
-		//button.add(new MyGraphics(this));
 	}
 
 	//checks if it can be used and uses it
