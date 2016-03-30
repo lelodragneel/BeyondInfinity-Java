@@ -343,7 +343,6 @@ public class Game extends JFrame implements ActionListener {
 			}
 	}
 	public void cooldownUpkeep(){
-		System.out.print(player.getEnergyRecoverRate());
 		for(int i=0;i<6;i++)
 		attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
 	}
@@ -364,6 +363,7 @@ public class Game extends JFrame implements ActionListener {
 		// TODO enemy health takes damage
 		Double damage = attack.getDamage();
 		appendMessage("enemy took "+ damage +" damage from "+ attack.getName());
+		
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
 		load.start(null,attack);
