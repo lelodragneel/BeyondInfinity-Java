@@ -5,14 +5,17 @@ import java.awt.Color;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.border.LineBorder;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class BeyondInfinity extends JFrame implements ActionListener {
@@ -23,22 +26,25 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JTextField nameField;
 	private JButton btnSubmit;
 	private JLabel lblOne;
+	private JButton btnWarrior;
+	private JButton btnMage;
+	private JButton btnRanger;
+	private JButton btnCleric;
+	// initialize
+	private ArrayList<Attack> heroAttacks;
+	private Boolean classChosen = false;
 
 	public BeyondInfinity() {
-		
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				// TODO textfield validation
-				new Game(nameField.getText());
-			}
-		});
-			
+
+		//instantiate
+		heroAttacks = new ArrayList<Attack>();
+
 		// frame initializing
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setBounds(100, 100, 600, 300);
-		setTitle("BeyondInfinity - by Lelo");
+		setTitle("BeyondInfinity - by Lelo & Ree11");
 		getContentPane().setLayout(null);
 
 		// create a root panel
@@ -57,7 +63,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		// create a field to input player name
 		nameField = new JTextField();
-		nameField.setBounds(213, 139, 167, 20);
+		nameField.setBounds(213, 109, 167, 20);
 		nameField.setColumns(10);
 		nameField.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.add(nameField);
@@ -71,28 +77,90 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create a label asking player to enter name
 		lblOne = new JLabel("To start your adventure, enter your name below:");
 		lblOne.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblOne.setBounds(162, 108, 270, 20);
+		lblOne.setBounds(162, 78, 270, 20);
 		contentPane.add(lblOne);
+
+		JLabel lblPickAClass = new JLabel("Pick A Class!");
+		lblPickAClass.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPickAClass.setBounds(252, 140, 89, 14);
+		contentPane.add(lblPickAClass);
+
+		btnWarrior = new JButton("Warrior");
+		btnWarrior.setBounds(102, 165, 89, 23);
+		btnWarrior.addActionListener(this);
+		contentPane.add(btnWarrior);
+
+		btnMage = new JButton("Mage");
+		btnMage.setBounds(201, 165, 89, 23);
+		btnMage.addActionListener(this);
+		contentPane.add(btnMage);
+
+		btnRanger = new JButton("Ranger");
+		btnRanger.setBounds(300, 165, 89, 23);
+		btnRanger.addActionListener(this);
+		contentPane.add(btnRanger);
+
+		btnCleric = new JButton("Cleric");
+		btnCleric.setBounds(399, 165, 89, 23);
+		btnCleric.addActionListener(this);
+		contentPane.add(btnCleric);
 
 		// finally show frame
 		setVisible(true);
+	}
 
+	public ArrayList<Attack> getheroAttacks() {
+		return heroAttacks;
 	}
 
 	// actionlistener for the submit button
+	//String name, double damage, double energyCost, int coolDown, double heal, int turnEvade
 	public void actionPerformed(ActionEvent e) {
-
-//		if (e.getSource().equals(btnSubmit)) {
-//			// safely instantiate the game frame
-//			SwingUtilities.invokeLater(new Runnable() {
-//				public void run() {
-//					// TODO textfield validation
-//					new Game(nameField.getText());
-//				}
-//			});
-//			// close this frame
-//			dispose();
-//		}
+		if(e.getSource().equals(btnWarrior)){
+			heroAttacks.add(new Attack("Strike", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			classChosen = true;
+		}else if(e.getSource().equals(btnMage)){
+			heroAttacks.add(new Attack("Magic Missile", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			classChosen = true;
+		}else if(e.getSource().equals(btnRanger)){
+			heroAttacks.add(new Attack("Arrow", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			classChosen = true;
+		}else if(e.getSource().equals(btnCleric)){
+			heroAttacks.add(new Attack("Smite", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #4", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #5", 1.0, 1.0, 1, 1.0, 1));
+			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
+			classChosen = true;
+		}else if (e.getSource().equals(btnSubmit) && classChosen) {
+			// safely instantiate the game frame
+			SwingUtilities.invokeLater(new Runnable() {
+				public void run() {
+					// TODO textfield validation
+					new Game(nameField.getText(), heroAttacks);
+				}
+			});
+			// close this frame
+			dispose();
+		}else if (e.getSource().equals(btnSubmit) && !classChosen){
+			JOptionPane.showMessageDialog(null, "Please Select a class", "Alert", JOptionPane.ERROR_MESSAGE);
+		} 
 
 	}
 
@@ -105,5 +173,4 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			}
 		});
 	}
-
 }
