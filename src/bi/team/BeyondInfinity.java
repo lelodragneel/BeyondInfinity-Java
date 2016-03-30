@@ -156,8 +156,9 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			// safely instantiate the game frame
 			SwingUtilities.invokeLater(new Runnable() {
 				public void run() {
-					// TODO textfield validation
-					new Game(nameField.getText(), heroAttacks);
+					// TODO textfield validation //double maxHealth, double maxEnergy, double energyRecoverRate
+					Player player = new Player(nameField.getText(),100,100,10);
+					new Game(player, heroAttacks);
 				}
 			});
 			// close this frame

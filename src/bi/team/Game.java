@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -59,11 +58,11 @@ public class Game extends JFrame implements ActionListener {
 	private Map map;
 
 	// create the frame
-	public Game(String name, ArrayList<Attack> attacks) {
+	public Game(Player player, ArrayList<Attack> attacks) {
 		
 		// instantiate objects
 		load = new Load(this);
-		playerName = name;
+		playerName = player.getName();
 		this.attackButtons = attacks;
 
 		// frame initializing
@@ -350,9 +349,9 @@ public class Game extends JFrame implements ActionListener {
 
 	// enemy takes damage
 	public void attackEnemy(JButton button) {
-		appendMessage("enemy took x damage");
-
 		// TODO enemy health takes damage
+		
+		appendMessage("enemy took x damage");
 
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
