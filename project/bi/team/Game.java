@@ -239,12 +239,23 @@ public class Game extends JFrame implements ActionListener {
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
-
+		/**
+		Attack[] AttackBar = new Attack[5];
+		// create attack button bar
+		for(int i=0;i<6;i++){
+			AttackBar[i] = Attack.Attack(new JButton("Strike"));
+			attack_strike.getButton().setFocusable(false);
+			attack_strike.getButton().setMargin(new Insets(0, 0, 0, 0));
+			//attack_strike.getButton().add(new MyGraphics(attack_strike));
+			attack_strike.getButton().addActionListener(this);
+			panel_actions.add(attack_strike.getButton());
+		}*/
+		/**
 		// create attack button #1
 		attack_strike = new Attack(new JButton("Strike"));
 		attack_strike.getButton().setFocusable(false);
 		attack_strike.getButton().setMargin(new Insets(0, 0, 0, 0));
-		attack_strike.getButton().add(new MyGraphics(attack_strike));
+		//attack_strike.getButton().add(new MyGraphics(attack_strike));
 		attack_strike.getButton().addActionListener(this);
 		panel_actions.add(attack_strike.getButton());
 
@@ -252,7 +263,7 @@ public class Game extends JFrame implements ActionListener {
 		attack_rejuvenate = new Attack(new JButton("Rejuvenate"));
 		attack_rejuvenate.getButton().setFocusable(false);
 		attack_rejuvenate.getButton().setMargin(new Insets(0, 0, 0, 0));
-		attack_rejuvenate.getButton().add(new MyGraphics(attack_rejuvenate));
+		//attack_rejuvenate.getButton().add(new MyGraphics(attack_rejuvenate));
 		attack_rejuvenate.getButton().addActionListener(this);
 		panel_actions.add(attack_rejuvenate.getButton());
 
@@ -260,7 +271,7 @@ public class Game extends JFrame implements ActionListener {
 		attack_heroicStrike = new Attack(new JButton("Heroic Strike"));
 		attack_heroicStrike.getButton().setFocusable(false);
 		attack_heroicStrike.getButton().setMargin(new Insets(0, 0, 0, 0));
-		attack_heroicStrike.getButton().add(new MyGraphics(attack_heroicStrike));
+		//attack_heroicStrike.getButton().add(new MyGraphics(attack_heroicStrike));
 		attack_heroicStrike.getButton().addActionListener(this);
 		panel_actions.add(attack_heroicStrike.getButton());
 
@@ -268,7 +279,7 @@ public class Game extends JFrame implements ActionListener {
 		attack_evade = new Attack(new JButton("Evade"));
 		attack_evade.getButton().setFocusable(false);
 		attack_evade.getButton().setMargin(new Insets(0, 0, 0, 0));
-		attack_evade.getButton().add(new MyGraphics(attack_evade));
+		//attack_evade.getButton().add(new MyGraphics(attack_evade));
 		attack_evade.getButton().addActionListener(this);
 		panel_actions.add(attack_evade.getButton());
 
@@ -276,7 +287,7 @@ public class Game extends JFrame implements ActionListener {
 		attack_toxicSpit = new Attack(new JButton("Toxic Spit"));
 		attack_toxicSpit.getButton().setFocusable(false);
 		attack_toxicSpit.getButton().setMargin(new Insets(0, 0, 0, 0));
-		attack_toxicSpit.getButton().add(new MyGraphics(attack_toxicSpit));
+		//attack_toxicSpit.getButton().add(new MyGraphics(attack_toxicSpit));
 		attack_toxicSpit.getButton().addActionListener(this);
 		panel_actions.add(attack_toxicSpit.getButton());
 
@@ -284,10 +295,10 @@ public class Game extends JFrame implements ActionListener {
 		attack_annihilate = new Attack(new JButton("Annihilate"));
 		attack_annihilate.getButton().setFocusable(false);
 		attack_annihilate.getButton().setMargin(new Insets(0, 0, 0, 0));
-		attack_annihilate.getButton().add(new MyGraphics(attack_annihilate));
+		//attack_annihilate.getButton().add(new MyGraphics(attack_annihilate));
 		attack_annihilate.getButton().addActionListener(this);
 		panel_actions.add(attack_annihilate.getButton());
-
+		 */
 		// create the loading bar
 		progBar_loading = new JProgressBar();
 		progBar_loading.setBounds(0, 0, 874, 10);
@@ -389,19 +400,22 @@ public class Game extends JFrame implements ActionListener {
 
 	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack attack) {
-		if (attack.activate())
+		if (attack.canBeUsed())
 			load.start(attack.getButton());
 	}
 
 	// add 5 energy for each button
 	// (this is called when hit by enemy, once per turn)
+	//TODO fix cooldowns
 	public void regenerateButtons() {
+		/**
 		attack_strike.regenerate();
 		attack_rejuvenate.regenerate();
 		attack_heroicStrike.regenerate();
 		attack_evade.regenerate();
 		attack_toxicSpit.regenerate();
 		attack_annihilate.regenerate();
+		 */
 	}
 
 	// enemy takes damage
