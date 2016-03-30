@@ -26,4 +26,19 @@ public class MapEntry {
 		entry.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 	}
 
+	// return the jlabel
+	public JLabel getEntry() {
+		return entry;
+	}
+
+	// return whether or not this boss is defeated
+	public boolean isCompleted() {
+		return completed;
+	}
+
+	// set whether or not this boss got defeated
+	public void setCompleted(boolean completed) {
+		this.completed = completed;
+	}
+
 }

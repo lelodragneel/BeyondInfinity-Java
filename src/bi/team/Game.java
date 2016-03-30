@@ -54,17 +54,17 @@ public class Game extends JFrame implements ActionListener {
 	private JButton btnUpgradeArmor;
 	private JButton btnUpgradeCritDamage;
 	private JButton btnCritChance;
-	private JLayeredPane layeredPane_map;
-	private JLabel lblNewLabel;
 	private Load load;
 	private ArrayList<Attack> attackButtons;
+	private Map map;
 
 	// create the frame
 	public Game(String name, ArrayList<Attack> attacks) {
-		this.attackButtons = attacks;
+		
 		// instantiate objects
 		load = new Load(this);
 		playerName = name;
+		this.attackButtons = attacks;
 
 		// frame initializing
 		setResizable(false);
@@ -81,17 +81,10 @@ public class Game extends JFrame implements ActionListener {
 		contentPane.setBackground(new Color(236, 240, 241));
 		getContentPane().add(contentPane);
 
-		// create the map
-		layeredPane_map = new JLayeredPane();
-		layeredPane_map.setBounds(207, 50, 460, 350);
-		layeredPane_map.setLayout(new GridLayout(8, 10, 0, 0));
-		layeredPane_map.setVisible(false);
-		contentPane.add(layeredPane_map);
-
-		lblNewLabel = new JLabel("New label");
-		layeredPane_map.add(lblNewLabel);
-
-		// TODO create all jlabels
+		// create the map object/frame
+		map = new Map();
+		map.getMapPane().setBounds((contentPane.getWidth()/2)-(550/2), (contentPane.getHeight()/2)-(320/2), 550, 320);
+		contentPane.add(map.getMapPane());
 
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
@@ -335,7 +328,7 @@ public class Game extends JFrame implements ActionListener {
 	// toggle the map
 	public void toggleMap() {
 		isMapShown = !isMapShown;
-		layeredPane_map.setVisible(isMapShown);
+		map.getMapPane().setVisible(isMapShown);
 	}
 
 	// check if button has sufficient energy to be activated
