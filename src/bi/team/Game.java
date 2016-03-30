@@ -56,6 +56,7 @@ public class Game extends JFrame implements ActionListener {
 	private Load load;
 	private ArrayList<Attack> attackButtons;
 	private Map map;
+	private Player player;
 
 	// create the frame
 	public Game(Player player, ArrayList<Attack> attacks) {
@@ -63,6 +64,7 @@ public class Game extends JFrame implements ActionListener {
 		// instantiate objects
 		load = new Load(this);
 		playerName = player.getName();
+		this.player = player;
 		this.attackButtons = attacks;
 
 		// frame initializing
@@ -332,8 +334,18 @@ public class Game extends JFrame implements ActionListener {
 
 	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack attack) {
-		if (attack.useAttack()){
-			load.start(attack.getButton(),attack);}
+		if (attack.useAttack(false)){
+		    attack.useAttack(true);
+			load.start(attack.getButton(),attack);
+			cooldownUpkeep();
+			}else {
+				appendMessage("That attack is on Cooldown, try another");
+			}
+	}
+	public void cooldownUpkeep(){
+		System.out.print(player.getEnergyRecoverRate());
+		for(int i=0;i<6;i++)
+		attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
 	}
 
 	// add 5 energy for each button
