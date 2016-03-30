@@ -117,6 +117,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	//String name, double damage, double energyCost, int coolDown, double heal, int turnEvade
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnWarrior)){
+			heroAttacks.clear();
 			heroAttacks.add(new Attack("Strike", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
@@ -125,6 +126,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
 			classChosen = true;
 		}else if(e.getSource().equals(btnMage)){
+			heroAttacks.clear();
 			heroAttacks.add(new Attack("Magic Missile", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
@@ -133,6 +135,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
 			classChosen = true;
 		}else if(e.getSource().equals(btnRanger)){
+			heroAttacks.clear();
 			heroAttacks.add(new Attack("Arrow", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));
@@ -141,6 +144,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Attack #6", 1.0, 1.0, 1, 1.0, 1));
 			classChosen = true;
 		}else if(e.getSource().equals(btnCleric)){
+			heroAttacks.clear();
 			heroAttacks.add(new Attack("Smite", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #2", 1.0, 1.0, 1, 1.0, 1));
 			heroAttacks.add(new Attack("Attack #3", 1.0, 1.0, 1, 1.0, 1));

@@ -9,7 +9,7 @@ public class Attack {
 	// init variables
 	private JButton button;
 	private String name; // Name of attack
-	private int turnCoolDown; // the amount of turns the attack needs before it can
+	private int turnCoolDown; // the amount of turns the attack needs before it can be used again
 	private int coolDownTimer; // the how many turns left until attack can used again
 	private double energyCost; // How much energy the attack uses
 	private double damage; // How much Damage does the attack do
@@ -39,6 +39,30 @@ public class Attack {
 			return true;
 		}
 		return false; // attack is under cooldown
+	}
+	// for when you attack "You used <Name>"
+	public String getName() {
+		return name;
+	}
+	// For when You try to use an attack thats on cooldown "You have to wait <CoolDownTimer> turns before u can do that"
+	public int getCoolDownTimer() {
+		return coolDownTimer;
+	}
+	// To Subtract from Players Energy Pool
+	public double getEnergyCost() {
+		return energyCost;
+	}
+	// How much damage you did/subtract from bosses health
+	public double getDamage() {
+		return damage;
+	}
+	// How much you heal yourself
+	public double getHeal() {
+		return heal;
+	}
+	// Are u still immune to damage
+	public int getTurnEvade() {
+		return turnEvade;
 	}
 
 	// return this button

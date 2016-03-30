@@ -237,7 +237,6 @@ public class Game extends JFrame implements ActionListener {
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
 
-		// Create a arraylist for dictionary for sorting 
 		// loop through all buttons, and add to action listener & panel_actions
 		for (int i = 0; i < attackButtons.size(); i++) {
 			attackButtons.get(i).getButton().addActionListener(this);
