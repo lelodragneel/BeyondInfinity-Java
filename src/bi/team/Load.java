@@ -19,7 +19,7 @@ public class Load {
 	}
 
 	// start animating the loading bar
-	public void start(JButton buttonused) {
+	public void start(JButton buttonused, Attack attack) {
 
 		// disable buttons to prevent simultaneous attacks
 		parent.disableButtons();
@@ -45,7 +45,7 @@ public class Load {
 
 					// if it's the player's turn
 					if (Game.getTurn() == true) {
-						parent.attackEnemy(buttonused);
+						parent.attackEnemy(buttonused,attack);
 					} else // else it's the enemy's turn
 					if (Game.getTurn() == false) {
 						parent.attackPlayer();

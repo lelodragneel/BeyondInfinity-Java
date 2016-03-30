@@ -24,6 +24,7 @@ public class Attack {
 		this.turnCoolDown = coolDown;
 		this.heal = heal;
 		this.turnEvade = turnEvade;
+		this.coolDownTimer = 0;
 
 		// create a button and configure it
 		button = new JButton(name);
@@ -34,7 +35,7 @@ public class Attack {
 
 	// checks if it can be used and uses it
 	public boolean useAttack() {
-		if (coolDownTimer > 0) {
+		if (coolDownTimer <= 0) {
 			coolDownTimer = turnCoolDown;
 			return true;
 		}

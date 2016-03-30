@@ -332,8 +332,8 @@ public class Game extends JFrame implements ActionListener {
 
 	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack attack) {
-		if (attack.useAttack())
-			load.start(attack.getButton());
+		if (attack.useAttack()){
+			load.start(attack.getButton(),attack);}
 	}
 
 	// add 5 energy for each button
@@ -348,14 +348,13 @@ public class Game extends JFrame implements ActionListener {
 	}
 
 	// enemy takes damage
-	public void attackEnemy(JButton button) {
+	public void attackEnemy(JButton button,Attack attack) {
 		// TODO enemy health takes damage
-		
-		appendMessage("enemy took x damage");
-
+		Double damage = attack.getDamage();
+		appendMessage("enemy took "+ damage +" damage from "+ attack.getName());
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
-		load.start(null);
+		load.start(null,attack);
 	}
 
 	// player takes damage
