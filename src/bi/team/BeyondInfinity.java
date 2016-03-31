@@ -21,22 +21,18 @@ import javax.swing.SwingConstants;
 public class BeyondInfinity extends JFrame implements ActionListener {
 
 	// init variables
-	private JPanel contentPane;
-	private JLabel lblTitle;
 	private JTextField nameField;
 	private JButton btnSubmit;
-	private JLabel lblOne;
 	private JButton btnWarrior;
 	private JButton btnMage;
 	private JButton btnRanger;
 	private JButton btnCleric;
-	// initialize
 	private ArrayList<Attack> heroAttacks;
 	private Boolean classChosen = false;
 
 	public BeyondInfinity() {
 
-		//instantiate
+		// instantiate variables
 		heroAttacks = new ArrayList<Attack>();
 
 		// frame initializing
@@ -48,7 +44,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		getContentPane().setLayout(null);
 
 		// create a root panel
-		contentPane = new JPanel();
+		JPanel contentPane = new JPanel();
 		contentPane.setLayout(null);
 		contentPane.setBounds(0, 0, 594, 271);
 		contentPane.setVisible(true);
@@ -56,7 +52,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		getContentPane().add(contentPane);
 
 		// create title label
-		lblTitle = new JLabel("Welcome to BeyondInfinity!");
+		JLabel lblTitle = new JLabel("Welcome to BeyondInfinity!");
 		lblTitle.setFont(new Font("Comic Sans MS", Font.PLAIN, 14));
 		lblTitle.setBounds(203, 11, 188, 27);
 		contentPane.add(lblTitle);
@@ -75,31 +71,36 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		contentPane.add(btnSubmit);
 
 		// create a label asking player to enter name
-		lblOne = new JLabel("To start your adventure, enter your name below:");
+		JLabel lblOne = new JLabel("To start your adventure, enter your name below:");
 		lblOne.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblOne.setBounds(162, 78, 270, 20);
 		contentPane.add(lblOne);
 
+		// create a label asking player to pick a class 
 		JLabel lblPickAClass = new JLabel("Pick A Class!");
 		lblPickAClass.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPickAClass.setBounds(252, 140, 89, 14);
 		contentPane.add(lblPickAClass);
 
+		// create warrior button
 		btnWarrior = new JButton("Warrior");
 		btnWarrior.setBounds(102, 165, 89, 23);
 		btnWarrior.addActionListener(this);
 		contentPane.add(btnWarrior);
 
+		// create mage button
 		btnMage = new JButton("Mage");
 		btnMage.setBounds(201, 165, 89, 23);
 		btnMage.addActionListener(this);
 		contentPane.add(btnMage);
 
+		// create ranger button
 		btnRanger = new JButton("Ranger");
 		btnRanger.setBounds(300, 165, 89, 23);
 		btnRanger.addActionListener(this);
 		contentPane.add(btnRanger);
 
+		// create cleric button
 		btnCleric = new JButton("Cleric");
 		btnCleric.setBounds(399, 165, 89, 23);
 		btnCleric.addActionListener(this);
@@ -109,9 +110,6 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-	public ArrayList<Attack> getheroAttacks() {
-		return heroAttacks;
-	}
 
 	// actionlistener for the submit button
 	//String name, double damage, double energyCost, int coolDown, double heal, int turnEvade
@@ -177,5 +175,10 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 				new BeyondInfinity();
 			}
 		});
+	}
+	
+	// return the array of the chosen hero's attacks
+	public ArrayList<Attack> getheroAttacks() {
+		return heroAttacks;
 	}
 }

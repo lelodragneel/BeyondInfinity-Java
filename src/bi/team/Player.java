@@ -1,58 +1,78 @@
 package bi.team;
 
 public class Player {
-	
+
+	// initialize variables
 	private double curHhealth, maxHealth, maxEnergy, curEnergy, energyRecoverRate;
 	private String name;
-	Player(String name, double maxHealth, double maxEnergy, double energyRecoverRate){
-		this.name = name;
+
+	// constructor
+	Player(String name, double maxHealth, double maxEnergy, double energyRecoverRate) {
+		this.setName(name);
 		this.maxEnergy = maxEnergy;
 		this.maxHealth = maxHealth;
 		this.energyRecoverRate = energyRecoverRate;
-		
+
 	}
 
-	public String getName() {
-		return name;
-	}
-
+	// return the curHhealth
 	public double getCurHhealth() {
 		return curHhealth;
 	}
 
+	// set the curHhealth
 	public void setCurHhealth(double curHhealth) {
 		this.curHhealth = curHhealth;
 	}
 
+	// return the maxHealth
 	public double getMaxHealth() {
 		return maxHealth;
 	}
 
+	// set the maxHealth
 	public void setMaxHealth(double maxHealth) {
 		this.maxHealth = maxHealth;
 	}
 
+	// return the maxEnergy
 	public double getMaxEnergy() {
 		return maxEnergy;
 	}
 
+	// set the maxEnergy
 	public void setMaxEnergy(double maxEnergy) {
 		this.maxEnergy = maxEnergy;
 	}
 
+	// return the curEnergy
 	public double getCurEnergy() {
 		return curEnergy;
 	}
 
+	// set the curEnergy
 	public void setCurEnergy(double curEnergy) {
 		this.curEnergy = curEnergy;
 	}
 
+	// return the energyRecoverRate
 	public double getEnergyRecoverRate() {
 		return energyRecoverRate;
 	}
 
+	// set the energyRecoverRate
 	public void setEnergyRecoverRate(double energyRecoverRate) {
 		this.energyRecoverRate = energyRecoverRate;
 	}
+
+	// return the name
+	public String getName() {
+		return name;
+	}
+
+	// set the name
+	public void setName(String name) {
+		this.name = name;
+	}
+
 }

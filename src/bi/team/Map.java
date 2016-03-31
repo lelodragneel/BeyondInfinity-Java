@@ -1,7 +1,6 @@
 package bi.team;
 
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.util.ArrayList;
 
 import javax.swing.JLayeredPane;

@@ -35,32 +35,23 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerHealth;
 	private JProgressBar progBar_enemyHealth;
-	private JLabel lbl_playerName;
-	private JLabel lbl_enemyName;
-	private JLabel lbl_playerImage;
-	private JLabel lbl_enemyImage;
 	private JTextArea textArea;
-	private String playerName;
 	private JButton btnShowMap;
-	private boolean isMapShown;
-	private JLabel lblHealhIcon;
-	private JLabel lblDamageIcon;
-	private JLabel lblArmorIcon;
-	private JLabel lblCritDamageIcon;
-	private JLabel lblCritChanceIcon;
 	private JButton btnUpgradeHealth;
 	private JButton btnUpgradeDamage;
 	private JButton btnUpgradeArmor;
 	private JButton btnUpgradeCritDamage;
 	private JButton btnCritChance;
-	private Load load;
+	private String playerName;
+	private boolean isMapShown;
 	private ArrayList<Attack> attackButtons;
+	private Load load;
 	private Map map;
 	private Player player;
 
 	// create the frame
 	public Game(Player player, ArrayList<Attack> attacks) {
-		
+
 		// instantiate objects
 		load = new Load(this);
 		playerName = player.getName();
@@ -84,7 +75,8 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the map object/frame
 		map = new Map();
-		map.getMapPane().setBounds((contentPane.getWidth()/2)-(550/2), (contentPane.getHeight()/2)-(320/2), 550, 320);
+		map.getMapPane().setBounds((contentPane.getWidth() / 2) - (550 / 2), (contentPane.getHeight() / 2) - (320 / 2),
+				550, 320);
 		contentPane.add(map.getMapPane());
 
 		// create left panel for displaying hero info
@@ -114,7 +106,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats.add(subpanel_health);
 
 		// create health icon
-		lblHealhIcon = new JLabel("");
+		JLabel lblHealhIcon = new JLabel("");
 		lblHealhIcon.setBounds(10, 16, 30, 28);
 		subpanel_health.add(lblHealhIcon);
 
@@ -135,7 +127,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats.add(subpanel_damage);
 
 		// create damage icon
-		lblDamageIcon = new JLabel("");
+		JLabel lblDamageIcon = new JLabel("");
 		lblDamageIcon.setBounds(10, 16, 30, 28);
 		subpanel_damage.add(lblDamageIcon);
 
@@ -156,7 +148,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats.add(subpanel_armor);
 
 		// create armor icon
-		lblArmorIcon = new JLabel("");
+		JLabel lblArmorIcon = new JLabel("");
 		lblArmorIcon.setBounds(10, 16, 30, 28);
 		subpanel_armor.add(lblArmorIcon);
 
@@ -178,7 +170,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats.add(subpanel_critdamage);
 
 		// create critical damage icon
-		lblCritDamageIcon = new JLabel("");
+		JLabel lblCritDamageIcon = new JLabel("");
 		lblCritDamageIcon.setBounds(10, 16, 30, 28);
 		subpanel_critdamage.add(lblCritDamageIcon);
 
@@ -200,7 +192,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats.add(subpanel_critchance);
 
 		// create critical chance icon
-		lblCritChanceIcon = new JLabel("");
+		JLabel lblCritChanceIcon = new JLabel("");
 		lblCritChanceIcon.setBounds(10, 16, 30, 28);
 		subpanel_critchance.add(lblCritChanceIcon);
 
@@ -263,22 +255,22 @@ public class Game extends JFrame implements ActionListener {
 		panel_enemy.add(progBar_enemyHealth);
 
 		// create label to display enemy's name
-		lbl_enemyName = new JLabel(" name");
+		JLabel lbl_enemyName = new JLabel(" name");
 		lbl_enemyName.setBounds(10, 25, 189, 20);
 		panel_enemy.add(lbl_enemyName);
 
 		// create the enemy's picture
-		lbl_enemyImage = new JLabel("");
+		JLabel lbl_enemyImage = new JLabel("");
 		lbl_enemyImage.setBounds(10, 56, 189, 169);
 		panel_enemy.add(lbl_enemyImage);
 
 		// create label to display player's name
-		lbl_playerName = new JLabel(playerName);
+		JLabel lbl_playerName = new JLabel(playerName);
 		lbl_playerName.setBounds(10, 25, 189, 20);
 		panel_player.add(lbl_playerName);
 
 		// create the player's picture
-		lbl_playerImage = new JLabel("");
+		JLabel lbl_playerImage = new JLabel("");
 		lbl_playerImage.setBounds(10, 56, 189, 169);
 		panel_player.add(lbl_playerImage);
 
@@ -334,17 +326,18 @@ public class Game extends JFrame implements ActionListener {
 
 	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack attack) {
-		if (attack.useAttack(false)){
-		    attack.useAttack(true);
-			load.start(attack.getButton(),attack);
+		if (attack.useAttack(false)) {
+			attack.useAttack(true);
+			load.start(attack.getButton(), attack);
 			cooldownUpkeep();
-			}else {
-				appendMessage("That attack is on Cooldown, try another");
-			}
+		} else {
+			appendMessage("That attack is on Cooldown, try another");
+		}
 	}
-	public void cooldownUpkeep(){
-		for(int i=0;i<6;i++)
-		attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
+
+	public void cooldownUpkeep() {
+		for (int i = 0; i < 6; i++)
+			attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
 	}
 
 	// add 5 energy for each button
@@ -359,14 +352,14 @@ public class Game extends JFrame implements ActionListener {
 	}
 
 	// enemy takes damage
-	public void attackEnemy(JButton button,Attack attack) {
+	public void attackEnemy(JButton button, Attack attack) {
 		// TODO enemy health takes damage
 		Double damage = attack.getDamage();
-		appendMessage("enemy took "+ damage +" damage from "+ attack.getName());
-		
+		appendMessage("enemy took " + damage + " damage from " + attack.getName());
+
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
-		load.start(null,attack);
+		load.start(null, attack);
 	}
 
 	// player takes damage
