@@ -59,7 +59,7 @@ public class Game extends JFrame implements ActionListener {
 		this.player = player;
 		this.attackButtons = attacks;
 					//totalhealth, damage, energy, energyregeneration
-		boss = new Boss(10,10,10,1);
+		boss = new Boss(100,10,10,1);
 
 		// frame initializing
 		setResizable(false);
@@ -245,7 +245,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerHealth.setBorder(null);
 		progBar_playerHealth.setForeground(new Color(30, 139, 195));
 		progBar_playerHealth.setBorderPainted(false);
-		progBar_playerHealth.setValue(100);
+		progBar_playerHealth.setValue((int) player.getMaxHealth());
 		panel_player.add(progBar_playerHealth);
 
 		// create progress bar to display the enemy's health
@@ -254,7 +254,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_enemyHealth.setBorder(null);
 		progBar_enemyHealth.setForeground(new Color(236, 100, 75));
 		progBar_enemyHealth.setBorderPainted(false);
-		progBar_enemyHealth.setValue(100);
+		progBar_enemyHealth.setValue((int) boss.getTotalHealth());
 		panel_enemy.add(progBar_enemyHealth);
 
 		// create label to display enemy's name
@@ -358,13 +358,13 @@ public class Game extends JFrame implements ActionListener {
 		Game.toggleTurn();
 	}
 	//FIXME
-//	public static void checkWinner() {
-//		if(player.getCurHhealth()<=0){
-//			System.out.println("You Have Lost :(");			
-//		}else if(boss.getHealth()<=0){
-//			System.out.println("Congrats you have killed the boss");
-//		}
-//	}
+	public static void checkWinner() {
+		if(player.getCurHhealth()<=0){
+			System.out.println("You Have Lost :("+player.getCurHhealth());			
+		}else if(boss.getHealth()<=0){
+			System.out.println("Congrats you have killed the boss"+boss.getHealth());
+		}
+	}
 
 	// set all attack buttons to inactive
 	public void disableButtons() {
