@@ -49,7 +49,10 @@ public class Load {
 					} else // else it's the enemy's turn
 					if (Game.getTurn() == false) {
 						parent.attackPlayer();
+						// re-enable buttons
+						parent.enableButtons();
 					}
+					//FIXME Game.checkWinner();
 
 				}
 			}

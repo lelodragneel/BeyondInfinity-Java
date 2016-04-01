@@ -6,8 +6,14 @@ public class Boss {
 	private double health, totalhealth, damage, energy, energyregeneration;
 
 	// constructor
-	public Boss() {
-		
+	public Boss(double totalhealth, double damage, double energy, double energyregeneration) {
+		this.totalhealth = totalhealth;
+		this.damage = damage;
+		this.energy = energy;
+		this.energyregeneration = energyregeneration;
+	}
+	public void takeDamage(double dam){
+		health -= dam;
 	}
 
 	// return boss's total health

@@ -47,7 +47,8 @@ public class Game extends JFrame implements ActionListener {
 	private ArrayList<Attack> attackButtons;
 	private Load load;
 	private Map map;
-	private Player player;
+	private static Player player;
+	private static Boss boss;
 
 	// create the frame
 	public Game(Player player, ArrayList<Attack> attacks) {
@@ -57,6 +58,8 @@ public class Game extends JFrame implements ActionListener {
 		playerName = player.getName();
 		this.player = player;
 		this.attackButtons = attacks;
+					//totalhealth, damage, energy, energyregeneration
+		boss = new Boss(10,10,10,1);
 
 		// frame initializing
 		setResizable(false);
@@ -299,22 +302,16 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
-	// action listener
+	// action listener 	//XXX When Attack Button is pressed
 	public void actionPerformed(ActionEvent evt) {
-		if (evt.getSource().equals(attackButtons.get(0).getButton()))
-			activateAttack(attackButtons.get(0));
-		else if (evt.getSource().equals(attackButtons.get(1).getButton()))
-			activateAttack(attackButtons.get(1));
-		else if (evt.getSource().equals(attackButtons.get(2).getButton()))
-			activateAttack(attackButtons.get(2));
-		else if (evt.getSource().equals(attackButtons.get(3).getButton()))
-			activateAttack(attackButtons.get(3));
-		else if (evt.getSource().equals(attackButtons.get(4).getButton()))
-			activateAttack(attackButtons.get(4));
-		else if (evt.getSource().equals(attackButtons.get(5).getButton()))
-			activateAttack(attackButtons.get(5));
-		else if (evt.getSource().equals(btnShowMap))
+		if (evt.getSource().equals(btnShowMap))
 			toggleMap();
+		for(int i = 0;i<6;i++){
+			if (evt.getSource().equals(attackButtons.get(i).getButton())){
+				activateAttack(attackButtons.get(i));
+			break;
+			}
+		}
 
 	}
 
@@ -324,12 +321,11 @@ public class Game extends JFrame implements ActionListener {
 		map.getMapPane().setVisible(isMapShown);
 	}
 
-	// check if button has sufficient energy to be activated
+	// check if button has sufficient energy to be activated      //XXX Uses an attack
 	public void activateAttack(Attack chosenAttack) {
 		if (chosenAttack.useAttack()) {
 			chosenAttack.useAttack();
 			load.start(chosenAttack.getButton(), chosenAttack);
-
 			cooldownUpkeep();
 		} else {
 			appendMessage(chosenAttack.getName() + " is on cooldown, try another.");
@@ -341,41 +337,34 @@ public class Game extends JFrame implements ActionListener {
 			attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
 	}
 
-	// add 5 energy for each button
-	// (this is called when hit by enemy, once per turn)
-	// TODO fix cooldowns
-	public void regenerateButtons() {
-		/*
-		 * attack_strike.regenerate(); attack_rejuvenate.regenerate();
-		 * attack_heroicStrike.regenerate(); attack_evade.regenerate();
-		 * attack_toxicSpit.regenerate(); attack_annihilate.regenerate();
-		 */
-	}
-
-	// enemy takes damage
+	// enemy takes damage			//XXX Enemy take damage
 	public void attackEnemy(JButton button, Attack attack) {
-		// TODO enemy health takes damage
 		Double damage = attack.getDamage();
 		appendMessage("enemy took " + damage + " damage from " + attack.getName());
-
+		boss.takeDamage(damage);
+		progBar_enemyHealth.setValue((int) (progBar_enemyHealth.getValue()-damage));
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
 		load.start(null, attack);
 	}
 
-	// player takes damage
+	// player takes damage		//XXX Player Take damage
 	public void attackPlayer() {
-		appendMessage("you took x damage");
-
-		// TODO you take damage
-
+		Double bossDamage = boss.getDamage();
+		appendMessage("you took "+bossDamage+" damage");
+		player.takeDamage(bossDamage);
+		progBar_playerHealth.setValue((int) (progBar_playerHealth.getValue()-bossDamage));
 		// toggle turns
 		Game.toggleTurn();
-		// regenerate 5 energy for all buttons
-		regenerateButtons();
-		// re-enable buttons
-		enableButtons();
 	}
+	//FIXME
+//	public static void checkWinner() {
+//		if(player.getCurHhealth()<=0){
+//			System.out.println("You Have Lost :(");			
+//		}else if(boss.getHealth()<=0){
+//			System.out.println("Congrats you have killed the boss");
+//		}
+//	}
 
 	// set all attack buttons to inactive
 	public void disableButtons() {

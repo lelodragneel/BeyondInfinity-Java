@@ -3,7 +3,7 @@ package bi.team;
 public class Player {
 
 	// initialize variables
-	private double curHhealth;
+	private double curHealth;
 	private double maxHealth;
 	private double maxEnergy;
 	private double curEnergy;
@@ -12,22 +12,25 @@ public class Player {
 
 	// constructor
 	Player(String name, double maxHealth, double maxEnergy, double energyRecoverRate) {
-		
 		this.setName(name);
 		this.maxEnergy = maxEnergy;
 		this.maxHealth = maxHealth;
+		curHealth = maxHealth;
 		this.energyRecoverRate = energyRecoverRate;
 
 	}
 
 	// return the curHhealth
 	public double getCurHhealth() {
-		return curHhealth;
+		return curHealth;
+	}
+	public void takeDamage(double dam){
+		curHealth -= dam;
 	}
 
 	// set the curHhealth
 	public void setCurHhealth(double curHhealth) {
-		this.curHhealth = curHhealth;
+		this.curHealth = curHhealth;
 	}
 
 	// return the maxHealth
