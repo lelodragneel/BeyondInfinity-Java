@@ -10,7 +10,7 @@ public class Attack {
 	private JButton button;
 	private String name; // Name of attack
 	private int turnCooldown; // the amount of turns the attack needs before it can be used again
-	private double cooldownTimer; // the how many turns left until attack can used again
+	private double cooldownTimer; // the how many turns left until attack can used again. 0 for no cooldown
 	private double energyCost; // How much energy the attack uses
 	private double damage; // How much Damage does the attack do
 	private double heal; // How much Healing does the attack do

@@ -325,6 +325,7 @@ public class Game extends JFrame implements ActionListener {
 	public void activateAttack(Attack chosenAttack) {
 		if (chosenAttack.useAttack()) {
 			load.start(chosenAttack);
+			// reduce all button cooldowns except chosenAttack
 			reduceButtonCooldowns(chosenAttack);
 		} else
 			appendMessage(chosenAttack.getName() + " is on cooldown, try another.");
