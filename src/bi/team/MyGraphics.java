@@ -11,7 +11,7 @@ public class MyGraphics extends JPanel {
 
 	// init variables
 	private Attack button;
-	int width;
+	private int width;
 
 	// constructor
 	public MyGraphics(Attack button) {
@@ -22,20 +22,20 @@ public class MyGraphics extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		/*       TEMPORARILY DISABLED       */
-//		// this is temporary until a mathematical equation is figured out
-//		if (button.getEnergy() == 20)
-//			width = button.getButton().getWidth();
-//		else if (button.getEnergy() == 15)
-//			width = button.getButton().getWidth() * 3 / 4;
-//		else if (button.getEnergy() == 10)
-//			width = button.getButton().getWidth() / 2;
-//		else if (button.getEnergy() == 5)
-//			width = button.getButton().getWidth() / 4;
-//		else
-//			width = 0;
+		// if cooldownTimer is zero, set width to full
+		// this is needed because a multiplication by zero equals zero
+		if (button.getCooldownTimer() == 0)
+			width = button.getButton().getWidth();
+		else if (button.getCooldownTimer() < 0)
+			width = 0;
+		else {
+			// width of button is multiplied by this variable
+			double cooldownPercentageValue = Math.abs(button.getCooldownTimer()) / Math.abs(button.getTurnCooldown());
+			width = (int) ((1 - cooldownPercentageValue) * button.getButton().getWidth());
+		}
 
-		// draw the cooldown animation on the jbutton this.setOpaque(false);
+		// paint the cooldown on the jbutton
+		this.setOpaque(false);
 		g.setColor(new Color(0.2f, 0.28f, 0.37f, 0.15f));
 		g.fillRect(0, 0, width, button.getButton().getHeight());
 		g.setFont(new Font("Tahoma Bold", Font.PLAIN, 12));

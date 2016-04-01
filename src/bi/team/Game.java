@@ -42,23 +42,20 @@ public class Game extends JFrame implements ActionListener {
 	private JButton btnUpgradeArmor;
 	private JButton btnUpgradeCritDamage;
 	private JButton btnCritChance;
-	private String playerName;
 	private boolean isMapShown;
 	private ArrayList<Attack> attackButtons;
 	private Load load;
 	private Map map;
-	private static Player player;
-	private static Boss boss;
+	private Player player;
+	private Boss boss;
 
 	// create the frame
-	public Game(Player player, ArrayList<Attack> attacks) {
+	public Game(String name, ArrayList<Attack> attackButtons) {
 
 		// instantiate objects
+		this.attackButtons = attackButtons;
 		load = new Load(this);
-		playerName = player.getName();
-		this.player = player;
-		this.attackButtons = attacks;
-					//totalhealth, damage, energy, energyregeneration
+		player = new Player(name,100,100,1.0);
 		boss = new Boss(100,10,10,1);
 
 		// frame initializing
@@ -268,7 +265,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_enemy.add(lbl_enemyImage);
 
 		// create label to display player's name
-		JLabel lbl_playerName = new JLabel(playerName);
+		JLabel lbl_playerName = new JLabel(name);
 		lbl_playerName.setBounds(10, 25, 189, 20);
 		panel_player.add(lbl_playerName);
 
@@ -302,14 +299,16 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
-	// action listener 	//XXX When Attack Button is pressed
+	// action listener
 	public void actionPerformed(ActionEvent evt) {
 		if (evt.getSource().equals(btnShowMap))
 			toggleMap();
-		for(int i = 0;i<6;i++){
-			if (evt.getSource().equals(attackButtons.get(i).getButton())){
+		
+		// check if any attacks were clicked
+		for (int i = 0; i < 6; i++) {
+			if (evt.getSource().equals(attackButtons.get(i).getButton())) {
 				activateAttack(attackButtons.get(i));
-			break;
+				break;
 			}
 		}
 
@@ -321,48 +320,56 @@ public class Game extends JFrame implements ActionListener {
 		map.getMapPane().setVisible(isMapShown);
 	}
 
-	// check if button has sufficient energy to be activated      //XXX Uses an attack
+	// XXX uses an attack
+	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack chosenAttack) {
 		if (chosenAttack.useAttack()) {
-			chosenAttack.useAttack();
-			load.start(chosenAttack.getButton(), chosenAttack);
-			cooldownUpkeep();
-		} else {
+			load.start(chosenAttack);
+			reduceButtonCooldowns(chosenAttack);
+		} else
 			appendMessage(chosenAttack.getName() + " is on cooldown, try another.");
+
+	}
+
+	// FIXME player.getEnergyRecoverRate suspected wrong
+	// reduce cooldown values of all buttons
+	public void reduceButtonCooldowns(Attack attackUsed) {
+		for (int i = 0; i < attackButtons.size(); i++) {
+			// do not recover the used attack this turn
+			if (!attackButtons.get(i).getButton().equals(attackUsed.getButton()))
+				attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
 		}
 	}
 
-	public void cooldownUpkeep() {
-		for (int i = 0; i < 6; i++)
-			attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
-	}
-
-	// enemy takes damage			//XXX Enemy take damage
-	public void attackEnemy(JButton button, Attack attack) {
-		Double damage = attack.getDamage();
+	// XXX enemy takes damage
+	public void attackEnemy(Attack attack) {		
+		double damage = attack.getDamage();
 		appendMessage("enemy took " + damage + " damage from " + attack.getName());
 		boss.takeDamage(damage);
-		progBar_enemyHealth.setValue((int) (progBar_enemyHealth.getValue()-damage));
+		progBar_enemyHealth.setValue((int) (progBar_enemyHealth.getValue() - damage));
+		
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
-		load.start(null, attack);
+		load.start(attack);
 	}
 
-	// player takes damage		//XXX Player Take damage
+	// XXX player takes damage
 	public void attackPlayer() {
-		Double bossDamage = boss.getDamage();
-		appendMessage("you took "+bossDamage+" damage");
+		double bossDamage = boss.getDamage();
+		appendMessage("you took " + bossDamage + " damage");
 		player.takeDamage(bossDamage);
-		progBar_playerHealth.setValue((int) (progBar_playerHealth.getValue()-bossDamage));
+		progBar_playerHealth.setValue((int) (progBar_playerHealth.getValue() - bossDamage));
+		
 		// toggle turns
 		Game.toggleTurn();
 	}
-	//FIXME
-	public static void checkWinner() {
-		if(player.getCurHhealth()<=0){
-			System.out.println("You Have Lost :("+player.getCurHhealth());			
-		}else if(boss.getHealth()<=0){
-			System.out.println("Congrats you have killed the boss"+boss.getHealth());
+
+	// FIXME
+	public void checkWinner() {
+		if (player.getCurHhealth() <= 0) {
+			appendMessage("You lost :( " + player.getCurHhealth());
+		} else if (boss.getHealth() <= 0) {
+			appendMessage("Congrats you have killed the boss " + boss.getHealth());
 		}
 	}
 
@@ -410,15 +417,5 @@ public class Game extends JFrame implements ActionListener {
 	// true for player's turn. false for enemy's turn
 	public static void toggleTurn() {
 		turn = !turn;
-	}
-
-	// return the player's name
-	public String getPlayerName() {
-		return playerName;
-	}
-
-	// set the player name
-	public void setPlayerName(String playerName) {
-		this.playerName = playerName;
 	}
 }

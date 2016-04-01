@@ -17,20 +17,21 @@ public class Player {
 		this.maxHealth = maxHealth;
 		curHealth = maxHealth;
 		this.energyRecoverRate = energyRecoverRate;
-
 	}
 
 	// return the curHhealth
 	public double getCurHhealth() {
 		return curHealth;
 	}
-	public void takeDamage(double dam){
-		curHealth -= dam;
+	
+	// take damage from enemy
+	public void takeDamage(double damage){
+		curHealth -= damage;
 	}
 
 	// set the curHhealth
-	public void setCurHhealth(double curHhealth) {
-		this.curHealth = curHhealth;
+	public void setCurHhealth(double curHealth) {
+		this.curHealth = curHealth;
 	}
 
 	// return the maxHealth

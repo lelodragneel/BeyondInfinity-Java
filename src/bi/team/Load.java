@@ -19,7 +19,7 @@ public class Load {
 	}
 
 	// start animating the loading bar
-	public void start(JButton buttonused, Attack attack) {
+	public void start(Attack attack) {
 
 		// disable buttons to prevent simultaneous attacks
 		parent.disableButtons();
@@ -36,22 +36,24 @@ public class Load {
 
 				// increment loading bar value
 				parent.setProgBar_loading(i++);
+
 				// conditional check for who's turn
 				if (i > 100) {
-
+					
 					// stop the loop
 					timer.stop();
-					Game.checkWinner();
+					parent.checkWinner();
+					
 					// if it's the player's turn
-					if (Game.getTurn() == true) {
-						parent.attackEnemy(buttonused,attack);
-					} else // else it's the enemy's turn
-					if (Game.getTurn() == false) {
-						parent.attackPlayer();
-						// re-enable buttons
-						parent.enableButtons();
+					if (Game.getTurn() == true) 
+						parent.attackEnemy(attack);
+					else { 	// else it's the enemy's turn
+						if (Game.getTurn() == false) {
+							parent.attackPlayer();
+							// re-enable buttons
+							parent.enableButtons();
+						}
 					}
-
 				}
 			}
 		};
