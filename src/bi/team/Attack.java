@@ -34,10 +34,9 @@ public class Attack {
 	}
 
 	// checks if it can be used and uses it
-	public boolean useAttack(boolean use) {
-		if(use)
-			coolDownTimer = turnCoolDown;
+	public boolean useAttack() {
 		if (coolDownTimer <= 0) {
+			coolDownTimer = turnCoolDown;
 			return true;
 		}
 		return false; // attack is under cooldown

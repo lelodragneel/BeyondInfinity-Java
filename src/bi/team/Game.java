@@ -326,9 +326,10 @@ public class Game extends JFrame implements ActionListener {
 
 	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack chosenAttack) {
-		if (chosenAttack.useAttack(false)) {
-			chosenAttack.useAttack(true);
+		if (chosenAttack.useAttack()) {
+			chosenAttack.useAttack();
 			load.start(chosenAttack.getButton(), chosenAttack);
+
 			cooldownUpkeep();
 		} else {
 			appendMessage(chosenAttack.getName() + " is on cooldown, try another.");
