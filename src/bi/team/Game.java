@@ -339,7 +339,7 @@ public class Game extends JFrame implements ActionListener {
 	public void cooldownUpkeep() {
 		for (int i = 0; i < 6; i++)
 			attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
-	}//u are poopy
+	}//u are a mother, OH SNAP!
 
 	// add 5 energy for each button
 	// (this is called when hit by enemy, once per turn)
