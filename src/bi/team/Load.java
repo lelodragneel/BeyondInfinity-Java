@@ -36,13 +36,12 @@ public class Load {
 
 				// increment loading bar value
 				parent.setProgBar_loading(i++);
-
 				// conditional check for who's turn
 				if (i > 100) {
 
 					// stop the loop
 					timer.stop();
-
+					Game.checkWinner();
 					// if it's the player's turn
 					if (Game.getTurn() == true) {
 						parent.attackEnemy(buttonused,attack);
@@ -52,7 +51,6 @@ public class Load {
 						// re-enable buttons
 						parent.enableButtons();
 					}
-					//FIXME Game.checkWinner();
 
 				}
 			}

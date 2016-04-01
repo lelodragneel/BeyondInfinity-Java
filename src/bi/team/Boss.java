@@ -10,6 +10,7 @@ public class Boss {
 		this.totalhealth = totalhealth;
 		this.damage = damage;
 		this.energy = energy;
+		health = totalhealth;
 		this.energyregeneration = energyregeneration;
 	}
 	public void takeDamage(double dam){
