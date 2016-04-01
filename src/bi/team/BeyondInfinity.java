@@ -121,7 +121,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Healing Potion", 1.0, 1.0, 2, 1.0, 1)); 	// Health
 			heroAttacks.add(new Attack("Block", 1.0, 1.0, 2, 1.0, 1));				// Evade
 			heroAttacks.add(new Attack("Offensive Stance", 1.0, 1.0, 2, 1.0, 1));	// Increase Damage
-			heroAttacks.add(new Attack("True Strike", 1.0, 1.0, 2, 1.0, 1));		// Ultimate Attack
+			heroAttacks.add(new Attack("True Strike", 1.0, 1.0, 4, 1.0, 1));		// Ultimate Attack
 			classChosen = true;
 		}else if(e.getSource().equals(btnMage)){
 			heroAttacks.clear();

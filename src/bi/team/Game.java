@@ -326,8 +326,8 @@ public class Game extends JFrame implements ActionListener {
 
 	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack attack) {
-		if (attack.useAttack(false)) {
-			attack.useAttack(true);
+		if (attack.useAttack()) {
+			attack.useAttack();
 			load.start(attack.getButton(), attack);
 			cooldownUpkeep();
 		} else {
