@@ -3,11 +3,16 @@ package bi.team;
 public class Player {
 
 	// initialize variables
-	private double curHhealth, maxHealth, maxEnergy, curEnergy, energyRecoverRate;
+	private double curHhealth;
+	private double maxHealth;
+	private double maxEnergy;
+	private double curEnergy;
+	private double energyRecoverRate;
 	private String name;
 
 	// constructor
 	Player(String name, double maxHealth, double maxEnergy, double energyRecoverRate) {
+		
 		this.setName(name);
 		this.maxEnergy = maxEnergy;
 		this.maxHealth = maxHealth;
