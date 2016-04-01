@@ -30,6 +30,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private ArrayList<Attack> heroAttacks;
 	private Boolean classChosen = false;
 
+	// constructor
 	public BeyondInfinity() {
 
 		// instantiate variables
@@ -84,25 +85,33 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		// create warrior button
 		btnWarrior = new JButton("Warrior");
+		btnWarrior.setBackground(null);
 		btnWarrior.setBounds(102, 165, 89, 23);
+		btnWarrior.setFocusable(false);
 		btnWarrior.addActionListener(this);
 		contentPane.add(btnWarrior);
 
 		// create mage button
 		btnMage = new JButton("Mage");
+		btnMage.setBackground(null);
 		btnMage.setBounds(201, 165, 89, 23);
+		btnMage.setFocusable(false);
 		btnMage.addActionListener(this);
 		contentPane.add(btnMage);
 
 		// create ranger button
 		btnRanger = new JButton("Ranger");
+		btnRanger.setBackground(null);
 		btnRanger.setBounds(300, 165, 89, 23);
+		btnRanger.setFocusable(false);
 		btnRanger.addActionListener(this);
 		contentPane.add(btnRanger);
 
 		// create cleric button
 		btnCleric = new JButton("Cleric");
+		btnCleric.setBackground(null);
 		btnCleric.setBounds(399, 165, 89, 23);
+		btnCleric.setFocusable(false);
 		btnCleric.addActionListener(this);
 		contentPane.add(btnCleric);
 
@@ -110,11 +119,11 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
-
 	// actionlistener for the submit button
-	//String name, double damage, double energyCost, int coolDown, double heal, int turnEvade
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnWarrior)){
+			classChosen = true;
+			animateSelectedButton(btnWarrior);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Swing", 99.0, 1.0, 1, 1.0, 1));				// Basic Attack
 			heroAttacks.add(new Attack("Cleave", 15.0, 1.0, 2, 1.0, 1));			// Secondary Attack
@@ -122,8 +131,9 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Block", 0, 1.0, 2, 1.0, 1));				// Evade
 			heroAttacks.add(new Attack("Offensive Stance", 0, 1.0, 2, 1.0, 1));		// Increase Damage
 			heroAttacks.add(new Attack("True Strike", 30.0, 1.0, 4, 1.0, 1));		// Ultimate Attack
-			classChosen = true;
 		}else if(e.getSource().equals(btnMage)){
+			classChosen = true;
+			animateSelectedButton(btnMage);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Wack with Staff", 5.0, 1.0, 1, 1.0, 1));	// Basic Attack
 			heroAttacks.add(new Attack("Magic Missile", 15.0, 1.0, 2, 1.0, 1));		// Secondary Attack
@@ -131,44 +141,61 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Invisibility", 0, 1.0, 2, 1.0, 1));			// Evade
 			heroAttacks.add(new Attack("Magic Armour", 0, 1.0, 2, 1.0, 1));			// Increase Defense
 			heroAttacks.add(new Attack("Fireball", 30.0, 1.0, 4, 1.0, 1));			// Ultimate Attack
-			classChosen = true;
 		}else if(e.getSource().equals(btnRanger)){
+			classChosen = true;
+			animateSelectedButton(btnRanger);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Bow & Arrow", 5.0, 1.0, 1, 1.0, 1));		// Basic Attack
-			heroAttacks.add(new Attack("Rapid Fire", 15.0, 1.0, 2, 1.0, 1));			// Secondary Attack
+			heroAttacks.add(new Attack("Rapid Fire", 15.0, 1.0, 2, 1.0, 1));		// Secondary Attack
 			heroAttacks.add(new Attack("Nature's Healing", 0.0, 1.0, 2, 1.0, 1));	// Heal
 			heroAttacks.add(new Attack("Lay Bear Trap", 0.0, 1.0, 2, 1.0, 1));		// Evade i.e. caught in a bear trap
 			heroAttacks.add(new Attack("Vital Shot", 0.0, 1.0, 2, 1.0, 1));			// Increase Crit & Crit Chance
 			heroAttacks.add(new Attack("True Shot", 30.0, 1.0, 4, 1.0, 1));			// Ultimate Attack
-			classChosen = true;
 		}else if(e.getSource().equals(btnCleric)){
+			classChosen = true;
+			animateSelectedButton(btnCleric);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Smite", 5.0, 1.0, 1, 1.0, 1));				// Basic Attack
-			heroAttacks.add(new Attack("Drain Life", 15.0, 1.0, 2, 1.0, 1));			// Secondary Attack + Shit Heal
+			heroAttacks.add(new Attack("Drain Life", 15.0, 1.0, 2, 1.0, 1));		// Secondary Attack + Shit Heal
 			heroAttacks.add(new Attack("Regenerate Body", 0.0, 1.0, 2, 1.0, 1));	// Greater Heal
 			heroAttacks.add(new Attack("Blinding Light", 0.0, 1.0, 2, 1.0, 1));		// Evade
 			heroAttacks.add(new Attack("Divine Favor", 0.0, 1.0, 2, 1.0, 1));		// Increase All Stats
 			heroAttacks.add(new Attack("Divine Intervention", 30.0, 1.0, 4, 1.0, 1));// Ultimate Attack
-			classChosen = true;
 		}else if (e.getSource().equals(btnSubmit) && classChosen) {
-			// safely instantiate the game frame
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					// TODO textfield validation //double maxHealth, double maxEnergy, double energyRecoverRate
-					Player player = new Player(nameField.getText(),100,100,1.0);
-					new Game(player, heroAttacks);
-				}
-			});
-			// close this frame
-			dispose();
-		}else if (e.getSource().equals(btnSubmit) && !classChosen){
-			JOptionPane.showMessageDialog(null, "Please Select a class", "Alert", JOptionPane.ERROR_MESSAGE);
-		} 
+			
+			// error checking. check if user has selected a class
+			if(classChosen) {
+				// safely instantiate the game frame
+				SwingUtilities.invokeLater(new Runnable() {
+					public void run() {
+						
+						// TODO textfield validation
+						
+						new Game(new Player(nameField.getText(),100,100,1.0), heroAttacks);
+					}
+				});
+				// close this frame
+				dispose();
+			} else if (!classChosen) {
+				JOptionPane.showMessageDialog(null, "Please Select a class", "Alert", JOptionPane.ERROR_MESSAGE);
+			}		
+		}
 
 	}
 
+	// toggle button animation when clicked
+	public void animateSelectedButton(JButton selected) {
+		// unpaint all the buttons
+		btnWarrior.setBackground(null);
+		btnMage.setBackground(null);
+		btnRanger.setBackground(null);
+		btnCleric.setBackground(null);
+		
+		// paint the selected button
+		selected.setBackground(Color.GRAY);
+	}
+	
 	public static void main(String[] args) {
-
 		// safely start welcoming screen
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -177,8 +204,4 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		});
 	}
 	
-	// return the array of the chosen hero's attacks
-	public ArrayList<Attack> getheroAttacks() {
-		return heroAttacks;
-	}
 }
