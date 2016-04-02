@@ -32,6 +32,7 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_stats;
 	private JPanel panel_enemy;
 	private JPanel panel_actions;
+	private JPanel panel_frameOpacity;
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerHealth;
 	private JProgressBar progBar_enemyHealth;
@@ -63,7 +64,7 @@ public class Game extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setBounds(100, 100, 880, 480);
-		setTitle("BeyondInfinity - by Lelo");
+		setTitle("BeyondInfinity - alpha");
 		getContentPane().setLayout(null);
 
 		// create a root panel
@@ -71,6 +72,7 @@ public class Game extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 		contentPane.setBounds(0, 0, 874, 451);
 		contentPane.setBackground(new Color(236, 240, 241));
+		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
 
 		// create the map object/frame
@@ -78,6 +80,14 @@ public class Game extends JFrame implements ActionListener {
 		map.getMapPane().setBounds((contentPane.getWidth() / 2) - (550 / 2), (contentPane.getHeight() / 2) - (320 / 2),
 				550, 320);
 		contentPane.add(map.getMapPane());
+		
+		// create a panel that dims the frame, this is used when toggling map
+		panel_frameOpacity = new JPanel();
+		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
+		panel_frameOpacity.setBounds(0, 0, 874, 451);
+		panel_frameOpacity.setOpaque(true);
+		panel_frameOpacity.setVisible(false);
+		contentPane.add(panel_frameOpacity);
 
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
@@ -316,8 +326,23 @@ public class Game extends JFrame implements ActionListener {
 
 	// toggle the map
 	public void toggleMap() {
+
+		// toggle between true and false
 		isMapShown = !isMapShown;
-		map.getMapPane().setVisible(isMapShown);
+
+		if (isMapShown) {
+			map.getMapPane().setVisible(true);
+			panel_frameOpacity.setVisible(true);
+			disableButtons();
+		} else {
+			map.getMapPane().setVisible(false);
+			panel_frameOpacity.setVisible(false);
+			enableButtons();
+		}
+
+		// repaint frame to avoid graphical glitches
+		repaint();
+
 	}
 
 	// XXX uses an attack
@@ -396,7 +421,6 @@ public class Game extends JFrame implements ActionListener {
 	// set value for the loading bar
 	public void setProgBar_loading(int val) {
 		progBar_loading.setValue(val);
-		progBar_loading.repaint();
 	}
 
 	// return total kills
