@@ -1,9 +1,11 @@
 package bi.team;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
 import javax.swing.JLayeredPane;
+import javax.swing.border.LineBorder;
 
 public class Map {
 
@@ -14,10 +16,10 @@ public class Map {
 	// constructor
 	public Map() {
 		mapPane = new JLayeredPane();
+		mapPane.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		mapPane.setLayout(new GridLayout(7, 12, 0, 0));
 		mapPane.setOpaque(true);
 		mapPane.setVisible(false);
-		mapPane.setBorder(null);
 		mapEntries = new ArrayList<MapEntry>();
 		createGrid();
 	}

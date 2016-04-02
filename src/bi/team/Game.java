@@ -75,10 +75,10 @@ public class Game extends JFrame implements ActionListener {
 		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
 
-		// create the map object/frame
+		// create the map object/frame in the center minus 30 pixels in y-axis
 		map = new Map();
-		map.getMapPane().setBounds((contentPane.getWidth() / 2) - (550 / 2), (contentPane.getHeight() / 2) - (320 / 2),
-				550, 320);
+		map.getMapPane().setBounds((contentPane.getWidth() / 2) - (530 / 2),
+				((contentPane.getHeight() / 2) - 30) - (310 / 2), 530, 310);
 		contentPane.add(map.getMapPane());
 		
 		// create a panel that dims the frame, this is used when toggling map
@@ -105,10 +105,10 @@ public class Game extends JFrame implements ActionListener {
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
 		panel_stats.setBounds(10, 306, 854, 55);
+		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		contentPane.add(panel_stats);
 
 		/* ------------- health stat subpanel ------------- */
-		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		// create subpanel (of panel_stats) for health
 		JPanel subpanel_health = new JPanel();
 		subpanel_health.setBorder(new TitledBorder(null, "Health", TitledBorder.LEADING, TitledBorder.TOP, null, null));
