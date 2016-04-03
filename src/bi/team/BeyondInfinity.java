@@ -68,6 +68,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create a button to submit player name
 		btnSubmit = new JButton("Let's Go!");
 		btnSubmit.setBounds(252, 206, 89, 23);
+		btnSubmit.setFocusable(false);
 		btnSubmit.addActionListener(this);
 		contentPane.add(btnSubmit);
 
@@ -125,7 +126,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(btnWarrior)){
 			classChosen = true;
-			animateSelectedButton(btnWarrior);
+			paintSelectedButton(btnWarrior);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Swing", 99.0, 1.0, 0, 1.0, 1));				// Basic Attack
 			heroAttacks.add(new Attack("Cleave", 15.0, 1.0, 2, 1.0, 1));			// Secondary Attack
@@ -135,7 +136,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("True Strike", 30.0, 1.0, 4, 1.0, 1));		// Ultimate Attack
 		}else if(e.getSource().equals(btnMage)){
 			classChosen = true;
-			animateSelectedButton(btnMage);
+			paintSelectedButton(btnMage);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Wack with Staff", 5.0, 1.0, 0, 1.0, 1));	// Basic Attack
 			heroAttacks.add(new Attack("Magic Missile", 15.0, 1.0, 2, 1.0, 1));		// Secondary Attack
@@ -145,7 +146,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Fireball", 30.0, 1.0, 4, 1.0, 1));			// Ultimate Attack
 		}else if(e.getSource().equals(btnRanger)){
 			classChosen = true;
-			animateSelectedButton(btnRanger);
+			paintSelectedButton(btnRanger);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Bow & Arrow", 5.0, 1.0, 0, 1.0, 1));		// Basic Attack
 			heroAttacks.add(new Attack("Rapid Fire", 15.0, 1.0, 2, 1.0, 1));		// Secondary Attack
@@ -155,7 +156,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("True Shot", 30.0, 1.0, 4, 1.0, 1));			// Ultimate Attack
 		}else if(e.getSource().equals(btnCleric)){
 			classChosen = true;
-			animateSelectedButton(btnCleric);
+			paintSelectedButton(btnCleric);
 			heroAttacks.clear();
 			heroAttacks.add(new Attack("Smite", 5.0, 1.0, 0, 1.0, 1));				// Basic Attack
 			heroAttacks.add(new Attack("Drain Life", 15.0, 1.0, 2, 1.0, 1));		// Secondary Attack + Shit Heal
@@ -186,7 +187,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	}
 
 	// toggle button animation when clicked
-	public void animateSelectedButton(JButton selected) {
+	public void paintSelectedButton(JButton selected) {
 		// unpaint all the buttons
 		btnWarrior.setBackground(null);
 		btnMage.setBackground(null);
