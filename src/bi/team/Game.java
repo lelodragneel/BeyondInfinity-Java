@@ -63,14 +63,14 @@ public class Game extends JFrame implements ActionListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 880, 480);
+		setBounds(100, 100, 900, 500);
 		setTitle("BeyondInfinity - alpha");
-		getContentPane().setLayout(null);
+		setLayout(null);
 
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 874, 451);
+		contentPane.setBounds(0, 0, 894, 471);
 		contentPane.setBackground(new Color(236, 240, 241));
 		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
@@ -83,8 +83,8 @@ public class Game extends JFrame implements ActionListener {
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
+		panel_frameOpacity.setBounds(0, 0, 894, 471);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
-		panel_frameOpacity.setBounds(0, 0, 874, 451);
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
 		contentPane.add(panel_frameOpacity);
@@ -92,19 +92,19 @@ public class Game extends JFrame implements ActionListener {
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
 		panel_player.setBackground(new Color(204, 255, 153));
-		panel_player.setBounds(10, 59, 209, 236);
+		panel_player.setBounds(10, 59, 209, 243);
 		panel_player.setLayout(null);
 		contentPane.add(panel_player);
 
 		// create top panel to display health bars
 		panel_top = new JPanel();
-		panel_top.setBounds(10, 21, 854, 29);
+		panel_top.setBounds(10, 21, 874, 29);
 		panel_top.setLayout(null);
 		contentPane.add(panel_top);
 
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
-		panel_stats.setBounds(10, 306, 854, 55);
+		panel_stats.setBounds(10, 313, 874, 68);
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		contentPane.add(panel_stats);
 
@@ -218,14 +218,14 @@ public class Game extends JFrame implements ActionListener {
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(655, 59, 209, 236);
+		panel_enemy.setBounds(675, 59, 209, 243);
 		panel_enemy.setLayout(null);
 		contentPane.add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 372, 854, 68);
+		panel_actions.setBounds(10, 392, 874, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
@@ -238,7 +238,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 874, 10);
+		progBar_loading.setBounds(0, 0, 894, 10);
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
@@ -292,14 +292,14 @@ public class Game extends JFrame implements ActionListener {
 		textArea.setFont(new Font("Comic Sans MS", 0, 12));
 		textArea.setBackground(new Color(218, 223, 225));
 		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(229, 59, 416, 236);
+		scroll.setBounds(229, 59, 436, 243);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);
 
 		// create the button that toggles map
 		btnShowMap = new JButton("Map");
-		btnShowMap.setBounds(774, 0, 80, 29);
+		btnShowMap.setBounds(794, 0, 80, 29);
 		btnShowMap.setFocusable(false);
 		btnShowMap.addActionListener(this);
 		panel_top.add(btnShowMap);
