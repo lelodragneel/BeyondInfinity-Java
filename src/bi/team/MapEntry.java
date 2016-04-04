@@ -14,15 +14,14 @@ public class MapEntry {
 	private boolean completed = false;
 
 	// constructor
-	public MapEntry(String s) {
+	public MapEntry(int s) {
 		// create a label and configured its settings
-		entry = new JLabel(s);
+		entry = new JLabel(s+1 + "");
 		entry.setBorder(new LineBorder(new Color(0, 0, 0)));
-		entry.setFocusable(false);
-		entry.setBackground(Color.DARK_GRAY);
+		entry.setBackground(new Color(236, 236, 236));
+		entry.setOpaque(true);
 		entry.setVerticalAlignment(SwingConstants.BOTTOM);
-		entry.setHorizontalAlignment(SwingConstants.CENTER);
-		entry.setHorizontalTextPosition(SwingConstants.CENTER);
+		entry.setHorizontalAlignment(SwingConstants.RIGHT);
 		entry.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 	}
 

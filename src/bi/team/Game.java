@@ -76,9 +76,7 @@ public class Game extends JFrame implements ActionListener {
 		getContentPane().add(contentPane);
 
 		// create the map object/frame in the center minus 30 pixels in y-axis
-		map = new Map();
-		map.getMapPane().setBounds((contentPane.getWidth() / 2) - (530 / 2),
-				((contentPane.getHeight() / 2) - 30) - (310 / 2), 530, 310);
+		map = new Map(getWidth(), getHeight());
 		contentPane.add(map.getMapPane());
 		
 		// create a panel that dims the frame, this is used when toggling map
