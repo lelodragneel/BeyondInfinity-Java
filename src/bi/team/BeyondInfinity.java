@@ -124,7 +124,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	
 	// actionlistener for the submit button
 	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(btnWarrior)){
+		if (e.getSource().equals(btnWarrior)) {
 			classChosen = true;
 			paintSelectedButton(btnWarrior);
 			heroAttacks.clear();
@@ -134,7 +134,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Block", 0, 1.0, 2, 1.0, 1));				// Evade
 			heroAttacks.add(new Attack("Offensive Stance", 0, 1.0, 2, 1.0, 1));		// Increase Damage
 			heroAttacks.add(new Attack("True Strike", 30.0, 1.0, 4, 1.0, 1));		// Ultimate Attack
-		}else if(e.getSource().equals(btnMage)){
+		} else if (e.getSource().equals(btnMage)) {
 			classChosen = true;
 			paintSelectedButton(btnMage);
 			heroAttacks.clear();
@@ -144,7 +144,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Invisibility", 0, 1.0, 2, 1.0, 1));			// Evade
 			heroAttacks.add(new Attack("Magic Armour", 0, 1.0, 2, 1.0, 1));			// Increase Defense
 			heroAttacks.add(new Attack("Fireball", 30.0, 1.0, 4, 1.0, 1));			// Ultimate Attack
-		}else if(e.getSource().equals(btnRanger)){
+		} else if (e.getSource().equals(btnRanger)) {
 			classChosen = true;
 			paintSelectedButton(btnRanger);
 			heroAttacks.clear();
@@ -154,7 +154,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Lay Bear Trap", 0.0, 1.0, 2, 1.0, 1));		// Evade i.e. caught in a bear trap
 			heroAttacks.add(new Attack("Vital Shot", 0.0, 1.0, 2, 1.0, 1));			// Increase Crit & Crit Chance
 			heroAttacks.add(new Attack("True Shot", 30.0, 1.0, 4, 1.0, 1));			// Ultimate Attack
-		}else if(e.getSource().equals(btnCleric)){
+		} else if (e.getSource().equals(btnCleric)) {
 			classChosen = true;
 			paintSelectedButton(btnCleric);
 			heroAttacks.clear();
@@ -164,8 +164,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			heroAttacks.add(new Attack("Blinding Light", 0.0, 1.0, 2, 1.0, 1));		// Evade
 			heroAttacks.add(new Attack("Divine Favor", 0.0, 1.0, 2, 1.0, 1));		// Increase All Stats
 			heroAttacks.add(new Attack("Divine Intervention", 30.0, 1.0, 4, 1.0, 1));// Ultimate Attack
-		}else if (e.getSource().equals(btnSubmit)) {
-			
+		} else if (e.getSource().equals(btnSubmit)) {
 			// error checking. check if user has selected a class
 			if(classChosen) {
 				// safely instantiate the game frame
@@ -180,8 +179,8 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 				// close this frame
 				dispose();
 			} else if (!classChosen) {
-				JOptionPane.showMessageDialog(null, "Please Select a class", "Alert", JOptionPane.ERROR_MESSAGE);
-			}		
+				JOptionPane.showMessageDialog(this, "Please Select a class", "Alert", JOptionPane.ERROR_MESSAGE);
+			}
 		}
 
 	}
@@ -193,11 +192,11 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		btnMage.setBackground(null);
 		btnRanger.setBackground(null);
 		btnCleric.setBackground(null);
-		
+
 		// paint the selected button
 		selected.setBackground(Color.GRAY);
 	}
-	
+
 	public static void main(String[] args) {
 		// safely start welcoming screen
 		SwingUtilities.invokeLater(new Runnable() {
@@ -206,5 +205,5 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			}
 		});
 	}
-	
+
 }

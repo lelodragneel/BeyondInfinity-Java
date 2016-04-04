@@ -18,7 +18,6 @@ public class MapEntry {
 		// create a label and configured its settings
 		entry = new JLabel(s);
 		entry.setBorder(new LineBorder(new Color(0, 0, 0)));
-		entry.setSize(45, 45);
 		entry.setFocusable(false);
 		entry.setBackground(Color.DARK_GRAY);
 		entry.setVerticalAlignment(SwingConstants.BOTTOM);
