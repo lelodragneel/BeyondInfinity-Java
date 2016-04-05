@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -38,11 +39,11 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_enemyHealth;
 	private JTextArea textArea;
 	private JButton btnShowMap;
-	private JButton btnUpgradeHealth;
+	private JButton btnUpgradeVitality;
 	private JButton btnUpgradeDamage;
-	private JButton btnUpgradeArmor;
+	private JButton btnUpgradeProtection;
 	private JButton btnUpgradeCritDamage;
-	private JButton btnCritChance;
+	private JButton btnUpgradeCritChance;
 	private boolean isMapShown;
 	private ArrayList<Attack> attackButtons;
 	private Load load;
@@ -63,14 +64,14 @@ public class Game extends JFrame implements ActionListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 900, 500);
+		setBounds(100, 100, 900, 510);
 		setTitle("BeyondInfinity - alpha");
-		setLayout(null);
+		getContentPane().setLayout(null);
 
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 894, 471);
+		contentPane.setBounds(0, 0, 894, 481);
 		contentPane.setBackground(new Color(236, 240, 241));
 		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
@@ -81,7 +82,7 @@ public class Game extends JFrame implements ActionListener {
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 894, 471);
+		panel_frameOpacity.setBounds(0, 0, 894, 481);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -90,19 +91,27 @@ public class Game extends JFrame implements ActionListener {
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
 		panel_player.setBackground(new Color(204, 255, 153));
-		panel_player.setBounds(10, 59, 209, 243);
+		panel_player.setBounds(10, 70, 209, 243);
 		panel_player.setLayout(null);
 		contentPane.add(panel_player);
 
 		// create top panel to display health bars
 		panel_top = new JPanel();
-		panel_top.setBounds(10, 21, 874, 29);
+		panel_top.setBounds(10, 21, 874, 38);
 		panel_top.setLayout(null);
 		contentPane.add(panel_top);
 
+		// create the button that toggles map
+		btnShowMap = new JButton();
+		btnShowMap.setBounds(836, 0, 38, 38);
+		btnShowMap.setFocusable(false);
+		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
+		btnShowMap.addActionListener(this);
+		panel_top.add(btnShowMap);
+
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
-		panel_stats.setBounds(10, 313, 874, 68);
+		panel_stats.setBounds(10, 324, 874, 68);
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		contentPane.add(panel_stats);
 
@@ -115,17 +124,18 @@ public class Game extends JFrame implements ActionListener {
 
 		// create health icon
 		JLabel lblHealhIcon = new JLabel("");
-		lblHealhIcon.setBounds(10, 16, 30, 28);
+		lblHealhIcon.setBounds(10, 16, 24, 24);
+		lblHealhIcon.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
 		subpanel_health.add(lblHealhIcon);
 
 		// create health upgrade button
-		btnUpgradeHealth = new JButton("+");
-		btnUpgradeHealth.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnUpgradeHealth.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeHealth.setFocusable(false);
-		btnUpgradeHealth.setBounds(132, 16, 28, 28);
-		btnUpgradeHealth.setVisible(false);
-		subpanel_health.add(btnUpgradeHealth);
+		btnUpgradeVitality = new JButton("+");
+		btnUpgradeVitality.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeVitality.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeVitality.setFocusable(false);
+		btnUpgradeVitality.setBounds(136, 16, 28, 28);
+		btnUpgradeVitality.setVisible(false);
+		subpanel_health.add(btnUpgradeVitality);
 
 		/* ------------- damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for damage
@@ -136,7 +146,8 @@ public class Game extends JFrame implements ActionListener {
 
 		// create damage icon
 		JLabel lblDamageIcon = new JLabel("");
-		lblDamageIcon.setBounds(10, 16, 30, 28);
+		lblDamageIcon.setBounds(10, 16, 24, 24);
+		lblDamageIcon.setIcon(new ImageIcon(getClass().getResource("/images/damage.png")));
 		subpanel_damage.add(lblDamageIcon);
 
 		// create damage upgrade button
@@ -144,7 +155,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeDamage.setFocusable(false);
 		btnUpgradeDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeDamage.setBounds(132, 16, 28, 28);
+		btnUpgradeDamage.setBounds(136, 16, 28, 28);
 		btnUpgradeDamage.setVisible(false);
 		subpanel_damage.add(btnUpgradeDamage);
 
@@ -157,17 +168,18 @@ public class Game extends JFrame implements ActionListener {
 
 		// create armor icon
 		JLabel lblArmorIcon = new JLabel("");
-		lblArmorIcon.setBounds(10, 16, 30, 28);
+		lblArmorIcon.setBounds(10, 16, 24, 24);
+		lblArmorIcon.setIcon(new ImageIcon(getClass().getResource("/images/armor.png")));
 		subpanel_armor.add(lblArmorIcon);
 
 		// create armor upgrade button
-		btnUpgradeArmor = new JButton("+");
-		btnUpgradeArmor.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnUpgradeArmor.setFocusable(false);
-		btnUpgradeArmor.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeArmor.setBounds(132, 16, 28, 28);
-		btnUpgradeArmor.setVisible(false);
-		subpanel_armor.add(btnUpgradeArmor);
+		btnUpgradeProtection = new JButton("+");
+		btnUpgradeProtection.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeProtection.setFocusable(false);
+		btnUpgradeProtection.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeProtection.setBounds(136, 16, 28, 28);
+		btnUpgradeProtection.setVisible(false);
+		subpanel_armor.add(btnUpgradeProtection);
 
 		/* ------------- critical damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical damage
@@ -179,7 +191,8 @@ public class Game extends JFrame implements ActionListener {
 
 		// create critical damage icon
 		JLabel lblCritDamageIcon = new JLabel("");
-		lblCritDamageIcon.setBounds(10, 16, 30, 28);
+		lblCritDamageIcon.setBounds(10, 16, 24, 24);
+		lblCritDamageIcon.setIcon(new ImageIcon(getClass().getResource("/images/criticaldamage.png")));
 		subpanel_critdamage.add(lblCritDamageIcon);
 
 		// create critical damage upgrade button
@@ -187,7 +200,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeCritDamage.setFocusable(false);
 		btnUpgradeCritDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeCritDamage.setBounds(132, 16, 28, 28);
+		btnUpgradeCritDamage.setBounds(136, 16, 28, 28);
 		btnUpgradeCritDamage.setVisible(false);
 		subpanel_critdamage.add(btnUpgradeCritDamage);
 
@@ -201,29 +214,30 @@ public class Game extends JFrame implements ActionListener {
 
 		// create critical chance icon
 		JLabel lblCritChanceIcon = new JLabel("");
-		lblCritChanceIcon.setBounds(10, 16, 30, 28);
+		lblCritChanceIcon.setBounds(10, 16, 24, 24);
+		lblCritChanceIcon.setIcon(new ImageIcon(getClass().getResource("/images/criticalchance.png")));
 		subpanel_critchance.add(lblCritChanceIcon);
 
 		// create critical chance upgrade button
-		btnCritChance = new JButton("+");
-		btnCritChance.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnCritChance.setFocusable(false);
-		btnCritChance.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnCritChance.setBounds(132, 16, 28, 28);
-		btnCritChance.setVisible(false);
-		subpanel_critchance.add(btnCritChance);
+		btnUpgradeCritChance = new JButton("+");
+		btnUpgradeCritChance.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeCritChance.setFocusable(false);
+		btnUpgradeCritChance.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeCritChance.setBounds(136, 16, 28, 28);
+		btnUpgradeCritChance.setVisible(false);
+		subpanel_critchance.add(btnUpgradeCritChance);
 
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(675, 59, 209, 243);
+		panel_enemy.setBounds(675, 70, 209, 243);
 		panel_enemy.setLayout(null);
 		contentPane.add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 392, 874, 68);
+		panel_actions.setBounds(10, 403, 874, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
@@ -250,6 +264,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerHealth.setBorder(null);
 		progBar_playerHealth.setForeground(new Color(30, 139, 195));
 		progBar_playerHealth.setBorderPainted(false);
+		progBar_playerHealth.setMaximum((int) player.getMaxVitality());
 		progBar_playerHealth.setValue((int) player.getMaxVitality());
 		panel_player.add(progBar_playerHealth);
 
@@ -290,17 +305,10 @@ public class Game extends JFrame implements ActionListener {
 		textArea.setFont(new Font("Comic Sans MS", 0, 12));
 		textArea.setBackground(new Color(218, 223, 225));
 		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(229, 59, 436, 243);
+		scroll.setBounds(229, 70, 436, 243);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);
-
-		// create the button that toggles map
-		btnShowMap = new JButton("Map");
-		btnShowMap.setBounds(794, 0, 80, 29);
-		btnShowMap.setFocusable(false);
-		btnShowMap.addActionListener(this);
-		panel_top.add(btnShowMap);
 
 		// finally show frame
 		setVisible(true);
@@ -331,11 +339,13 @@ public class Game extends JFrame implements ActionListener {
 		if (isMapShown) {
 			map.getMapPane().setVisible(true);
 			panel_frameOpacity.setVisible(true);
-			disableButtons();
+			disableAttackButtons();
+			disableUpgradeButtons();
 		} else {
 			map.getMapPane().setVisible(false);
 			panel_frameOpacity.setVisible(false);
-			enableButtons();
+			enableAttackButtons();
+			enableUpgradeButtons();
 		}
 
 		// repaint frame to avoid graphical glitches
@@ -390,25 +400,41 @@ public class Game extends JFrame implements ActionListener {
 
 	// FIXME
 	public void checkWinner() {
-		if (player.getCurVitality() <= 0) {
+		if (player.getCurVitality() <= 0)
 			appendMessage("You lost :( " + player.getCurVitality());
-		} else if (boss.getHealth() <= 0) {
+		else if (boss.getHealth() <= 0)
 			appendMessage("Congrats you have killed the boss " + boss.getHealth());
-		}
-	}
-
-	// set all attack buttons to inactive
-	public void disableButtons() {
-		for (int i = 0; i < 6; i++)
-			attackButtons.get(i).getButton().setEnabled(false);
-
+		
 	}
 
 	// set all attack buttons to active
-	public void enableButtons() {
-		for (int i = 0; i < 6; i++)
+	public void enableAttackButtons() {
+		for (int i = 0; i < attackButtons.size(); i++)
 			attackButtons.get(i).getButton().setEnabled(true);
-
+	}
+	
+	// set all attack buttons to inactive
+	public void disableAttackButtons() {
+		for (int i = 0; i < attackButtons.size(); i++)
+			attackButtons.get(i).getButton().setEnabled(false);
+	}
+	
+	// set all upgrade buttons to active
+	public void enableUpgradeButtons() {
+		btnUpgradeVitality.setEnabled(true);
+		btnUpgradeDamage.setEnabled(true);
+		btnUpgradeProtection.setEnabled(true);
+		btnUpgradeCritDamage.setEnabled(true);
+		btnUpgradeCritChance.setEnabled(true);
+	}
+	
+	// set all upgrade buttons to inactive
+	public void disableUpgradeButtons() {
+		btnUpgradeVitality.setEnabled(false);
+		btnUpgradeDamage.setEnabled(false);
+		btnUpgradeProtection.setEnabled(false);
+		btnUpgradeCritDamage.setEnabled(false);
+		btnUpgradeCritChance.setEnabled(false);
 	}
 
 	// append a message to the middle display area

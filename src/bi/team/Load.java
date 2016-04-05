@@ -17,11 +17,13 @@ public class Load {
 		this.parent = parent;
 	}
 
+	// TODO implement a new improved double-sided loading bar
+	
 	// start animating the loading bar
 	public void start(Attack attack) {
 
 		// disable buttons to prevent simultaneous attacks
-		parent.disableButtons();
+		parent.disableAttackButtons();
 
 		// reset loading bar
 		parent.setProgBar_loading(0);
@@ -50,7 +52,7 @@ public class Load {
 						if (Game.getTurn() == false) {
 							parent.attackPlayer();
 							// re-enable buttons
-							parent.enableButtons();
+							parent.enableAttackButtons();
 						}
 					}
 				}
