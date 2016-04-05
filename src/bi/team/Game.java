@@ -124,7 +124,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create vitality icon
 		JLabel lblHealhIcon = new JLabel("");
-		lblHealhIcon.setBounds(10, 16, 24, 24);
+		lblHealhIcon.setBounds(5, 16, 24, 24);
 		lblHealhIcon.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
 		subpanel_vitality.add(lblHealhIcon);
 
@@ -133,9 +133,13 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeVitality.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeVitality.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeVitality.setFocusable(false);
-		btnUpgradeVitality.setBounds(136, 16, 28, 28);
+		btnUpgradeVitality.setBounds(140, 10, 28, 28);
 		btnUpgradeVitality.setVisible(false);
 		subpanel_vitality.add(btnUpgradeVitality);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(39, 16, 91, 24);
+		subpanel_vitality.add(lblNewLabel);
 
 		/* ------------- damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for damage
@@ -146,7 +150,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create damage icon
 		JLabel lblDamageIcon = new JLabel("");
-		lblDamageIcon.setBounds(10, 16, 24, 24);
+		lblDamageIcon.setBounds(5, 16, 24, 24);
 		lblDamageIcon.setIcon(new ImageIcon(getClass().getResource("/images/damage.png")));
 		subpanel_damage.add(lblDamageIcon);
 
@@ -155,9 +159,13 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeDamage.setFocusable(false);
 		btnUpgradeDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeDamage.setBounds(136, 16, 28, 28);
+		btnUpgradeDamage.setBounds(140, 10, 28, 28);
 		btnUpgradeDamage.setVisible(false);
 		subpanel_damage.add(btnUpgradeDamage);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1.setBounds(39, 16, 91, 24);
+		subpanel_damage.add(lblNewLabel_1);
 
 		/* ------------- protection (armor) stat subpanel ------------- */
 		// create subpanel (of panel_stats) for protection
@@ -168,7 +176,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create protection icon
 		JLabel lblProtectionIcon = new JLabel("");
-		lblProtectionIcon.setBounds(10, 16, 24, 24);
+		lblProtectionIcon.setBounds(5, 16, 24, 24);
 		lblProtectionIcon.setIcon(new ImageIcon(getClass().getResource("/images/armor.png")));
 		subpanel_protection.add(lblProtectionIcon);
 
@@ -177,9 +185,13 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeProtection.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeProtection.setFocusable(false);
 		btnUpgradeProtection.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeProtection.setBounds(136, 16, 28, 28);
+		btnUpgradeProtection.setBounds(140, 10, 28, 28);
 		btnUpgradeProtection.setVisible(false);
 		subpanel_protection.add(btnUpgradeProtection);
+		
+		JLabel label = new JLabel("New label");
+		label.setBounds(39, 16, 91, 24);
+		subpanel_protection.add(label);
 
 		/* ------------- critical damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical damage
@@ -191,7 +203,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create critical damage icon
 		JLabel lblCritDamageIcon = new JLabel("");
-		lblCritDamageIcon.setBounds(10, 16, 24, 24);
+		lblCritDamageIcon.setBounds(5, 16, 24, 24);
 		lblCritDamageIcon.setIcon(new ImageIcon(getClass().getResource("/images/criticaldamage.png")));
 		subpanel_critdamage.add(lblCritDamageIcon);
 
@@ -200,9 +212,13 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeCritDamage.setFocusable(false);
 		btnUpgradeCritDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeCritDamage.setBounds(136, 16, 28, 28);
+		btnUpgradeCritDamage.setBounds(140, 10, 28, 28);
 		btnUpgradeCritDamage.setVisible(false);
 		subpanel_critdamage.add(btnUpgradeCritDamage);
+		
+		JLabel label_1 = new JLabel("New label");
+		label_1.setBounds(39, 16, 91, 24);
+		subpanel_critdamage.add(label_1);
 
 		/* ------------- critical chance stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical chance
@@ -214,7 +230,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create critical chance icon
 		JLabel lblCritChanceIcon = new JLabel("");
-		lblCritChanceIcon.setBounds(10, 16, 24, 24);
+		lblCritChanceIcon.setBounds(5, 16, 24, 24);
 		lblCritChanceIcon.setIcon(new ImageIcon(getClass().getResource("/images/criticalchance.png")));
 		subpanel_critchance.add(lblCritChanceIcon);
 
@@ -223,9 +239,13 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritChance.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeCritChance.setFocusable(false);
 		btnUpgradeCritChance.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeCritChance.setBounds(136, 16, 28, 28);
+		btnUpgradeCritChance.setBounds(140, 10, 28, 28);
 		btnUpgradeCritChance.setVisible(false);
 		subpanel_critchance.add(btnUpgradeCritChance);
+		
+		JLabel label_2 = new JLabel("New label");
+		label_2.setBounds(39, 16, 91, 24);
+		subpanel_critchance.add(label_2);
 
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
