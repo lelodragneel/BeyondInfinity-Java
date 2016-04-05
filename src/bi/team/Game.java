@@ -35,8 +35,8 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_actions;
 	private JPanel panel_frameOpacity;
 	private JProgressBar progBar_loading;
-	private JProgressBar progBar_playerHealth;
-	private JProgressBar progBar_enemyHealth;
+	private JProgressBar progBar_playerVitality;
+	private JProgressBar progBar_enemyVitality;
 	private JTextArea textArea;
 	private JButton btnShowMap;
 	private JButton btnUpgradeVitality;
@@ -95,7 +95,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_player.setLayout(null);
 		contentPane.add(panel_player);
 
-		// create top panel to display health bars
+		// create top panel to display vitality (health) bars
 		panel_top = new JPanel();
 		panel_top.setBounds(10, 21, 874, 38);
 		panel_top.setLayout(null);
@@ -115,27 +115,27 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		contentPane.add(panel_stats);
 
-		/* ------------- health stat subpanel ------------- */
-		// create subpanel (of panel_stats) for health
-		JPanel subpanel_health = new JPanel();
-		subpanel_health.setBorder(new TitledBorder(null, "Health", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_health.setLayout(null);
-		panel_stats.add(subpanel_health);
+		/* ------------- vitality (health) stat subpanel ------------- */
+		// create subpanel (of panel_stats) for vitality
+		JPanel subpanel_vitality = new JPanel();
+		subpanel_vitality.setBorder(new TitledBorder(null, "Vitality", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		subpanel_vitality.setLayout(null);
+		panel_stats.add(subpanel_vitality);
 
-		// create health icon
+		// create vitality icon
 		JLabel lblHealhIcon = new JLabel("");
 		lblHealhIcon.setBounds(10, 16, 24, 24);
 		lblHealhIcon.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
-		subpanel_health.add(lblHealhIcon);
+		subpanel_vitality.add(lblHealhIcon);
 
-		// create health upgrade button
+		// create vitality upgrade button
 		btnUpgradeVitality = new JButton("+");
 		btnUpgradeVitality.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeVitality.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeVitality.setFocusable(false);
 		btnUpgradeVitality.setBounds(136, 16, 28, 28);
 		btnUpgradeVitality.setVisible(false);
-		subpanel_health.add(btnUpgradeVitality);
+		subpanel_vitality.add(btnUpgradeVitality);
 
 		/* ------------- damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for damage
@@ -159,27 +159,27 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeDamage.setVisible(false);
 		subpanel_damage.add(btnUpgradeDamage);
 
-		/* ------------- armor stat subpanel ------------- */
-		// create subpanel (of panel_stats) for armor
-		JPanel subpanel_armor = new JPanel();
-		subpanel_armor.setBorder(new TitledBorder(null, "Armor", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_armor.setLayout(null);
-		panel_stats.add(subpanel_armor);
+		/* ------------- protection (armor) stat subpanel ------------- */
+		// create subpanel (of panel_stats) for protection
+		JPanel subpanel_protection = new JPanel();
+		subpanel_protection.setBorder(new TitledBorder(null, "Protection", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		subpanel_protection.setLayout(null);
+		panel_stats.add(subpanel_protection);
 
-		// create armor icon
-		JLabel lblArmorIcon = new JLabel("");
-		lblArmorIcon.setBounds(10, 16, 24, 24);
-		lblArmorIcon.setIcon(new ImageIcon(getClass().getResource("/images/armor.png")));
-		subpanel_armor.add(lblArmorIcon);
+		// create protection icon
+		JLabel lblProtectionIcon = new JLabel("");
+		lblProtectionIcon.setBounds(10, 16, 24, 24);
+		lblProtectionIcon.setIcon(new ImageIcon(getClass().getResource("/images/armor.png")));
+		subpanel_protection.add(lblProtectionIcon);
 
-		// create armor upgrade button
+		// create protection upgrade button
 		btnUpgradeProtection = new JButton("+");
 		btnUpgradeProtection.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeProtection.setFocusable(false);
 		btnUpgradeProtection.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeProtection.setBounds(136, 16, 28, 28);
 		btnUpgradeProtection.setVisible(false);
-		subpanel_armor.add(btnUpgradeProtection);
+		subpanel_protection.add(btnUpgradeProtection);
 
 		/* ------------- critical damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical damage
@@ -257,25 +257,25 @@ public class Game extends JFrame implements ActionListener {
 		progBar_loading.setVisible(true);
 		contentPane.add(progBar_loading);
 
-		// create the player's health bar
-		progBar_playerHealth = new JProgressBar();
-		progBar_playerHealth.setBounds(10, 11, 189, 15);
-		progBar_playerHealth.setVisible(true);
-		progBar_playerHealth.setBorder(null);
-		progBar_playerHealth.setForeground(new Color(30, 139, 195));
-		progBar_playerHealth.setBorderPainted(false);
-		progBar_playerHealth.setMaximum((int) player.getMaxVitality());
-		progBar_playerHealth.setValue((int) player.getMaxVitality());
-		panel_player.add(progBar_playerHealth);
+		// create the player's vitality (health) bar
+		progBar_playerVitality = new JProgressBar();
+		progBar_playerVitality.setBounds(10, 11, 189, 15);
+		progBar_playerVitality.setVisible(true);
+		progBar_playerVitality.setBorder(null);
+		progBar_playerVitality.setForeground(new Color(30, 139, 195));
+		progBar_playerVitality.setBorderPainted(false);
+		progBar_playerVitality.setMaximum((int) player.getMaxVitality());
+		progBar_playerVitality.setValue((int) player.getMaxVitality());
+		panel_player.add(progBar_playerVitality);
 
-		// create progress bar to display the enemy's health
-		progBar_enemyHealth = new JProgressBar();
-		progBar_enemyHealth.setBounds(10, 11, 189, 15);
-		progBar_enemyHealth.setBorder(null);
-		progBar_enemyHealth.setForeground(new Color(236, 100, 75));
-		progBar_enemyHealth.setBorderPainted(false);
-		progBar_enemyHealth.setValue((int) boss.getTotalHealth());
-		panel_enemy.add(progBar_enemyHealth);
+		// create progress bar to display the enemy's vitality (health)
+		progBar_enemyVitality = new JProgressBar();
+		progBar_enemyVitality.setBounds(10, 11, 189, 15);
+		progBar_enemyVitality.setBorder(null);
+		progBar_enemyVitality.setForeground(new Color(236, 100, 75));
+		progBar_enemyVitality.setBorderPainted(false);
+		progBar_enemyVitality.setValue((int) boss.getTotalHealth());
+		panel_enemy.add(progBar_enemyVitality);
 
 		// create label to display enemy's name
 		JLabel lbl_enemyName = new JLabel(" name");
@@ -380,7 +380,7 @@ public class Game extends JFrame implements ActionListener {
 		double damage = attack.getDamage();
 		appendMessage("enemy took " + damage + " damage from " + attack.getName());
 		boss.takeDamage(damage);
-		progBar_enemyHealth.setValue((int) (progBar_enemyHealth.getValue() - damage));
+		progBar_enemyVitality.setValue((int) (progBar_enemyVitality.getValue() - damage));
 		
 		// toggle turns then let enemy attack you
 		Game.toggleTurn();
@@ -392,7 +392,7 @@ public class Game extends JFrame implements ActionListener {
 		double bossDamage = boss.getDamage();
 		player.setCurVitality(player.getCurVitality() - bossDamage);
 		appendMessage("you took " + bossDamage + " damage");
-		progBar_playerHealth.setValue((int) (progBar_playerHealth.getValue() - bossDamage));
+		progBar_playerVitality.setValue((int) (progBar_playerVitality.getValue() - bossDamage));
 		
 		// toggle turns
 		Game.toggleTurn();
