@@ -19,6 +19,9 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.JTextPane;
+import javax.swing.JEditorPane;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -50,6 +53,12 @@ public class Game extends JFrame implements ActionListener {
 	private Map map;
 	private Player player;
 	private Boss boss;
+	private JLabel lblVitality;
+	private JLabel lblDamage;
+	private JLabel lblProtection;
+	private JLabel lblCritDamage;
+	private JLabel lblCritChance;
+	private JLabel lblProtectionDesc;
 
 	// create the frame
 	public Game(String name, ArrayList<Attack> attackButtons) {
@@ -64,14 +73,14 @@ public class Game extends JFrame implements ActionListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 900, 510);
+		setBounds(100, 100, 900, 530);
 		setTitle("BeyondInfinity - alpha");
 		getContentPane().setLayout(null);
 
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 894, 481);
+		contentPane.setBounds(0, 0, 894, 501);
 		contentPane.setBackground(new Color(236, 240, 241));
 		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
@@ -82,7 +91,7 @@ public class Game extends JFrame implements ActionListener {
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 894, 481);
+		panel_frameOpacity.setBounds(0, 0, 894, 501);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -111,7 +120,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
-		panel_stats.setBounds(10, 324, 874, 68);
+		panel_stats.setBounds(10, 324, 874, 87);
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		contentPane.add(panel_stats);
 
@@ -137,9 +146,18 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeVitality.setVisible(false);
 		subpanel_vitality.add(btnUpgradeVitality);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(39, 16, 91, 24);
-		subpanel_vitality.add(lblNewLabel);
+		// create the label that displays the maximum vitality value
+		lblVitality = new JLabel(player.getMaxVitality() + "");
+		lblVitality.setBounds(39, 16, 91, 24);
+		subpanel_vitality.add(lblVitality);
+		
+		// create vitality description label
+		JLabel lblVitalityDesc = new JLabel("<html>Your maximum amount of health.</html>");
+		lblVitalityDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblVitalityDesc.setForeground(Color.DARK_GRAY);
+		lblVitalityDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblVitalityDesc.setBounds(10, 42, 154, 36);
+		subpanel_vitality.add(lblVitalityDesc);
 
 		/* ------------- damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for damage
@@ -163,9 +181,18 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeDamage.setVisible(false);
 		subpanel_damage.add(btnUpgradeDamage);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(39, 16, 91, 24);
-		subpanel_damage.add(lblNewLabel_1);
+		// create the label that displays damage value
+		lblDamage = new JLabel(attackButtons.get(0).getDamage() + "");
+		lblDamage.setBounds(39, 16, 91, 24);
+		subpanel_damage.add(lblDamage);
+		
+		// create damage description label
+		JLabel lblDamageDesc = new JLabel("<html>Damage dealth by your first ability.</html>");
+		lblDamageDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblDamageDesc.setForeground(Color.DARK_GRAY);
+		lblDamageDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblDamageDesc.setBounds(10, 42, 154, 36);
+		subpanel_damage.add(lblDamageDesc);
 
 		/* ------------- protection (armor) stat subpanel ------------- */
 		// create subpanel (of panel_stats) for protection
@@ -189,9 +216,18 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeProtection.setVisible(false);
 		subpanel_protection.add(btnUpgradeProtection);
 		
-		JLabel label = new JLabel("New label");
-		label.setBounds(39, 16, 91, 24);
-		subpanel_protection.add(label);
+		// create the label that displays protection value
+		lblProtection = new JLabel("-" + player.getProtection() * 100 + "%");
+		lblProtection.setBounds(39, 16, 91, 24);
+		subpanel_protection.add(lblProtection);
+		
+		// create protection description label
+		lblProtectionDesc = new JLabel("<html>Percentage of the damage deflected.</html>");
+		lblProtectionDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblProtectionDesc.setForeground(Color.DARK_GRAY);
+		lblProtectionDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblProtectionDesc.setBounds(10, 42, 154, 36);
+		subpanel_protection.add(lblProtectionDesc);
 
 		/* ------------- critical damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical damage
@@ -216,9 +252,18 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritDamage.setVisible(false);
 		subpanel_critdamage.add(btnUpgradeCritDamage);
 		
-		JLabel label_1 = new JLabel("New label");
-		label_1.setBounds(39, 16, 91, 24);
-		subpanel_critdamage.add(label_1);
+		// create the label that displays critical damage value
+		lblCritDamage = new JLabel("+" + player.getCriticalDamage() * 100 + "%");
+		lblCritDamage.setBounds(39, 16, 91, 24);
+		subpanel_critdamage.add(lblCritDamage);
+		
+		// create critical damage description label
+		JLabel lblCritDamageDesc = new JLabel("<html>Percentage of the extra damage dealt by critical hits.</html>");
+		lblCritDamageDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblCritDamageDesc.setForeground(Color.DARK_GRAY);
+		lblCritDamageDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblCritDamageDesc.setBounds(10, 42, 154, 36);
+		subpanel_critdamage.add(lblCritDamageDesc);
 
 		/* ------------- critical chance stat subpanel ------------- */
 		// create subpanel (of panel_stats) for critical chance
@@ -243,9 +288,18 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritChance.setVisible(false);
 		subpanel_critchance.add(btnUpgradeCritChance);
 		
-		JLabel label_2 = new JLabel("New label");
-		label_2.setBounds(39, 16, 91, 24);
-		subpanel_critchance.add(label_2);
+		// create the label that displays critical chance value
+		lblCritChance = new JLabel(player.getCriticalChance() + "%");
+		lblCritChance.setBounds(39, 16, 91, 24);
+		subpanel_critchance.add(lblCritChance);
+		
+		// create critical chance description label
+		JLabel lblCritChanceDesc = new JLabel("<html>Chances of landing a critical hit.</html>");
+		lblCritChanceDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblCritChanceDesc.setForeground(Color.DARK_GRAY);
+		lblCritChanceDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblCritChanceDesc.setBounds(10, 42, 154, 36);
+		subpanel_critchance.add(lblCritChanceDesc);
 
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
@@ -257,7 +311,7 @@ public class Game extends JFrame implements ActionListener {
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 403, 874, 68);
+		panel_actions.setBounds(10, 422, 874, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
@@ -373,7 +427,6 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
-	// XXX uses an attack
 	// check if button has sufficient energy to be activated
 	public void activateAttack(Attack chosenAttack) {
 		if (chosenAttack.useAttack()) {
@@ -411,7 +464,7 @@ public class Game extends JFrame implements ActionListener {
 	public void attackPlayer() {
 		double bossDamage = boss.getDamage();
 		player.setCurVitality(player.getCurVitality() - bossDamage);
-		appendMessage("you took " + bossDamage + " damage");
+		appendMessage("you took " + bossDamage + " damage.");
 		progBar_playerVitality.setValue((int) (progBar_playerVitality.getValue() - bossDamage));
 		
 		// toggle turns
