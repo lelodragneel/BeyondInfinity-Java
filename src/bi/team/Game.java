@@ -16,12 +16,12 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.JTextPane;
-import javax.swing.JEditorPane;
-import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -40,10 +40,11 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerVitality;
 	private JProgressBar progBar_enemyVitality;
+	private JProgressBar progBar_playerEnergy;
 	private JTextArea textArea;
 	private JButton btnShowMap;
 	private JButton btnUpgradeVitality;
-	private JButton btnUpgradeDamage;
+	private JButton btnUpgradeEnergy;
 	private JButton btnUpgradeProtection;
 	private JButton btnUpgradeCritDamage;
 	private JButton btnUpgradeCritChance;
@@ -54,20 +55,21 @@ public class Game extends JFrame implements ActionListener {
 	private Player player;
 	private Boss boss;
 	private JLabel lblVitality;
-	private JLabel lblDamage;
+	private JLabel lblEnergy;
 	private JLabel lblProtection;
 	private JLabel lblCritDamage;
 	private JLabel lblCritChance;
 	private JLabel lblProtectionDesc;
+	private JProgressBar progBar_enemyEnergy;
 
 	// create the frame
 	public Game(String name, ArrayList<Attack> attackButtons) {
-		
 		// instantiate objects
 		this.attackButtons = attackButtons;
 		load = new Load(this);
 		player = new Player();
 		boss = new Boss(100,10,10,1);
+		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
 
 		// frame initializing
 		setResizable(false);
@@ -91,7 +93,7 @@ public class Game extends JFrame implements ActionListener {
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 894, 501);
+		panel_frameOpacity.setBounds(0, 0, 894, 68);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -161,38 +163,38 @@ public class Game extends JFrame implements ActionListener {
 
 		/* ------------- damage stat subpanel ------------- */
 		// create subpanel (of panel_stats) for damage
-		JPanel subpanel_damage = new JPanel();
-		subpanel_damage.setBorder(new TitledBorder(null, "Damage", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_damage.setLayout(null);
-		panel_stats.add(subpanel_damage);
+		JPanel subpanel_energy = new JPanel();
+		subpanel_energy.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Energy", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		subpanel_energy.setLayout(null);
+		panel_stats.add(subpanel_energy);
 
 		// create damage icon
-		JLabel lblDamageIcon = new JLabel("");
-		lblDamageIcon.setBounds(5, 16, 24, 24);
-		lblDamageIcon.setIcon(new ImageIcon(getClass().getResource("/images/damage.png")));
-		subpanel_damage.add(lblDamageIcon);
+		JLabel lblEnergyIcon = new JLabel("");
+		lblEnergyIcon.setBounds(5, 16, 24, 24);
+		lblEnergyIcon.setIcon(new ImageIcon(Game.class.getResource("/images/energy.png")));
+		subpanel_energy.add(lblEnergyIcon);
 
 		// create damage upgrade button
-		btnUpgradeDamage = new JButton("+");
-		btnUpgradeDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		btnUpgradeDamage.setFocusable(false);
-		btnUpgradeDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeDamage.setBounds(140, 10, 28, 28);
-		btnUpgradeDamage.setVisible(false);
-		subpanel_damage.add(btnUpgradeDamage);
+		btnUpgradeEnergy = new JButton("+");
+		btnUpgradeEnergy.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		btnUpgradeEnergy.setFocusable(false);
+		btnUpgradeEnergy.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		btnUpgradeEnergy.setBounds(140, 10, 28, 28);
+		btnUpgradeEnergy.setVisible(false);
+		subpanel_energy.add(btnUpgradeEnergy);
 		
 		// create the label that displays damage value
-		lblDamage = new JLabel(attackButtons.get(0).getDamage() + "");
-		lblDamage.setBounds(39, 16, 91, 24);
-		subpanel_damage.add(lblDamage);
+		lblEnergy = new JLabel(player.getEnergyRecoverRate() + "");
+		lblEnergy.setBounds(39, 16, 91, 24);
+		subpanel_energy.add(lblEnergy);
 		
 		// create damage description label
-		JLabel lblDamageDesc = new JLabel("<html>Damage dealth by your first ability.</html>");
-		lblDamageDesc.setVerticalAlignment(SwingConstants.TOP);
-		lblDamageDesc.setForeground(Color.DARK_GRAY);
-		lblDamageDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		lblDamageDesc.setBounds(10, 42, 154, 36);
-		subpanel_damage.add(lblDamageDesc);
+		JLabel lblEnergyDesc = new JLabel("<html>The amount of energy you regain every turn.</html>");
+		lblEnergyDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblEnergyDesc.setForeground(Color.DARK_GRAY);
+		lblEnergyDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblEnergyDesc.setBounds(10, 42, 154, 36);
+		subpanel_energy.add(lblEnergyDesc);
 
 		/* ------------- protection (armor) stat subpanel ------------- */
 		// create subpanel (of panel_stats) for protection
@@ -328,48 +330,69 @@ public class Game extends JFrame implements ActionListener {
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
-		progBar_loading.setVisible(true);
 		contentPane.add(progBar_loading);
 
 		// create the player's vitality (health) bar
 		progBar_playerVitality = new JProgressBar();
-		progBar_playerVitality.setBounds(10, 11, 189, 15);
-		progBar_playerVitality.setVisible(true);
-		progBar_playerVitality.setBorder(null);
+		progBar_playerVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		progBar_playerVitality.setStringPainted(true);
+		progBar_playerVitality.setBounds(10, 11, 189, 18);
+		progBar_playerVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_playerVitality.setForeground(new Color(30, 139, 195));
-		progBar_playerVitality.setBorderPainted(false);
 		progBar_playerVitality.setMaximum((int) player.getMaxVitality());
 		progBar_playerVitality.setValue((int) player.getMaxVitality());
+		progBar_playerVitality.setString(progBar_playerVitality.getValue() + " / " + progBar_playerVitality.getMaximum());
 		panel_player.add(progBar_playerVitality);
 
 		// create progress bar to display the enemy's vitality (health)
 		progBar_enemyVitality = new JProgressBar();
-		progBar_enemyVitality.setBounds(10, 11, 189, 15);
-		progBar_enemyVitality.setBorder(null);
+		progBar_enemyVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		progBar_enemyVitality.setStringPainted(true);
+		progBar_enemyVitality.setBounds(10, 11, 189, 18);
+		progBar_enemyVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_enemyVitality.setForeground(new Color(236, 100, 75));
-		progBar_enemyVitality.setBorderPainted(false);
 		progBar_enemyVitality.setValue((int) boss.getTotalHealth());
 		panel_enemy.add(progBar_enemyVitality);
 
 		// create label to display enemy's name
 		JLabel lbl_enemyName = new JLabel(" name");
-		lbl_enemyName.setBounds(10, 25, 189, 20);
+		lbl_enemyName.setBounds(10, 50, 189, 20);
 		panel_enemy.add(lbl_enemyName);
 
 		// create the enemy's picture
 		JLabel lbl_enemyImage = new JLabel("");
 		lbl_enemyImage.setBounds(10, 56, 189, 169);
 		panel_enemy.add(lbl_enemyImage);
+		
+		progBar_enemyEnergy = new JProgressBar();
+		progBar_enemyEnergy.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		progBar_enemyEnergy.setStringPainted(true);
+		progBar_enemyEnergy.setForeground(Color.YELLOW);
+		progBar_enemyEnergy.setBorder(new EmptyBorder(1, 1, 1, 1));
+		progBar_enemyEnergy.setBounds(10, 31, 189, 16);
+		progBar_enemyEnergy.setValue(100);
+		panel_enemy.add(progBar_enemyEnergy);
 
 		// create label to display player's name
 		JLabel lbl_playerName = new JLabel(name);
-		lbl_playerName.setBounds(10, 25, 189, 20);
+		lbl_playerName.setBounds(10, 50, 189, 20);
 		panel_player.add(lbl_playerName);
 
 		// create the player's picture
 		JLabel lbl_playerImage = new JLabel("");
 		lbl_playerImage.setBounds(10, 56, 189, 169);
 		panel_player.add(lbl_playerImage);
+
+		// create the player's energy bar
+		progBar_playerEnergy = new JProgressBar();
+		progBar_playerEnergy.setBorder(new EmptyBorder(1, 1, 1, 1));
+		progBar_playerEnergy.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		progBar_playerEnergy.setStringPainted(true);
+		progBar_playerEnergy.setForeground(Color.YELLOW);
+		progBar_playerEnergy.setBounds(10, 31, 189, 16);
+		progBar_playerEnergy.setString(player.getCurEnergy() + " / " + player.getMaxEnergy());
+		progBar_playerEnergy.setValue(100);
+		panel_player.add(progBar_playerEnergy);
 
 		// create the area which displays event changes
 		textArea = new JTextArea(0, 0);
@@ -495,7 +518,7 @@ public class Game extends JFrame implements ActionListener {
 	// set all upgrade buttons to active
 	public void enableUpgradeButtons() {
 		btnUpgradeVitality.setEnabled(true);
-		btnUpgradeDamage.setEnabled(true);
+		btnUpgradeEnergy.setEnabled(true);
 		btnUpgradeProtection.setEnabled(true);
 		btnUpgradeCritDamage.setEnabled(true);
 		btnUpgradeCritChance.setEnabled(true);
@@ -504,7 +527,7 @@ public class Game extends JFrame implements ActionListener {
 	// set all upgrade buttons to inactive
 	public void disableUpgradeButtons() {
 		btnUpgradeVitality.setEnabled(false);
-		btnUpgradeDamage.setEnabled(false);
+		btnUpgradeEnergy.setEnabled(false);
 		btnUpgradeProtection.setEnabled(false);
 		btnUpgradeCritDamage.setEnabled(false);
 		btnUpgradeCritChance.setEnabled(false);

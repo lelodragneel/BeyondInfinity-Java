@@ -12,7 +12,7 @@ public class Player {
 	private double criticalChance;			// [0-100] probability of dealing a criticalDamage. a number generator will guess a number between that range
 	private double curEnergy;					
 	private double maxEnergy;				// [5-?]
-	private double energyRecoverRate;		// [1-?] the energy received at the end of each turn
+	private double energyRecoveryRate;		// [1-?] the energy received at the end of each turn
 
 	// constructor
 	Player() {
@@ -23,7 +23,7 @@ public class Player {
 		protection = 0.01;
 		maxEnergy = 5;
 		curEnergy = 5;
-		energyRecoverRate = 1;
+		energyRecoveryRate = 1;
 	}
 
 	// return a new randomly generated number
@@ -73,12 +73,12 @@ public class Player {
 
 	// return the energyRecoverRate
 	public double getEnergyRecoverRate() {
-		return energyRecoverRate;
+		return energyRecoveryRate;
 	}
 
 	// set the energyRecoverRate
 	public void setEnergyRecoverRate(double energyRecoverRate) {
-		this.energyRecoverRate = energyRecoverRate;
+		this.energyRecoveryRate = energyRecoverRate;
 	}
 
 	// return the player protection (armor)
