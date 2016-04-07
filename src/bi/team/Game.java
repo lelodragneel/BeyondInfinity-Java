@@ -23,6 +23,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 
+import bi.team.bosstype.Boss;
+import bi.team.map.Map;
+
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
 
@@ -68,32 +71,31 @@ public class Game extends JFrame implements ActionListener {
 		this.attackButtons = attackButtons;
 		load = new Load(this);
 		player = new Player();
-		boss = new Boss(100,10,10,1);
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
 
 		// frame initializing
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 900, 530);
+		setBounds(100, 100, 940, 550);
 		setTitle("BeyondInfinity - alpha");
 		getContentPane().setLayout(null);
 
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 894, 501);
+		contentPane.setBounds(0, 0, 934, 521);
 		contentPane.setBackground(new Color(236, 240, 241));
 		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
 
 		// create the map object/frame in the center minus 30 pixels in y-axis
 		map = new Map(getWidth(), getHeight());
-		contentPane.add(map.getMapPane());
+		contentPane.add(map);
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 894, 68);
+		panel_frameOpacity.setBounds(0, 0, 934, 521);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -102,19 +104,19 @@ public class Game extends JFrame implements ActionListener {
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
 		panel_player.setBackground(new Color(204, 255, 153));
-		panel_player.setBounds(10, 70, 209, 243);
+		panel_player.setBounds(10, 70, 209, 263);
 		panel_player.setLayout(null);
 		contentPane.add(panel_player);
 
 		// create top panel to display vitality (health) bars
 		panel_top = new JPanel();
-		panel_top.setBounds(10, 21, 874, 38);
+		panel_top.setBounds(10, 21, 914, 38);
 		panel_top.setLayout(null);
 		contentPane.add(panel_top);
 
 		// create the button that toggles map
 		btnShowMap = new JButton();
-		btnShowMap.setBounds(836, 0, 38, 38);
+		btnShowMap.setBounds(876, 0, 38, 38);
 		btnShowMap.setFocusable(false);
 		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
 		btnShowMap.addActionListener(this);
@@ -122,7 +124,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
-		panel_stats.setBounds(10, 324, 874, 87);
+		panel_stats.setBounds(10, 344, 914, 87);
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		contentPane.add(panel_stats);
 
@@ -306,14 +308,14 @@ public class Game extends JFrame implements ActionListener {
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(675, 70, 209, 243);
+		panel_enemy.setBounds(715, 70, 209, 263);
 		panel_enemy.setLayout(null);
 		contentPane.add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 422, 874, 68);
+		panel_actions.setBounds(10, 442, 914, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
@@ -326,7 +328,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 894, 10);
+		progBar_loading.setBounds(0, 0, 934, 10);
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
@@ -351,7 +353,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_enemyVitality.setBounds(10, 11, 189, 18);
 		progBar_enemyVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_enemyVitality.setForeground(new Color(236, 100, 75));
-		progBar_enemyVitality.setValue((int) boss.getTotalHealth());
+		//progBar_enemyVitality.setValue((int) boss.getTotalHealth());
 		panel_enemy.add(progBar_enemyVitality);
 
 		// create label to display enemy's name
@@ -361,7 +363,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the enemy's picture
 		JLabel lbl_enemyImage = new JLabel("");
-		lbl_enemyImage.setBounds(10, 56, 189, 169);
+		lbl_enemyImage.setBounds(10, 75, 189, 177);
 		panel_enemy.add(lbl_enemyImage);
 		
 		progBar_enemyEnergy = new JProgressBar();
@@ -380,7 +382,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the player's picture
 		JLabel lbl_playerImage = new JLabel("");
-		lbl_playerImage.setBounds(10, 56, 189, 169);
+		lbl_playerImage.setBounds(10, 75, 189, 177);
 		panel_player.add(lbl_playerImage);
 
 		// create the player's energy bar
@@ -402,7 +404,7 @@ public class Game extends JFrame implements ActionListener {
 		textArea.setFont(new Font("Comic Sans MS", 0, 12));
 		textArea.setBackground(new Color(218, 223, 225));
 		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(229, 70, 436, 243);
+		scroll.setBounds(229, 70, 476, 263);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);
@@ -434,12 +436,12 @@ public class Game extends JFrame implements ActionListener {
 		isMapShown = !isMapShown;
 
 		if (isMapShown) {
-			map.getMapPane().setVisible(true);
+			map.setVisible(true);
 			panel_frameOpacity.setVisible(true);
 			disableAttackButtons();
 			disableUpgradeButtons();
 		} else {
-			map.getMapPane().setVisible(false);
+			map.setVisible(false);
 			panel_frameOpacity.setVisible(false);
 			enableAttackButtons();
 			enableUpgradeButtons();
