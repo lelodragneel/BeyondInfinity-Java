@@ -1,15 +1,22 @@
 package bi.team.bosstype;
 
+import java.awt.Color;
+
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 public class GrandBoss extends Boss {
 
+	Border border;
+	
 	public GrandBoss() {
 		super();
-		// TODO Auto-generated constructor stub
+		border = new LineBorder(new Color(0, 0, 0), 2);
 	}
-	
-	// return the boss type in string form
-	public String getBossType() {
-		return "grandboss";	
+
+	// return a grandboss border
+	public Border getBorder() {
+		return border;
 	}
 	
 }

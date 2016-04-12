@@ -1,15 +1,22 @@
 package bi.team.bosstype;
 
+import java.awt.Color;
+
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
+
 public class MiniBoss extends Boss {
 
+	Border border;
+	
 	public MiniBoss() {
 		super();
-		// TODO Auto-generated constructor stub
+		border = new LineBorder(new Color(0, 0, 0), 1);
 	}
 	
-	// return the boss type in string form
-	public String getBossType() {
-		return "miniboss";	
+	// return a miniboss border
+	public Border getBorder() {
+		return border;
 	}
 
 }

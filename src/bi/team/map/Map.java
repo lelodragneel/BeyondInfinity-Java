@@ -33,7 +33,7 @@ public class Map extends JLayeredPane {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(new Color(236, 236, 236));
 		setLayout(new GridBagLayout());
-		setVisible(false);
+		setVisible(false);	
 
 		// create the actual grid
 		createGrid();
@@ -59,7 +59,6 @@ public class Map extends JLayeredPane {
 			else
 				mapEntries.add(new MapEntry(i, new MiniBoss()));
 			
-
 		}
 
 		// create the 3 guardian bosses, and 1 grand boss (final boss)

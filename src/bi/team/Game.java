@@ -29,10 +29,11 @@ import bi.team.map.Map;
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
 
-	// init variables
-	private static int kills;
-	// true for player's turn. false for enemy's turn
-	private static boolean turn = true;
+	/*
+	 * initialize variables
+	 */
+	private static boolean gameover;
+	private static boolean turn = true; 	// true for player's turn. false for enemy's turn
 	private JPanel contentPane;
 	private JPanel panel_player;
 	private JPanel panel_top;
@@ -67,6 +68,7 @@ public class Game extends JFrame implements ActionListener {
 
 	// create the frame
 	public Game(String name, ArrayList<Attack> attackButtons) {
+		
 		// instantiate objects
 		this.attackButtons = attackButtons;
 		load = new Load(this);
@@ -414,6 +416,12 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
+	// logic method maintaining all the pieces together
+	public void gameEngine() {
+		
+		
+	}
+	
 	// action listener
 	public void actionPerformed(ActionEvent evt) {
 		if (evt.getSource().equals(btnShowMap))
@@ -545,14 +553,14 @@ public class Game extends JFrame implements ActionListener {
 		progBar_loading.setValue(val);
 	}
 
-	// return total kills
-	public static int getKills() {
-		return kills;
+	// return gameover t/f
+	public static boolean getGameover() {
+		return gameover;
 	}
 
-	// set total kills
-	public static void setKills(int kills) {
-		Game.kills = kills;
+	// set t/f for gameover
+	public static void setGameover(boolean gameover) {
+		Game.gameover = gameover;
 	}
 
 	// return the current turn

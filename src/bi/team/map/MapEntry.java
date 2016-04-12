@@ -7,8 +7,6 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
 import bi.team.bosstype.Boss;
 
@@ -17,11 +15,12 @@ public class MapEntry implements MouseListener {
 	// init variables
 	private JLabel entry;
 	private Boss boss;
-	private Border border;
 	
 	// constructor
 	public MapEntry(int entryNum, Boss boss) {
-			
+
+		this.boss = boss;
+		
 		// create a label and configured its settings
 		entry = new JLabel(entryNum + 1 + "");
 		entry.setBackground(new Color(236, 236, 236));
@@ -30,32 +29,11 @@ public class MapEntry implements MouseListener {
 		entry.setHorizontalAlignment(SwingConstants.RIGHT);
 		entry.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		entry.addMouseListener(this);
-		
-		// TODO add new and unique borders for each boss classification
-		// assign boss type association, and change visual accordingly
-		switch (boss.getBossType()) {
-			case "miniboss":
-				border = new LineBorder(new Color(0, 0, 0), 1);
-				break;
-			case "superboss":
-				border = new LineBorder(new Color(0, 0, 0), 2);
-				break;
-			case "guardianboss":
-				border = new LineBorder(new Color(0, 0, 0), 2);
-				break;
-			case "grandboss":
-				border = new LineBorder(new Color(0, 0, 0), 2);
-				break;
-			default:
-				System.out.println("Something went wrong loading the map!");
-		}
-		
-		// set border
-		entry.setBorder(border);
+		entry.setBorder(boss.getBorder());
 	
 	}
 
-	// return the jlabel
+	// return the map entry
 	public JLabel getEntry() {
 		return entry;
 	}
@@ -63,14 +41,12 @@ public class MapEntry implements MouseListener {
 	// below are the mouse listeners for hovering effects
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		entry.setBorder(new LineBorder(Color.DARK_GRAY, 2));	
+		entry.setBackground(Color.LIGHT_GRAY);
 	}
-
 	@Override
 	public void mouseExited(MouseEvent e) {
-		entry.setBorder(border);	
+		entry.setBackground(new Color(236, 236, 236));
 	}
-
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}

@@ -1,5 +1,7 @@
 package bi.team.bosstype;
 
+import javax.swing.border.Border;
+
 public abstract class Boss {
 
 	// initialize variables
@@ -12,17 +14,18 @@ public abstract class Boss {
 	private double curEnergy;
 	private double maxEnergy;
 	private double energyRecoveryRate;
-	private boolean alive = true;
+	private boolean alive;
 
 	// constructor
-	public Boss() {
+	public Boss() {	
 		
-		//TODO instantiate variables
+		alive = true;
 		
 	}
 	
-	public abstract String getBossType();
+	public abstract Border getBorder();
 	
+	// boss takes damage
 	public void takeDamage(double dam){
 		curVitality -= dam;
 	}
