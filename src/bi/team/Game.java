@@ -68,7 +68,7 @@ public class Game extends JFrame implements ActionListener {
 
 	// create the frame
 	public Game(String name, ArrayList<Attack> attackButtons) {
-		
+
 		// instantiate objects
 		this.attackButtons = attackButtons;
 		load = new Load(this);
