@@ -21,12 +21,16 @@ import bi.team.heroes.attacks.elementalist.*;
  */
 public class Elementalist extends Hero {
 	
+	// constructor
 	public Elementalist(Game game) {
+		
 		super(game);
 		
-		/*
-		 * instantate
-		 */
+		// default class values
+		curHealth = 100;
+		maxHealth = 100;
+		
+		// instantiate
 		hashAttacks = new HashMap<Integer, Attack>();
 		
 		// create this class's attacks

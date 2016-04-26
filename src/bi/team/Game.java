@@ -172,7 +172,7 @@ public class Game extends JFrame implements ActionListener {
 		subpanel_vitality.add(btnUpgradeVitality);
 		
 		// create the label that displays the maximum vitality value
-		lblVitality = new JLabel(player.getMaxVitality() + "");
+		lblVitality = new JLabel(player.getMaxHealth() + "");
 		lblVitality.setBounds(39, 16, 91, 24);
 		subpanel_vitality.add(lblVitality);
 		
@@ -207,7 +207,7 @@ public class Game extends JFrame implements ActionListener {
 		subpanel_energy.add(btnUpgradeEnergy);
 		
 		// create the label that displays damage value
-		lblEnergy = new JLabel(player.getEnergyRecoverRate() + "");
+		lblEnergy = new JLabel(""); // TODO
 		lblEnergy.setBounds(39, 16, 91, 24);
 		subpanel_energy.add(lblEnergy);
 		
@@ -242,7 +242,7 @@ public class Game extends JFrame implements ActionListener {
 		subpanel_protection.add(btnUpgradeProtection);
 		
 		// create the label that displays protection value
-		lblProtection = new JLabel("-" + player.getProtection() * 100 + "%");
+		lblProtection = new JLabel(""); // TODO
 		lblProtection.setBounds(39, 16, 91, 24);
 		subpanel_protection.add(lblProtection);
 		
@@ -278,7 +278,7 @@ public class Game extends JFrame implements ActionListener {
 		subpanel_critdamage.add(btnUpgradeCritDamage);
 		
 		// create the label that displays critical damage value
-		lblCritDamage = new JLabel("+" + player.getCriticalDamage() * 100 + "%");
+		lblCritDamage = new JLabel(""); // TODO
 		lblCritDamage.setBounds(39, 16, 91, 24);
 		subpanel_critdamage.add(lblCritDamage);
 		
@@ -314,7 +314,7 @@ public class Game extends JFrame implements ActionListener {
 		subpanel_critchance.add(btnUpgradeCritChance);
 		
 		// create the label that displays critical chance value
-		lblCritChance = new JLabel(player.getCriticalChance() + "%");
+		lblCritChance = new JLabel(""); // TODO
 		lblCritChance.setBounds(39, 16, 91, 24);
 		subpanel_critchance.add(lblCritChance);
 		
@@ -368,8 +368,8 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerVitality.setBounds(10, 11, 189, 18);
 		progBar_playerVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_playerVitality.setForeground(new Color(30, 139, 195));
-		progBar_playerVitality.setMaximum((int) player.getMaxVitality());
-		progBar_playerVitality.setValue((int) player.getMaxVitality());
+		progBar_playerVitality.setMaximum((int) player.getMaxHealth());
+		progBar_playerVitality.setValue((int) player.getMaxHealth());
 		progBar_playerVitality.setString(progBar_playerVitality.getValue() + " / " + progBar_playerVitality.getMaximum());
 		panel_player.add(progBar_playerVitality);
 
@@ -419,7 +419,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerEnergy.setStringPainted(true);
 		progBar_playerEnergy.setForeground(Color.YELLOW);
 		progBar_playerEnergy.setBounds(10, 31, 189, 16);
-		progBar_playerEnergy.setString(player.getCurEnergy() + " / " + player.getMaxEnergy());
+		progBar_playerEnergy.setString(""); // TODO
 		progBar_playerEnergy.setValue(100);
 		panel_player.add(progBar_playerEnergy);
 

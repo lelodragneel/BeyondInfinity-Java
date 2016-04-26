@@ -23,18 +23,16 @@ import bi.team.heroes.attacks.brutalizer.*;
 
 public class Brutalizer extends Hero {
 	
-	/*
-	 * initialize variables
-	 */
-	//
-	
 	// constructor
 	public Brutalizer(Game game) {
+		
 		super(game);
 		
-		/*
-		 * instantiate variables
-		 */
+		// default class values
+		curHealth = 100;
+		maxHealth = 100;
+		
+		// instantiate
 		hashAttacks = new HashMap<Integer, Attack>();
 		
 		// create this class's attacks

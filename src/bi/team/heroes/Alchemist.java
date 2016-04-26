@@ -1,6 +1,9 @@
 package bi.team.heroes;
 
+import java.util.HashMap;
+
 import bi.team.Game;
+import bi.team.heroes.attacks.Attack;
 
 /*
  * Class abilities:
@@ -17,8 +20,20 @@ import bi.team.Game;
  */
 public class Alchemist extends Hero {
 	
+	// constructor
 	public Alchemist(Game game) {
+		
 		super(game);
+		
+		// default class values
+		curHealth = 100;
+		maxHealth = 100;
+		
+		// instantiate
+		hashAttacks = new HashMap<Integer, Attack>();
+		
+		// TODO create this class's attacks
+		
 	}
 	
 }
