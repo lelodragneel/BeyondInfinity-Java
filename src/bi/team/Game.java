@@ -73,7 +73,7 @@ public class Game extends JFrame implements ActionListener {
 
 	// create the frame
 	public Game(String name, String chosenHero) {
-		
+	
 		// instantiate objects
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
 		load = new Load(this);

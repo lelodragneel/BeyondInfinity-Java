@@ -1,9 +1,12 @@
 package bi.team;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,14 +17,19 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.LineBorder;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 
-import bi.team.heroes.Alchemist;
-import bi.team.heroes.Warlock;
-import bi.team.heroes.Berserker;
-import bi.team.heroes.Brutalizer;
-import bi.team.heroes.Elementalist;
+import org.w3c.dom.Attr;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import bi.team.heroes.Hero;
-import java.awt.Cursor;
+
 
 @SuppressWarnings("serial")
 public class BeyondInfinity extends JFrame implements ActionListener {
@@ -35,12 +43,11 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JButton btnBerserker;
 	private JButton btnWarlock;
 	private Hero hero;
+	private String gameFolderPath;
+	private String gameFilePath;
 
 	// constructor
-	public BeyondInfinity() {
-		
-		System.out.println("test");
-		System.out.println("test \t");
+	public BeyondInfinity() {	
 
 		// frame initializing
 		setResizable(false);
@@ -166,14 +173,102 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		// finally show frame
 		setVisible(true);
+
+		// checks if there has been previous progress
+		checkSave();
+	}
+
+	// check appdata file status and create directories/files
+	public void checkSave() {
+
+		// create a folder path, and file path
+		gameFolderPath = System.getenv().get("APPDATA") + "\\beyondInfinity";
+		gameFilePath = gameFolderPath + "\\progress.xml";	
+		File gameFolder = new File(gameFolderPath);
+		File gameFile = new File(gameFilePath);
+		
+		// create directory if doesn't exist
+		if (!gameFolder.exists()) {		
+			if (gameFolder.mkdir()) { 	
+				System.out.println("folder created");
+			}
+		}
+		// create save file if doesn't exist
+		if (!gameFile.exists() && gameFolder.exists()) {
+			try {
+				if (gameFile.createNewFile()) { 	// create xml file if doesn't exist
+					System.out.println("file created");
+					buildSaveFile(gameFile);
+				}
+			} catch (IOException e) {
+				System.out.println("adghdg");
+			}
+
+		}
+
+	}
+
+	// build a new xml file under appdata
+	public void buildSaveFile(File gameFile) {
+
+		try {
+
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.newDocument();
+
+			// root element
+			Element rootElement = doc.createElement("beyondinfinity");
+			doc.appendChild(rootElement);
+
+			// bosses element
+			Element bosses = doc.createElement("bosses");
+			rootElement.appendChild(bosses);
+
+			// setting attribute to element
+			Attr attr = doc.createAttribute("type");
+			attr.setValue("mini");
+			bosses.setAttributeNode(attr);
+
+			// bossnum element
+			Element bossnum1 = doc.createElement("bossnum");
+			Attr attrType1 = doc.createAttribute("number");
+			attrType1.setValue("1");
+			bossnum1.setAttributeNode(attrType1);
+			bossnum1.appendChild(
+					doc.createTextNode("filler_1"));
+			bosses.appendChild(bossnum1);
+
+			Element bossnum2 = doc.createElement("bossnum");
+			Attr attrType2 = doc.createAttribute("number");
+			attrType2.setValue("2");
+			bossnum2.setAttributeNode(attrType2);
+			bossnum2.appendChild(
+					doc.createTextNode("filler_2"));
+			bosses.appendChild(bossnum2);
+
+			// write the content into xml file
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(gameFile);
+			transformer.transform(source, result);
+
+			// output to console for testing
+			System.out.println("default data written successfully");
+			StreamResult consoleResult = new StreamResult(System.out);
+			transformer.transform(source, consoleResult);		
+
+		} catch (Exception e) {
+			System.out.println("Couldn't create progress.xml file");
+		}
+
 	}
 
 	// TODO implement race picker
 	
 	// actionlistener for the submit button
 	public void actionPerformed(ActionEvent e) {
-
-		System.out.println("done");
 		
 		if (e.getSource() == btnBrutalizer) {
 			paintSelectedButton(btnBrutalizer);
@@ -201,6 +296,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			else {
 				JOptionPane.showMessageDialog(this, "You forgot to select a hero!", "Alert", JOptionPane.ERROR_MESSAGE);
 				return;
+				
 			}
 			
 
