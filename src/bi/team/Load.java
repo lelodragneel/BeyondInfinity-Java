@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import bi.team.heroes.attacks.Attack;
+
 public class Load {
 
 	// init variables
@@ -18,9 +20,9 @@ public class Load {
 	}
 
 	// TODO implement a new improved double-sided loading bar
-	
+
 	// start animating the loading bar
-	public void start(Attack attack) {
+	public void nextTurn(Attack attack) {
 
 		// disable buttons to prevent simultaneous attacks
 		parent.disableAttackButtons();
@@ -40,21 +42,13 @@ public class Load {
 
 				// conditional check for who's turn
 				if (i > 100) {
-					
+
 					// stop the loop
 					timer.stop();
-					parent.checkWinner();
-					
-					// if it's the player's turn
-					if (Game.getTurn() == true) 
-						parent.attackEnemy(attack);
-					else { 	// else it's the enemy's turn
-						if (Game.getTurn() == false) {
-							parent.attackPlayer();
-							// re-enable buttons
-							parent.enableAttackButtons();
-						}
-					}
+ 
+					// call attack method
+					parent.useAttack(attack);
+
 				}
 			}
 		};

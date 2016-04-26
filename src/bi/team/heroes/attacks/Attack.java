@@ -1,13 +1,17 @@
-package bi.team;
+package bi.team.heroes.attacks;
 
 import java.awt.Insets;
+import java.util.HashMap;
 
 import javax.swing.JButton;
 
-public class Attack {
+import bi.team.MyGraphics;
+import bi.team.heroes.Hero;
+
+public abstract class Attack {
 
 	// init variables
-	private JButton button;
+	protected JButton button;
 	private String name; // Name of attack
 	private int turnCooldown; // the amount of turns the attack needs before it can be used again
 	private double cooldownTimer; // the how many turns left until attack can used again. 0 for no cooldown
@@ -15,23 +19,20 @@ public class Attack {
 	private double damage; // How much Damage does the attack do
 	private double heal; // How much Healing does the attack do
 	private int turnsToEvade; // How many turns you are immune to damage
+	protected Hero hero;
+	private boolean isAvailable;
 
 	// constructor
-	public Attack(String name, double damage, double energyCost, int turncooldown, double heal, int turnsToEvade) {
-		this.name = name;
-		this.damage = damage;
-		this.energyCost = energyCost;
-		this.turnCooldown = turncooldown;
-		this.heal = heal;
-		this.turnsToEvade = turnsToEvade;
-		this.cooldownTimer = 0;
-
-		// create the button and configure it
-		button = new JButton(name);
+	public Attack(Hero hero, JButton button) {
+		this.hero = hero;
+		this.button = button;
+		
 		button.setFocusable(false);
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.add(new MyGraphics(this));
 	}
+	
+	public abstract void startAttack();
 
 	// checks if it can be used and uses it
 	public boolean useAttack() {
@@ -91,4 +92,12 @@ public class Attack {
 	public JButton getButton() {
 		return button;
 	}
+
+	/**
+	 * @return the isAvailable
+	 */
+	public boolean isAvailable() {
+		return isAvailable;
+	}
+	
 }

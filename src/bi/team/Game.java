@@ -5,7 +5,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,7 +23,14 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 
 import bi.team.bosstype.Boss;
+import bi.team.heroes.Alchemist;
+import bi.team.heroes.Berserker;
+import bi.team.heroes.Elementalist;
+import bi.team.heroes.Hero;
+import bi.team.heroes.Warlock;
+import bi.team.heroes.attacks.Attack;
 import bi.team.map.Map;
+import bi.team.map.MapEntry;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -53,11 +59,10 @@ public class Game extends JFrame implements ActionListener {
 	private JButton btnUpgradeCritDamage;
 	private JButton btnUpgradeCritChance;
 	private boolean isMapShown;
-	private ArrayList<Attack> attackButtons;
 	private Load load;
 	private Map map;
-	private Player player;
-	private Boss boss;
+	private Hero player;
+	private Boss enemy;
 	private JLabel lblVitality;
 	private JLabel lblEnergy;
 	private JLabel lblProtection;
@@ -67,15 +72,29 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_enemyEnergy;
 
 	// create the frame
-	public Game(String name, ArrayList<Attack> attackButtons) {
+	public Game(String name, String chosenHero) {
 		
 		// instantiate objects
-		this.attackButtons = attackButtons;
-		load = new Load(this);
-		player = new Player();
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
-
-		// frame initializing
+		load = new Load(this);
+		
+		// create the player object
+		if (chosenHero.equals("berserker"))
+			player = new Berserker(this);
+		else if (chosenHero.equals("elementalist"))
+			player = new Elementalist(this);
+		else if (chosenHero.equals("alchemist"))
+			player = new Alchemist(this);
+		else if (chosenHero.equals("berserker"))
+			player = new Berserker(this);
+		else if (chosenHero.equals("warlock"))
+			player = new Warlock(this);
+		else
+			System.out.println("[Game.java] Could not create your class");
+		
+		/*
+		 * build frame
+		 */
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
@@ -322,10 +341,16 @@ public class Game extends JFrame implements ActionListener {
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
 
-		// loop through all buttons, and add to action listener & panel_actions
-		for (int i = 0; i < attackButtons.size(); i++) {
-			attackButtons.get(i).getButton().addActionListener(this);
-			panel_actions.add(attackButtons.get(i).getButton());
+		/*
+		 * loop through all buttons, 
+		 * and add to action listener & panel_actions
+		 */
+		System.out.println("game: " + player.getHashAttacks().size());
+		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet()) {
+			x.getValue().getButton().addActionListener(this);
+			x.getValue().getButton().setVisible(false);
+			panel_actions.add(x.getValue().getButton());
+			
 		}
 
 		// create the loading bar
@@ -413,24 +438,67 @@ public class Game extends JFrame implements ActionListener {
 
 		// finally show frame
 		setVisible(true);
-
-	}
-
-	// logic method maintaining all the pieces together
-	public void gameEngine() {
 		
+		// start game
+		startFight();
 		
 	}
 	
+	/*
+	 * FIGHT METHODS *********************************************
+	 */
+	
+	// start enemy fight
+	public void startFight() {
+
+		for(MapEntry x : map.getMapEntries()) {
+			if (x.getBoss().isAlive()) {
+				enemy = x.getBoss();
+				appendMessage(enemy.getName() + " is the next opponent!");
+				break;
+			}
+			
+		}
+		
+		// TODO load boss icon & health
+		enableAttackButtons();
+		
+	}
+	
+	// check if button has sufficient energy to be activated
+	public void useAttack(Attack useAttack) {
+		
+		// check turns
+		if (getTurn()) {
+			
+			if (useAttack.isAvailable()) {
+				load.nextTurn(useAttack);
+				toggleTurn();
+				
+			} else 
+				appendMessage(useAttack.getName() + " is on cooldown, try another.");
+			
+		} else {
+			// TODO enemy hits you
+			appendMessage(enemy.getName() + " dealth damage to you.");
+			
+		}
+		
+
+	}
+	
+	// END OF FIGHT METHODS *************************************
+	
 	// action listener
 	public void actionPerformed(ActionEvent evt) {
-		if (evt.getSource().equals(btnShowMap))
+		
+		if (evt.getSource() == btnShowMap)
 			toggleMap();
 		
 		// check if any attacks were clicked
-		for (int i = 0; i < 6; i++) {
-			if (evt.getSource().equals(attackButtons.get(i).getButton())) {
-				activateAttack(attackButtons.get(i));
+		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet()) {
+			if (evt.getSource() == x.getValue().getButton()) {
+				useAttack(x.getValue());
 				break;
 			}
 		}
@@ -460,69 +528,16 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
-	// check if button has sufficient energy to be activated
-	public void activateAttack(Attack chosenAttack) {
-		if (chosenAttack.useAttack()) {
-			load.start(chosenAttack);
-			// reduce all button cooldowns except chosenAttack
-			reduceButtonCooldowns(chosenAttack);
-		} else
-			appendMessage(chosenAttack.getName() + " is on cooldown, try another.");
-
-	}
-
-	// FIXME player.getEnergyRecoverRate suspected wrong
-	// reduce cooldown values of all buttons
-	public void reduceButtonCooldowns(Attack attackUsed) {
-		for (int i = 0; i < attackButtons.size(); i++) {
-			// do not recover the used attack this turn
-			if (!attackButtons.get(i).getButton().equals(attackUsed.getButton()))
-				attackButtons.get(i).reduceCooldown(player.getEnergyRecoverRate());
-		}
-	}
-
-	// XXX enemy takes damage
-	public void attackEnemy(Attack attack) {		
-		double damage = attack.getDamage();
-		appendMessage("enemy took " + damage + " damage from " + attack.getName());
-		boss.takeDamage(damage);
-		progBar_enemyVitality.setValue((int) (progBar_enemyVitality.getValue() - damage));
-		
-		// toggle turns then let enemy attack you
-		Game.toggleTurn();
-		load.start(attack);
-	}
-
-	// XXX player takes damage
-	public void attackPlayer() {
-		double bossDamage = boss.getDamage();
-		player.setCurVitality(player.getCurVitality() - bossDamage);
-		appendMessage("you took " + bossDamage + " damage.");
-		progBar_playerVitality.setValue((int) (progBar_playerVitality.getValue() - bossDamage));
-		
-		// toggle turns
-		Game.toggleTurn();
-	}
-
-	// FIXME
-	public void checkWinner() {
-		if (player.getCurVitality() <= 0)
-			appendMessage("You lost :( " + player.getCurVitality());
-		else if (boss.getHealth() <= 0)
-			appendMessage("Congrats you have killed the boss " + boss.getHealth());
-		
-	}
-
 	// set all attack buttons to active
 	public void enableAttackButtons() {
-		for (int i = 0; i < attackButtons.size(); i++)
-			attackButtons.get(i).getButton().setEnabled(true);
+		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet())
+			x.getValue().getButton().setEnabled(true);
 	}
 	
 	// set all attack buttons to inactive
 	public void disableAttackButtons() {
-		for (int i = 0; i < attackButtons.size(); i++)
-			attackButtons.get(i).getButton().setEnabled(false);
+		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet())
+			x.getValue().getButton().setEnabled(false);
 	}
 	
 	// set all upgrade buttons to active
@@ -566,6 +581,13 @@ public class Game extends JFrame implements ActionListener {
 	// return the current turn
 	public static boolean getTurn() {
 		return turn;
+	}
+	
+	/**
+	 * @return the player
+	 */
+	public Hero getPlayer() {
+		return player;
 	}
 
 	// change turn to the other

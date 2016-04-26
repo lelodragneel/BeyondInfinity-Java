@@ -1,29 +1,41 @@
-package bi.team;
+package bi.team.heroes;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
-public class Player {
+import javax.swing.SwingUtilities;
+
+import bi.team.Game;
+import bi.team.heroes.attacks.Attack;
+
+public abstract class Hero {
 
 	// initialize variables
-	private double curVitality;
-	private double maxVitality;				// [90, infinity] any real number
-	private double protection;				// [0.01-1] damage multiplied by this number equals the damage avoided
-	private double criticalDamage;			// [0.2-2] damage multiplied by this number equals the extra damage dealt
-	private double criticalChance;			// [0-100] probability of dealing a criticalDamage. a number generator will guess a number between that range
-	private double curEnergy;					
-	private double maxEnergy;				// [5-?]
-	private double energyRecoveryRate;		// [1-?] the energy received at the end of each turn
-
+	protected double curHealth;
+	protected double maxHealth;					// [90, infinity] any real number
+	protected double protection;				// [0.01-1] damage multiplied by this number equals the damage avoided
+	protected double criticalDamage;			// [0.2-2] damage multiplied by this number equals the extra damage dealt
+	protected double criticalChance;			// [0-100] probability of dealing a criticalDamage. a number generator will guess a number between that range
+	protected double curEnergy;					
+	protected double maxEnergy;					// [5-?]
+	protected double energyRecoveryRate;		// [1-?] the energy received at the end of each turn
+	protected HashMap<Integer, Attack> hashAttacks;
+	protected Game game;
+	
 	// constructor
-	Player() {
-		maxVitality = 90;
-		curVitality = 90;
-		criticalDamage = 0.2;
-		criticalChance = 10;
-		protection = 0.01;
-		maxEnergy = 5;
-		curEnergy = 5;
-		energyRecoveryRate = 1;
+	public Hero(Game game) {
+		//System.out.println("hero: " + hashAttacks.size());
+		this.game = game;
+	}
+
+	
+	
+	/**
+	 * @return the hashAttacks
+	 */
+	public Map<Integer, Attack> getHashAttacks() {
+		return hashAttacks;
 	}
 
 	// return a new randomly generated number
@@ -31,24 +43,29 @@ public class Player {
 		return new Random().nextInt((100 - 1) + 1) + 1;
 	}
 	
+	// return true if player is alive
+	public boolean isAlive() {
+		return (curHealth > 0);
+	}
+	
 	// return the current vitality (health)
 	public double getCurVitality() {
-		return curVitality;
+		return curHealth;
 	}
 
 	// set the vitality (health)
 	public void setCurVitality(double curVitality) {
-		this.curVitality = curVitality;
+		this.curHealth = curVitality;
 	}
 
 	// return the maximum vitality (health)
 	public double getMaxVitality() {
-		return maxVitality;
+		return maxHealth;
 	}
 
 	// set the maximum vitality (health)
 	public void setMaxVitality(double maxVitality) {
-		this.maxVitality = maxVitality;
+		this.maxHealth = maxVitality;
 	}
 
 	// return the maxEnergy

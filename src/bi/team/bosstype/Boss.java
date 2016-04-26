@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 public abstract class Boss {
 
 	// initialize variables
+	private String name;
 	private double curVitality;
 	private double maxVitality;
 	private double damage;
@@ -115,5 +116,13 @@ public abstract class Boss {
 	public void setAlive(boolean alive) {
 		this.alive = alive;
 	}
+
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+	
 
 }

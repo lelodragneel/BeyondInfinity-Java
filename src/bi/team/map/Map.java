@@ -95,5 +95,14 @@ public class Map extends JLayeredPane {
 		add(items.next().getEntry(), gbc);
 		
 	}
+
+	/**
+	 * @return the mapEntries
+	 */
+	public ArrayList<MapEntry> getMapEntries() {
+		return mapEntries;
+	}
+	
+	
 	
 }
