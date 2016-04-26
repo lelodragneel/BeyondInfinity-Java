@@ -4,8 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import javax.swing.SwingUtilities;
-
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
@@ -25,7 +23,7 @@ public abstract class Hero {
 	
 	// constructor
 	public Hero(Game game) {
-		//System.out.println("hero: " + hashAttacks.size());
+
 		this.game = game;
 	}
 

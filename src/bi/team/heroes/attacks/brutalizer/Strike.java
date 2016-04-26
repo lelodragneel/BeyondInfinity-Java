@@ -17,5 +17,11 @@ public class Strike extends Attack {
 		super(hero, new JButton("Strike"));
 
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

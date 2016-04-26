@@ -118,6 +118,13 @@ public abstract class Boss {
 	}
 
 	/**
+	 * @param name the name to set
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	/**
 	 * @return the name
 	 */
 	public String getName() {

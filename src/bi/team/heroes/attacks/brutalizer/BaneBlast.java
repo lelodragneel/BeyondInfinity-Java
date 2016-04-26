@@ -10,5 +10,11 @@ public class BaneBlast extends Attack {
 	public BaneBlast(Hero hero) {
 		super(hero, new JButton("Bane Blast"));
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

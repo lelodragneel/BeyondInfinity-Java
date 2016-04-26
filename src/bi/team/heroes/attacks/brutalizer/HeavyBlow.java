@@ -10,5 +10,11 @@ public class HeavyBlow extends Attack {
 	public HeavyBlow(Hero hero) {
 		super(hero, new JButton("Heavy Blow"));
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

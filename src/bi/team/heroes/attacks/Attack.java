@@ -1,7 +1,6 @@
 package bi.team.heroes.attacks;
 
 import java.awt.Insets;
-import java.util.HashMap;
 
 import javax.swing.JButton;
 
@@ -20,7 +19,7 @@ public abstract class Attack {
 	private double heal; // How much Healing does the attack do
 	private int turnsToEvade; // How many turns you are immune to damage
 	protected Hero hero;
-	private boolean isAvailable;
+	private boolean isAvailable = true;
 
 	// constructor
 	public Attack(Hero hero, JButton button) {

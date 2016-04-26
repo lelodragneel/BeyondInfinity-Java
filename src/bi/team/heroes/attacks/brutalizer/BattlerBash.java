@@ -10,5 +10,11 @@ public class BattlerBash extends Attack {
 	public BattlerBash(Hero hero) {
 		super(hero, new JButton("Battler Bash"));
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

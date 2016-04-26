@@ -10,5 +10,11 @@ public class Incapacitate extends Attack {
 	public Incapacitate(Hero hero) {
 		super(hero, new JButton("Incapacitate"));
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

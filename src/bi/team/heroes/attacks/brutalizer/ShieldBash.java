@@ -10,5 +10,11 @@ public class ShieldBash extends Attack {
 	public ShieldBash(Hero hero) {
 		super(hero, new JButton("Shield Bash"));
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

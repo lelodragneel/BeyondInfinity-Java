@@ -10,5 +10,11 @@ public class Vengeance extends Attack {
 	public Vengeance(Hero hero) {
 		super(hero, new JButton("Vengeance"));
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -7,12 +7,13 @@ import javax.swing.Timer;
 
 import bi.team.heroes.attacks.Attack;
 
-public class Load {
+public class Load implements ActionListener {
 
-	// init variables
+	// initialize variables
 	private Timer timer;
 	private int i;
 	private Game parent;
+	private Attack attack;
 
 	// constructor
 	public Load(Game parent) {
@@ -21,8 +22,10 @@ public class Load {
 
 	// TODO implement a new improved double-sided loading bar
 
-	// start animating the loading bar
+	// start animating the loading bar for PLAYER's turn
 	public void nextTurn(Attack attack) {
+		
+		this.attack = attack;
 
 		// disable buttons to prevent simultaneous attacks
 		parent.disableAttackButtons();
@@ -33,29 +36,59 @@ public class Load {
 		// reset count
 		i = 0;
 
-		// the actionlistener controlled by the timer
-		ActionListener listener = new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		// timer which triggers the actionlistener every 15ms
+		timer = new Timer(15, this);
+		timer.start();
 
-				// increment loading bar value
-				parent.setProgBar_loading(i++);
+	}
+	
+	// start animating the loading bar for ENEMY's turn
+	public void nextTurn() {
 
-				// conditional check for who's turn
-				if (i > 100) {
+		// disable buttons to prevent simultaneous attacks
+		parent.disableAttackButtons();
+		// reset loading bar
+		parent.setProgBar_loading(0);
 
-					// stop the loop
-					timer.stop();
- 
-					// call attack method
-					parent.useAttack(attack);
-
-				}
-			}
-		};
+		// reset count
+		i = 0;
 
 		// timer which triggers the actionlistener every 15ms
-		timer = new Timer(15, listener);
+		timer = new Timer(15, this);
 		timer.start();
+
+	}
+	
+	
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		// increment loading bar value
+		parent.setProgBar_loading(i++);
+
+		// conditional check for who's turn
+		if (i > 100) {
+
+			// stop the loop
+			timer.stop();
+
+			// perform attacks
+			if (Game.getTurn()) {
+				parent.playerAttacking(attack);
+				// change turns
+				Game.toggleTurn();
+				nextTurn();
+			} else {
+				// change turns
+				Game.toggleTurn();
+				parent.enemyAttacking();
+				// re-enable buttons
+				parent.enableAttackButtons();
+			}
+			
+		}
+		
 
 	}
 

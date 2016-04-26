@@ -20,6 +20,7 @@ public class MapEntry implements MouseListener {
 	public MapEntry(int entryNum, Boss boss) {
 
 		this.boss = boss;
+		boss.setName("boss" + entryNum);
 		
 		// create a label and configured its settings
 		entry = new JLabel(entryNum + 1 + "");

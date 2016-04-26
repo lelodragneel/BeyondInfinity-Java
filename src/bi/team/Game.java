@@ -345,10 +345,10 @@ public class Game extends JFrame implements ActionListener {
 		 * loop through all buttons, 
 		 * and add to action listener & panel_actions
 		 */
-		System.out.println("game: " + player.getHashAttacks().size());
+		// XXX create attack buttons
 		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet()) {
 			x.getValue().getButton().addActionListener(this);
-			x.getValue().getButton().setVisible(false);
+			x.getValue().getButton().setEnabled(false);
 			panel_actions.add(x.getValue().getButton());
 			
 		}
@@ -455,37 +455,32 @@ public class Game extends JFrame implements ActionListener {
 			if (x.getBoss().isAlive()) {
 				enemy = x.getBoss();
 				appendMessage(enemy.getName() + " is the next opponent!");
+				turn = true;
 				break;
 			}
 			
 		}
 		
 		// TODO load boss icon & health
+		
 		enableAttackButtons();
 		
 	}
 	
-	// check if button has sufficient energy to be activated
-	public void useAttack(Attack useAttack) {
-		
-		// check turns
-		if (getTurn()) {
-			
-			if (useAttack.isAvailable()) {
-				load.nextTurn(useAttack);
-				toggleTurn();
-				
-			} else 
-				appendMessage(useAttack.getName() + " is on cooldown, try another.");
-			
-		} else {
-			// TODO enemy hits you
-			appendMessage(enemy.getName() + " dealth damage to you.");
-			
-		}
-		
+	// player performs an attack
+	public void playerAttacking(Attack useAttack) {
+
+		appendMessage(useAttack.getName() + " used, you dealth x damage.");
 
 	}
+	
+	// enemy performs an attack
+	public void enemyAttacking() {
+		
+		appendMessage(enemy.getName() + " attacks you for 0 dmg");
+		
+	}
+	
 	
 	// END OF FIGHT METHODS *************************************
 	
@@ -498,7 +493,8 @@ public class Game extends JFrame implements ActionListener {
 		// check if any attacks were clicked
 		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet()) {
 			if (evt.getSource() == x.getValue().getButton()) {
-				useAttack(x.getValue());
+				if (x.getValue().isAvailable())
+					load.nextTurn(x.getValue());
 				break;
 			}
 		}

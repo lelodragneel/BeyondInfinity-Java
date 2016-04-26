@@ -10,5 +10,11 @@ public class WhirlingTorment extends Attack {
 	public WhirlingTorment(Hero hero) {
 		super(hero, new JButton("Whirling Torment"));
 	}
+
+	@Override
+	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -28,8 +28,6 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import bi.team.heroes.Hero;
-
 
 @SuppressWarnings("serial")
 public class BeyondInfinity extends JFrame implements ActionListener {
@@ -42,7 +40,6 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JButton btnAlchemist;
 	private JButton btnBerserker;
 	private JButton btnWarlock;
-	private Hero hero;
 	private String gameFolderPath;
 	private String gameFilePath;
 
