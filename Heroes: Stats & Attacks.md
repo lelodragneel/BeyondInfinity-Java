@@ -1,41 +1,59 @@
 ###Brutalizer
-####Abilities:
+#####Abilities:
   1. 
   2. 
   3. 
   4. 
   5. 
+  
+#####Passive:
+filler
+
 
 ###Elementalist
-####Abilities:
+#####Abilities:
   1. 
   2. 
   3. 
   4. 
   5. 
+
+#####Passive:
+filler
+
 
 ###Swordsman
-####Abilities:
+#####Abilities:
   1. 
   2. 
   3. 
   4. 
   5. 
+
+#####Passive:
+filler
+
 
 ###Warlock
-####Abilities:
+#####Abilities:
   1. 
   2. 
   3. 
   4. 
   5. 
+
+#####Passive:
+filler
+
 
 ###Alchemist
-####Abilities:
+#####Abilities:
   1. 
   2. 
   3. 
   4. 
   5. 
 
+#####Passive:
+filler
 
