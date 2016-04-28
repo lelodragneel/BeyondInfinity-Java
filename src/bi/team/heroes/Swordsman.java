@@ -14,14 +14,15 @@ import bi.team.heroes.attacks.Attack;
  * #5: Inscribe Blade (buff ability)
  * #6: Abolishment (ultimate ability)
  * 
+ * Passive:
+ * 
  * Default Upgradable Stats:
- * Vitality, Dexterity,
- * Optional: 
+ * Vitality, Focus, Strength, Block, Critical Chance
  */
-public class Berserker extends Hero {
+public class Swordsman extends Hero {
 	
 	// constructor
-	public Berserker(Game game) {
+	public Swordsman(Game game) {
 		
 		super(game);
 		

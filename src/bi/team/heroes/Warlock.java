@@ -8,15 +8,16 @@ import bi.team.heroes.attacks.Attack;
 /*
  * Class abilities:
  * #1: Shadow Bolt (basic attack)
- * #2: Life Drain (special ability)
+ * #2: Harvest Life (life steal)
  * #3: Dark Infliction (powerful ability) 
- * #4: Hoaxing Clones (special ability)
- * #5: Shadowy Flash (special ability)
- * #6: Demonic Ritual (ultimate ability)
+ * #4: Terrorize (fear ability)
+ * #5: Shadowy Flash (escape ability)
+ * #6: Devastation (ultimate ability)
+ * 
+ * Passive: Demonic Companion (imp companion, shares damage)
  * 
  * Default Upgradable Stats:
- * Life, Power,
- * Optional: 
+ * Life, Mana, Spell Damage, Resistance, Imp
  */
 public class Warlock extends Hero {
 

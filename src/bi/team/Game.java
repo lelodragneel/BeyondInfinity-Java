@@ -24,7 +24,8 @@ import javax.swing.border.TitledBorder;
 
 import bi.team.bosstype.Boss;
 import bi.team.heroes.Alchemist;
-import bi.team.heroes.Berserker;
+import bi.team.heroes.Brutalizer;
+import bi.team.heroes.Swordsman;
 import bi.team.heroes.Elementalist;
 import bi.team.heroes.Hero;
 import bi.team.heroes.Warlock;
@@ -79,14 +80,14 @@ public class Game extends JFrame implements ActionListener {
 		load = new Load(this);
 		
 		// create the player object
-		if (chosenHero.equals("berserker"))
-			player = new Berserker(this);
+		if (chosenHero.equals("swordsman"))
+			player = new Swordsman(this);
 		else if (chosenHero.equals("elementalist"))
 			player = new Elementalist(this);
 		else if (chosenHero.equals("alchemist"))
 			player = new Alchemist(this);
-		else if (chosenHero.equals("berserker"))
-			player = new Berserker(this);
+		else if (chosenHero.equals("brutalizer"))
+			player = new Brutalizer(this);
 		else if (chosenHero.equals("warlock"))
 			player = new Warlock(this);
 		else

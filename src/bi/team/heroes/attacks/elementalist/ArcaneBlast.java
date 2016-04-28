@@ -5,10 +5,10 @@ import javax.swing.JButton;
 import bi.team.heroes.Hero;
 import bi.team.heroes.attacks.Attack;
 
-public class Fade extends Attack {
+public class ArcaneBlast extends Attack {
 	
-	public Fade(Hero hero) {
-		super(hero, new JButton("Fade"));
+	public ArcaneBlast(Hero hero) {
+		super(hero, new JButton("Arcade Blast"));
 	}
 
 	@Override
