@@ -14,10 +14,10 @@ import bi.team.heroes.attacks.Attack;
  * #5: Inscribe Blade (buff ability)
  * #6: Abolishment (ultimate ability)
  * 
- * Passive:
+ * Passive: 
  * 
  * Default Upgradable Stats:
- * Vitality, Focus, Strength, Block, Critical Chance
+ * Vitality, Focus, Dexterity, Block, Critical Chance
  */
 public class Swordsman extends Hero {
 	

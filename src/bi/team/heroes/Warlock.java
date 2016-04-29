@@ -17,7 +17,7 @@ import bi.team.heroes.attacks.Attack;
  * Passive: Demonic Companion (imp companion, shares damage)
  * 
  * Default Upgradable Stats:
- * Life, Mana, Spell Damage, Resistance, Imp
+ * Life, Mana, Spell Power, Resistance, Imp
  */
 public class Warlock extends Hero {
 

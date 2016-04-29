@@ -12,12 +12,12 @@ import bi.team.heroes.attacks.Attack;
  * #3: Toxic Solvent (powerful attack)
  * #4: Illusive Mix (special attack)
  * #5: Diseased Corruption (special attack)
- * #6: Life Stone (ultimate ability)
+ * #6: Life Potion (ultimate ability)
  * 
- * Passive: 
+ * Passive: Replenishment
  * 
  * Default Upgradable Stats:
- * Health, Speed, Lunacy, Invulnerability, Infliction
+ * Sanity, Energy, Lunacy, Invulnerability, Infliction
  */
 public class Alchemist extends Hero {
 	

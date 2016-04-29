@@ -16,10 +16,10 @@ import bi.team.heroes.attacks.brutalizer.*;
  * #5: Battler Bash (stun ability)|				Shield Bash (special attack)
  * #6: True Assault (ultimate attack)|			Whirling Torment (ultimate attack)| 
  * 
- * Passive: 
+ * Passive: Hateful Will
  * 
  * Default Upgradable Stats:
- * Vitality, Energy, Sharpness, Toughness, Riposte
+ * Vitality, Rage, Sharpness, Toughness, Riposte Chance
 */
 
 public class Brutalizer extends Hero {

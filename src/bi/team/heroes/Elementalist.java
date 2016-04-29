@@ -18,7 +18,7 @@ import bi.team.heroes.attacks.elementalist.*;
  * Passive: Freezing Pulse (freeze every 4 turns)
  * 
  * Default Upgradable Stats:
- * Health, Mana, Intellect, Absorption, Immobilize
+ * Health, Mana, Intellect, Absorption, Immobilize Chance
  */
 public class Elementalist extends Hero {
 	
