@@ -1,5 +1,6 @@
 package bi.team.heroes.attacks;
 
+import java.awt.Color;
 import java.awt.Insets;
 
 import javax.swing.JButton;
@@ -19,7 +20,8 @@ public abstract class Attack {
 	public Attack(Hero hero, JButton button) {
 		
 		this.hero = hero;
-		this.button = button;	
+		this.button = button;
+		button.setBackground(Color.WHITE);
 		button.setFocusable(false);
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.add(new MyGraphics(this));

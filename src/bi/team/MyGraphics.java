@@ -27,7 +27,7 @@ public class MyGraphics extends JPanel {
 		// TODO cooldown visual for every individual button
 		// temporary value
 		width = attack.getButton().getWidth();
-
+		
 		// paint the cooldown on the jbutton
 		this.setOpaque(false);
 		g.setColor(new Color(0.2f, 0.28f, 0.37f, 0.15f));

@@ -281,23 +281,32 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 			// create the chosen hero
 			if (btnBrutalizer.isSelected())
-				startGameFrame("brutalizer");
+				frameGiftPicker("brutalizer");
 			else if (btnAlchemist.isSelected())
-				startGameFrame("alchemist");
+				frameGiftPicker("alchemist");
 			else if (btnElementalist.isSelected())
-				startGameFrame("elementalist");
+				frameGiftPicker("elementalist");
 			else if (btnBerserker.isSelected())
-				startGameFrame("berserker");
+				frameGiftPicker("berserker");
 			else if (btnWarlock.isSelected())
-				startGameFrame("warlock");
+				frameGiftPicker("warlock");
 			else {
 				JOptionPane.showMessageDialog(this, "You forgot to select a hero!", "Alert", JOptionPane.ERROR_MESSAGE);
 				return;
 				
 			}
 			
-
 		}
+	}
+	
+	// frame for choosing a gift
+	public void frameGiftPicker(String hero) {
+		
+		setBounds(getX(), getY(), 650, 450);
+		
+		
+		//startGameFrame(hero);
+		
 	}
 	
 	// start building the actual frame of the game
@@ -320,6 +329,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 	// toggle button animation when clicked
 	public void paintSelectedButton(JButton selected) {
+		
 		// unpaint all the buttons
 		btnBrutalizer.setBorder(new LineBorder(Color.BLACK, 1));
 		btnElementalist.setBorder(new LineBorder(Color.BLACK, 1));
@@ -335,6 +345,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
+		
 		// safely start welcoming screen
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
