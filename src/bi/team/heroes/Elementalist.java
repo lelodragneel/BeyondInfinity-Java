@@ -12,12 +12,13 @@ import bi.team.heroes.attacks.elementalist.*;
  * #2: *elemental* Missile (powerful attack)
  * #3: Rejuvenate (healing ability)
  * #4: Missle Detonation (special attack)
- * #5: Fade (defensive ability)
+ * #5: Arcane Blast (powerful ability)
  * #6: Bursting Flames (ultimate attack)
  * 
+ * Passive: Freezing Pulse (freeze every 4 turns)
+ * 
  * Default Upgradable Stats:
- * Health, Power,
- * Optional: 
+ * Health, Mana, Intellect, Absorption, Immobilize Chance
  */
 public class Elementalist extends Hero {
 	
@@ -38,7 +39,7 @@ public class Elementalist extends Hero {
 		hashAttacks.put(2, new Missile(this));
 		hashAttacks.put(3, new Rejuvenate(this));
 		hashAttacks.put(4, new MissileDetonation(this));
-		hashAttacks.put(5, new Fade(this));
+		hashAttacks.put(5, new ArcaneBlast(this));
 		hashAttacks.put(6, new BurstingFlames(this));
 		
 	}

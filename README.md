@@ -1,7 +1,10 @@
-A role-playing adventure game  
+### A role-playing adventure game  
 Personal project for fun :)
 
+#### Hero Stats & Attacks  
+  https://docs.google.com/document/d/1RB_EcBOjlNvqg3P85TOjfkZ5ysob8llyO7cNyANWaNc/edit  
 
+#### Scaling  
 Boss health scaling (exponential): green  
 Boss damage scaling (exponential): red  
 Boss armor scaling (exponential): purple  

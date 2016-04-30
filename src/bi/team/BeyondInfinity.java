@@ -38,7 +38,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JButton btnBrutalizer;
 	private JButton btnElementalist;
 	private JButton btnAlchemist;
-	private JButton btnBerserker;
+	private JButton btnSwordsman;
 	private JButton btnWarlock;
 	private String gameFolderPath;
 	private String gameFilePath;
@@ -117,14 +117,14 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		btnAlchemist.addActionListener(this);
 		contentPane.add(btnAlchemist);
 
-		// create berserker button
-		btnBerserker = new JButton("");
-		btnBerserker.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnBerserker.setBackground(null);
-		btnBerserker.setBounds(378, 187, 90, 90);
-		btnBerserker.setFocusable(false);
-		btnBerserker.addActionListener(this);
-		contentPane.add(btnBerserker);
+		// create swordsman button
+		btnSwordsman = new JButton("");
+		btnSwordsman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSwordsman.setBackground(null);
+		btnSwordsman.setBounds(378, 187, 90, 90);
+		btnSwordsman.setFocusable(false);
+		btnSwordsman.addActionListener(this);
+		contentPane.add(btnSwordsman);
 		
 		// create warlock button
 		btnWarlock = new JButton("");
@@ -156,11 +156,11 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		lblBrutalizer.setBounds(73, 167, 89, 16);
 		contentPane.add(lblBrutalizer);
 		
-		JLabel lblBerserker = new JLabel("Berserker");
-		lblBerserker.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBerserker.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblBerserker.setBounds(378, 167, 89, 16);
-		contentPane.add(lblBerserker);
+		JLabel lblSwordsman = new JLabel("Swordsman");
+		lblSwordsman.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSwordsman.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblSwordsman.setBounds(378, 167, 89, 16);
+		contentPane.add(lblSwordsman);
 		
 		JLabel lblWarlock = new JLabel("Warlock");
 		lblWarlock.setHorizontalAlignment(SwingConstants.CENTER);
@@ -273,8 +273,8 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			paintSelectedButton(btnElementalist);
 		} else if (e.getSource() == btnAlchemist) {
 			paintSelectedButton(btnAlchemist);
-		} else if (e.getSource() == btnBerserker) {
-			paintSelectedButton(btnBerserker);
+		} else if (e.getSource() == btnSwordsman) {
+			paintSelectedButton(btnSwordsman);
 		} else if (e.getSource() == btnWarlock) {
 			paintSelectedButton(btnWarlock);
 		} else if (e.getSource() == btnSubmit) {
@@ -334,7 +334,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		btnBrutalizer.setBorder(new LineBorder(Color.BLACK, 1));
 		btnElementalist.setBorder(new LineBorder(Color.BLACK, 1));
 		btnAlchemist.setBorder(new LineBorder(Color.BLACK, 1));
-		btnBerserker.setBorder(new LineBorder(Color.BLACK, 1));
+		btnSwordsman.setBorder(new LineBorder(Color.BLACK, 1));
 		btnWarlock.setBorder(new LineBorder(Color.BLACK, 1));
 
 		// paint the selected button
