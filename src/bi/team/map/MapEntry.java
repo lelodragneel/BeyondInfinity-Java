@@ -10,10 +10,10 @@ import javax.swing.SwingConstants;
 
 import bi.team.bosstype.Boss;
 
-public class MapEntry implements MouseListener {
+public class MapEntry extends JLabel implements MouseListener {
 
 	// init variables
-	private JLabel entry;
+	//private JLabel entry;
 	private Boss boss;
 	
 	// constructor
@@ -23,30 +23,30 @@ public class MapEntry implements MouseListener {
 		boss.setName("boss" + entryNum);
 		
 		// create a label and configured its settings
-		entry = new JLabel(entryNum + 1 + "");
-		entry.setBackground(new Color(236, 236, 236));
-		entry.setOpaque(true);
-		entry.setVerticalAlignment(SwingConstants.BOTTOM);
-		entry.setHorizontalAlignment(SwingConstants.RIGHT);
-		entry.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-		entry.addMouseListener(this);
-		entry.setBorder(boss.getBorder());
+		this.setText(entryNum + 1 + "");
+		this.setBackground(new Color(236, 236, 236));
+		this.setOpaque(true);
+		this.setVerticalAlignment(SwingConstants.BOTTOM);
+		this.setHorizontalAlignment(SwingConstants.RIGHT);
+		this.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		this.addMouseListener(this);
+		this.setBorder(boss.getBorder());
 	
 	}
 
-	// return the map entry
-	public JLabel getEntry() {
-		return entry;
-	}
+//	// return the map entry
+//	public JLabel getEntry() {
+//		return entry;
+//	}
 
 	// below are the mouse listeners for hovering effects
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		entry.setBackground(Color.LIGHT_GRAY);
+		this.setBackground(Color.LIGHT_GRAY);
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
-		entry.setBackground(new Color(236, 236, 236));
+		this.setBackground(new Color(236, 236, 236));
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {

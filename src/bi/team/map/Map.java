@@ -74,7 +74,7 @@ public class Map extends JLayeredPane {
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 12 && items.hasNext(); j++) {
 				gbc.gridx = x++;
-				add(items.next().getEntry(), gbc);
+				add(items.next(), gbc);
 			}
 			gbc.gridy = y++;
 			x = 0;
@@ -83,16 +83,16 @@ public class Map extends JLayeredPane {
 		// add the 3 guardian bosses and the grand boss (final boss) to gridbag grid
 		gbc.gridy = 9;
 		gbc.gridx = 1;
-		add(items.next().getEntry(), gbc);
+		add(items.next(), gbc);
 		gbc.gridy = 9;
 		gbc.gridx = 4;
-		add(items.next().getEntry(), gbc);
+		add(items.next(), gbc);
 		gbc.gridy = 9;
 		gbc.gridx = 7;
-		add(items.next().getEntry(), gbc);
+		add(items.next(), gbc);
 		gbc.gridy = 9;
 		gbc.gridx = 10;
-		add(items.next().getEntry(), gbc);
+		add(items.next(), gbc);
 		
 	}
 

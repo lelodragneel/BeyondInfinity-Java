@@ -30,6 +30,7 @@ import bi.team.heroes.Elementalist;
 import bi.team.heroes.Hero;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.Attack;
+import bi.team.inventory.InventoryFrame;
 import bi.team.map.Map;
 import bi.team.map.MapEntry;
 
@@ -61,8 +62,10 @@ public class Game extends JFrame implements ActionListener {
 	private JButton btnUpgradeCritDamage;
 	private JButton btnUpgradeCritChance;
 	private boolean isMapShown;
+	private boolean isInvShown;
 	private Load load;
 	private Map map;
+	private InventoryFrame inventory;
 	private Hero player;
 	private Boss enemy;
 	private JLabel lblVitality;
@@ -114,9 +117,17 @@ public class Game extends JFrame implements ActionListener {
 		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
 
-		// create the map object/frame in the center minus 30 pixels in y-axis
+		/*
+		 * create the map object/frame
+		 */
 		map = new Map(getWidth(), getHeight());
 		contentPane.add(map);
+		
+		/*
+		 * create the inventory panel
+		 */
+		inventory = new InventoryFrame(getWidth(), getHeight());
+		contentPane.add(inventory);
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
@@ -502,6 +513,9 @@ public class Game extends JFrame implements ActionListener {
 		if (evt.getSource() == btnShowMap)
 			toggleMap();
 		
+		if (evt.getSource() == btnShowInventory)
+			toggleInventory();
+		
 		// check if any attacks were clicked
 		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet()) {
 			if (evt.getSource() == x.getValue().getButton()) {
@@ -513,7 +527,7 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
-	// toggle the map
+	// toggle the map pane
 	public void toggleMap() {
 
 		// toggle between true and false
@@ -535,7 +549,30 @@ public class Game extends JFrame implements ActionListener {
 		repaint();
 
 	}
+	
+	// toggle the inventory pane
+	public void toggleInventory() {
+		
+		// toggle between true and false
+		isInvShown = !isInvShown;
+		
+		if (isInvShown) {
+			inventory.setVisible(true);
+			panel_frameOpacity.setVisible(true);
+			disableAttackButtons();
+			disableUpgradeButtons();
+		} else {
+			inventory.setVisible(false);
+			panel_frameOpacity.setVisible(false);
+			enableAttackButtons();
+			enableUpgradeButtons();
+		}
 
+		// repaint frame to avoid graphical glitches
+		repaint();
+		
+	}
+	
 	// set all attack buttons to active
 	public void enableAttackButtons() {
 		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet())
