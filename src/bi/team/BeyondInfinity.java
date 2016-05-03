@@ -5,6 +5,8 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -14,8 +16,10 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.ToolTipManager;
 import javax.swing.border.LineBorder;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,8 +31,6 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import java.awt.Component;
-import javax.swing.Box;
 
 
 @SuppressWarnings("serial")
@@ -38,31 +40,55 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField nameField;
 	private JButton btnSubmit;
-	private JButton btnBrutalizer;
-	private JButton btnElementalist;
-	private JButton btnAlchemist;
-	private JButton btnSwordsman;
-	private JButton btnWarlock;
+	private JToggleButton btnBrutalizer;
+	private JToggleButton btnElementalist;
+	private JToggleButton btnAlchemist;
+	private JToggleButton btnSwordsman;
+	private JToggleButton btnWarlock;
 	private String gameFolderPath;
 	private String gameFilePath;
+	private JLabel lblChooseGift;
+	private JLabel lblGift_None;
+	private JLabel lblGift_RingOfMending;
+	private JLabel lblGift_WillOfVanquish;
+	private JLabel lblGift_BlueOrb;
+	private JToggleButton btnGift_None;
+	private JToggleButton btnGift_RingOfMending;
+	private JToggleButton btnGift_WillOfVanquish;
+	private JToggleButton btnGift_BlueOrb;
 
+	
+	
 	// constructor
 	public BeyondInfinity() {	
 
+//		final int defaultDismissTimeout = ToolTipManager.sharedInstance().getDismissDelay();
+//
+//		addMouseListener(new MouseAdapter() {
+//
+//		  public void mouseEntered(MouseEvent me) {
+//		    ToolTipManager.sharedInstance().setInitialDelay(0);;
+//		  }
+//
+//		  public void mouseExited(MouseEvent me) {
+//		    ToolTipManager.sharedInstance().setDismissDelay(defaultDismissTimeout);
+//		  }
+//		});
+		
 		// frame initializing
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 650, 515);
-		//setBounds(100, 100, 650, 370);
+		//setBounds(100, 100, 650, 515);
+		setBounds(100, 100, 650, 370);
 		setTitle("BeyondInfinity");
 		getContentPane().setLayout(null);
 
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 644, 486);
-		//contentPane.setBounds(0, 0, 644, 335);
+		//contentPane.setBounds(0, 0, 644, 486);
+		contentPane.setBounds(0, 0, 644, 341);
 		contentPane.setVisible(true);
 		contentPane.setBackground(new Color(236, 240, 241));
 		getContentPane().add(contentPane);
@@ -83,7 +109,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		// create a button to submit player name
 		btnSubmit = new JButton("Let's Go!");
-		btnSubmit.setBounds(277, 452, 89, 23);
+		btnSubmit.setBounds(277, 307, 89, 23);
 		btnSubmit.setFocusable(false);
 		btnSubmit.addActionListener(this);
 		contentPane.add(btnSubmit);
@@ -96,7 +122,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		contentPane.add(lblOne);
 
 		// create brutalizer button
-		btnBrutalizer = new JButton("");
+		btnBrutalizer = new JToggleButton("");
 		btnBrutalizer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBrutalizer.setBackground(null);
 		btnBrutalizer.setBounds(72, 187, 90, 90);
@@ -105,7 +131,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		contentPane.add(btnBrutalizer);
 
 		// create elementalist button
-		btnElementalist = new JButton("");
+		btnElementalist = new JToggleButton("");
 		btnElementalist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnElementalist.setBackground(null);
 		btnElementalist.setBounds(174, 187, 90, 90);
@@ -114,7 +140,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		contentPane.add(btnElementalist);
 
 		// create alchemist button
-		btnAlchemist = new JButton("");
+		btnAlchemist = new JToggleButton("");
 		btnAlchemist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnAlchemist.setBackground(null);
 		btnAlchemist.setBounds(276, 187, 90, 90);
@@ -123,23 +149,23 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		contentPane.add(btnAlchemist);
 
 		// create swordsman button
-		btnSwordsman = new JButton("");
+		btnSwordsman = new JToggleButton("");
 		btnSwordsman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSwordsman.setBackground(null);
 		btnSwordsman.setBounds(377, 187, 90, 90);
 		btnSwordsman.setFocusable(false);
 		btnSwordsman.addActionListener(this);
 		contentPane.add(btnSwordsman);
-		
+
 		// create warlock button
-		btnWarlock = new JButton("");
+		btnWarlock = new JToggleButton("");
 		btnWarlock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnWarlock.setFocusable(false);
 		btnWarlock.setBackground((Color) null);
 		btnWarlock.setBounds(479, 187, 90, 90);
 		btnWarlock.addActionListener(this);
 		contentPane.add(btnWarlock);
-		
+
 		/*
 		 * create hero type labels
 		 */
@@ -148,79 +174,111 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		lblAlchemist.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblAlchemist.setBounds(277, 167, 89, 16);
 		contentPane.add(lblAlchemist);
-		
+
 		JLabel lblElementalist = new JLabel("Elementalist");
 		lblElementalist.setHorizontalAlignment(SwingConstants.CENTER);
 		lblElementalist.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblElementalist.setBounds(175, 167, 89, 16);
 		contentPane.add(lblElementalist);
-		
+
 		JLabel lblBrutalizer = new JLabel("Brutalizer");
 		lblBrutalizer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBrutalizer.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblBrutalizer.setBounds(73, 167, 89, 16);
 		contentPane.add(lblBrutalizer);
-		
+
 		JLabel lblSwordsman = new JLabel("Swordsman");
 		lblSwordsman.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSwordsman.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblSwordsman.setBounds(378, 167, 89, 16);
 		contentPane.add(lblSwordsman);
-		
+
 		JLabel lblWarlock = new JLabel("Warlock");
 		lblWarlock.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWarlock.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblWarlock.setBounds(480, 167, 89, 16);
 		contentPane.add(lblWarlock);
-		
-		JLabel lblNewLabel = new JLabel("Choose a Gift:");
-		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(267, 307, 109, 20);
-		contentPane.add(lblNewLabel);
-		
-		JLabel lblGift_None = new JLabel("None");
+
+		/*
+		 * create gift labels
+		 */
+		lblChooseGift = new JLabel("Choose a Gift:");
+		lblChooseGift.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblChooseGift.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChooseGift.setBounds(267, 307, 109, 20);
+		lblChooseGift.setVisible(false);
+		contentPane.add(lblChooseGift);
+
+		lblGift_None = new JLabel("None");
 		lblGift_None.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGift_None.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblGift_None.setBounds(32, 338, 120, 16);
+		lblGift_None.setVisible(false);
 		contentPane.add(lblGift_None);
-		
-		JLabel lblGift_RingOfMending = new JLabel("Ring of Mending");
+
+		lblGift_RingOfMending = new JLabel("Ring of Mending");
 		lblGift_RingOfMending.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGift_RingOfMending.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblGift_RingOfMending.setBounds(184, 338, 120, 16);
+		lblGift_RingOfMending.setVisible(false);
 		contentPane.add(lblGift_RingOfMending);
-		
-		JLabel lblGift_BlueOrb = new JLabel("Blue Orb");
-		lblGift_BlueOrb.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGift_BlueOrb.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblGift_BlueOrb.setBounds(488, 338, 120, 16);
-		contentPane.add(lblGift_BlueOrb);
-		
-		JLabel lblGift_WillOfVanquish = new JLabel("Will of Vanquish");
+
+		lblGift_WillOfVanquish = new JLabel("Will of Vanquish");
 		lblGift_WillOfVanquish.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGift_WillOfVanquish.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblGift_WillOfVanquish.setBounds(336, 338, 120, 16);
+		lblGift_WillOfVanquish.setVisible(false);
 		contentPane.add(lblGift_WillOfVanquish);
-		
-		JButton btnGift_None = new JButton("");
+
+		lblGift_BlueOrb = new JLabel("Blue Orb");
+		lblGift_BlueOrb.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGift_BlueOrb.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblGift_BlueOrb.setBounds(488, 338, 120, 16);
+		lblGift_BlueOrb.setVisible(false);
+		contentPane.add(lblGift_BlueOrb);
+
+
+		/*
+		 * create four gift buttons
+		 */
+		btnGift_None = new JToggleButton("");
 		btnGift_None.setToolTipText("No starting-gift, for those feeling overly confident.");
 		btnGift_None.setBounds(62, 358, 60, 60);
+		btnGift_None.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGift_None.setFocusable(false);
+		btnGift_None.setBackground(null);
+		btnGift_None.addActionListener(this);
+		btnGift_None.setVisible(false);
 		contentPane.add(btnGift_None);
-		
-		JButton btnGift_RingOfMending = new JButton("");
+
+		btnGift_RingOfMending = new JToggleButton("");
 		btnGift_RingOfMending.setToolTipText("An equipable ring which boosts the amount of health restored by health potions.");
 		btnGift_RingOfMending.setBounds(214, 358, 60, 60);
+		btnGift_RingOfMending.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGift_RingOfMending.setFocusable(false);
+		btnGift_RingOfMending.setBackground(null);
+		btnGift_RingOfMending.addActionListener(this);
+		btnGift_RingOfMending.setVisible(false);
 		contentPane.add(btnGift_RingOfMending);
-		
-		JButton btnGift_WillOfVanquish = new JButton("");
+
+		btnGift_WillOfVanquish = new JToggleButton("");
 		btnGift_WillOfVanquish.setToolTipText("An equipable trinket that boosts attack damage for two turns upon activation.");
 		btnGift_WillOfVanquish.setBounds(366, 358, 60, 60);
+		btnGift_WillOfVanquish.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGift_WillOfVanquish.setFocusable(false);
+		btnGift_WillOfVanquish.setBackground(null);
+		btnGift_WillOfVanquish.addActionListener(this);
+		btnGift_WillOfVanquish.setVisible(false);
 		contentPane.add(btnGift_WillOfVanquish);
-		
-		JButton btnGift_BlueOrb = new JButton("");
+
+		btnGift_BlueOrb = new JToggleButton("");
 		btnGift_BlueOrb.setToolTipText("Your Blue Orb starts off with an additional charge. ");
 		btnGift_BlueOrb.setBounds(518, 358, 60, 60);
+		btnGift_BlueOrb.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnGift_BlueOrb.setFocusable(false);
+		btnGift_BlueOrb.setBackground(null);
+		btnGift_BlueOrb.addActionListener(this);
+		btnGift_BlueOrb.setVisible(false);
 		contentPane.add(btnGift_BlueOrb);
 
 		// finally show frame
@@ -238,7 +296,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		gameFilePath = gameFolderPath + "\\progress.xml";	
 		File gameFolder = new File(gameFolderPath);
 		File gameFile = new File(gameFilePath);
-		
+
 		// create directory if doesn't exist
 		if (!gameFolder.exists()) {		
 			if (gameFolder.mkdir()) { 	
@@ -317,92 +375,188 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 	}
 
-	// TODO implement race picker
-	
 	// actionlistener for the submit button
 	public void actionPerformed(ActionEvent e) {
-		
+
+		// check selected gift 
+		if (e.getSource() == btnGift_None) {
+			paintSelectedGift(btnGift_None);
+		} else if (e.getSource() == btnGift_RingOfMending) {
+			paintSelectedGift(btnGift_RingOfMending);
+		} else if (e.getSource() == btnGift_WillOfVanquish) {
+			paintSelectedGift(btnGift_WillOfVanquish);
+		} else if (e.getSource() == btnGift_BlueOrb) {
+			paintSelectedGift(btnGift_BlueOrb);
+		}
+
+		// check selected hero
 		if (e.getSource() == btnBrutalizer) {
-			paintSelectedButton(btnBrutalizer);
+			paintSelectedHero(btnBrutalizer);
+			showGiftFrame();
 		} else if (e.getSource() == btnElementalist) {
-			paintSelectedButton(btnElementalist);
+			paintSelectedHero(btnElementalist);
+			showGiftFrame();
 		} else if (e.getSource() == btnAlchemist) {
-			paintSelectedButton(btnAlchemist);
+			paintSelectedHero(btnAlchemist);
+			showGiftFrame();
 		} else if (e.getSource() == btnSwordsman) {
-			paintSelectedButton(btnSwordsman);
+			paintSelectedHero(btnSwordsman);
+			showGiftFrame();
 		} else if (e.getSource() == btnWarlock) {
-			paintSelectedButton(btnWarlock);
+			paintSelectedHero(btnWarlock);
+			showGiftFrame();
 		} else if (e.getSource() == btnSubmit) {
 
 			// create the chosen hero
 			if (btnBrutalizer.isSelected())
-				frameGiftPicker("brutalizer");
+				startGameFrame("brutalizer");
 			else if (btnAlchemist.isSelected())
-				frameGiftPicker("alchemist");
+				startGameFrame("alchemist");
 			else if (btnElementalist.isSelected())
-				frameGiftPicker("elementalist");
+				startGameFrame("elementalist");
 			else if (btnSwordsman.isSelected())
-				frameGiftPicker("swordsman");
+				startGameFrame("swordsman");
 			else if (btnWarlock.isSelected())
-				frameGiftPicker("warlock");
+				startGameFrame("warlock");
 			else {
 				JOptionPane.showMessageDialog(this, "You forgot to select a hero!", "Alert", JOptionPane.ERROR_MESSAGE);
 				return;
-				
+
 			}
-			
+
 		}
 	}
-	
+
 	// frame for choosing a gift
-	public void frameGiftPicker(String hero) {
-		
+	public void showGiftFrame() {
+
 		// expand window height, resize & re-position
-		setBounds(getX(), getY(), 650, 450);
-		contentPane.setBounds(0, 0, 644, 521);
-		btnSubmit.setBounds(276, 487, 89, 23);
-		
-		//startGameFrame(hero);
-		
+		setBounds(getX(), getY(), getWidth(), 515);
+		contentPane.setBounds(0, 0, 644, 486);
+		btnSubmit.setBounds(277, 452, 89, 23);
+
+		// set gift components visible
+		lblChooseGift.setVisible(true);
+		lblGift_None.setVisible(true);
+		lblGift_RingOfMending.setVisible(true);
+		lblGift_BlueOrb.setVisible(true);
+		lblGift_WillOfVanquish.setVisible(true);
+
+		btnGift_None.setVisible(true);
+		btnGift_RingOfMending.setVisible(true);
+		btnGift_WillOfVanquish.setVisible(true);
+		btnGift_BlueOrb.setVisible(true);
+
 	}
-	
+
 	// start building the actual frame of the game
 	public void startGameFrame(String chosenHero) {
-		
+
+		// get selected gift
+		int giftNum = 0;
+		if (btnGift_None.isSelected()) {
+			giftNum = 1;
+		} else if (btnGift_RingOfMending.isSelected()) {
+			giftNum = 2;
+		} else if (btnGift_WillOfVanquish.isSelected()) {
+			giftNum = 3;
+		} else if (btnGift_BlueOrb.isSelected()) {
+			giftNum = 4;
+		} else {
+			JOptionPane.showMessageDialog(this, "You forgot to select a starting-gift!");
+			return;
+		}
+
 		// safely instantiate the game frame
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 
 				// TODO textfield validation
-				
+
 				new Game(nameField.getText(), chosenHero);
 			}
 		});
-		
+
 		// close this frame
 		dispose();
-		
+
 	}
 
-	// toggle button animation when clicked
-	public void paintSelectedButton(JButton selected) {
-		
-		// unpaint all the buttons
+	// select & paint hero buttons
+	public void paintSelectedHero(JToggleButton selected) {
+
+		// let only one hero be selected
+		btnBrutalizer.setSelected(false);
+		btnElementalist.setSelected(false);
+		btnAlchemist.setSelected(false);
+		btnSwordsman.setSelected(false);
+		btnWarlock.setSelected(false);
+		selected.setSelected(true);
+
+		// unpaint all hero buttons
 		btnBrutalizer.setBorder(new LineBorder(Color.BLACK, 1));
 		btnElementalist.setBorder(new LineBorder(Color.BLACK, 1));
 		btnAlchemist.setBorder(new LineBorder(Color.BLACK, 1));
 		btnSwordsman.setBorder(new LineBorder(Color.BLACK, 1));
 		btnWarlock.setBorder(new LineBorder(Color.BLACK, 1));
-
-		// paint the selected button
 		selected.setBorder(new LineBorder(Color.BLACK, 2));
-		
-		// actually select the button
+
+	}
+	
+	// select & paint gift buttons
+	public void paintSelectedGift(JToggleButton selected) {
+
+		// let only one gift be selected
+		btnGift_None.setSelected(false);
+		btnGift_RingOfMending.setSelected(false);
+		btnGift_WillOfVanquish.setSelected(false);
+		btnGift_BlueOrb.setSelected(false);
 		selected.setSelected(true);
+
+		// unpaint all gift buttons
+		btnGift_None.setBorder(new LineBorder(Color.BLACK, 1));
+		btnGift_RingOfMending.setBorder(new LineBorder(Color.BLACK, 1));
+		btnGift_WillOfVanquish.setBorder(new LineBorder(Color.BLACK, 1));
+		btnGift_BlueOrb.setBorder(new LineBorder(Color.BLACK, 1));
+		selected.setBorder(new LineBorder(Color.BLACK, 2));
+
+	}
+	
+
+	// return the selected hero button
+	public JToggleButton getSelectedHero() {	
+
+		if (btnBrutalizer.isSelected())
+			return btnBrutalizer;
+		else if (btnAlchemist.isSelected())
+			return btnAlchemist;
+		else if (btnElementalist.isSelected())
+			return btnElementalist;
+		else if (btnSwordsman.isSelected())
+			return btnSwordsman;
+		else if (btnWarlock.isSelected())
+			return btnWarlock;
+		else return null;
+
+	}
+
+	// return the selected gift button
+	public JToggleButton getSelectedGift() {	
+
+		if (btnGift_None.isSelected()) {
+			return btnGift_None;
+		} else if (btnGift_RingOfMending.isSelected()) {
+			return btnGift_RingOfMending;
+		} else if (btnGift_WillOfVanquish.isSelected()) {
+			return btnGift_WillOfVanquish;
+		} else if (btnGift_BlueOrb.isSelected()) {
+			return btnGift_BlueOrb;
+		} else return null;
+
 	}
 
 	public static void main(String[] args) {
-		
+
 		// safely start welcoming screen
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
