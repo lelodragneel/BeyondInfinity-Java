@@ -27,12 +27,15 @@ import javax.xml.transform.stream.StreamResult;
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import java.awt.Component;
+import javax.swing.Box;
 
 
 @SuppressWarnings("serial")
 public class BeyondInfinity extends JFrame implements ActionListener {
 
 	// init variables
+	private JPanel contentPane;
 	private JTextField nameField;
 	private JButton btnSubmit;
 	private JButton btnBrutalizer;
@@ -50,14 +53,16 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 650, 370);
-		setTitle("BeyondInfinity - by Lelo & Ree11");
+		setBounds(100, 100, 650, 515);
+		//setBounds(100, 100, 650, 370);
+		setTitle("BeyondInfinity");
 		getContentPane().setLayout(null);
 
 		// create a root panel
-		JPanel contentPane = new JPanel();
+		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 644, 335);
+		contentPane.setBounds(0, 0, 644, 486);
+		//contentPane.setBounds(0, 0, 644, 335);
 		contentPane.setVisible(true);
 		contentPane.setBackground(new Color(236, 240, 241));
 		getContentPane().add(contentPane);
@@ -78,7 +83,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		// create a button to submit player name
 		btnSubmit = new JButton("Let's Go!");
-		btnSubmit.setBounds(276, 299, 89, 23);
+		btnSubmit.setBounds(277, 452, 89, 23);
 		btnSubmit.setFocusable(false);
 		btnSubmit.addActionListener(this);
 		contentPane.add(btnSubmit);
@@ -87,14 +92,14 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		JLabel lblOne = new JLabel("To start your adventure, enter your name below:");
 		lblOne.setHorizontalAlignment(SwingConstants.CENTER);
 		lblOne.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblOne.setBounds(187, 78, 270, 20);
+		lblOne.setBounds(187, 78, 272, 20);
 		contentPane.add(lblOne);
 
 		// create brutalizer button
 		btnBrutalizer = new JButton("");
 		btnBrutalizer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBrutalizer.setBackground(null);
-		btnBrutalizer.setBounds(73, 187, 90, 90);
+		btnBrutalizer.setBounds(72, 187, 90, 90);
 		btnBrutalizer.setFocusable(false);
 		btnBrutalizer.addActionListener(this);
 		contentPane.add(btnBrutalizer);
@@ -103,7 +108,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		btnElementalist = new JButton("");
 		btnElementalist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnElementalist.setBackground(null);
-		btnElementalist.setBounds(175, 187, 90, 90);
+		btnElementalist.setBounds(174, 187, 90, 90);
 		btnElementalist.setFocusable(false);
 		btnElementalist.addActionListener(this);
 		contentPane.add(btnElementalist);
@@ -121,7 +126,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		btnSwordsman = new JButton("");
 		btnSwordsman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSwordsman.setBackground(null);
-		btnSwordsman.setBounds(378, 187, 90, 90);
+		btnSwordsman.setBounds(377, 187, 90, 90);
 		btnSwordsman.setFocusable(false);
 		btnSwordsman.addActionListener(this);
 		contentPane.add(btnSwordsman);
@@ -131,7 +136,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		btnWarlock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnWarlock.setFocusable(false);
 		btnWarlock.setBackground((Color) null);
-		btnWarlock.setBounds(480, 187, 90, 90);
+		btnWarlock.setBounds(479, 187, 90, 90);
 		btnWarlock.addActionListener(this);
 		contentPane.add(btnWarlock);
 		
@@ -167,6 +172,56 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		lblWarlock.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblWarlock.setBounds(480, 167, 89, 16);
 		contentPane.add(lblWarlock);
+		
+		JLabel lblNewLabel = new JLabel("Choose a Gift:");
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(267, 307, 109, 20);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblGift_None = new JLabel("None");
+		lblGift_None.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGift_None.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblGift_None.setBounds(32, 338, 120, 16);
+		contentPane.add(lblGift_None);
+		
+		JLabel lblGift_RingOfMending = new JLabel("Ring of Mending");
+		lblGift_RingOfMending.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGift_RingOfMending.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblGift_RingOfMending.setBounds(184, 338, 120, 16);
+		contentPane.add(lblGift_RingOfMending);
+		
+		JLabel lblGift_BlueOrb = new JLabel("Blue Orb");
+		lblGift_BlueOrb.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGift_BlueOrb.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblGift_BlueOrb.setBounds(488, 338, 120, 16);
+		contentPane.add(lblGift_BlueOrb);
+		
+		JLabel lblGift_WillOfVanquish = new JLabel("Will of Vanquish");
+		lblGift_WillOfVanquish.setHorizontalAlignment(SwingConstants.CENTER);
+		lblGift_WillOfVanquish.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblGift_WillOfVanquish.setBounds(336, 338, 120, 16);
+		contentPane.add(lblGift_WillOfVanquish);
+		
+		JButton btnGift_None = new JButton("");
+		btnGift_None.setToolTipText("No starting-gift, for those feeling overly confident.");
+		btnGift_None.setBounds(62, 358, 60, 60);
+		contentPane.add(btnGift_None);
+		
+		JButton btnGift_RingOfMending = new JButton("");
+		btnGift_RingOfMending.setToolTipText("An equipable ring which boosts the amount of health restored by health potions.");
+		btnGift_RingOfMending.setBounds(214, 358, 60, 60);
+		contentPane.add(btnGift_RingOfMending);
+		
+		JButton btnGift_WillOfVanquish = new JButton("");
+		btnGift_WillOfVanquish.setToolTipText("An equipable trinket that boosts attack damage for two turns upon activation.");
+		btnGift_WillOfVanquish.setBounds(366, 358, 60, 60);
+		contentPane.add(btnGift_WillOfVanquish);
+		
+		JButton btnGift_BlueOrb = new JButton("");
+		btnGift_BlueOrb.setToolTipText("Your Blue Orb starts off with an additional charge. ");
+		btnGift_BlueOrb.setBounds(518, 358, 60, 60);
+		contentPane.add(btnGift_BlueOrb);
 
 		// finally show frame
 		setVisible(true);
@@ -286,8 +341,8 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 				frameGiftPicker("alchemist");
 			else if (btnElementalist.isSelected())
 				frameGiftPicker("elementalist");
-			else if (btnBerserker.isSelected())
-				frameGiftPicker("berserker");
+			else if (btnSwordsman.isSelected())
+				frameGiftPicker("swordsman");
 			else if (btnWarlock.isSelected())
 				frameGiftPicker("warlock");
 			else {
@@ -302,8 +357,10 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	// frame for choosing a gift
 	public void frameGiftPicker(String hero) {
 		
+		// expand window height, resize & re-position
 		setBounds(getX(), getY(), 650, 450);
-		
+		contentPane.setBounds(0, 0, 644, 521);
+		btnSubmit.setBounds(276, 487, 89, 23);
 		
 		//startGameFrame(hero);
 		
