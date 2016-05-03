@@ -5,8 +5,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,7 +17,6 @@ import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.ToolTipManager;
 import javax.swing.border.LineBorder;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -423,7 +420,6 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 				return;
 
 			}
-
 		}
 	}
 
@@ -453,7 +449,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	public void startGameFrame(String chosenHero) {
 
 		// get selected gift
-		int giftNum = 0;
+		int giftNum;
 		if (btnGift_None.isSelected()) {
 			giftNum = 1;
 		} else if (btnGift_RingOfMending.isSelected()) {
@@ -473,7 +469,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 				// TODO textfield validation
 
-				new Game(nameField.getText(), chosenHero);
+				new Game(nameField.getText(), chosenHero, giftNum);
 			}
 		});
 

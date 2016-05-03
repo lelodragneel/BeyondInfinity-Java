@@ -54,6 +54,7 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_playerEnergy;
 	private JTextArea textArea;
 	private JButton btnShowMap;
+	private JButton btnShowInventory;
 	private JButton btnUpgradeVitality;
 	private JButton btnUpgradeEnergy;
 	private JButton btnUpgradeProtection;
@@ -73,8 +74,10 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_enemyEnergy;
 
 	// create the frame
-	public Game(String name, String chosenHero) {
+	public Game(String name, String chosenHero, int giftNum) {
 	
+		// TODO init gift parameter
+		
 		// instantiate objects
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
 		load = new Load(this);
@@ -117,7 +120,7 @@ public class Game extends JFrame implements ActionListener {
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 934, 521);
+		panel_frameOpacity.setBounds(0, 303, 934, 218);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -143,6 +146,13 @@ public class Game extends JFrame implements ActionListener {
 		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
 		btnShowMap.addActionListener(this);
 		panel_top.add(btnShowMap);
+		
+		// create the button that toggles inventory
+		btnShowInventory = new JButton("INV");
+		btnShowInventory.setBounds(0, 0, 80, 38);
+		btnShowInventory.setFocusable(false);
+		btnShowInventory.addActionListener(this);
+		panel_top.add(btnShowInventory);
 
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
@@ -394,6 +404,7 @@ public class Game extends JFrame implements ActionListener {
 		lbl_enemyImage.setBounds(10, 75, 189, 177);
 		panel_enemy.add(lbl_enemyImage);
 		
+		// create the enemy's energy bar
 		progBar_enemyEnergy = new JProgressBar();
 		progBar_enemyEnergy.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		progBar_enemyEnergy.setStringPainted(true);
