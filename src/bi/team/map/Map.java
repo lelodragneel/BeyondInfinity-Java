@@ -18,7 +18,9 @@ import bi.team.bosstype.SuperBoss;
 @SuppressWarnings("serial")
 public class Map extends JLayeredPane {
 
-	// initialize variables
+	/*
+	 * initialize variables
+	 */
 	private ArrayList<MapEntry> mapEntries;
 	
 	// constructor

@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class InventorySlot extends JLabel implements MouseListener {
@@ -21,17 +22,18 @@ public class InventorySlot extends JLabel implements MouseListener {
 		this.setVerticalAlignment(SwingConstants.BOTTOM);
 		this.setHorizontalAlignment(SwingConstants.RIGHT);
 		this.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 		this.addMouseListener(this);
 		
 	}
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-	
+	public void mouseEntered(MouseEvent arg0) {
+		this.setBackground(Color.LIGHT_GRAY);
 	}
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
-		
+	public void mouseClicked(MouseEvent arg0) {
+	
 	}
 	@Override
 	public void mouseExited(MouseEvent arg0) {
