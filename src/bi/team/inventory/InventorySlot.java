@@ -9,8 +9,15 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import bi.team.items.Item;
+
 @SuppressWarnings("serial")
 public class InventorySlot extends JLabel implements MouseListener {
+
+	/*
+	 * initialize variables
+	 */
+	private Item item;
 
 	// constructor
 	public InventorySlot(int entryNum) {
@@ -27,6 +34,21 @@ public class InventorySlot extends JLabel implements MouseListener {
 		
 	}
 	
+	// return true/false
+	public boolean isEmpty() {
+		return item == null;
+	}
+	
+	// return this slot's item
+	public Item getItem() {
+		return item;
+	}
+	
+	// set item for this inventory slot
+	public void setItem(Item item) {
+		this.item = item;
+	}
+
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
 		this.setBackground(Color.LIGHT_GRAY);

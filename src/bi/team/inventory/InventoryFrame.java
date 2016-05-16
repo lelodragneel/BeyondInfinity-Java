@@ -10,6 +10,9 @@ import java.util.Iterator;
 
 import javax.swing.JLayeredPane;
 import javax.swing.border.LineBorder;
+
+import bi.team.items.Item;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 
@@ -19,13 +22,14 @@ public class InventoryFrame extends JLayeredPane {
 	/*
 	 * initialize variables
 	 */
-	private ArrayList<InventorySlot> inventorySlots;
+	private JPanel panel_inventory;
+	private ArrayList<InventorySlot> invSlotsArray;
 	
 	// constructor
 	public InventoryFrame(int parent_width, int parent_height) {
 		
 		// instantiate variables
-		inventorySlots = new ArrayList<InventorySlot>();
+		invSlotsArray = new ArrayList<InventorySlot>();
 		
 		/*
 		 * create the main inventory frame
@@ -43,7 +47,7 @@ public class InventoryFrame extends JLayeredPane {
 		/*
 		 * create inventory slots
 		 */
-		JPanel panel_inventory = new JPanel();
+		panel_inventory = new JPanel();
 		panel_inventory.setBounds(194, 15, 396, 216);
 		panel_inventory.setLayout(new GridBagLayout());
 		add(panel_inventory);
@@ -95,38 +99,55 @@ public class InventoryFrame extends JLayeredPane {
 		lblPlayerPicture.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblPlayerPicture.setBounds(56, 11, 128, 177);
 		add(lblPlayerPicture);
-
-		GridBagConstraints gbc = new GridBagConstraints();
-		gbc.fill = GridBagConstraints.BOTH;
-		gbc.weightx = gbc.weighty = 1.0;
-		gbc.insets = new Insets(3, 3, 3, 3);
 		
 		// create the inventory slots
 		createSlots();
-		
-		
-		for (int i = 0; i <= 67; i++) {
-			inventorySlots.add(new InventorySlot(i));
-		}
-		
-		Iterator<InventorySlot> slots = inventorySlots.listIterator();
-		int x = 0;
-		int y = 0;
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 11 && slots.hasNext(); j++) {
-				gbc.gridx = x++;
-				panel_inventory.add(slots.next(), gbc);
-				System.out.println(i + "," + j);
-			}
-			gbc.gridy = y++;
-			x = 0;
-		}	
 		
 	}
 	
 	// create inventory slots
 	public void createSlots() {
 		
+		// create gridbagconstraints
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.fill = GridBagConstraints.BOTH;
+		gbc.weightx = gbc.weighty = 1.0;
+		gbc.insets = new Insets(3, 3, 3, 3);
+		
+		// add inv slots objects to array
+		for (int i = 0; i <= 67; i++) {
+			invSlotsArray.add(new InventorySlot(i));
+		}
+		
+		// iterate and display
+		Iterator<InventorySlot> slots = invSlotsArray.listIterator();
+		int x = 0;
+		int y = 0;
+		for (int i = 0; i < 6; i++) {
+			for (int j = 0; j < 11 && slots.hasNext(); j++) {
+				gbc.gridx = x++;
+				panel_inventory.add(slots.next(), gbc);
+			}
+			gbc.gridy = y++;
+			x = 0;
+		}
+		
+	}
+	
+	// add an item to inventory
+	public void addItem(Item item) {
+		
+		Iterator<InventorySlot> slots = invSlotsArray.listIterator();
+		
+		// find next empty inventory slot, then add item to it
+		while (slots.hasNext()) {
+			InventorySlot slot = slots.next();
+			if (slot.isEmpty()) {
+				// TODO add item to inventory
+				slot.setItem(item);
+				break;
+			}
+		}	
 		
 	}
 }
