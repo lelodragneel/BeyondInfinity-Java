@@ -42,7 +42,7 @@ public class InventoryFrame extends JLayeredPane {
 		setBorder(new LineBorder(new Color(0, 0, 0)));
 		setBackground(new Color(236, 236, 236));
 		setLayout(null);
-		setVisible(true);
+		setVisible(false);
 		
 		/*
 		 * create inventory slots

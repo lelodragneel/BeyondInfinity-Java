@@ -49,6 +49,7 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_enemy;
 	private JPanel panel_actions;
 	private JPanel panel_frameOpacity;
+	private JPanel panel_actionsTop;
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerVitality;
 	private JProgressBar progBar_enemyVitality;
@@ -74,6 +75,7 @@ public class Game extends JFrame implements ActionListener {
 	private JLabel lblCritDamage;
 	private JLabel lblCritChance;
 	private JLabel lblProtectionDesc;
+	private JLabel upgradePoints;
 	private JProgressBar progBar_enemyEnergy;
 
 	// create the frame
@@ -85,34 +87,20 @@ public class Game extends JFrame implements ActionListener {
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
 		load = new Load(this);
 		
-		// create the player object
-		if (chosenHero.equals("swordsman"))
-			player = new Swordsman(this);
-		else if (chosenHero.equals("elementalist"))
-			player = new Elementalist(this);
-		else if (chosenHero.equals("alchemist"))
-			player = new Alchemist(this);
-		else if (chosenHero.equals("brutalizer"))
-			player = new Brutalizer(this);
-		else if (chosenHero.equals("warlock"))
-			player = new Warlock(this);
-		else
-			System.out.println("[Game.java] Could not create your class");
-		
 		/*
 		 * build frame
 		 */
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 940, 550);
+		setBounds(100, 100, 1000, 600);
 		setTitle("BeyondInfinity - alpha");
 		getContentPane().setLayout(null);
 
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 934, 521);
+		contentPane.setBounds(0, 0, 994, 571);
 		contentPane.setBackground(new Color(236, 240, 241));
 		contentPane.setOpaque(true);
 		getContentPane().add(contentPane);
@@ -131,7 +119,7 @@ public class Game extends JFrame implements ActionListener {
 		
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 303, 934, 218);
+		panel_frameOpacity.setBounds(0, 11, 994, 19);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -140,19 +128,19 @@ public class Game extends JFrame implements ActionListener {
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
 		panel_player.setBackground(new Color(204, 255, 153));
-		panel_player.setBounds(10, 70, 209, 263);
+		panel_player.setBounds(10, 70, 212, 283);
 		panel_player.setLayout(null);
 		contentPane.add(panel_player);
 
 		// create top panel to display vitality (health) bars
 		panel_top = new JPanel();
-		panel_top.setBounds(10, 21, 914, 38);
+		panel_top.setBounds(10, 21, 974, 38);
 		panel_top.setLayout(null);
 		contentPane.add(panel_top);
 
 		// create the button that toggles map
 		btnShowMap = new JButton();
-		btnShowMap.setBounds(876, 0, 38, 38);
+		btnShowMap.setBounds(936, 0, 38, 38);
 		btnShowMap.setFocusable(false);
 		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
 		btnShowMap.addActionListener(this);
@@ -167,7 +155,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
-		panel_stats.setBounds(10, 344, 914, 87);
+		panel_stats.setBounds(10, 364, 974, 87);
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		contentPane.add(panel_stats);
 
@@ -189,12 +177,12 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeVitality.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeVitality.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeVitality.setFocusable(false);
-		btnUpgradeVitality.setBounds(140, 10, 28, 28);
+		btnUpgradeVitality.setBounds(156, 12, 28, 28);
 		btnUpgradeVitality.setVisible(false);
 		subpanel_vitality.add(btnUpgradeVitality);
 		
 		// create the label that displays the maximum vitality value
-		lblVitality = new JLabel(player.getMaxHealth() + "");
+		lblVitality = new JLabel();
 		lblVitality.setBounds(39, 16, 91, 24);
 		subpanel_vitality.add(lblVitality);
 		
@@ -224,7 +212,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeEnergy.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeEnergy.setFocusable(false);
 		btnUpgradeEnergy.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeEnergy.setBounds(140, 10, 28, 28);
+		btnUpgradeEnergy.setBounds(156, 11, 28, 28);
 		btnUpgradeEnergy.setVisible(false);
 		subpanel_energy.add(btnUpgradeEnergy);
 		
@@ -259,7 +247,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeProtection.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeProtection.setFocusable(false);
 		btnUpgradeProtection.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeProtection.setBounds(140, 10, 28, 28);
+		btnUpgradeProtection.setBounds(156, 11, 28, 28);
 		btnUpgradeProtection.setVisible(false);
 		subpanel_protection.add(btnUpgradeProtection);
 		
@@ -295,7 +283,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritDamage.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeCritDamage.setFocusable(false);
 		btnUpgradeCritDamage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeCritDamage.setBounds(140, 10, 28, 28);
+		btnUpgradeCritDamage.setBounds(156, 11, 28, 28);
 		btnUpgradeCritDamage.setVisible(false);
 		subpanel_critdamage.add(btnUpgradeCritDamage);
 		
@@ -331,7 +319,7 @@ public class Game extends JFrame implements ActionListener {
 		btnUpgradeCritChance.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeCritChance.setFocusable(false);
 		btnUpgradeCritChance.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		btnUpgradeCritChance.setBounds(140, 10, 28, 28);
+		btnUpgradeCritChance.setBounds(156, 12, 28, 28);
 		btnUpgradeCritChance.setVisible(false);
 		subpanel_critchance.add(btnUpgradeCritChance);
 		
@@ -351,33 +339,21 @@ public class Game extends JFrame implements ActionListener {
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(715, 70, 209, 263);
+		panel_enemy.setBounds(772, 70, 212, 283);
 		panel_enemy.setLayout(null);
 		contentPane.add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 442, 914, 68);
+		panel_actions.setBounds(10, 492, 974, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		contentPane.add(panel_actions);
 
-		/*
-		 * loop through all buttons, 
-		 * and add to action listener & panel_actions
-		 */
-		// XXX create attack buttons
-		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet()) {
-			x.getValue().getButton().addActionListener(this);
-			x.getValue().getButton().setEnabled(false);
-			panel_actions.add(x.getValue().getButton());
-			
-		}
-
 		// create the loading bar
 		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 934, 10);
+		progBar_loading.setBounds(0, 0, 994, 10);
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
@@ -387,11 +363,9 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerVitality = new JProgressBar();
 		progBar_playerVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		progBar_playerVitality.setStringPainted(true);
-		progBar_playerVitality.setBounds(10, 11, 189, 18);
+		progBar_playerVitality.setBounds(11, 11, 189, 18);
 		progBar_playerVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_playerVitality.setForeground(new Color(30, 139, 195));
-		progBar_playerVitality.setMaximum((int) player.getMaxHealth());
-		progBar_playerVitality.setValue((int) player.getMaxHealth());
 		progBar_playerVitality.setString(progBar_playerVitality.getValue() + " / " + progBar_playerVitality.getMaximum());
 		panel_player.add(progBar_playerVitality);
 
@@ -399,7 +373,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_enemyVitality = new JProgressBar();
 		progBar_enemyVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		progBar_enemyVitality.setStringPainted(true);
-		progBar_enemyVitality.setBounds(10, 11, 189, 18);
+		progBar_enemyVitality.setBounds(11, 11, 189, 18);
 		progBar_enemyVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_enemyVitality.setForeground(new Color(236, 100, 75));
 		//progBar_enemyVitality.setValue((int) boss.getTotalHealth());
@@ -407,12 +381,12 @@ public class Game extends JFrame implements ActionListener {
 
 		// create label to display enemy's name
 		JLabel lbl_enemyName = new JLabel(" name");
-		lbl_enemyName.setBounds(10, 50, 189, 20);
+		lbl_enemyName.setBounds(11, 50, 189, 20);
 		panel_enemy.add(lbl_enemyName);
 
 		// create the enemy's picture
 		JLabel lbl_enemyImage = new JLabel("");
-		lbl_enemyImage.setBounds(10, 75, 189, 177);
+		lbl_enemyImage.setBounds(10, 75, 189, 197);
 		panel_enemy.add(lbl_enemyImage);
 		
 		// create the enemy's energy bar
@@ -421,18 +395,18 @@ public class Game extends JFrame implements ActionListener {
 		progBar_enemyEnergy.setStringPainted(true);
 		progBar_enemyEnergy.setForeground(Color.YELLOW);
 		progBar_enemyEnergy.setBorder(new EmptyBorder(1, 1, 1, 1));
-		progBar_enemyEnergy.setBounds(10, 31, 189, 16);
+		progBar_enemyEnergy.setBounds(11, 31, 189, 16);
 		progBar_enemyEnergy.setValue(100);
 		panel_enemy.add(progBar_enemyEnergy);
 
 		// create label to display player's name
 		JLabel lbl_playerName = new JLabel(name);
-		lbl_playerName.setBounds(10, 50, 189, 20);
+		lbl_playerName.setBounds(11, 50, 189, 20);
 		panel_player.add(lbl_playerName);
 
 		// create the player's picture
 		JLabel lbl_playerImage = new JLabel("");
-		lbl_playerImage.setBounds(10, 75, 189, 177);
+		lbl_playerImage.setBounds(10, 75, 189, 197);
 		panel_player.add(lbl_playerImage);
 
 		// create the player's energy bar
@@ -441,7 +415,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerEnergy.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		progBar_playerEnergy.setStringPainted(true);
 		progBar_playerEnergy.setForeground(Color.YELLOW);
-		progBar_playerEnergy.setBounds(10, 31, 189, 16);
+		progBar_playerEnergy.setBounds(11, 31, 189, 16);
 		progBar_playerEnergy.setString(""); // TODO
 		progBar_playerEnergy.setValue(100);
 		panel_player.add(progBar_playerEnergy);
@@ -454,11 +428,48 @@ public class Game extends JFrame implements ActionListener {
 		textArea.setFont(new Font("Comic Sans MS", 0, 12));
 		textArea.setBackground(new Color(218, 223, 225));
 		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(229, 70, 476, 263);
+		scroll.setBounds(232, 70, 530, 283);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		contentPane.add(scroll);
-
+		contentPane.add(scroll);	
+		
+		/*
+		 * create the top actions panel
+		 */
+		panel_actionsTop = new JPanel();
+		panel_actionsTop.setBounds(10, 462, 974, 30);
+		contentPane.add(panel_actionsTop);
+		panel_actionsTop.setLayout(null);
+		
+		// create label for upgrade points
+		JLabel lblUpgradePoints = new JLabel("Upgrade Points:");
+		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblUpgradePoints.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblUpgradePoints.setBounds(437, 7, 100, 16);
+		panel_actionsTop.add(lblUpgradePoints);
+		
+		// create label to display upgrade points
+		upgradePoints = new JLabel("1");
+		upgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		upgradePoints.setBounds(547, 7, 46, 16);
+		panel_actionsTop.add(upgradePoints);
+		
+		/*
+		 * create the player object
+		 */
+		if (chosenHero.equals("swordsman"))
+			player = new Swordsman(this);
+		else if (chosenHero.equals("elementalist"))
+			player = new Elementalist(this);
+		else if (chosenHero.equals("alchemist"))
+			player = new Alchemist(this);
+		else if (chosenHero.equals("brutalizer"))
+			player = new Brutalizer(this);
+		else if (chosenHero.equals("warlock"))
+			player = new Warlock(this);
+		else
+			System.out.println("[Game.java] Could not create your class");
+		
 		// finally show frame
 		setVisible(true);
 		
@@ -628,6 +639,16 @@ public class Game extends JFrame implements ActionListener {
 		return turn;
 	}
 	
+	// return the panel_actions jpanel
+	public JPanel getPanel_actions() {
+		return panel_actions;
+	}
+	
+	// return the panel_actionsTop
+	public JPanel getPanel_actionsTop() {
+		return panel_actionsTop;
+	}
+
 	/**
 	 * @return the player
 	 */

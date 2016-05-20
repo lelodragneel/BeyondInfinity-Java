@@ -5,9 +5,9 @@ import javax.swing.JButton;
 import bi.team.heroes.Hero;
 import bi.team.heroes.attacks.Attack;
 
-public class BaneBlast extends Attack {
+public class Charge extends Attack {
 
-	public BaneBlast(Hero hero) {
+	public Charge(Hero hero) {
 		super(hero, new JButton("Bane Blast"));
 	}
 
