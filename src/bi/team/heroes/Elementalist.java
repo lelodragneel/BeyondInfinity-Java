@@ -1,25 +1,16 @@
 package bi.team.heroes;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
-import bi.team.heroes.attacks.elementalist.*;
+import bi.team.heroes.attacks.elementalist.ArcaneBlast;
+import bi.team.heroes.attacks.elementalist.BurstingFlames;
+import bi.team.heroes.attacks.elementalist.Missile;
+import bi.team.heroes.attacks.elementalist.MissileDetonation;
+import bi.team.heroes.attacks.elementalist.Rejuvenate;
+import bi.team.heroes.attacks.elementalist.Whack;
 
-/*
- * Class abilities:
- * #1: Whack (basic attack)
- * #2: *elemental* Missile (powerful attack)
- * #3: Rejuvenate (healing ability)
- * #4: Missle Detonation (special attack)
- * #5: Arcane Blast (powerful ability)
- * #6: Bursting Flames (ultimate attack)
- * 
- * Passive: Freezing Pulse (freeze every 4 turns)
- * 
- * Default Upgradable Stats:
- * Health, Mana, Intellect, Absorption, Immobilize Chance
- */
 public class Elementalist extends Hero {
 	
 	// constructor
@@ -27,20 +18,20 @@ public class Elementalist extends Hero {
 		
 		super(game);
 		
-		// default class values
+		// instantiate variables
 		curHealth = 100;
 		maxHealth = 100;
 		
 		// instantiate
-		hashAttacks = new HashMap<Integer, Attack>();
+		AttacksArrayList = new ArrayList<Attack>();
 		
 		// create this class's attacks
-		hashAttacks.put(1, new Whack(this));
-		hashAttacks.put(2, new Missile(this));
-		hashAttacks.put(3, new Rejuvenate(this));
-		hashAttacks.put(4, new MissileDetonation(this));
-		hashAttacks.put(5, new ArcaneBlast(this));
-		hashAttacks.put(6, new BurstingFlames(this));
+		AttacksArrayList.add(new Whack(this));
+		AttacksArrayList.add(new Missile(this));
+		AttacksArrayList.add(new Rejuvenate(this));
+		AttacksArrayList.add(new MissileDetonation(this));
+		AttacksArrayList.add(new ArcaneBlast(this));
+		AttacksArrayList.add(new BurstingFlames(this));
 		
 	}
 	

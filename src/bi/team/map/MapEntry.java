@@ -10,6 +10,7 @@ import javax.swing.SwingConstants;
 
 import bi.team.bosstype.Boss;
 
+@SuppressWarnings("serial")
 public class MapEntry extends JLabel implements MouseListener {
 
 	// init variables

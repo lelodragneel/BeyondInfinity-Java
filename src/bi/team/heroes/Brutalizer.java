@@ -1,12 +1,22 @@
 package bi.team.heroes;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
-import bi.team.heroes.attacks.brutalizer.*;
+import bi.team.heroes.attacks.brutalizer.BattlerBash;
+import bi.team.heroes.attacks.brutalizer.Charge;
+import bi.team.heroes.attacks.brutalizer.HeavyBlow;
+import bi.team.heroes.attacks.brutalizer.Incapacitate;
+import bi.team.heroes.attacks.brutalizer.RageIncite;
+import bi.team.heroes.attacks.brutalizer.RaiseShield;
+import bi.team.heroes.attacks.brutalizer.ShieldBash;
+import bi.team.heroes.attacks.brutalizer.Strike;
+import bi.team.heroes.attacks.brutalizer.TrueAssault;
+import bi.team.heroes.attacks.brutalizer.Vengeance;
+import bi.team.heroes.attacks.brutalizer.WhirlingTorment;
 
 
 public class Brutalizer extends Hero {
@@ -21,41 +31,41 @@ public class Brutalizer extends Hero {
 	public Brutalizer(Game game) {
 		
 		super(game);
-		
-		// default class values
+			
+		// instantiate variables
 		curHealth = 100;
 		maxHealth = 100;
 		
 		// instantiate
-		hashAttacks = new HashMap<Integer, Attack>();
+		AttacksArrayList = new ArrayList<Attack>();
 		
 		// create this class's attacks
-		hashAttacks.put(1, new Strike(this));
-		hashAttacks.put(2, new HeavyBlow(this));
-		hashAttacks.put(3, new RageIncite(this));
-		hashAttacks.put(4, new Vengeance(this));
-		hashAttacks.put(5, new BattlerBash(this));
-		hashAttacks.put(6, new TrueAssault(this));
-		hashAttacks.put(7, new Strike(this));
-		hashAttacks.put(8, new Charge(this));
-		hashAttacks.put(9, new RaiseShield(this));
-		hashAttacks.put(10, new Incapacitate(this));
-		hashAttacks.put(11, new ShieldBash(this));
-		hashAttacks.put(12, new WhirlingTorment(this));
+		AttacksArrayList.add(new Strike(this));
+		AttacksArrayList.add(new HeavyBlow(this));
+		AttacksArrayList.add(new RageIncite(this));
+		AttacksArrayList.add(new Vengeance(this));
+		AttacksArrayList.add(new BattlerBash(this));
+		AttacksArrayList.add(new TrueAssault(this));
+		AttacksArrayList.add(new Strike(this));
+		AttacksArrayList.add(new Charge(this));
+		AttacksArrayList.add(new RaiseShield(this));
+		AttacksArrayList.add(new Incapacitate(this));
+		AttacksArrayList.add(new ShieldBash(this));
+		AttacksArrayList.add(new WhirlingTorment(this));
 		
 		/*
 		 * create and initialize attack buttons
 		 */
-		for (java.util.Map.Entry<Integer, Attack> x : hashAttacks.entrySet()) {
-			x.getValue().getButton().addActionListener(game);
-			x.getValue().getButton().setEnabled(false);		
+		for (Attack x : AttacksArrayList) {
+			x.getButton().addActionListener(game);
+			x.getButton().setEnabled(false);		
 		}
-		game.getPanel_actions().add(hashAttacks.get(1).getButton());
-		game.getPanel_actions().add(hashAttacks.get(2).getButton());
-		game.getPanel_actions().add(hashAttacks.get(3).getButton());
-		game.getPanel_actions().add(hashAttacks.get(4).getButton());
-		game.getPanel_actions().add(hashAttacks.get(5).getButton());
-		game.getPanel_actions().add(hashAttacks.get(6).getButton());
+		game.getPanel_actions().add(AttacksArrayList.get(1).getButton());
+		game.getPanel_actions().add(AttacksArrayList.get(2).getButton());
+		game.getPanel_actions().add(AttacksArrayList.get(3).getButton());
+		game.getPanel_actions().add(AttacksArrayList.get(4).getButton());
+		game.getPanel_actions().add(AttacksArrayList.get(5).getButton());
+		game.getPanel_actions().add(AttacksArrayList.get(6).getButton());
 		
 		// create offensive stance
 		btnOffensive = new JButton("");

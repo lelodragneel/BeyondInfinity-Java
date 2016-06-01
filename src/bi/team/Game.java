@@ -25,9 +25,9 @@ import javax.swing.border.TitledBorder;
 import bi.team.bosstype.Boss;
 import bi.team.heroes.Alchemist;
 import bi.team.heroes.Brutalizer;
-import bi.team.heroes.Swordsman;
 import bi.team.heroes.Elementalist;
 import bi.team.heroes.Hero;
+import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.Attack;
 import bi.team.inventory.InventoryFrame;
@@ -64,10 +64,9 @@ public class Game extends JFrame implements ActionListener {
 	private JButton btnUpgradeCritChance;
 	private boolean isMapShown;
 	private boolean isInvShown;
-	private Load load;
 	private Map map;
 	private InventoryFrame inventory;
-	private Hero player;
+	private Hero hero;
 	private Boss enemy;
 	private JLabel lblVitality;
 	private JLabel lblEnergy;
@@ -85,7 +84,6 @@ public class Game extends JFrame implements ActionListener {
 		
 		// instantiate objects
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
-		load = new Load(this);
 		
 		/*
 		 * build frame
@@ -458,15 +456,15 @@ public class Game extends JFrame implements ActionListener {
 		 * create the player object
 		 */
 		if (chosenHero.equals("swordsman"))
-			player = new Swordsman(this);
+			hero = new Swordsman(this);
 		else if (chosenHero.equals("elementalist"))
-			player = new Elementalist(this);
+			hero = new Elementalist(this);
 		else if (chosenHero.equals("alchemist"))
-			player = new Alchemist(this);
+			hero = new Alchemist(this);
 		else if (chosenHero.equals("brutalizer"))
-			player = new Brutalizer(this);
+			hero = new Brutalizer(this);
 		else if (chosenHero.equals("warlock"))
-			player = new Warlock(this);
+			hero = new Warlock(this);
 		else
 			System.out.println("[Game.java] Could not create your class");
 		
@@ -528,10 +526,10 @@ public class Game extends JFrame implements ActionListener {
 			toggleInventory();
 		
 		// check if any attacks were clicked
-		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet()) {
-			if (evt.getSource() == x.getValue().getButton()) {
-				if (x.getValue().isAvailable())
-					load.nextTurn(x.getValue());
+		for (Attack x : hero.getAttacksArrayList()) {
+			if (evt.getSource() == x.getButton()) {
+				if (x.isAvailable())
+					// TODO attack is clicked
 				break;
 			}
 		}
@@ -586,14 +584,14 @@ public class Game extends JFrame implements ActionListener {
 	
 	// set all attack buttons to active
 	public void enableAttackButtons() {
-		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet())
-			x.getValue().getButton().setEnabled(true);
+		for (Attack x : hero.getAttacksArrayList())
+			x.getButton().setEnabled(true);
 	}
 	
 	// set all attack buttons to inactive
 	public void disableAttackButtons() {
-		for (java.util.Map.Entry<Integer, Attack> x : player.getHashAttacks().entrySet())
-			x.getValue().getButton().setEnabled(false);
+		for (Attack x : hero.getAttacksArrayList())
+			x.getButton().setEnabled(false);
 	}
 	
 	// set all upgrade buttons to active
@@ -653,7 +651,7 @@ public class Game extends JFrame implements ActionListener {
 	 * @return the player
 	 */
 	public Hero getPlayer() {
-		return player;
+		return hero;
 	}
 
 	// change turn to the other

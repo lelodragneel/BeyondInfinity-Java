@@ -1,24 +1,11 @@
 package bi.team.heroes;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-/*
- * Class abilities:
- * #1: Blow (basic attack)
- * #2: Plunge (powerful attack)
- * #3: Leap (special attack)
- * #4: Edged Strike (powerful attack)
- * #5: Inscribe Blade (buff ability)
- * #6: Abolishment (ultimate ability)
- * 
- * Passive: 
- * 
- * Default Upgradable Stats:
- * Vitality, Focus, Dexterity, Block, Critical Chance
- */
+
 public class Swordsman extends Hero {
 	
 	// constructor
@@ -26,12 +13,12 @@ public class Swordsman extends Hero {
 		
 		super(game);
 		
-		// default class values
+		// instantiate variables
 		curHealth = 100;
 		maxHealth = 100;
 		
 		// instantiate
-		hashAttacks = new HashMap<Integer, Attack>();
+		AttacksArrayList = new ArrayList<Attack>();
 		
 		// TODO create this class's attacks
 		

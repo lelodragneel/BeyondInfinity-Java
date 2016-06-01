@@ -1,10 +1,10 @@
 package bi.team.heroes;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 import java.util.Random;
 
 import bi.team.Game;
+import bi.team.Load;
 import bi.team.heroes.attacks.Attack;
 
 public abstract class Hero {
@@ -12,21 +12,22 @@ public abstract class Hero {
 	// initialize variables
 	protected double curHealth;
 	protected double maxHealth;
-	protected HashMap<Integer, Attack> hashAttacks;
+	protected ArrayList<Attack> AttacksArrayList;
 	protected Game game;
+	protected Load load;
 	
 	// constructor
 	public Hero(Game game) {
-
 		this.game = game;
+		load = new Load(game);
 		
 	}
 	
 	/**
 	 * @return the hashAttacks
 	 */
-	public Map<Integer, Attack> getHashAttacks() {
-		return hashAttacks;
+	public ArrayList<Attack> getAttacksArrayList() {
+		return AttacksArrayList;
 	}
 
 	// return a new randomly generated number
