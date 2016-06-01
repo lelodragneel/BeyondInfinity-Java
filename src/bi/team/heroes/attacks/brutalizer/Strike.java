@@ -17,11 +17,12 @@ public class Strike extends Attack {
 	@Override
 	public void startAttack() {
 		load.nextTurn(this);
+		
 	}
 
 	@Override
 	public void activeEffects() {
-		// TODO Auto-generated method stub
+		System.out.println("strike active");
 		
 	}
 

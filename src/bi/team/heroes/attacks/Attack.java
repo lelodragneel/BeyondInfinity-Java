@@ -2,8 +2,6 @@ package bi.team.heroes.attacks;
 
 import java.awt.Color;
 import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
@@ -11,7 +9,7 @@ import bi.team.Game;
 import bi.team.Load;
 import bi.team.MyGraphics;
 
-public abstract class Attack implements ActionListener {
+public abstract class Attack {
 
 	// initialize variables
 	protected JButton button;
@@ -30,7 +28,6 @@ public abstract class Attack implements ActionListener {
 		button.setBackground(Color.WHITE);
 		button.setFocusable(false);
 		button.setMargin(new Insets(0, 0, 0, 0));
-		button.addActionListener(this);
 		button.add(new MyGraphics(this));
 		
 	}
@@ -74,17 +71,4 @@ public abstract class Attack implements ActionListener {
 		return isAvailable;
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
-	
-		// check if ability is on cooldown
-		if (curWarmup == 1) {
-			// activate abilities
-			activeEffects();
-			startAttack();
-			turnEffects();			
-		} else {
-			Game.appendMessage(name + " is not ready!");
-		}
-	}
 }

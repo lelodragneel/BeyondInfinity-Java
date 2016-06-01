@@ -91,6 +91,27 @@ public class Brutalizer extends Hero implements ActionListener {
 		} else if (e.getSource() == btnDefensive) {
 			showDefensiveAttacks();
 		}
+		
+		// check if attacks are clicked
+		for (Attack x : AttacksArrayList) {		
+			if (e.getSource() == x.getButton())
+				
+				// check if ability is on cooldown
+				if (x.getCurWarmup() == 1) {
+					
+					// run all active effects
+					for (Attack a : AttacksArrayList) {
+						a.activeEffects();				
+					}
+					
+					// activate attack
+					x.startAttack();
+					x.turnEffects();			
+				} else {
+					Game.appendMessage(x.getName() + " is not ready!");
+				}
+			
+		}
 
 	}
 	

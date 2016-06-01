@@ -16,7 +16,7 @@ public class Vengeance extends Attack {
 
 	@Override
 	public void startAttack() {
-		// TODO Auto-generated method stub
+		load.nextTurn(this);
 		
 	}
 
