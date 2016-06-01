@@ -3,7 +3,6 @@ package bi.team.heroes;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
@@ -26,12 +25,6 @@ public abstract class Hero {
 		this.game = game;
 
 	}
-
-	protected JPanel panel1;
-	protected JPanel panel2;
-	protected JPanel panel3;
-	protected JPanel panel4;
-	protected JPanel panel5;
 	
 	// return the attacks arraylist
 	public ArrayList<Attack> getAttacksArrayList() {

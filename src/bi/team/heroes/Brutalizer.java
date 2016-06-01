@@ -46,11 +46,11 @@ public class Brutalizer extends Hero implements ActionListener {
 	private double sharpness;
 	private double riposteChance;
 	private JLabel lblVitality;
-	private JLabel lblEnergy;
-	private JLabel lblProtection;
-	private JLabel lblCritDamage;
-	private JLabel lblCritChance;
-	private JLabel lblProtectionDesc;
+	private JLabel lblRage;
+	private JLabel lblSharpness;
+	private JLabel lblToughness;
+	private JLabel lblRiposteChance;
+	private JLabel lblSharpnessDesc;
 
 	// constructor
 	public Brutalizer(Game game) {
@@ -99,17 +99,17 @@ public class Brutalizer extends Hero implements ActionListener {
 		btnDefensive.addActionListener(this);
 		game.getPanel_actionsTop().add(btnDefensive);
 
-		/* ------------- vitality (health) stat subpanel ------------- */
-		// create subpanel (of panel_stats) for vitality
-		JPanel subpanel_vitality = new JPanel();
-		subpanel_vitality.setBorder(new TitledBorder(null, "Vitality", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_vitality.setLayout(null);
+		/* ------------- vitality stat panel ------------- */
+		// create panel (of panel_stats) for vitality
+		JPanel panel_vitality = new JPanel();
+		panel_vitality.setBorder(new TitledBorder(null, "Vitality", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_vitality.setLayout(null);
 
 		// create vitality icon
 		JLabel lblHealhIcon = new JLabel("");
 		lblHealhIcon.setBounds(5, 16, 24, 24);
-		lblHealhIcon.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
-		subpanel_vitality.add(lblHealhIcon);
+		lblHealhIcon.setIcon(new ImageIcon(getClass().getResource("/images/vitality.png")));
+		panel_vitality.add(lblHealhIcon);
 
 		// create vitality upgrade button
 		btnUpgradeStat_1 = new JButton("+");
@@ -118,32 +118,32 @@ public class Brutalizer extends Hero implements ActionListener {
 		btnUpgradeStat_1.setFocusable(false);
 		btnUpgradeStat_1.setBounds(156, 12, 28, 28);
 		btnUpgradeStat_1.setVisible(false);
-		subpanel_vitality.add(btnUpgradeStat_1);
+		panel_vitality.add(btnUpgradeStat_1);
 		
 		// create the label that displays the maximum vitality value
 		lblVitality = new JLabel();
 		lblVitality.setBounds(39, 16, 91, 24);
-		subpanel_vitality.add(lblVitality);
+		panel_vitality.add(lblVitality);
 		
 		// create vitality description label
-		JLabel lblVitalityDesc = new JLabel("<html>Your maximum amount of health.</html>");
+		JLabel lblVitalityDesc = new JLabel("<html>Your maximum health.</html>");
 		lblVitalityDesc.setVerticalAlignment(SwingConstants.TOP);
 		lblVitalityDesc.setForeground(Color.DARK_GRAY);
 		lblVitalityDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		lblVitalityDesc.setBounds(10, 42, 154, 36);
-		subpanel_vitality.add(lblVitalityDesc);
+		panel_vitality.add(lblVitalityDesc);
 
-		/* ------------- damage stat subpanel ------------- */
-		// create subpanel (of panel_stats) for damage
-		JPanel subpanel_energy = new JPanel();
-		subpanel_energy.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Energy", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		subpanel_energy.setLayout(null);
+		/* ------------- rage stat panel ------------- */
+		// create panel (of panel_stats) for rage
+		JPanel panel_rage = new JPanel();
+		panel_rage.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Rage", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_rage.setLayout(null);
 
-		// create damage icon
-		JLabel lblEnergyIcon = new JLabel("");
-		lblEnergyIcon.setBounds(5, 16, 24, 24);
-		lblEnergyIcon.setIcon(new ImageIcon(Game.class.getResource("/images/energy.png")));
-		subpanel_energy.add(lblEnergyIcon);
+		// create rage icon
+		JLabel lblRageIcon = new JLabel("");
+		lblRageIcon.setBounds(5, 16, 24, 24);
+		lblRageIcon.setIcon(new ImageIcon(Game.class.getResource("/images/rage.png")));
+		panel_rage.add(lblRageIcon);
 
 		// create damage upgrade button
 		btnUpgradeStat_2 = new JButton("+");
@@ -152,67 +152,67 @@ public class Brutalizer extends Hero implements ActionListener {
 		btnUpgradeStat_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_2.setBounds(156, 11, 28, 28);
 		btnUpgradeStat_2.setVisible(false);
-		subpanel_energy.add(btnUpgradeStat_2);
+		panel_rage.add(btnUpgradeStat_2);
 		
 		// create the label that displays damage value
-		lblEnergy = new JLabel(""); // TODO
-		lblEnergy.setBounds(39, 16, 91, 24);
-		subpanel_energy.add(lblEnergy);
+		lblRage = new JLabel(""); // TODO
+		lblRage.setBounds(39, 16, 91, 24);
+		panel_rage.add(lblRage);
 		
 		// create damage description label
-		JLabel lblEnergyDesc = new JLabel("<html>The amount of energy you regain every turn.</html>");
-		lblEnergyDesc.setVerticalAlignment(SwingConstants.TOP);
-		lblEnergyDesc.setForeground(Color.DARK_GRAY);
-		lblEnergyDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		lblEnergyDesc.setBounds(10, 42, 154, 36);
-		subpanel_energy.add(lblEnergyDesc);
+		JLabel lblRageDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
+		lblRageDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblRageDesc.setForeground(Color.DARK_GRAY);
+		lblRageDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblRageDesc.setBounds(10, 42, 154, 36);
+		panel_rage.add(lblRageDesc);
 
-		/* ------------- protection (armor) stat subpanel ------------- */
-		// create subpanel (of panel_stats) for protection
-		JPanel subpanel_protection = new JPanel();
-		subpanel_protection.setBorder(new TitledBorder(null, "Protection", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_protection.setLayout(null);
+		/* ------------- sharpness stat panel ------------- */
+		// create panel (of panel_stats) for protection
+		JPanel panel_sharpness = new JPanel();
+		panel_sharpness.setBorder(new TitledBorder(null, "Sharpness", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_sharpness.setLayout(null);
 
 		// create protection icon
-		JLabel lblProtectionIcon = new JLabel("");
-		lblProtectionIcon.setBounds(5, 16, 24, 24);
-		lblProtectionIcon.setIcon(new ImageIcon(getClass().getResource("/images/armor.png")));
-		subpanel_protection.add(lblProtectionIcon);
+		JLabel lblSharpnessIcon = new JLabel("");
+		lblSharpnessIcon.setBounds(5, 16, 24, 24);
+		lblSharpnessIcon.setIcon(new ImageIcon(getClass().getResource("/images/sharpness.png")));
+		panel_sharpness.add(lblSharpnessIcon);
 
-		// create protection upgrade button
+		// create sharpness upgrade button
 		btnUpgradeStat_3 = new JButton("+");
 		btnUpgradeStat_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeStat_3.setFocusable(false);
 		btnUpgradeStat_3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_3.setBounds(156, 11, 28, 28);
 		btnUpgradeStat_3.setVisible(false);
-		subpanel_protection.add(btnUpgradeStat_3);
+		panel_sharpness.add(btnUpgradeStat_3);
 		
 		// create the label that displays protection value
-		lblProtection = new JLabel(""); // TODO
-		lblProtection.setBounds(39, 16, 91, 24);
-		subpanel_protection.add(lblProtection);
+		lblSharpness = new JLabel(""); // TODO
+		lblSharpness.setBounds(39, 16, 91, 24);
+		panel_sharpness.add(lblSharpness);
 		
 		// create protection description label
-		lblProtectionDesc = new JLabel("<html>Percentage of the damage deflected.</html>");
-		lblProtectionDesc.setVerticalAlignment(SwingConstants.TOP);
-		lblProtectionDesc.setForeground(Color.DARK_GRAY);
-		lblProtectionDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		lblProtectionDesc.setBounds(10, 42, 154, 36);
-		subpanel_protection.add(lblProtectionDesc);
+		lblSharpnessDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
+		lblSharpnessDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblSharpnessDesc.setForeground(Color.DARK_GRAY);
+		lblSharpnessDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblSharpnessDesc.setBounds(10, 42, 154, 36);
+		panel_sharpness.add(lblSharpnessDesc);
 
-		/* ------------- critical damage stat subpanel ------------- */
-		// create subpanel (of panel_stats) for critical damage
-		JPanel subpanel_critdamage = new JPanel();
-		subpanel_critdamage.setBorder(
-				new TitledBorder(null, "Critical Damage", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_critdamage.setLayout(null);
+		/* ------------- toughness stat panel ------------- */
+		// create panel (of panel_stats) for critical damage
+		JPanel panel_toughness = new JPanel();
+		panel_toughness.setBorder(
+				new TitledBorder(null, "Toughness", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_toughness.setLayout(null);
 
 		// create critical damage icon
-		JLabel lblCritDamageIcon = new JLabel("");
-		lblCritDamageIcon.setBounds(5, 16, 24, 24);
-		lblCritDamageIcon.setIcon(new ImageIcon(getClass().getResource("/images/criticaldamage.png")));
-		subpanel_critdamage.add(lblCritDamageIcon);
+		JLabel lblToughnessIcon = new JLabel("");
+		lblToughnessIcon.setBounds(5, 16, 24, 24);
+		lblToughnessIcon.setIcon(new ImageIcon(getClass().getResource("/images/toughness.png")));
+		panel_toughness.add(lblToughnessIcon);
 
 		// create critical damage upgrade button
 		btnUpgradeStat_4 = new JButton("+");
@@ -221,33 +221,33 @@ public class Brutalizer extends Hero implements ActionListener {
 		btnUpgradeStat_4.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_4.setBounds(156, 11, 28, 28);
 		btnUpgradeStat_4.setVisible(false);
-		subpanel_critdamage.add(btnUpgradeStat_4);
+		panel_toughness.add(btnUpgradeStat_4);
 		
 		// create the label that displays critical damage value
-		lblCritDamage = new JLabel(""); // TODO
-		lblCritDamage.setBounds(39, 16, 91, 24);
-		subpanel_critdamage.add(lblCritDamage);
+		lblToughness = new JLabel(""); // TODO
+		lblToughness.setBounds(39, 16, 91, 24);
+		panel_toughness.add(lblToughness);
 		
 		// create critical damage description label
-		JLabel lblCritDamageDesc = new JLabel("<html>Percentage of the extra damage dealt by critical hits.</html>");
-		lblCritDamageDesc.setVerticalAlignment(SwingConstants.TOP);
-		lblCritDamageDesc.setForeground(Color.DARK_GRAY);
-		lblCritDamageDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		lblCritDamageDesc.setBounds(10, 42, 154, 36);
-		subpanel_critdamage.add(lblCritDamageDesc);
+		JLabel lblToughnessDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
+		lblToughnessDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblToughnessDesc.setForeground(Color.DARK_GRAY);
+		lblToughnessDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblToughnessDesc.setBounds(10, 42, 154, 36);
+		panel_toughness.add(lblToughnessDesc);
 
-		/* ------------- critical chance stat subpanel ------------- */
-		// create subpanel (of panel_stats) for critical chance
-		JPanel subpanel_critchance = new JPanel();
-		subpanel_critchance.setBorder(
-				new TitledBorder(null, "Critical Chance", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		subpanel_critchance.setLayout(null);
+		/* ------------- riposte chance stat panel ------------- */
+		// create panel (of panel_stats) for critical chance
+		JPanel panel_riposteChance = new JPanel();
+		panel_riposteChance.setBorder(
+				new TitledBorder(null, "Riposte Chance", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_riposteChance.setLayout(null);
 
 		// create critical chance icon
-		JLabel lblCritChanceIcon = new JLabel("");
-		lblCritChanceIcon.setBounds(5, 16, 24, 24);
-		lblCritChanceIcon.setIcon(new ImageIcon(getClass().getResource("/images/criticalchance.png")));
-		subpanel_critchance.add(lblCritChanceIcon);
+		JLabel lblRiposteChanceIcon = new JLabel("");
+		lblRiposteChanceIcon.setBounds(5, 16, 24, 24);
+		lblRiposteChanceIcon.setIcon(new ImageIcon(getClass().getResource("/images/ripostechance.png")));
+		panel_riposteChance.add(lblRiposteChanceIcon);
 
 		// create critical chance upgrade button
 		btnUpgradeStat_5 = new JButton("+");
@@ -256,23 +256,25 @@ public class Brutalizer extends Hero implements ActionListener {
 		btnUpgradeStat_5.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_5.setBounds(156, 12, 28, 28);
 		btnUpgradeStat_5.setVisible(false);
-		subpanel_critchance.add(btnUpgradeStat_5);
+		panel_riposteChance.add(btnUpgradeStat_5);
 		
 		// create the label that displays critical chance value
-		lblCritChance = new JLabel(""); // TODO
-		lblCritChance.setBounds(39, 16, 91, 24);
-		subpanel_critchance.add(lblCritChance);
+		lblRiposteChance = new JLabel(""); // TODO
+		lblRiposteChance.setBounds(39, 16, 91, 24);
+		panel_riposteChance.add(lblRiposteChance);
 		
 		// create critical chance description label
-		JLabel lblCritChanceDesc = new JLabel("<html>Chances of landing a critical hit.</html>");
-		lblCritChanceDesc.setVerticalAlignment(SwingConstants.TOP);
-		lblCritChanceDesc.setForeground(Color.DARK_GRAY);
-		lblCritChanceDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
-		lblCritChanceDesc.setBounds(10, 42, 154, 36);
-		subpanel_critchance.add(lblCritChanceDesc);
+		JLabel lblRiposteChanceDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
+		lblRiposteChanceDesc.setVerticalAlignment(SwingConstants.TOP);
+		lblRiposteChanceDesc.setForeground(Color.DARK_GRAY);
+		lblRiposteChanceDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
+		lblRiposteChanceDesc.setBounds(10, 42, 154, 36);
+		panel_riposteChance.add(lblRiposteChanceDesc);
 		
-		// show the 5 upgradable stats
-		game.addUpgradableStats(subpanel_vitality, subpanel_energy, subpanel_protection, subpanel_critdamage, subpanel_critchance);
+		/* --------------------------------------------------------- */
+		
+		// display the 5 upgradable stats
+		game.addUpgradableStats(panel_vitality, panel_rage, panel_sharpness, panel_toughness, panel_riposteChance);
 		
 		// display default attacks
 		showOffensiveAttacks();

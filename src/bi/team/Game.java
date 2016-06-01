@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.border.TitledBorder;
 
 import bi.team.bosstype.Enemy;
 import bi.team.heroes.Alchemist;
@@ -260,6 +261,16 @@ public class Game extends JFrame implements ActionListener {
 		upgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		upgradePoints.setBounds(547, 7, 46, 16);
 		panel_actionsTop.add(upgradePoints);
+		
+		JPanel panel_rage = new JPanel();
+		panel_rage.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Rage", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel_rage.setLayout(null);
+
+		// create rage icon
+		JLabel lblRageIcon = new JLabel("");
+		lblRageIcon.setBounds(5, 16, 24, 24);
+		lblRageIcon.setIcon(new ImageIcon(Game.class.getResource("/images/rage.png")));
+		panel_rage.add(lblRageIcon);
 		
 		/*
 		 * create the player object
