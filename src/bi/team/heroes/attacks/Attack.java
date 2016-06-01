@@ -2,35 +2,64 @@ package bi.team.heroes.attacks;
 
 import java.awt.Color;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+import bi.team.Game;
+import bi.team.Load;
 import bi.team.MyGraphics;
-import bi.team.heroes.Hero;
 
-public abstract class Attack {
+public abstract class Attack implements ActionListener {
 
-	// init variables
+	// initialize variables
 	protected JButton button;
-	private String name; // Name of attack
-	protected Hero hero;
+	protected String name;
 	protected boolean isAvailable = true;
+	protected double maxWarmup;
+	protected double curWarmup;
+	protected Game game;
+	protected Load load;
 
 	// constructor
-	public Attack(Hero hero, JButton button) {
-		
-		this.hero = hero;
+	public Attack(Game game, JButton button) {
+		load = new Load(game);
 		this.button = button;
+		name = button.getText();
 		button.setBackground(Color.WHITE);
 		button.setFocusable(false);
 		button.setMargin(new Insets(0, 0, 0, 0));
+		button.addActionListener(this);
 		button.add(new MyGraphics(this));
 		
 	}
 	
 	public abstract void startAttack();
+	public abstract void activeEffects();
+	public abstract void turnEffects();
+	
+	// return the maxWarmup
+	public double getMaxWarmup() {
+		return maxWarmup;
+	}
 
-	// for when you attack "You used <Name>"
+	// set the maxWarmup
+	public void setMaxWarmup(double maxWarmup) {
+		this.maxWarmup = maxWarmup;
+	}
+
+	// return the curWarmup
+	public double getCurWarmup() {
+		return curWarmup;
+	}
+
+	// set the curWarmup
+	public void setCurWarmup(double curWarmup) {
+		this.curWarmup = curWarmup;
+	}
+
+	// return attack's name
 	public String getName() {
 		return name;
 	}
@@ -40,11 +69,22 @@ public abstract class Attack {
 		return button;
 	}
 
-	/**
-	 * @return the isAvailable
-	 */
+	// return if attack is ready
 	public boolean isAvailable() {
 		return isAvailable;
 	}
 	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+	
+		// check if ability is on cooldown
+		if (curWarmup == 1) {
+			// activate abilities
+			activeEffects();
+			startAttack();
+			turnEffects();			
+		} else {
+			Game.appendMessage(name + " is not ready!");
+		}
+	}
 }

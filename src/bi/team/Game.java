@@ -22,7 +22,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 
-import bi.team.bosstype.Boss;
+import bi.team.bosstype.Enemy;
 import bi.team.heroes.Alchemist;
 import bi.team.heroes.Brutalizer;
 import bi.team.heroes.Elementalist;
@@ -40,7 +40,6 @@ public class Game extends JFrame implements ActionListener {
 	/*
 	 * initialize variables
 	 */
-	private static boolean gameover;
 	private static boolean turn = true; 	// true for player's turn. false for enemy's turn
 	private JPanel contentPane;
 	private JPanel panel_player;
@@ -54,7 +53,7 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_playerVitality;
 	private JProgressBar progBar_enemyVitality;
 	private JProgressBar progBar_playerEnergy;
-	private JTextArea textArea;
+	private static JTextArea textArea;
 	private JButton btnShowMap;
 	private JButton btnShowInventory;
 	private JButton btnUpgradeVitality;
@@ -67,7 +66,7 @@ public class Game extends JFrame implements ActionListener {
 	private Map map;
 	private InventoryFrame inventory;
 	private Hero hero;
-	private Boss enemy;
+	private Enemy curEnemy;
 	private JLabel lblVitality;
 	private JLabel lblEnergy;
 	private JLabel lblProtection;
@@ -485,8 +484,8 @@ public class Game extends JFrame implements ActionListener {
 
 		for(MapEntry x : map.getMapEntries()) {
 			if (x.getBoss().isAlive()) {
-				enemy = x.getBoss();
-				appendMessage(enemy.getName() + " is the next opponent!");
+				curEnemy = x.getBoss();
+				appendMessage("Now facing -> " + curEnemy.getName() + ".");
 				turn = true;
 				break;
 			}
@@ -509,7 +508,7 @@ public class Game extends JFrame implements ActionListener {
 	// enemy performs an attack
 	public void enemyAttacking() {
 		
-		appendMessage(enemy.getName() + " attacks you for 0 dmg");
+		appendMessage(curEnemy.getName() + " attacks you for 0 dmg");
 		
 	}
 	
@@ -519,17 +518,19 @@ public class Game extends JFrame implements ActionListener {
 	// action listener
 	public void actionPerformed(ActionEvent evt) {
 		
+		// clicked map
 		if (evt.getSource() == btnShowMap)
 			toggleMap();
-		
+		// clicked inventory
 		if (evt.getSource() == btnShowInventory)
 			toggleInventory();
-		
+			
 		// check if any attacks were clicked
 		for (Attack x : hero.getAttacksArrayList()) {
 			if (evt.getSource() == x.getButton()) {
-				if (x.isAvailable())
-					// TODO attack is clicked
+				if (x.isAvailable()) {
+					// TODO attack is clicked				
+				}
 				break;
 			}
 		}
@@ -613,23 +614,13 @@ public class Game extends JFrame implements ActionListener {
 	}
 
 	// append a message to the middle display area
-	public void appendMessage(String s) {
+	public static void appendMessage(String s) {
 		textArea.append("> " + s + "\n");
 	}
 
 	// set value for the loading bar
 	public void setProgBar_loading(int val) {
 		progBar_loading.setValue(val);
-	}
-
-	// return gameover t/f
-	public static boolean getGameover() {
-		return gameover;
-	}
-
-	// set t/f for gameover
-	public static void setGameover(boolean gameover) {
-		Game.gameover = gameover;
 	}
 
 	// return the current turn
@@ -647,10 +638,8 @@ public class Game extends JFrame implements ActionListener {
 		return panel_actionsTop;
 	}
 
-	/**
-	 * @return the player
-	 */
-	public Hero getPlayer() {
+	// return the player
+	public Hero getHero() {
 		return hero;
 	}
 

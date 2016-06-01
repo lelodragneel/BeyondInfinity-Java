@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import bi.team.Game;
-import bi.team.Load;
 import bi.team.heroes.attacks.Attack;
 
 public abstract class Hero {
@@ -14,18 +13,14 @@ public abstract class Hero {
 	protected double maxHealth;
 	protected ArrayList<Attack> AttacksArrayList;
 	protected Game game;
-	protected Load load;
 	
 	// constructor
 	public Hero(Game game) {
 		this.game = game;
-		load = new Load(game);
 		
 	}
 	
-	/**
-	 * @return the hashAttacks
-	 */
+	// return the hashAttacks
 	public ArrayList<Attack> getAttacksArrayList() {
 		return AttacksArrayList;
 	}

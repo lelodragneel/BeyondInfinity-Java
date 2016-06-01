@@ -2,7 +2,7 @@ package bi.team.bosstype;
 
 import javax.swing.border.Border;
 
-public abstract class Boss {
+public abstract class Enemy {
 
 	// initialize variables
 	private String name;
@@ -18,7 +18,7 @@ public abstract class Boss {
 	private boolean alive;
 
 	// constructor
-	public Boss() {	
+	public Enemy() {	
 		
 		alive = true;
 		

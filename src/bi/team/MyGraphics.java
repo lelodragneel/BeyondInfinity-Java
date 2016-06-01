@@ -11,7 +11,7 @@ import bi.team.heroes.attacks.Attack;
 @SuppressWarnings("serial")
 public class MyGraphics extends JPanel {
 
-	// init variables
+	// initialize variables
 	private Attack attack;
 	private int width;
 
@@ -24,9 +24,8 @@ public class MyGraphics extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		// TODO cooldown visual for every individual button
-		// temporary value
-		width = attack.getButton().getWidth();
+		// TODO cooldown visual
+		width = (int) (attack.getButton().getWidth() / attack.getCurWarmup());
 		
 		// paint the cooldown on the jbutton
 		this.setOpaque(false);

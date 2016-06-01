@@ -12,12 +12,12 @@ public class Load implements ActionListener {
 	// initialize variables
 	private Timer timer;
 	private int i;
-	private Game parent;
+	private Game game;
 	private Attack attack;
 
 	// constructor
-	public Load(Game parent) {
-		this.parent = parent;
+	public Load(Game game) {
+		this.game = game;
 	}
 
 	// TODO implement a new improved double-sided loading bar
@@ -28,10 +28,9 @@ public class Load implements ActionListener {
 		this.attack = attack;
 
 		// disable buttons to prevent simultaneous attacks
-		parent.disableAttackButtons();
-
+		game.disableAttackButtons();
 		// reset loading bar
-		parent.setProgBar_loading(0);
+		game.setProgBar_loading(0);
 
 		// reset count
 		i = 0;
@@ -46,9 +45,9 @@ public class Load implements ActionListener {
 	public void nextTurn() {
 
 		// disable buttons to prevent simultaneous attacks
-		parent.disableAttackButtons();
+		game.disableAttackButtons();
 		// reset loading bar
-		parent.setProgBar_loading(0);
+		game.setProgBar_loading(0);
 
 		// reset count
 		i = 0;
@@ -65,7 +64,7 @@ public class Load implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		
 		// increment loading bar value
-		parent.setProgBar_loading(i++);
+		game.setProgBar_loading(i++);
 
 		// conditional check for who's turn
 		if (i > 100) {
@@ -75,16 +74,16 @@ public class Load implements ActionListener {
 
 			// perform attacks
 			if (Game.getTurn()) {
-				parent.playerAttacking(attack);
+				game.playerAttacking(attack);
 				// change turns
 				Game.toggleTurn();
 				nextTurn();
 			} else {
 				// change turns
 				Game.toggleTurn();
-				parent.enemyAttacking();
+				game.enemyAttacking();
 				// re-enable buttons
-				parent.enableAttackButtons();
+				game.enableAttackButtons();
 			}
 			
 		}

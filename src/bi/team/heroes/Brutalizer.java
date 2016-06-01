@@ -1,5 +1,7 @@
 package bi.team.heroes;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -19,7 +21,7 @@ import bi.team.heroes.attacks.brutalizer.Vengeance;
 import bi.team.heroes.attacks.brutalizer.WhirlingTorment;
 
 
-public class Brutalizer extends Hero {
+public class Brutalizer extends Hero implements ActionListener {
 	
 	/*
 	 * initialize variables
@@ -35,49 +37,101 @@ public class Brutalizer extends Hero {
 		// instantiate variables
 		curHealth = 100;
 		maxHealth = 100;
-		
-		// instantiate
 		AttacksArrayList = new ArrayList<Attack>();
 		
 		// create this class's attacks
-		AttacksArrayList.add(new Strike(this));
-		AttacksArrayList.add(new HeavyBlow(this));
-		AttacksArrayList.add(new RageIncite(this));
-		AttacksArrayList.add(new Vengeance(this));
-		AttacksArrayList.add(new BattlerBash(this));
-		AttacksArrayList.add(new TrueAssault(this));
-		AttacksArrayList.add(new Strike(this));
-		AttacksArrayList.add(new Charge(this));
-		AttacksArrayList.add(new RaiseShield(this));
-		AttacksArrayList.add(new Incapacitate(this));
-		AttacksArrayList.add(new ShieldBash(this));
-		AttacksArrayList.add(new WhirlingTorment(this));
+		AttacksArrayList.add(new Strike(game));
+		AttacksArrayList.add(new HeavyBlow(game));
+		AttacksArrayList.add(new RageIncite(game));
+		AttacksArrayList.add(new Vengeance(game));
+		AttacksArrayList.add(new BattlerBash(game));
+		AttacksArrayList.add(new TrueAssault(game));
+		AttacksArrayList.add(new Strike(game));
+		AttacksArrayList.add(new Charge(game));
+		AttacksArrayList.add(new RaiseShield(game));
+		AttacksArrayList.add(new Incapacitate(game));
+		AttacksArrayList.add(new ShieldBash(game));
+		AttacksArrayList.add(new WhirlingTorment(game));
 		
 		/*
 		 * create and initialize attack buttons
 		 */
 		for (Attack x : AttacksArrayList) {
-			x.getButton().addActionListener(game);
+			x.getButton().addActionListener(this);
 			x.getButton().setEnabled(false);		
 		}
-		game.getPanel_actions().add(AttacksArrayList.get(1).getButton());
-		game.getPanel_actions().add(AttacksArrayList.get(2).getButton());
-		game.getPanel_actions().add(AttacksArrayList.get(3).getButton());
-		game.getPanel_actions().add(AttacksArrayList.get(4).getButton());
-		game.getPanel_actions().add(AttacksArrayList.get(5).getButton());
-		game.getPanel_actions().add(AttacksArrayList.get(6).getButton());
-		
+			
 		// create offensive stance
 		btnOffensive = new JButton("");
 		btnOffensive.setBounds(2, 0, 30, 30);
 		btnOffensive.setFocusable(false);
+		btnOffensive.addActionListener(this);
 		game.getPanel_actionsTop().add(btnOffensive);
 		
 		// create defensive stance
 		btnDefensive = new JButton("");
 		btnDefensive.setBounds(34, 0, 30, 30);
 		btnDefensive.setFocusable(false);
+		btnDefensive.addActionListener(this);
 		game.getPanel_actionsTop().add(btnDefensive);
 		
+		// display default attacks
+		showOffensiveAttacks();
+		
 	}
+
+	/*
+	 * ActionListener
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if (e.getSource() == btnOffensive) {
+			showOffensiveAttacks();
+		} else if (e.getSource() == btnDefensive) {
+			showDefensiveAttacks();
+		}
+
+	}
+	
+	// show offensive attacks and remove defensive attacks
+	public void showOffensiveAttacks() {
+		
+		// remove buttons
+		game.getPanel_actions().removeAll();
+		
+		// add new buttons
+		for (int i = 0; i < 6; i++) {
+			game.getPanel_actions().add(AttacksArrayList.get(i).getButton());
+		}
+		
+		// toggle stance buttons
+		btnOffensive.setEnabled(false);
+		btnDefensive.setEnabled(true);
+		
+		// repaint GUI
+		game.repaint();
+		game.revalidate();
+	}
+	
+	// show defensive attacks and remove offensive attacks
+	public void showDefensiveAttacks() {
+		
+		// remove buttons
+		game.getPanel_actions().removeAll();
+		
+		// add new buttons
+		for (int i = 6; i < 12; i++) {
+			game.getPanel_actions().add(AttacksArrayList.get(i).getButton());
+		}
+		
+		// toggle stance buttons
+		btnOffensive.setEnabled(true);
+		btnDefensive.setEnabled(false);
+		
+		// repaint GUI
+		game.repaint();
+		game.revalidate();
+	}
+	
 }

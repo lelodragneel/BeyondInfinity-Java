@@ -2,17 +2,31 @@ package bi.team.heroes.attacks.brutalizer;
 
 import javax.swing.JButton;
 
-import bi.team.heroes.Hero;
+import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
 public class HeavyBlow extends Attack {
 	
-	public HeavyBlow(Hero hero) {
-		super(hero, new JButton("Heavy Blow"));
+	// constructor
+	public HeavyBlow(Game game) {
+		super(game, new JButton("Heavy Blow"));
+		maxWarmup = 2;
+		curWarmup = 2;
 	}
 
 	@Override
 	public void startAttack() {
+		load.nextTurn(this);
+	}
+
+	@Override
+	public void activeEffects() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void turnEffects() {
 		// TODO Auto-generated method stub
 		
 	}

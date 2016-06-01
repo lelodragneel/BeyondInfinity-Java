@@ -2,24 +2,31 @@ package bi.team.heroes.attacks.brutalizer;
 
 import javax.swing.JButton;
 
-import bi.team.heroes.Hero;
+import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-/*
- * For: Berserker
- * ID: #1; Wack; basic attack
- * 
- * 
- */
 public class Strike extends Attack {
 	
-	public Strike(Hero hero) {
-		super(hero, new JButton("Strike"));
-
+	// constructor
+	public Strike(Game game) {
+		super(game, new JButton("Strike"));	
+		maxWarmup = 1;
+		curWarmup = 1;
 	}
 
 	@Override
 	public void startAttack() {
+		load.nextTurn(this);
+	}
+
+	@Override
+	public void activeEffects() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void turnEffects() {
 		// TODO Auto-generated method stub
 		
 	}

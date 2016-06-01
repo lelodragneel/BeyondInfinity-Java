@@ -5,7 +5,7 @@ import java.awt.Color;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class GrandBoss extends Boss {
+public class GrandBoss extends Enemy {
 
 	Border border;
 	

@@ -2,17 +2,32 @@ package bi.team.heroes.attacks.brutalizer;
 
 import javax.swing.JButton;
 
-import bi.team.heroes.Hero;
+import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
 public class ShieldBash extends Attack {
 	
-	public ShieldBash(Hero hero) {
-		super(hero, new JButton("Shield Bash"));
+	// constructor
+	public ShieldBash(Game game) {
+		super(game, new JButton("Shield Bash"));
+		maxWarmup = 4;
+		curWarmup = 4;
 	}
 
 	@Override
 	public void startAttack() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void activeEffects() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void turnEffects() {
 		// TODO Auto-generated method stub
 		
 	}

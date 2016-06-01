@@ -16,8 +16,6 @@ public class Warlock extends Hero {
 		// instantiate variables
 		curHealth = 100;
 		maxHealth = 100;
-		
-		// instantiate
 		AttacksArrayList = new ArrayList<Attack>();
 		
 		// TODO create this class's attacks

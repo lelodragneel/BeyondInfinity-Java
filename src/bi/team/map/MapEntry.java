@@ -8,20 +8,20 @@ import java.awt.event.MouseListener;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import bi.team.bosstype.Boss;
+import bi.team.bosstype.Enemy;
 
 @SuppressWarnings("serial")
 public class MapEntry extends JLabel implements MouseListener {
 
 	// init variables
 	//private JLabel entry;
-	private Boss boss;
+	private Enemy enemy;
 	
 	// constructor
-	public MapEntry(int entryNum, Boss boss) {
+	public MapEntry(int entryNum, Enemy enemy) {
 
-		this.boss = boss;
-		boss.setName("boss" + entryNum);
+		this.enemy = enemy;
+		enemy.setName("boss" + entryNum);
 		
 		// create a label and configured its settings
 		this.setText(entryNum + 1 + "");
@@ -31,7 +31,7 @@ public class MapEntry extends JLabel implements MouseListener {
 		this.setHorizontalAlignment(SwingConstants.RIGHT);
 		this.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		this.addMouseListener(this);
-		this.setBorder(boss.getBorder());
+		this.setBorder(enemy.getBorder());
 	
 	}
 
@@ -60,8 +60,8 @@ public class MapEntry extends JLabel implements MouseListener {
 	}
 
 	// return the boss
-	public Boss getBoss() {
-		return boss;
+	public Enemy getBoss() {
+		return enemy;
 	}
 
 }

@@ -21,8 +21,6 @@ public class Elementalist extends Hero {
 		// instantiate variables
 		curHealth = 100;
 		maxHealth = 100;
-		
-		// instantiate
 		AttacksArrayList = new ArrayList<Attack>();
 		
 		// create this class's attacks
