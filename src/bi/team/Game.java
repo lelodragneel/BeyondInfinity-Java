@@ -482,38 +482,23 @@ public class Game extends JFrame implements ActionListener {
 	// start enemy fight
 	public void startFight() {
 
-		for(MapEntry x : map.getMapEntries()) {
+		for(MapEntry x : map.getMapEntries()) {			
 			if (x.getBoss().isAlive()) {
 				curEnemy = x.getBoss();
 				appendMessage("Now facing -> " + curEnemy.getName() + ".");
 				turn = true;
 				break;
-			}
-			
+			}	
 		}
 		
 		// TODO load boss icon & health
 		
 		enableAttackButtons();
 		
-	}
-	
-	// player performs an attack
-	public void playerAttacking(Attack useAttack) {
+	}	
 
-		appendMessage(useAttack.getName() + " used, you dealth x damage.");
-
-	}
-	
-	// enemy performs an attack
-	public void enemyAttacking() {
-		
-		appendMessage(curEnemy.getName() + " attacks you for 0 dmg");
-		
-	}
-	
-	
 	// END OF FIGHT METHODS *************************************
+	
 	
 	// action listener
 	public void actionPerformed(ActionEvent evt) {

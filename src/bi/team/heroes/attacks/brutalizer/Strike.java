@@ -16,7 +16,7 @@ public class Strike extends Attack {
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
+		Game.appendMessage("used Strike");
 		
 	}
 
