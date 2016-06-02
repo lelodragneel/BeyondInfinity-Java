@@ -1,17 +1,17 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class WhirlingTorment extends Attack {
+public class ShieldBash extends Attack {
 	
 	// constructor
-	public WhirlingTorment(Game game) {
-		super(game, new JButton("Whirling Torment"));
-		maxWarmup = 5;
-		curWarmup = 5;
+	public ShieldBash(Game game) {
+		super(game, new JButton("Shield Bash"));
+		maxWarmup = 4;
+		curWarmup = 4;
 	}
 
 	@Override
@@ -31,7 +31,5 @@ public class WhirlingTorment extends Attack {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
 	
 }

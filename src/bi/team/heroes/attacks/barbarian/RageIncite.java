@@ -1,15 +1,15 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class Charge extends Attack {
-
+public class RageIncite extends Attack {
+	
 	// constructor
-	public Charge(Game game) {
-		super(game, new JButton("Bane Blast"));
+	public RageIncite(Game game) {
+		super(game, new JButton("Rage Incite"));
 		maxWarmup = 2;
 		curWarmup = 2;
 	}

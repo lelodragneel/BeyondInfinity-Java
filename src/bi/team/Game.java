@@ -22,8 +22,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 import bi.team.bosstype.Enemy;
-import bi.team.heroes.Alchemist;
-import bi.team.heroes.Brutalizer;
+import bi.team.heroes.Chemist;
+import bi.team.heroes.Barbarian;
 import bi.team.heroes.Elementalist;
 import bi.team.heroes.Hero;
 import bi.team.heroes.Swordsman;
@@ -132,7 +132,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_top.add(btnShowMap);
 		
 		// create the button that toggles inventory
-		btnShowInventory = new JButton("");
+		btnShowInventory = new JButton();
 		btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/knapsack.png")));
 		btnShowInventory.setBounds(0, 0, 38, 38);
 		btnShowInventory.setFocusable(false);
@@ -280,10 +280,10 @@ public class Game extends JFrame implements ActionListener {
 			hero = new Swordsman(this);
 		else if (chosenHero.equals("elementalist"))
 			hero = new Elementalist(this);
-		else if (chosenHero.equals("alchemist"))
-			hero = new Alchemist(this);
-		else if (chosenHero.equals("brutalizer"))
-			hero = new Brutalizer(this);
+		else if (chosenHero.equals("chemist"))
+			hero = new Chemist(this);
+		else if (chosenHero.equals("barbarian"))
+			hero = new Barbarian(this);
 		else if (chosenHero.equals("warlock"))
 			hero = new Warlock(this);
 		else

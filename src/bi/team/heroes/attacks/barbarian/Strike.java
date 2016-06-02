@@ -1,28 +1,28 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class Vengeance extends Attack {
+public class Strike extends Attack {
 	
 	// constructor
-	public Vengeance(Game game) {
-		super(game, new JButton("Vengeance"));
-		maxWarmup = 3;
-		curWarmup = 3;
+	public Strike(Game game) {
+		super(game, new JButton("Strike"));	
+		maxWarmup = 1;
+		curWarmup = 1;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
+		Game.appendMessage("used Strike");
 		
 	}
 
 	@Override
 	public void activeEffects() {
-		// TODO Auto-generated method stub
+		System.out.println("strike active");
 		
 	}
 

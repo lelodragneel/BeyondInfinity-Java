@@ -18,20 +18,20 @@ import javax.swing.border.TitledBorder;
 import bi.team.Game;
 import bi.team.Load;
 import bi.team.heroes.attacks.Attack;
-import bi.team.heroes.attacks.brutalizer.BattlerBash;
-import bi.team.heroes.attacks.brutalizer.Charge;
-import bi.team.heroes.attacks.brutalizer.HeavyBlow;
-import bi.team.heroes.attacks.brutalizer.Incapacitate;
-import bi.team.heroes.attacks.brutalizer.RageIncite;
-import bi.team.heroes.attacks.brutalizer.RaiseShield;
-import bi.team.heroes.attacks.brutalizer.ShieldBash;
-import bi.team.heroes.attacks.brutalizer.Strike;
-import bi.team.heroes.attacks.brutalizer.TrueAssault;
-import bi.team.heroes.attacks.brutalizer.Vengeance;
-import bi.team.heroes.attacks.brutalizer.WhirlingTorment;
+import bi.team.heroes.attacks.barbarian.BattlerBash;
+import bi.team.heroes.attacks.barbarian.Charge;
+import bi.team.heroes.attacks.barbarian.HeavyBlow;
+import bi.team.heroes.attacks.barbarian.Incapacitate;
+import bi.team.heroes.attacks.barbarian.RageIncite;
+import bi.team.heroes.attacks.barbarian.RaiseShield;
+import bi.team.heroes.attacks.barbarian.ShieldBash;
+import bi.team.heroes.attacks.barbarian.Strike;
+import bi.team.heroes.attacks.barbarian.TrueAssault;
+import bi.team.heroes.attacks.barbarian.Vengeance;
+import bi.team.heroes.attacks.barbarian.WhirlingTorment;
 
 
-public class Brutalizer extends Hero implements ActionListener {
+public class Barbarian extends Hero implements ActionListener {
 
 	/*
 	 * initialize variables
@@ -54,7 +54,7 @@ public class Brutalizer extends Hero implements ActionListener {
 	private JLabel lblSharpnessDesc;
 
 	// constructor
-	public Brutalizer(Game game) {
+	public Barbarian(Game game) {
 
 		super(game);
 

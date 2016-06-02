@@ -1,4 +1,4 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 

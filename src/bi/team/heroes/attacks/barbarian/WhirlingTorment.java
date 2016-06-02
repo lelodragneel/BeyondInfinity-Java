@@ -1,28 +1,28 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class Strike extends Attack {
+public class WhirlingTorment extends Attack {
 	
 	// constructor
-	public Strike(Game game) {
-		super(game, new JButton("Strike"));	
-		maxWarmup = 1;
-		curWarmup = 1;
+	public WhirlingTorment(Game game) {
+		super(game, new JButton("Whirling Torment"));
+		maxWarmup = 5;
+		curWarmup = 5;
 	}
 
 	@Override
 	public void startAttack() {
-		Game.appendMessage("used Strike");
+		load.nextTurn(this);
 		
 	}
 
 	@Override
 	public void activeEffects() {
-		System.out.println("strike active");
+		// TODO Auto-generated method stub
 		
 	}
 
@@ -31,5 +31,7 @@ public class Strike extends Attack {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 	
 }

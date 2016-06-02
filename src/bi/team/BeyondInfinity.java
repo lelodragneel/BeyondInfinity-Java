@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,13 +34,15 @@ import org.w3c.dom.Element;
 @SuppressWarnings("serial")
 public class BeyondInfinity extends JFrame implements ActionListener {
 
-	// init variables
+	// initialize variables
 	private JPanel contentPane;
 	private JTextField nameField;
 	private JButton btnSubmit;
-	private JToggleButton btnBrutalizer;
+	private JButton btnSex_male;
+	private JButton btnSex_female;
+	private JToggleButton btnBarbarian;
 	private JToggleButton btnElementalist;
-	private JToggleButton btnAlchemist;
+	private JToggleButton btnChemist;
 	private JToggleButton btnSwordsman;
 	private JToggleButton btnWarlock;
 	private String gameFolderPath;
@@ -53,8 +56,12 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JToggleButton btnGift_RingOfMending;
 	private JToggleButton btnGift_WillOfVanquish;
 	private JToggleButton btnGift_BlueOrb;
-
-	
+	private JLabel lblEnterName;
+	private JLabel lblChemist;
+	private JLabel lblElementalist;
+	private JLabel lblBarbarian;
+	private JLabel lblSwordsman;
+	private JLabel lblWarlock;
 	
 	// constructor
 	public BeyondInfinity() {	
@@ -76,8 +83,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		//setBounds(100, 100, 650, 515);
-		setBounds(100, 100, 650, 370);
+		setBounds(100, 100, 650, 400);
 		setTitle("BeyondInfinity");
 		getContentPane().setLayout(null);
 
@@ -85,7 +91,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
 		//contentPane.setBounds(0, 0, 644, 486);
-		contentPane.setBounds(0, 0, 644, 341);
+		contentPane.setBounds(0, 0, 644, 371);
 		contentPane.setVisible(true);
 		contentPane.setBackground(new Color(236, 240, 241));
 		getContentPane().add(contentPane);
@@ -99,101 +105,105 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		// create a field to input player name
 		nameField = new JTextField();
-		nameField.setBounds(238, 109, 167, 20);
+		nameField.setBounds(240, 65, 163, 22);
 		nameField.setColumns(10);
 		nameField.setBorder(new LineBorder(new Color(0, 0, 0)));
 		contentPane.add(nameField);
 
 		// create a button to submit player name
 		btnSubmit = new JButton("Let's Go!");
-		btnSubmit.setBounds(277, 307, 89, 23);
+		btnSubmit.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSubmit.setBounds(277, 337, 89, 23);
 		btnSubmit.setFocusable(false);
 		btnSubmit.addActionListener(this);
 		contentPane.add(btnSubmit);
 
-		// create a label asking player to enter name
-		JLabel lblOne = new JLabel("To start your adventure, enter your name below:");
-		lblOne.setHorizontalAlignment(SwingConstants.CENTER);
-		lblOne.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblOne.setBounds(187, 78, 272, 20);
-		contentPane.add(lblOne);
-
-		// create brutalizer button
-		btnBrutalizer = new JToggleButton("");
-		btnBrutalizer.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnBrutalizer.setBackground(null);
-		btnBrutalizer.setBounds(72, 187, 90, 90);
-		btnBrutalizer.setFocusable(false);
-		btnBrutalizer.addActionListener(this);
-		contentPane.add(btnBrutalizer);
+		// create barbarian button
+		btnBarbarian = new JToggleButton("");
+		btnBarbarian.setBorder(null);
+		btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_male.png")));
+		btnBarbarian.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnBarbarian.setBackground(null);
+		btnBarbarian.setBounds(32, 192, 90, 120);
+		btnBarbarian.setFocusable(false);
+		btnBarbarian.addActionListener(this);
+		contentPane.add(btnBarbarian);
 
 		// create elementalist button
 		btnElementalist = new JToggleButton("");
+		btnElementalist.setBorder(null);
+		btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_male.png")));
 		btnElementalist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnElementalist.setBackground(null);
-		btnElementalist.setBounds(174, 187, 90, 90);
+		btnElementalist.setBounds(154, 192, 90, 120);
 		btnElementalist.setFocusable(false);
 		btnElementalist.addActionListener(this);
 		contentPane.add(btnElementalist);
 
-		// create alchemist button
-		btnAlchemist = new JToggleButton("");
-		btnAlchemist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnAlchemist.setBackground(null);
-		btnAlchemist.setBounds(276, 187, 90, 90);
-		btnAlchemist.setFocusable(false);
-		btnAlchemist.addActionListener(this);
-		contentPane.add(btnAlchemist);
+		// create chemist button
+		btnChemist = new JToggleButton("");
+		btnChemist.setBorder(null);
+		btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_male.png")));
+		btnChemist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnChemist.setBackground(null);
+		btnChemist.setBounds(276, 192, 90, 120);
+		btnChemist.setFocusable(false);
+		btnChemist.addActionListener(this);
+		contentPane.add(btnChemist);
 
 		// create swordsman button
 		btnSwordsman = new JToggleButton("");
+		btnSwordsman.setBorder(null);
+		btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_male.png")));
 		btnSwordsman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSwordsman.setBackground(null);
-		btnSwordsman.setBounds(377, 187, 90, 90);
+		btnSwordsman.setBounds(398, 192, 90, 120);
 		btnSwordsman.setFocusable(false);
 		btnSwordsman.addActionListener(this);
 		contentPane.add(btnSwordsman);
 
 		// create warlock button
 		btnWarlock = new JToggleButton("");
+		btnWarlock.setBorder(null);
+		btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_male.png")));
 		btnWarlock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnWarlock.setFocusable(false);
 		btnWarlock.setBackground((Color) null);
-		btnWarlock.setBounds(479, 187, 90, 90);
+		btnWarlock.setBounds(520, 192, 90, 120);
 		btnWarlock.addActionListener(this);
 		contentPane.add(btnWarlock);
 
 		/*
 		 * create hero type labels
 		 */
-		JLabel lblAlchemist = new JLabel("Alchemist");
-		lblAlchemist.setHorizontalAlignment(SwingConstants.CENTER);
-		lblAlchemist.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblAlchemist.setBounds(277, 167, 89, 16);
-		contentPane.add(lblAlchemist);
+		lblChemist = new JLabel("<html><b>Merlin</b> the Chemist</html>");
+		lblChemist.setHorizontalAlignment(SwingConstants.CENTER);
+		lblChemist.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblChemist.setBounds(277, 155, 89, 33);
+		contentPane.add(lblChemist);
 
-		JLabel lblElementalist = new JLabel("Elementalist");
+		lblElementalist = new JLabel("<html><b>Seraph</b> the Elementalist</html>");
 		lblElementalist.setHorizontalAlignment(SwingConstants.CENTER);
 		lblElementalist.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblElementalist.setBounds(175, 167, 89, 16);
+		lblElementalist.setBounds(155, 155, 89, 33);
 		contentPane.add(lblElementalist);
 
-		JLabel lblBrutalizer = new JLabel("Brutalizer");
-		lblBrutalizer.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBrutalizer.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblBrutalizer.setBounds(73, 167, 89, 16);
-		contentPane.add(lblBrutalizer);
+		lblBarbarian = new JLabel("<html><b>Guts</b> the Barbarian</html>");
+		lblBarbarian.setHorizontalAlignment(SwingConstants.CENTER);
+		lblBarbarian.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblBarbarian.setBounds(33, 155, 89, 33);
+		contentPane.add(lblBarbarian);
 
-		JLabel lblSwordsman = new JLabel("Swordsman");
+		lblSwordsman = new JLabel("<html><b>Seth</b> the Swordsman</html>");
 		lblSwordsman.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSwordsman.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblSwordsman.setBounds(378, 167, 89, 16);
+		lblSwordsman.setBounds(399, 155, 89, 33);
 		contentPane.add(lblSwordsman);
 
-		JLabel lblWarlock = new JLabel("Warlock");
+		lblWarlock = new JLabel("<html><b>Zardeth</b> the Warlock</html>");
 		lblWarlock.setHorizontalAlignment(SwingConstants.CENTER);
 		lblWarlock.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblWarlock.setBounds(480, 167, 89, 16);
+		lblWarlock.setBounds(521, 155, 89, 33);
 		contentPane.add(lblWarlock);
 
 		/*
@@ -202,45 +212,44 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		lblChooseGift = new JLabel("Choose a Gift:");
 		lblChooseGift.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblChooseGift.setHorizontalAlignment(SwingConstants.CENTER);
-		lblChooseGift.setBounds(267, 307, 109, 20);
+		lblChooseGift.setBounds(267, 337, 109, 20);
 		lblChooseGift.setVisible(false);
 		contentPane.add(lblChooseGift);
 
 		lblGift_None = new JLabel("None");
 		lblGift_None.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGift_None.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblGift_None.setBounds(32, 338, 120, 16);
+		lblGift_None.setBounds(32, 368, 120, 16);
 		lblGift_None.setVisible(false);
 		contentPane.add(lblGift_None);
 
 		lblGift_RingOfMending = new JLabel("Ring of Mending");
 		lblGift_RingOfMending.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGift_RingOfMending.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblGift_RingOfMending.setBounds(184, 338, 120, 16);
+		lblGift_RingOfMending.setBounds(184, 368, 120, 16);
 		lblGift_RingOfMending.setVisible(false);
 		contentPane.add(lblGift_RingOfMending);
 
 		lblGift_WillOfVanquish = new JLabel("Will of Vanquish");
 		lblGift_WillOfVanquish.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGift_WillOfVanquish.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblGift_WillOfVanquish.setBounds(336, 338, 120, 16);
+		lblGift_WillOfVanquish.setBounds(336, 368, 120, 16);
 		lblGift_WillOfVanquish.setVisible(false);
 		contentPane.add(lblGift_WillOfVanquish);
 
 		lblGift_BlueOrb = new JLabel("Blue Orb");
 		lblGift_BlueOrb.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGift_BlueOrb.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblGift_BlueOrb.setBounds(488, 338, 120, 16);
+		lblGift_BlueOrb.setBounds(488, 368, 120, 16);
 		lblGift_BlueOrb.setVisible(false);
 		contentPane.add(lblGift_BlueOrb);
-
 
 		/*
 		 * create four gift buttons
 		 */
 		btnGift_None = new JToggleButton("");
 		btnGift_None.setToolTipText("No starting-gift, for those feeling overly confident.");
-		btnGift_None.setBounds(62, 358, 60, 60);
+		btnGift_None.setBounds(62, 388, 60, 60);
 		btnGift_None.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnGift_None.setFocusable(false);
 		btnGift_None.setBackground(null);
@@ -250,7 +259,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		btnGift_RingOfMending = new JToggleButton("");
 		btnGift_RingOfMending.setToolTipText("An equipable ring which boosts the amount of health restored by health potions.");
-		btnGift_RingOfMending.setBounds(214, 358, 60, 60);
+		btnGift_RingOfMending.setBounds(214, 388, 60, 60);
 		btnGift_RingOfMending.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnGift_RingOfMending.setFocusable(false);
 		btnGift_RingOfMending.setBackground(null);
@@ -260,7 +269,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		btnGift_WillOfVanquish = new JToggleButton("");
 		btnGift_WillOfVanquish.setToolTipText("An equipable trinket that boosts attack damage for two turns upon activation.");
-		btnGift_WillOfVanquish.setBounds(366, 358, 60, 60);
+		btnGift_WillOfVanquish.setBounds(366, 388, 60, 60);
 		btnGift_WillOfVanquish.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnGift_WillOfVanquish.setFocusable(false);
 		btnGift_WillOfVanquish.setBackground(null);
@@ -270,14 +279,55 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 		btnGift_BlueOrb = new JToggleButton("");
 		btnGift_BlueOrb.setToolTipText("Your Blue Orb starts off with an additional charge. ");
-		btnGift_BlueOrb.setBounds(518, 358, 60, 60);
+		btnGift_BlueOrb.setBounds(518, 388, 60, 60);
 		btnGift_BlueOrb.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnGift_BlueOrb.setFocusable(false);
 		btnGift_BlueOrb.setBackground(null);
 		btnGift_BlueOrb.addActionListener(this);
 		btnGift_BlueOrb.setVisible(false);
 		contentPane.add(btnGift_BlueOrb);
+		
+		/*
+		 * create gender choice section
+		 */
+		JLabel lblChooseSex = new JLabel("Choose Sex:");
+		lblChooseSex.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblChooseSex.setBounds(160, 97, 70, 26);
+		contentPane.add(lblChooseSex);
+		
+		lblEnterName = new JLabel("Enter name:");
+		lblEnterName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblEnterName.setBounds(160, 64, 70, 22);
+		contentPane.add(lblEnterName);
+		
+		// create button for male
+		btnSex_male = new JButton("");
+		btnSex_male.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSex_male.setSelected(true);
+		btnSex_male.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/male.png")));
+		btnSex_male.setToolTipText("Male");
+		btnSex_male.setBounds(240, 98, 26, 26);
+		btnSex_male.setFocusable(false);
+		btnSex_male.setBackground(null);
+		btnSex_male.addActionListener(this);
+		contentPane.add(btnSex_male);
+		
+		// create button for female
+		btnSex_female = new JButton("");
+		btnSex_female.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnSex_female.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/female.png")));
+		btnSex_female.setToolTipText("Female");
+		btnSex_female.setBounds(277, 98, 26, 26);
+		btnSex_female.setFocusable(false);
+		btnSex_female.setBackground(null);
+		btnSex_female.addActionListener(this);
+		contentPane.add(btnSex_female);
 
+		// select male by default
+		paintSelectedGender(btnSex_male);
+		
+		/* -------------------------------------- */
+		
 		// finally show frame
 		setVisible(true);
 
@@ -386,15 +436,22 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			paintSelectedGift(btnGift_BlueOrb);
 		}
 
+		// check selected gender
+		if (e.getSource() == btnSex_male) {
+			paintSelectedGender(btnSex_male);
+		} else if (e.getSource() == btnSex_female) {
+			paintSelectedGender(btnSex_female);
+		}
+		
 		// check selected hero
-		if (e.getSource() == btnBrutalizer) {
-			paintSelectedHero(btnBrutalizer);
+		if (e.getSource() == btnBarbarian) {
+			paintSelectedHero(btnBarbarian);
 			showGiftFrame();
 		} else if (e.getSource() == btnElementalist) {
 			paintSelectedHero(btnElementalist);
 			showGiftFrame();
-		} else if (e.getSource() == btnAlchemist) {
-			paintSelectedHero(btnAlchemist);
+		} else if (e.getSource() == btnChemist) {
+			paintSelectedHero(btnChemist);
 			showGiftFrame();
 		} else if (e.getSource() == btnSwordsman) {
 			paintSelectedHero(btnSwordsman);
@@ -405,10 +462,10 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		} else if (e.getSource() == btnSubmit) {
 
 			// create the chosen hero
-			if (btnBrutalizer.isSelected())
-				startGameFrame("brutalizer");
-			else if (btnAlchemist.isSelected())
-				startGameFrame("alchemist");
+			if (btnBarbarian.isSelected())
+				startGameFrame("barbarian");
+			else if (btnChemist.isSelected())
+				startGameFrame("chemist");
 			else if (btnElementalist.isSelected())
 				startGameFrame("elementalist");
 			else if (btnSwordsman.isSelected())
@@ -422,14 +479,70 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			}
 		}
 	}
+	
+	// select & paint gender buttons
+	public void paintSelectedGender(JButton selected) {
+		
+		// unselect
+		btnSex_female.setSelected(false);
+		btnSex_male.setSelected(false);
+		
+		// paint
+		btnSex_female.setBorder(new LineBorder(Color.BLACK, 1));
+		btnSex_male.setBorder(new LineBorder(Color.BLACK, 1));
+		
+		// configure selected button
+		selected.setSelected(true);
+		selected.setBorder(new LineBorder(Color.BLACK, 2));
+		
+		// change heroes accordingly to gender
+		if (selected == btnSex_female) {
+			
+			// change barbarian
+			lblBarbarian.setText("<html><b>Alani</b> the Barbarian</html>");
+			btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_female.png")));
+			// change elementalist
+			lblElementalist.setText("<html><b>Lora</b> the Elementalist</html>");
+			btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_female.png")));
+			// change swordsman
+			lblSwordsman.setText("<html><b>Cira</b> the Swordswomen</html>");
+			btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_female.png")));
+			// change warlock
+			lblWarlock.setText("<html><b>Gina</b> the Warlock</html>");
+			btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_female.png")));
+			// change chemist
+			lblChemist.setText("<html><b>Mira</b> the Chemist</html>");
+			btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_female.png")));
+			
+		} else if (selected == btnSex_male) {
+			
+			// change barbarian
+			lblBarbarian.setText("<html><b>Guts</b> the Barbarian</html>");
+			btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_male.png")));
+			// change elementalist
+			lblElementalist.setText("<html><b>Seraph</b> the Elementalist</html>");
+			btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_male.png")));
+			// change swordsman
+			lblSwordsman.setText("<html><b>Seth</b> the Swordsman</html>");
+			btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_male.png")));
+			// change warlock
+			lblWarlock.setText("<html><b>Zardeth</b> the Warlock</html>");
+			btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_male.png")));
+			// change chemist
+			lblChemist.setText("<html><b>Merlin</b> the Chemist</html>");
+			btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_male.png")));
+			
+		}
+		
+	}
 
 	// frame for choosing a gift
 	public void showGiftFrame() {
 
 		// expand window height, resize & re-position
-		setBounds(getX(), getY(), getWidth(), 515);
-		contentPane.setBounds(0, 0, 644, 486);
-		btnSubmit.setBounds(277, 452, 89, 23);
+		setBounds(getX(), getY(), getWidth(), 545);
+		contentPane.setBounds(0, 0, 644, 516);
+		btnSubmit.setBounds(277, 482, 89, 23);
 
 		// set gift components visible
 		lblChooseGift.setVisible(true);
@@ -477,24 +590,24 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		dispose();
 
 	}
-
+	
 	// select & paint hero buttons
 	public void paintSelectedHero(JToggleButton selected) {
 
 		// let only one hero be selected
-		btnBrutalizer.setSelected(false);
+		btnBarbarian.setSelected(false);
 		btnElementalist.setSelected(false);
-		btnAlchemist.setSelected(false);
+		btnChemist.setSelected(false);
 		btnSwordsman.setSelected(false);
 		btnWarlock.setSelected(false);
 		selected.setSelected(true);
 
 		// unpaint all hero buttons
-		btnBrutalizer.setBorder(new LineBorder(Color.BLACK, 1));
-		btnElementalist.setBorder(new LineBorder(Color.BLACK, 1));
-		btnAlchemist.setBorder(new LineBorder(Color.BLACK, 1));
-		btnSwordsman.setBorder(new LineBorder(Color.BLACK, 1));
-		btnWarlock.setBorder(new LineBorder(Color.BLACK, 1));
+		btnBarbarian.setBorder(new LineBorder(Color.BLACK, 0));
+		btnElementalist.setBorder(new LineBorder(Color.BLACK, 0));
+		btnChemist.setBorder(new LineBorder(Color.BLACK, 0));
+		btnSwordsman.setBorder(new LineBorder(Color.BLACK, 0));
+		btnWarlock.setBorder(new LineBorder(Color.BLACK, 0));
 		selected.setBorder(new LineBorder(Color.BLACK, 2));
 
 	}
@@ -522,10 +635,10 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	// return the selected hero button
 	public JToggleButton getSelectedHero() {	
 
-		if (btnBrutalizer.isSelected())
-			return btnBrutalizer;
-		else if (btnAlchemist.isSelected())
-			return btnAlchemist;
+		if (btnBarbarian.isSelected())
+			return btnBarbarian;
+		else if (btnChemist.isSelected())
+			return btnChemist;
 		else if (btnElementalist.isSelected())
 			return btnElementalist;
 		else if (btnSwordsman.isSelected())

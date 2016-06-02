@@ -1,17 +1,17 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class ShieldBash extends Attack {
+public class Incapacitate extends Attack {
 	
 	// constructor
-	public ShieldBash(Game game) {
-		super(game, new JButton("Shield Bash"));
-		maxWarmup = 4;
-		curWarmup = 4;
+	public Incapacitate(Game game) {
+		super(game, new JButton("Incapacitate"));
+		maxWarmup = 3;
+		curWarmup = 3;
 	}
 
 	@Override

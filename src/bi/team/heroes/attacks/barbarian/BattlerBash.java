@@ -1,17 +1,17 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class TrueAssault extends Attack {
+public class BattlerBash extends Attack {
 	
 	// constructor
-	public TrueAssault(Game game) {
-		super(game, new JButton("True Assault"));
-		maxWarmup = 5;
-		curWarmup = 5;
+	public BattlerBash(Game game) {
+		super(game, new JButton("Battler Bash"));
+		maxWarmup = 3;
+		curWarmup = 3;
 	}
 
 	@Override
@@ -31,5 +31,5 @@ public class TrueAssault extends Attack {
 		// TODO Auto-generated method stub
 		
 	}
-	
+
 }

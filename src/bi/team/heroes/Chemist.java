@@ -6,10 +6,10 @@ import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
 
-public class Alchemist extends Hero {
+public class Chemist extends Hero {
 	
 	// constructor
-	public Alchemist(Game game) {
+	public Chemist(Game game) {
 		
 		super(game);
 		

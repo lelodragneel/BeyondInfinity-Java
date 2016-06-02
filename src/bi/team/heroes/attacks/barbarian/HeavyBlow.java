@@ -1,28 +1,28 @@
-package bi.team.heroes.attacks.brutalizer;
+package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class RageIncite extends Attack {
+public class HeavyBlow extends Attack {
 	
 	// constructor
-	public RageIncite(Game game) {
-		super(game, new JButton("Rage Incite"));
+	public HeavyBlow(Game game) {
+		super(game, new JButton("Heavy Blow"));
 		maxWarmup = 2;
 		curWarmup = 2;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
+		Game.appendMessage("used HeavyBlow");
 		
 	}
 
 	@Override
 	public void activeEffects() {
-		// TODO Auto-generated method stub
+		System.out.println("heavyblow active");
 		
 	}
 
