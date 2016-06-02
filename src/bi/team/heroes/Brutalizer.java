@@ -39,11 +39,12 @@ public class Brutalizer extends Hero implements ActionListener {
 	private Load load;
 	private JButton btnOffensive;
 	private JButton btnDefensive;
-	private double curVitality;
 	private double maxVitality;
-	private double curRage;
+	private double curVitality;
 	private double maxRage;
+	private double curRage;
 	private double sharpness;
+	private double toughness;
 	private double riposteChance;
 	private JLabel lblVitality;
 	private JLabel lblRage;
@@ -59,9 +60,14 @@ public class Brutalizer extends Hero implements ActionListener {
 
 		// instantiate variables
 		load = new Load(game);
-		curVitality = 100;
-		maxVitality = 100;
 		AttacksArrayList = new ArrayList<Attack>();
+		maxVitality = 100;
+		curVitality = 100;
+		maxRage = 10;
+		curRage = 10;
+		sharpness = 1;
+		toughness = 5;
+		riposteChance = 10;
 
 		// create this class's attacks
 		AttacksArrayList.add(new Strike(game));
@@ -121,7 +127,7 @@ public class Brutalizer extends Hero implements ActionListener {
 		panel_vitality.add(btnUpgradeStat_1);
 		
 		// create the label that displays the maximum vitality value
-		lblVitality = new JLabel();
+		lblVitality = new JLabel(curVitality + "/" + maxVitality);
 		lblVitality.setBounds(39, 16, 91, 24);
 		panel_vitality.add(lblVitality);
 		
@@ -155,7 +161,7 @@ public class Brutalizer extends Hero implements ActionListener {
 		panel_rage.add(btnUpgradeStat_2);
 		
 		// create the label that displays damage value
-		lblRage = new JLabel(""); // TODO
+		lblRage = new JLabel(curRage + "/" + maxRage);
 		lblRage.setBounds(39, 16, 91, 24);
 		panel_rage.add(lblRage);
 		
@@ -189,7 +195,7 @@ public class Brutalizer extends Hero implements ActionListener {
 		panel_sharpness.add(btnUpgradeStat_3);
 		
 		// create the label that displays protection value
-		lblSharpness = new JLabel(""); // TODO
+		lblSharpness = new JLabel(sharpness + "");
 		lblSharpness.setBounds(39, 16, 91, 24);
 		panel_sharpness.add(lblSharpness);
 		
@@ -224,7 +230,7 @@ public class Brutalizer extends Hero implements ActionListener {
 		panel_toughness.add(btnUpgradeStat_4);
 		
 		// create the label that displays critical damage value
-		lblToughness = new JLabel(""); // TODO
+		lblToughness = new JLabel(toughness + "");
 		lblToughness.setBounds(39, 16, 91, 24);
 		panel_toughness.add(lblToughness);
 		
@@ -259,7 +265,7 @@ public class Brutalizer extends Hero implements ActionListener {
 		panel_riposteChance.add(btnUpgradeStat_5);
 		
 		// create the label that displays critical chance value
-		lblRiposteChance = new JLabel(""); // TODO
+		lblRiposteChance = new JLabel(riposteChance + "%");
 		lblRiposteChance.setBounds(39, 16, 91, 24);
 		panel_riposteChance.add(lblRiposteChance);
 		
@@ -416,6 +422,16 @@ public class Brutalizer extends Hero implements ActionListener {
 	// set the riposteChance
 	public void setRiposteChance(double riposteChance) {
 		this.riposteChance = riposteChance;
+	}
+
+	// return the toughness
+	public double getToughness() {
+		return toughness;
+	}
+
+	// set the toughness
+	public void setToughness(double toughness) {
+		this.toughness = toughness;
 	}
 
 }
