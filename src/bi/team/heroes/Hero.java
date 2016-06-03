@@ -19,33 +19,26 @@ public abstract class Hero {
 	protected JButton btnUpgradeStat_3;
 	protected JButton btnUpgradeStat_4;
 	protected JButton btnUpgradeStat_5;
+	protected JButton btnUpgradeStat_6;
+	protected JButton btnUpgradeStat_7;
+	protected JButton btnUpgradeStat_8;
+	protected JButton btnUpgradeStat_9;
+	protected JButton btnUpgradeStat_10;
 
 	// constructor
 	public Hero(Game game) {
 		this.game = game;
 
 	}
-	
+
 	// return the attacks arraylist
 	public ArrayList<Attack> getAttacksArrayList() {
 		return AttacksArrayList;
 	}
 
 	// set all upgrade buttons to active
-	public void enableUpgradeButtons() {
-		btnUpgradeStat_1.setEnabled(true);
-		btnUpgradeStat_2.setEnabled(true);
-		btnUpgradeStat_3.setEnabled(true);
-		btnUpgradeStat_4.setEnabled(true);
-		btnUpgradeStat_5.setEnabled(true);
-	}
-	
+	public abstract void enableUpgradeButtons();
+
 	// set all upgrade buttons to inactive
-	public void disableUpgradeButtons() {
-		btnUpgradeStat_1.setEnabled(false);
-		btnUpgradeStat_2.setEnabled(false);
-		btnUpgradeStat_3.setEnabled(false);
-		btnUpgradeStat_4.setEnabled(false);
-		btnUpgradeStat_5.setEnabled(false);
-	}
+	public abstract void disableUpgradeButtons();
 }

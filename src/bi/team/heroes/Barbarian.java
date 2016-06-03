@@ -69,6 +69,12 @@ public class Barbarian extends Hero implements ActionListener {
 		toughness = 5;
 		riposteChance = 10;
 
+		// configure player GUI
+		game.getProgBar_playerVitality().setMinimum(0);
+		game.getProgBar_playerVitality().setMaximum((int) maxVitality);
+		game.getProgBar_playerVitality().setValue((int) curVitality);
+		game.getProgBar_playerVitality().setString(game.getProgBar_playerVitality().getValue() + " / " + game.getProgBar_playerVitality().getMaximum());
+		
 		// create this class's attacks
 		AttacksArrayList.add(new Strike(game));
 		AttacksArrayList.add(new HeavyBlow(game));
@@ -354,6 +360,36 @@ public class Barbarian extends Hero implements ActionListener {
 		game.revalidate();
 	}
 
+	// set all upgrade buttons to active
+	@Override
+	public void enableUpgradeButtons() {
+		btnUpgradeStat_1.setEnabled(true);
+		btnUpgradeStat_2.setEnabled(true);
+		btnUpgradeStat_3.setEnabled(true);
+		btnUpgradeStat_4.setEnabled(true);
+		btnUpgradeStat_5.setEnabled(true);
+		btnUpgradeStat_6.setEnabled(true);
+		btnUpgradeStat_7.setEnabled(true);
+		btnUpgradeStat_8.setEnabled(true);
+		btnUpgradeStat_9.setEnabled(true);
+		btnUpgradeStat_10.setEnabled(true);
+	}
+	
+	// set all upgrade buttons to inactive
+	@Override
+	public void disableUpgradeButtons() {
+		btnUpgradeStat_1.setEnabled(false);
+		btnUpgradeStat_2.setEnabled(false);
+		btnUpgradeStat_3.setEnabled(false);
+		btnUpgradeStat_4.setEnabled(false);
+		btnUpgradeStat_5.setEnabled(false);
+		btnUpgradeStat_6.setEnabled(false);
+		btnUpgradeStat_7.setEnabled(false);
+		btnUpgradeStat_8.setEnabled(false);
+		btnUpgradeStat_9.setEnabled(false);
+		btnUpgradeStat_10.setEnabled(false);
+	}
+	
 	// return the curRage
 	public double getCurRage() {
 		return curRage;
@@ -433,5 +469,7 @@ public class Barbarian extends Hero implements ActionListener {
 	public void setToughness(double toughness) {
 		this.toughness = toughness;
 	}
+
+
 
 }

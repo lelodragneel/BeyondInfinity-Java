@@ -51,7 +51,6 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerVitality;
 	private JProgressBar progBar_enemyVitality;
-	private JProgressBar progBar_playerEnergy;
 	private static JTextArea textArea;
 	private JButton btnShowMap;
 	private JButton btnShowInventory;
@@ -60,9 +59,18 @@ public class Game extends JFrame implements ActionListener {
 	private Map map;
 	private InventoryFrame inventory;
 	private Hero hero;
-	private Enemy curEnemy;
 	private JLabel upgradePoints;
-	private JProgressBar progBar_enemyEnergy;
+	private JLabel label_1;
+	private JLabel lblRage;
+	private JLabel lblRage_1;
+	private JLabel lblRage_2;
+	private JLabel lblRage_3;
+	private JLabel lblRage_5;
+	private JLabel lblRage_6;
+	private JLabel lblRage_7;
+	private JLabel lblRage_4;
+	private JLabel lblRage_8;
+	private JLabel lblHp;
 
 	// create the frame
 	public Game(String name, String chosenHero, int giftNum) {
@@ -113,7 +121,7 @@ public class Game extends JFrame implements ActionListener {
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
 		panel_player.setBackground(new Color(204, 255, 153));
-		panel_player.setBounds(10, 70, 212, 283);
+		panel_player.setBounds(10, 70, 228, 283);
 		panel_player.setLayout(null);
 		contentPane.add(panel_player);
 
@@ -148,7 +156,7 @@ public class Game extends JFrame implements ActionListener {
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(772, 70, 212, 283);
+		panel_enemy.setBounds(755, 70, 229, 283);
 		panel_enemy.setLayout(null);
 		contentPane.add(panel_enemy);
 
@@ -167,22 +175,37 @@ public class Game extends JFrame implements ActionListener {
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
 		contentPane.add(progBar_loading);
+		
+		lblHp = new JLabel("HP");
+		lblHp.setForeground(Color.WHITE);
+		lblHp.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblHp.setBounds(12, 11, 20, 14);
+		panel_player.add(lblHp);
+		
+		JLabel lblHeart = new JLabel("");
+		lblHeart.setIcon(new ImageIcon(Game.class.getResource("/images/heart.png")));
+		lblHeart.setBounds(3, 3, 32, 32);
+		panel_player.add(lblHeart);
 
 		// create the player's vitality (health) bar
 		progBar_playerVitality = new JProgressBar();
 		progBar_playerVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		progBar_playerVitality.setStringPainted(true);
-		progBar_playerVitality.setBounds(11, 11, 189, 18);
+		progBar_playerVitality.setBounds(14, 11, 204, 16);
 		progBar_playerVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_playerVitality.setForeground(new Color(30, 139, 195));
-		progBar_playerVitality.setString(progBar_playerVitality.getValue() + " / " + progBar_playerVitality.getMaximum());
 		panel_player.add(progBar_playerVitality);
+		
+		label_1 = new JLabel("");
+		label_1.setIcon(new ImageIcon(Game.class.getResource("/images/heart.png")));
+		label_1.setBounds(3, 3, 32, 32);
+		panel_enemy.add(label_1);
 
 		// create progress bar to display the enemy's vitality (health)
 		progBar_enemyVitality = new JProgressBar();
 		progBar_enemyVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		progBar_enemyVitality.setStringPainted(true);
-		progBar_enemyVitality.setBounds(11, 11, 189, 18);
+		progBar_enemyVitality.setBounds(14, 11, 205, 16);
 		progBar_enemyVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_enemyVitality.setForeground(new Color(236, 100, 75));
 		//progBar_enemyVitality.setValue((int) boss.getTotalHealth());
@@ -195,39 +218,64 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the enemy's picture
 		JLabel lbl_enemyImage = new JLabel("");
-		lbl_enemyImage.setBounds(10, 75, 189, 197);
+		lbl_enemyImage.setBounds(10, 75, 209, 197);
 		panel_enemy.add(lbl_enemyImage);
-		
-		// create the enemy's energy bar
-		progBar_enemyEnergy = new JProgressBar();
-		progBar_enemyEnergy.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		progBar_enemyEnergy.setStringPainted(true);
-		progBar_enemyEnergy.setForeground(Color.YELLOW);
-		progBar_enemyEnergy.setBorder(new EmptyBorder(1, 1, 1, 1));
-		progBar_enemyEnergy.setBounds(11, 31, 189, 16);
-		progBar_enemyEnergy.setValue(100);
-		panel_enemy.add(progBar_enemyEnergy);
 
 		// create label to display player's name
 		JLabel lbl_playerName = new JLabel(name);
-		lbl_playerName.setBounds(11, 50, 189, 20);
+		lbl_playerName.setBounds(73, 75, 75, 20);
 		panel_player.add(lbl_playerName);
 
 		// create the player's picture
 		JLabel lbl_playerImage = new JLabel("");
-		lbl_playerImage.setBounds(10, 75, 189, 197);
+		lbl_playerImage.setBounds(10, 75, 208, 197);
 		panel_player.add(lbl_playerImage);
-
-		// create the player's energy bar
-		progBar_playerEnergy = new JProgressBar();
-		progBar_playerEnergy.setBorder(new EmptyBorder(1, 1, 1, 1));
-		progBar_playerEnergy.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		progBar_playerEnergy.setStringPainted(true);
-		progBar_playerEnergy.setForeground(Color.YELLOW);
-		progBar_playerEnergy.setBounds(11, 31, 189, 16);
-		progBar_playerEnergy.setString(""); // TODO
-		progBar_playerEnergy.setValue(100);
-		panel_player.add(progBar_playerEnergy);
+		
+		lblRage = new JLabel("Rage");
+		lblRage.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		lblRage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRage.setBounds(4, 38, 30, 20);
+		panel_player.add(lblRage);
+		
+		lblRage_1 = new JLabel("");
+		lblRage_1.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_1.setBounds(42, 38, 20, 20);
+		panel_player.add(lblRage_1);
+		
+		lblRage_2 = new JLabel("");
+		lblRage_2.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_2.setBounds(64, 38, 20, 20);
+		panel_player.add(lblRage_2);
+		
+		lblRage_3 = new JLabel("");
+		lblRage_3.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_3.setBounds(86, 38, 20, 20);
+		panel_player.add(lblRage_3);
+		
+		lblRage_5 = new JLabel("");
+		lblRage_5.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_5.setBounds(130, 38, 20, 20);
+		panel_player.add(lblRage_5);
+		
+		lblRage_6 = new JLabel("");
+		lblRage_6.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_6.setBounds(152, 38, 20, 20);
+		panel_player.add(lblRage_6);
+		
+		lblRage_7 = new JLabel("");
+		lblRage_7.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_7.setBounds(174, 38, 20, 20);
+		panel_player.add(lblRage_7);
+		
+		lblRage_4 = new JLabel("");
+		lblRage_4.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_4.setBounds(108, 38, 20, 20);
+		panel_player.add(lblRage_4);
+		
+		lblRage_8 = new JLabel("");
+		lblRage_8.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_8.setBounds(196, 38, 20, 20);
+		panel_player.add(lblRage_8);
 
 		// create the area which displays event changes
 		textArea = new JTextArea(0, 0);
@@ -237,7 +285,7 @@ public class Game extends JFrame implements ActionListener {
 		textArea.setFont(new Font("Comic Sans MS", 0, 12));
 		textArea.setBackground(new Color(218, 223, 225));
 		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(232, 70, 530, 283);
+		scroll.setBounds(248, 70, 497, 283);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);	
@@ -254,11 +302,11 @@ public class Game extends JFrame implements ActionListener {
 		JLabel lblUpgradePoints = new JLabel("Upgrade Points:");
 		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblUpgradePoints.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUpgradePoints.setBounds(437, 7, 100, 16);
+		lblUpgradePoints.setBounds(443, 7, 94, 16);
 		panel_actionsTop.add(lblUpgradePoints);
 		
 		// create label to display upgrade points
-		upgradePoints = new JLabel("1");
+		upgradePoints = new JLabel("0");
 		upgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		upgradePoints.setBounds(547, 7, 46, 16);
 		panel_actionsTop.add(upgradePoints);
@@ -292,8 +340,19 @@ public class Game extends JFrame implements ActionListener {
 		// finally show frame
 		setVisible(true);
 		
-		// start game
-		startFight();
+		/*
+		 * start game.
+		 * loop and find first alive enemy
+		 */
+//		for(MapEntry x : map.getMapEntries()) {			
+//			if (x.getBoss().isAlive()) {
+//				curEnemy = x.getBoss();
+//				appendMessage("Now facing -> " + curEnemy.getName() + ".");
+//				turn = true;
+//				faceEnemy(curEnemy);
+//				break;
+//			}	
+//		}
 		
 	}
 	
@@ -302,22 +361,15 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	
 	// start enemy fight
-	public void startFight() {
-
-		for(MapEntry x : map.getMapEntries()) {			
-			if (x.getBoss().isAlive()) {
-				curEnemy = x.getBoss();
-				appendMessage("Now facing -> " + curEnemy.getName() + ".");
-				turn = true;
-				break;
-			}	
-		}
-		
-		// TODO load boss icon & health
-		
-		enableAttackButtons();
-		
-	}	
+//	public void faceEnemy(Enemy enemy) {
+//
+//		
+//		
+//		// TODO load boss icon & health
+//		
+//		enableAttackButtons();
+//		
+//	}	
 
 	// END OF FIGHT METHODS *************************************
 	
@@ -438,6 +490,26 @@ public class Game extends JFrame implements ActionListener {
 	// return the player
 	public Hero getHero() {
 		return hero;
+	}
+	
+	// return the progBar_playerVitality
+	public JProgressBar getProgBar_playerVitality() {
+		return progBar_playerVitality;
+	}
+
+	// return the progBar_playerEnergy
+	public JProgressBar getProgBar_playerEnergy() {
+		return progBar_playerEnergy;
+	}
+	
+	// return the upgradePoints
+	public JLabel getUpgradePoints() {
+		return upgradePoints;
+	}
+
+	// set the upgradePoints
+	public void setUpgradePoints(JLabel upgradePoints) {
+		this.upgradePoints = upgradePoints;
 	}
 
 	// change turn to the other
