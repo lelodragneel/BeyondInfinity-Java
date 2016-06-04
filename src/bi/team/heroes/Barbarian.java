@@ -52,6 +52,14 @@ public class Barbarian extends Hero implements ActionListener {
 	private JLabel lblToughness;
 	private JLabel lblRiposteChance;
 	private JLabel lblSharpnessDesc;
+	private JLabel lblRage_1;
+	private JLabel lblRage_2;
+	private JLabel lblRage_3;
+	private JLabel lblRage_5;
+	private JLabel lblRage_6;
+	private JLabel lblRage_7;
+	private JLabel lblRage_4;
+	private JLabel lblRage_8;
 
 	// constructor
 	public Barbarian(Game game) {
@@ -282,6 +290,55 @@ public class Barbarian extends Hero implements ActionListener {
 		lblRiposteChanceDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
 		lblRiposteChanceDesc.setBounds(10, 42, 154, 36);
 		panel_riposteChance.add(lblRiposteChanceDesc);
+		
+		/*
+		 * create barbarian's rage bar
+		 */		
+		lblRage = new JLabel("Rage");
+		lblRage.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+		lblRage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblRage.setBounds(4, 38, 30, 20);
+		game.getPanel_player().add(lblRage);
+		
+		lblRage_1 = new JLabel("");
+		lblRage_1.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_1.setBounds(42, 38, 20, 20);
+		game.getPanel_player().add(lblRage_1);
+		
+		lblRage_2 = new JLabel("");
+		lblRage_2.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_2.setBounds(64, 38, 20, 20);
+		game.getPanel_player().add(lblRage_2);
+		
+		lblRage_3 = new JLabel("");
+		lblRage_3.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_3.setBounds(86, 38, 20, 20);
+		game.getPanel_player().add(lblRage_3);
+		
+		lblRage_5 = new JLabel("");
+		lblRage_5.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_5.setBounds(130, 38, 20, 20);
+		game.getPanel_player().add(lblRage_5);
+		
+		lblRage_6 = new JLabel("");
+		lblRage_6.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_6.setBounds(152, 38, 20, 20);
+		game.getPanel_player().add(lblRage_6);
+		
+		lblRage_7 = new JLabel("");
+		lblRage_7.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_7.setBounds(174, 38, 20, 20);
+		game.getPanel_player().add(lblRage_7);
+		
+		lblRage_4 = new JLabel("");
+		lblRage_4.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_4.setBounds(108, 38, 20, 20);
+		game.getPanel_player().add(lblRage_4);
+		
+		lblRage_8 = new JLabel("");
+		lblRage_8.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_8.setBounds(196, 38, 20, 20);
+		game.getPanel_player().add(lblRage_8);
 		
 		/* --------------------------------------------------------- */
 		

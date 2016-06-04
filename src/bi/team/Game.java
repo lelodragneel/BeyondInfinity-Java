@@ -21,9 +21,8 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
-import bi.team.bosstype.Enemy;
-import bi.team.heroes.Chemist;
 import bi.team.heroes.Barbarian;
+import bi.team.heroes.Chemist;
 import bi.team.heroes.Elementalist;
 import bi.team.heroes.Hero;
 import bi.team.heroes.Swordsman;
@@ -31,7 +30,6 @@ import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.Attack;
 import bi.team.inventory.InventoryFrame;
 import bi.team.map.Map;
-import bi.team.map.MapEntry;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -40,6 +38,7 @@ public class Game extends JFrame implements ActionListener {
 	 * initialize variables
 	 */
 	private static boolean turn = true; 	// true for player's turn. false for enemy's turn
+	private static JTextArea textArea;
 	private JPanel contentPane;
 	private JPanel panel_player;
 	private JPanel panel_top;
@@ -51,7 +50,6 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerVitality;
 	private JProgressBar progBar_enemyVitality;
-	private static JTextArea textArea;
 	private JButton btnShowMap;
 	private JButton btnShowInventory;
 	private boolean isMapShown;
@@ -61,21 +59,11 @@ public class Game extends JFrame implements ActionListener {
 	private Hero hero;
 	private JLabel upgradePoints;
 	private JLabel label_1;
-	private JLabel lblRage;
-	private JLabel lblRage_1;
-	private JLabel lblRage_2;
-	private JLabel lblRage_3;
-	private JLabel lblRage_5;
-	private JLabel lblRage_6;
-	private JLabel lblRage_7;
-	private JLabel lblRage_4;
-	private JLabel lblRage_8;
-	private JLabel lblHp;
 
 	// create the frame
 	public Game(String name, String chosenHero, int giftNum) {
 	
-		// TODO init gift parameter
+		// TODO initialize gift parameter
 		
 		// instantiate objects
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
@@ -176,7 +164,8 @@ public class Game extends JFrame implements ActionListener {
 		progBar_loading.setForeground(new Color(52, 73, 94));
 		contentPane.add(progBar_loading);
 		
-		lblHp = new JLabel("HP");
+		// create heart for health bar
+		JLabel lblHp = new JLabel("HP");
 		lblHp.setForeground(Color.WHITE);
 		lblHp.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblHp.setBounds(12, 11, 20, 14);
@@ -230,52 +219,6 @@ public class Game extends JFrame implements ActionListener {
 		JLabel lbl_playerImage = new JLabel("");
 		lbl_playerImage.setBounds(10, 75, 208, 197);
 		panel_player.add(lbl_playerImage);
-		
-		lblRage = new JLabel("Rage");
-		lblRage.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-		lblRage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblRage.setBounds(4, 38, 30, 20);
-		panel_player.add(lblRage);
-		
-		lblRage_1 = new JLabel("");
-		lblRage_1.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
-		lblRage_1.setBounds(42, 38, 20, 20);
-		panel_player.add(lblRage_1);
-		
-		lblRage_2 = new JLabel("");
-		lblRage_2.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
-		lblRage_2.setBounds(64, 38, 20, 20);
-		panel_player.add(lblRage_2);
-		
-		lblRage_3 = new JLabel("");
-		lblRage_3.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
-		lblRage_3.setBounds(86, 38, 20, 20);
-		panel_player.add(lblRage_3);
-		
-		lblRage_5 = new JLabel("");
-		lblRage_5.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
-		lblRage_5.setBounds(130, 38, 20, 20);
-		panel_player.add(lblRage_5);
-		
-		lblRage_6 = new JLabel("");
-		lblRage_6.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
-		lblRage_6.setBounds(152, 38, 20, 20);
-		panel_player.add(lblRage_6);
-		
-		lblRage_7 = new JLabel("");
-		lblRage_7.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
-		lblRage_7.setBounds(174, 38, 20, 20);
-		panel_player.add(lblRage_7);
-		
-		lblRage_4 = new JLabel("");
-		lblRage_4.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
-		lblRage_4.setBounds(108, 38, 20, 20);
-		panel_player.add(lblRage_4);
-		
-		lblRage_8 = new JLabel("");
-		lblRage_8.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
-		lblRage_8.setBounds(196, 38, 20, 20);
-		panel_player.add(lblRage_8);
 
 		// create the area which displays event changes
 		textArea = new JTextArea(0, 0);
@@ -290,9 +233,11 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scroll);	
 		
-		/*
-		 * create the top actions panel
-		 */
+		// create background painted panel for stance buttons
+		JPanel panel_stances = new JPanel();
+		panel_stances.setBounds(10, 462, 72, 30);
+		contentPane.add(panel_stances);
+		panel_stances.setBackground(new Color(135, 211, 124));
 		panel_actionsTop = new JPanel();
 		panel_actionsTop.setBounds(10, 462, 974, 30);
 		contentPane.add(panel_actionsTop);
@@ -310,6 +255,10 @@ public class Game extends JFrame implements ActionListener {
 		upgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		upgradePoints.setBounds(547, 7, 46, 16);
 		panel_actionsTop.add(upgradePoints);
+		
+		/*
+		 * create the top actions panel
+		 */
 		
 		JPanel panel_rage = new JPanel();
 		panel_rage.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Rage", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -486,6 +435,11 @@ public class Game extends JFrame implements ActionListener {
 	public JPanel getPanel_actionsTop() {
 		return panel_actionsTop;
 	}
+	
+	// return the panel_player
+	public JPanel getPanel_player() {
+		return panel_player;
+	}
 
 	// return the player
 	public Hero getHero() {
@@ -495,11 +449,6 @@ public class Game extends JFrame implements ActionListener {
 	// return the progBar_playerVitality
 	public JProgressBar getProgBar_playerVitality() {
 		return progBar_playerVitality;
-	}
-
-	// return the progBar_playerEnergy
-	public JProgressBar getProgBar_playerEnergy() {
-		return progBar_playerEnergy;
 	}
 	
 	// return the upgradePoints

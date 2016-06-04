@@ -501,37 +501,45 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			// change barbarian
 			lblBarbarian.setText("<html><b>Alani</b> the Barbarian</html>");
 			btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_female.png")));
+			btnBarbarian.setToolTipText("Alani the Foolhardy");
 			// change elementalist
 			lblElementalist.setText("<html><b>Lora</b> the Elementalist</html>");
 			btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_female.png")));
+			btnElementalist.setToolTipText("Lora the Valiant");
 			// change swordsman
 			lblSwordsman.setText("<html><b>Cira</b> the Swordswomen</html>");
 			btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_female.png")));
+			btnSwordsman.setToolTipText("Cira the Subjugator");
 			// change warlock
 			lblWarlock.setText("<html><b>Gina</b> the Warlock</html>");
 			btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_female.png")));
+			btnWarlock.setToolTipText("Gina the Darkspring");
 			// change chemist
 			lblChemist.setText("<html><b>Mira</b> the Chemist</html>");
 			btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_female.png")));
+			btnChemist.setToolTipText("Mira the Despicable");
 			
-		} else if (selected == btnSex_male) {
-			
+		} else if (selected == btnSex_male) {	
 			// change barbarian
 			lblBarbarian.setText("<html><b>Guts</b> the Barbarian</html>");
 			btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_male.png")));
+			btnBarbarian.setToolTipText("Guts the Foolhardy");
 			// change elementalist
 			lblElementalist.setText("<html><b>Seraph</b> the Elementalist</html>");
 			btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_male.png")));
+			btnElementalist.setToolTipText("Seraph the Valiant");
 			// change swordsman
 			lblSwordsman.setText("<html><b>Seth</b> the Swordsman</html>");
 			btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_male.png")));
+			btnSwordsman.setToolTipText("Seth the Subjugator");
 			// change warlock
 			lblWarlock.setText("<html><b>Zardeth</b> the Warlock</html>");
 			btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_male.png")));
+			btnWarlock.setToolTipText("Zardeth the Darkspring");
 			// change chemist
 			lblChemist.setText("<html><b>Merlin</b> the Chemist</html>");
 			btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_male.png")));
-			
+			btnChemist.setToolTipText("Merlin the Despicable");
 		}
 		
 	}
