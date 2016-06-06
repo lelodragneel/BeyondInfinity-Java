@@ -13,8 +13,7 @@ import bi.team.bosstype.Enemy;
 @SuppressWarnings("serial")
 public class MapEntry extends JLabel implements MouseListener {
 
-	// init variables
-	//private JLabel entry;
+	// initialize variables
 	private Enemy enemy;
 	
 	// constructor
@@ -35,12 +34,7 @@ public class MapEntry extends JLabel implements MouseListener {
 	
 	}
 
-//	// return the map entry
-//	public JLabel getEntry() {
-//		return entry;
-//	}
-
-	// below are the mouse listeners for hovering effects
+	// mouse listeners for hovering effects
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		this.setBackground(Color.LIGHT_GRAY);
@@ -51,6 +45,7 @@ public class MapEntry extends JLabel implements MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
@@ -59,8 +54,8 @@ public class MapEntry extends JLabel implements MouseListener {
 	public void mouseReleased(MouseEvent e) {
 	}
 
-	// return the boss
-	public Enemy getBoss() {
+	// return the enemy
+	public Enemy getEnemy() {
 		return enemy;
 	}
 

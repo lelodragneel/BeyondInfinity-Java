@@ -67,14 +67,14 @@ public class Game extends JFrame implements ActionListener {
 		/*
 		 * build frame
 		 */
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setBounds(100, 100, 600, 615);
-		setTitle("[ver. alpha] BeyondInfinity");
-		getContentPane().setLayout(null);
-		setBounds(0, 0, 1000, 600);
-		setBackground(new Color(236, 240, 241));
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(100, 100, 600, 615);
+		this.setTitle("[ver. alpha] BeyondInfinity");
+		this.getContentPane().setLayout(null);
+		this.setBounds(0, 0, 1000, 600);
+		this.setBackground(new Color(236, 240, 241));
+		this.setLocationRelativeTo(null);
 
 		/*
 		 * create the map object/frame

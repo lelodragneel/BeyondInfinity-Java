@@ -82,10 +82,10 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// frame initializing
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
 		setBounds(100, 100, 650, 400);
 		setTitle("BeyondInfinity");
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
 
 		// create a root panel
 		contentPane = new JPanel();

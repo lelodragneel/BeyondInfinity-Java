@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import bi.team.bosstype.GuardianBoss;
@@ -22,21 +23,28 @@ public class Map extends JLayeredPane {
 	 * initialize variables
 	 */
 	private ArrayList<MapEntry> mapEntries;
+	private JPanel panel_map;
 	
 	// constructor
 	public Map(int parent_width, int parent_height) {
 		
 		// create the main map frame
-		setOpaque(true);
-		int width = 600;
+		this.setOpaque(true);
+		int width = 700;
 		int height = 370;
 		setBounds(new Rectangle((parent_width / 2) - (width / 2), (parent_height / 2) - (height / 2) - 40,
 				width, height));
-		setBorder(new LineBorder(new Color(0, 0, 0)));
-		setBackground(new Color(236, 236, 236));
-		setLayout(new GridBagLayout());
-		setVisible(false);	
+		this.setBorder(new LineBorder(new Color(0, 0, 0)));
+		this.setLayout(null);
+		this.setVisible(false);
 
+		// create panel for map grid
+		panel_map = new JPanel();
+		panel_map.setBounds(4, 4, 536, 358);
+		panel_map.setLayout(new GridBagLayout());
+		panel_map.setBackground(new Color(236, 236, 236));
+		this.add(panel_map);
+		
 		// create the actual grid
 		createGrid();
 		
@@ -69,14 +77,14 @@ public class Map extends JLayeredPane {
 		mapEntries.add(new MapEntry(86, new GuardianBoss()));
 		mapEntries.add(new MapEntry(87, new GuardianBoss()));
 		
-		// add the created 84 bosses to the gridbag grid
+		// add the created 84 enemies to the gridbag grid
 		Iterator<MapEntry> items = mapEntries.listIterator();
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < 7; i++) {
 			for (int j = 0; j < 12 && items.hasNext(); j++) {
 				gbc.gridx = x++;
-				add(items.next(), gbc);
+				panel_map.add(items.next(), gbc);
 			}
 			gbc.gridy = y++;
 			x = 0;
@@ -85,22 +93,20 @@ public class Map extends JLayeredPane {
 		// add the 3 guardian bosses and the grand boss (final boss) to gridbag grid
 		gbc.gridy = 9;
 		gbc.gridx = 1;
-		add(items.next(), gbc);
+		panel_map.add(items.next(), gbc);
 		gbc.gridy = 9;
 		gbc.gridx = 4;
-		add(items.next(), gbc);
+		panel_map.add(items.next(), gbc);
 		gbc.gridy = 9;
 		gbc.gridx = 7;
-		add(items.next(), gbc);
+		panel_map.add(items.next(), gbc);
 		gbc.gridy = 9;
 		gbc.gridx = 10;
-		add(items.next(), gbc);
+		panel_map.add(items.next(), gbc);
 		
 	}
 
-	/**
-	 * @return the mapEntries
-	 */
+	// return the mapEntries
 	public ArrayList<MapEntry> getMapEntries() {
 		return mapEntries;
 	}
