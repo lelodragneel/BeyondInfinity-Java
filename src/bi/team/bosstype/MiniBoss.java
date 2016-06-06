@@ -2,21 +2,20 @@ package bi.team.bosstype;
 
 import java.awt.Color;
 
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import bi.team.map.Map;
+
+@SuppressWarnings("serial")
 public class MiniBoss extends Enemy {
 
-	Border border;
+	// initialize variables
 	
-	public MiniBoss() {
-		super();
-		border = new LineBorder(new Color(0, 0, 0), 1);
-	}
-	
-	// return a miniboss border
-	public Border getBorder() {
-		return border;
+	// constructor
+	public MiniBoss(Map map, int enemyNumber) {
+		super(map, enemyNumber);
+		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
+		
 	}
 
 }

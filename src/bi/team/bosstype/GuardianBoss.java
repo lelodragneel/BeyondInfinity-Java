@@ -2,21 +2,20 @@ package bi.team.bosstype;
 
 import java.awt.Color;
 
-import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
+import bi.team.map.Map;
+
+@SuppressWarnings("serial")
 public class GuardianBoss extends Enemy {
 
-	Border border;
+	// initialize variables
 	
-	public GuardianBoss() {
-		super();
-		border = new LineBorder(new Color(0, 0, 0), 2);
-	}
-
-	// return a guardianboss border
-	public Border getBorder() {
-		return border;
+	// constructor
+	public GuardianBoss(Map map, int enemyNumber) {
+		super(map, enemyNumber);
+		super.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		
 	}
 
 }

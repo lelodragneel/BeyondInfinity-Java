@@ -1,8 +1,17 @@
 package bi.team.bosstype;
 
-import javax.swing.border.Border;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
-public abstract class Enemy {
+import javax.swing.JButton;
+import javax.swing.SwingConstants;
+
+import bi.team.map.Map;
+
+@SuppressWarnings("serial")
+public abstract class Enemy extends JButton implements MouseListener {
 
 	// initialize variables
 	private String name;
@@ -16,15 +25,55 @@ public abstract class Enemy {
 	private double maxEnergy;
 	private double energyRecoveryRate;
 	private boolean alive;
+	protected int enemyNumber;
+	private Enemy enemy;
+	private Map map;
 
 	// constructor
-	public Enemy() {	
+	public Enemy(Map map, int enemyNumber) {
 		
 		alive = true;
+	
+		this.map = map;
+		
+		// create a label and configured its settings
+		this.setText(enemyNumber + 1 + "");
+		this.setBackground(new Color(236, 236, 236));
+		this.setOpaque(true);
+		this.setVerticalAlignment(SwingConstants.BOTTOM);
+		this.setHorizontalAlignment(SwingConstants.RIGHT);
+		this.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		this.setFocusable(false);
+		this.addMouseListener(this);
 		
 	}
 	
-	public abstract Border getBorder();
+	// mouse listeners for hovering effects
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		this.setBackground(Color.LIGHT_GRAY);
+	}
+	@Override
+	public void mouseExited(MouseEvent e) {
+		this.setBackground(new Color(236, 236, 236));
+	}
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		map.showEnemyInfo(this);
+	}
+	@Override
+	public void mousePressed(MouseEvent e) {
+		System.out.println(super.getText());
+	}
+	@Override
+	public void mouseReleased(MouseEvent e) {
+	}
+
+	// return the enemy
+	public Enemy getEnemy() {
+		return enemy;
+	}
+	
 	
 	// boss takes damage
 	public void takeDamage(double dam){
