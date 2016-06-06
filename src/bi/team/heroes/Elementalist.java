@@ -30,6 +30,18 @@ public class Elementalist extends Hero {
 		AttacksArrayList.add(new BurstingFlames(this));
 		
 	}
+
+	@Override
+	public void enableUpgradeButtons() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableUpgradeButtons() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 	

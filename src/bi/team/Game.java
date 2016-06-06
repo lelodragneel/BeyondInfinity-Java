@@ -15,7 +15,6 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -39,14 +38,12 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static boolean turn = true; 	// true for player's turn. false for enemy's turn
 	private static JTextArea textArea;
-	private JPanel contentPane;
 	private JPanel panel_player;
 	private JPanel panel_top;
 	private JPanel panel_stats;
 	private JPanel panel_enemy;
 	private JPanel panel_actions;
 	private JPanel panel_frameOpacity;
-	private JPanel panel_actionsTop;
 	private JProgressBar progBar_loading;
 	private JProgressBar progBar_playerVitality;
 	private JProgressBar progBar_enemyVitality;
@@ -62,12 +59,12 @@ public class Game extends JFrame implements ActionListener {
 
 	// create the frame
 	public Game(String name, String chosenHero, int giftNum) {
-	
+
 		// TODO initialize gift parameter
-		
+
 		// instantiate objects
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
-		
+
 		/*
 		 * build frame
 		 */
@@ -75,49 +72,43 @@ public class Game extends JFrame implements ActionListener {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setBounds(100, 100, 1000, 600);
-		setTitle("BeyondInfinity - alpha");
-		getContentPane().setLayout(null);
-
-		// create a root panel
-		contentPane = new JPanel();
-		contentPane.setLayout(null);
-		contentPane.setBounds(0, 0, 994, 571);
-		contentPane.setBackground(new Color(236, 240, 241));
-		contentPane.setOpaque(true);
-		getContentPane().add(contentPane);
+		setTitle("[ver. alpha] BeyondInfinity");
+		setLayout(null);
+		setBounds(0, 0, 994, 571);
+		setBackground(new Color(236, 240, 241));
 
 		/*
 		 * create the map object/frame
 		 */
 		map = new Map(getWidth(), getHeight());
-		contentPane.add(map);
-		
+		add(map);
+
 		/*
 		 * create the inventory panel
 		 */
 		inventory = new InventoryFrame(getWidth(), getHeight());
-		contentPane.add(inventory);
-		
+		add(inventory);
+
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
 		panel_frameOpacity.setBounds(0, 11, 994, 19);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
-		contentPane.add(panel_frameOpacity);
+		add(panel_frameOpacity);
 
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
 		panel_player.setBackground(new Color(204, 255, 153));
 		panel_player.setBounds(10, 70, 228, 283);
 		panel_player.setLayout(null);
-		contentPane.add(panel_player);
+		add(panel_player);
 
 		// create top panel to display vitality (health) bars
 		panel_top = new JPanel();
 		panel_top.setBounds(10, 21, 974, 38);
 		panel_top.setLayout(null);
-		contentPane.add(panel_top);
+		add(panel_top);
 
 		// create the button that toggles map
 		btnShowMap = new JButton();
@@ -126,7 +117,7 @@ public class Game extends JFrame implements ActionListener {
 		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
 		btnShowMap.addActionListener(this);
 		panel_top.add(btnShowMap);
-		
+
 		// create the button that toggles inventory
 		btnShowInventory = new JButton();
 		btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/knapsack.png")));
@@ -139,14 +130,14 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats = new JPanel();
 		panel_stats.setBounds(10, 364, 974, 87);
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
-		contentPane.add(panel_stats);
+		add(panel_stats);
 
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
 		panel_enemy.setBounds(755, 70, 229, 283);
 		panel_enemy.setLayout(null);
-		contentPane.add(panel_enemy);
+		add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
@@ -154,7 +145,7 @@ public class Game extends JFrame implements ActionListener {
 		panel_actions.setBounds(10, 492, 974, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
-		contentPane.add(panel_actions);
+		add(panel_actions);
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
@@ -162,15 +153,15 @@ public class Game extends JFrame implements ActionListener {
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
-		contentPane.add(progBar_loading);
-		
+		add(progBar_loading);
+
 		// create heart for health bar
 		JLabel lblHp = new JLabel("HP");
 		lblHp.setForeground(Color.WHITE);
 		lblHp.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblHp.setBounds(12, 11, 20, 14);
 		panel_player.add(lblHp);
-		
+
 		JLabel lblHeart = new JLabel("");
 		lblHeart.setIcon(new ImageIcon(Game.class.getResource("/images/heart.png")));
 		lblHeart.setBounds(3, 3, 32, 32);
@@ -184,7 +175,7 @@ public class Game extends JFrame implements ActionListener {
 		progBar_playerVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
 		progBar_playerVitality.setForeground(new Color(30, 139, 195));
 		panel_player.add(progBar_playerVitality);
-		
+
 		label_1 = new JLabel("");
 		label_1.setIcon(new ImageIcon(Game.class.getResource("/images/heart.png")));
 		label_1.setBounds(3, 3, 32, 32);
@@ -231,35 +222,12 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setBounds(248, 70, 497, 283);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		contentPane.add(scroll);	
-		
-		// create background painted panel for stance buttons
-		JPanel panel_stances = new JPanel();
-		panel_stances.setBounds(10, 462, 72, 30);
-		contentPane.add(panel_stances);
-		panel_stances.setBackground(new Color(135, 211, 124));
-		panel_actionsTop = new JPanel();
-		panel_actionsTop.setBounds(10, 462, 974, 30);
-		contentPane.add(panel_actionsTop);
-		panel_actionsTop.setLayout(null);
-		
-		// create label for upgrade points
-		JLabel lblUpgradePoints = new JLabel("Upgrade Points:");
-		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblUpgradePoints.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblUpgradePoints.setBounds(443, 7, 94, 16);
-		panel_actionsTop.add(lblUpgradePoints);
-		
-		// create label to display upgrade points
-		upgradePoints = new JLabel("0");
-		upgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		upgradePoints.setBounds(547, 7, 46, 16);
-		panel_actionsTop.add(upgradePoints);
-		
+		add(scroll);	
+
 		/*
 		 * create the top actions panel
 		 */
-		
+
 		JPanel panel_rage = new JPanel();
 		panel_rage.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Rage", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		panel_rage.setLayout(null);
@@ -269,7 +237,7 @@ public class Game extends JFrame implements ActionListener {
 		lblRageIcon.setBounds(5, 16, 24, 24);
 		lblRageIcon.setIcon(new ImageIcon(Game.class.getResource("/images/rage.png")));
 		panel_rage.add(lblRageIcon);
-		
+
 		/*
 		 * create the player object
 		 */
@@ -285,43 +253,43 @@ public class Game extends JFrame implements ActionListener {
 			hero = new Warlock(this);
 		else
 			System.out.println("[Game.java] Could not create your class");
-		
+
 		// finally show frame
 		setVisible(true);
-		
+
 		/*
 		 * start game.
 		 * loop and find first alive enemy
 		 */
-//		for(MapEntry x : map.getMapEntries()) {			
-//			if (x.getBoss().isAlive()) {
-//				curEnemy = x.getBoss();
-//				appendMessage("Now facing -> " + curEnemy.getName() + ".");
-//				turn = true;
-//				faceEnemy(curEnemy);
-//				break;
-//			}	
-//		}
-		
+		//		for(MapEntry x : map.getMapEntries()) {			
+		//			if (x.getBoss().isAlive()) {
+		//				curEnemy = x.getBoss();
+		//				appendMessage("Now facing -> " + curEnemy.getName() + ".");
+		//				turn = true;
+		//				faceEnemy(curEnemy);
+		//				break;
+		//			}	
+		//		}
+
 	}
-	
+
 	/*
 	 * FIGHT METHODS *********************************************
 	 */
-	
+
 	// start enemy fight
-//	public void faceEnemy(Enemy enemy) {
-//
-//		
-//		
-//		// TODO load boss icon & health
-//		
-//		enableAttackButtons();
-//		
-//	}	
+	//	public void faceEnemy(Enemy enemy) {
+	//
+	//		
+	//		
+	//		// TODO load boss icon & health
+	//		
+	//		enableAttackButtons();
+	//		
+	//	}	
 
 	// END OF FIGHT METHODS *************************************
-	
+
 	// XXX add upgradable stats panels to gui
 	public void addUpgradableStats(JPanel panel1, JPanel panel2, JPanel panel3, JPanel panel4, JPanel panel5) {
 		panel_stats.add(panel1);
@@ -330,17 +298,17 @@ public class Game extends JFrame implements ActionListener {
 		panel_stats.add(panel4);
 		panel_stats.add(panel5);
 	}
-	
+
 	// action listener
 	public void actionPerformed(ActionEvent evt) {
-		
+
 		// clicked map
 		if (evt.getSource() == btnShowMap)
 			toggleMap();
 		// clicked inventory
 		if (evt.getSource() == btnShowInventory)
 			toggleInventory();
-			
+
 		// check if any attacks were clicked
 		for (Attack x : hero.getAttacksArrayList()) {
 			if (evt.getSource() == x.getButton()) {
@@ -375,13 +343,13 @@ public class Game extends JFrame implements ActionListener {
 		repaint();
 
 	}
-	
+
 	// toggle the inventory pane
 	public void toggleInventory() {
-		
+
 		// toggle between true and false
 		isInvShown = !isInvShown;
-		
+
 		if (isInvShown) {
 			inventory.setVisible(true);
 			panel_frameOpacity.setVisible(true);
@@ -396,15 +364,15 @@ public class Game extends JFrame implements ActionListener {
 
 		// repaint frame to avoid graphical glitches
 		repaint();
-		
+
 	}
-	
+
 	// set all attack buttons to active
 	public void enableAttackButtons() {
 		for (Attack x : hero.getAttacksArrayList())
 			x.getButton().setEnabled(true);
 	}
-	
+
 	// set all attack buttons to inactive
 	public void disableAttackButtons() {
 		for (Attack x : hero.getAttacksArrayList())
@@ -425,17 +393,12 @@ public class Game extends JFrame implements ActionListener {
 	public static boolean getTurn() {
 		return turn;
 	}
-	
+
 	// return the panel_actions jpanel
 	public JPanel getPanel_actions() {
 		return panel_actions;
 	}
-	
-	// return the panel_actionsTop
-	public JPanel getPanel_actionsTop() {
-		return panel_actionsTop;
-	}
-	
+
 	// return the panel_player
 	public JPanel getPanel_player() {
 		return panel_player;
@@ -445,12 +408,12 @@ public class Game extends JFrame implements ActionListener {
 	public Hero getHero() {
 		return hero;
 	}
-	
+
 	// return the progBar_playerVitality
 	public JProgressBar getProgBar_playerVitality() {
 		return progBar_playerVitality;
 	}
-	
+
 	// return the upgradePoints
 	public JLabel getUpgradePoints() {
 		return upgradePoints;

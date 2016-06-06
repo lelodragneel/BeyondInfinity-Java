@@ -19,5 +19,17 @@ public class Chemist extends Hero {
 		// TODO create this class's attacks
 		
 	}
+
+	@Override
+	public void enableUpgradeButtons() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disableUpgradeButtons() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -105,19 +105,22 @@ public class Barbarian extends Hero implements ActionListener {
 			x.getButton().setEnabled(false);		
 		}
 
+		/*
+		 * create two stance buttons
+		 */
 		// create offensive stance
 		btnOffensive = new JButton("");
 		btnOffensive.setBounds(2, 0, 30, 30);
 		btnOffensive.setFocusable(false);
 		btnOffensive.addActionListener(this);
-		game.getPanel_actionsTop().add(btnOffensive);
+		panel_stances.add(btnOffensive);
 
 		// create defensive stance
 		btnDefensive = new JButton("");
 		btnDefensive.setBounds(34, 0, 30, 30);
 		btnDefensive.setFocusable(false);
 		btnDefensive.addActionListener(this);
-		game.getPanel_actionsTop().add(btnDefensive);
+		panel_stances.add(btnDefensive);
 
 		/* ------------- vitality stat panel ------------- */
 		// create panel (of panel_stats) for vitality
