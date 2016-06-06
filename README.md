@@ -5,6 +5,6 @@ Personal project for fun :)
   https://docs.google.com/document/d/1RB_EcBOjlNvqg3P85TOjfkZ5ysob8llyO7cNyANWaNc/edit  
 
 #### Hero Health Scaling (credit goes to imamadhatt3r)
-https://www.desmos.com/calculator/gtbtwn8elu
+https://www.desmos.com/calculator/07x1n4ah6n
 
 
