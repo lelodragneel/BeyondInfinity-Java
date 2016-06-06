@@ -45,10 +45,10 @@ public class MapEntry extends JLabel implements MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
+		System.out.println(super.getText());
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {

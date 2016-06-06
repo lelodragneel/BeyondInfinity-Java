@@ -24,6 +24,7 @@ public class Map extends JLayeredPane {
 	 */
 	private ArrayList<MapEntry> mapEntries;
 	private JPanel panel_map;
+	private JPanel panel_enemyHover;
 	
 	// constructor
 	public Map(int parent_width, int parent_height) {
@@ -31,8 +32,8 @@ public class Map extends JLayeredPane {
 		// create the main map frame
 		this.setOpaque(true);
 		int width = 700;
-		int height = 370;
-		setBounds(new Rectangle((parent_width / 2) - (width / 2), (parent_height / 2) - (height / 2) - 40,
+		int height = 360;
+		this.setBounds(new Rectangle((parent_width / 2) - (width / 2), (parent_height / 2) - (height / 2) - 40,
 				width, height));
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 		this.setLayout(null);
@@ -40,10 +41,15 @@ public class Map extends JLayeredPane {
 
 		// create panel for map grid
 		panel_map = new JPanel();
-		panel_map.setBounds(4, 4, 536, 358);
+		panel_map.setBounds(4, 4, 536, 348);
 		panel_map.setLayout(new GridBagLayout());
 		panel_map.setBackground(new Color(236, 236, 236));
 		this.add(panel_map);
+		
+		panel_enemyHover = new JPanel();
+		panel_enemyHover.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_enemyHover.setBounds(545, 10, 145, 340);
+		this.add(panel_enemyHover);
 		
 		// create the actual grid
 		createGrid();
@@ -110,7 +116,4 @@ public class Map extends JLayeredPane {
 	public ArrayList<MapEntry> getMapEntries() {
 		return mapEntries;
 	}
-	
-	
-	
 }

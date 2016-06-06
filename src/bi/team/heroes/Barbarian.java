@@ -429,24 +429,26 @@ public class Barbarian extends Hero implements ActionListener {
 
 	// set all upgrade buttons to active
 	@Override
-	public void enableUpgradeButtons() {
+	public void enableButtons() {
 		btnUpgradeStat_1.setEnabled(true);
 		btnUpgradeStat_2.setEnabled(true);
 		btnUpgradeStat_3.setEnabled(true);
 		btnUpgradeStat_4.setEnabled(true);
 		btnUpgradeStat_5.setEnabled(true);
-		btnUpgradeStat_6.setEnabled(true);
+		btnOffensive.setEnabled(true);
+		btnDefensive.setEnabled(true);
 	}
 	
 	// set all upgrade buttons to inactive
 	@Override
-	public void disableUpgradeButtons() {
+	public void disableButtons() {
 		btnUpgradeStat_1.setEnabled(false);
 		btnUpgradeStat_2.setEnabled(false);
 		btnUpgradeStat_3.setEnabled(false);
 		btnUpgradeStat_4.setEnabled(false);
 		btnUpgradeStat_5.setEnabled(false);
-		btnUpgradeStat_6.setEnabled(false);
+		btnOffensive.setEnabled(false);
+		btnDefensive.setEnabled(false);
 	}
 	
 	// return the curRage

@@ -90,7 +90,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 11, 994, 19);
+		panel_frameOpacity.setBounds(0, 11, 994, 560);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -316,12 +316,14 @@ public class Game extends JFrame implements ActionListener {
 			map.setVisible(true);
 			panel_frameOpacity.setVisible(true);
 			disableAttackButtons();
-			hero.disableUpgradeButtons();
+			hero.disableButtons();
+			btnShowInventory.setEnabled(false);
 		} else {
 			map.setVisible(false);
 			panel_frameOpacity.setVisible(false);
 			enableAttackButtons();
-			hero.enableUpgradeButtons();
+			hero.enableButtons();
+			btnShowInventory.setEnabled(true);
 		}
 
 		// repaint frame to avoid graphical glitches
@@ -339,12 +341,12 @@ public class Game extends JFrame implements ActionListener {
 			inventory.setVisible(true);
 			panel_frameOpacity.setVisible(true);
 			disableAttackButtons();
-			hero.disableUpgradeButtons();
+			hero.disableButtons();
 		} else {
 			inventory.setVisible(false);
 			panel_frameOpacity.setVisible(false);
 			enableAttackButtons();
-			hero.enableUpgradeButtons();
+			hero.enableButtons();
 		}
 
 		// repaint frame to avoid graphical glitches

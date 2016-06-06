@@ -23,7 +23,6 @@ public abstract class Hero {
 	protected JButton btnUpgradeStat_3;
 	protected JButton btnUpgradeStat_4;
 	protected JButton btnUpgradeStat_5;
-	protected JButton btnUpgradeStat_6;
 	protected JLabel lblUpgradePoints;
 	protected JPanel panel_actionsTop;
 	protected JPanel panel_stances;
@@ -38,7 +37,7 @@ public abstract class Hero {
 		panel_actionsTop = new JPanel();
 		panel_actionsTop.setBounds(10, 462, 974, 30);
 		panel_actionsTop.setLayout(null);
-		game.getContentPane().add(panel_actionsTop);
+		game.add(panel_actionsTop);
 		
 		// create label for upgrade points
 		JLabel labelUpgradePoints = new JLabel("Upgrade Points:");
@@ -54,7 +53,6 @@ public abstract class Hero {
 		panel_actionsTop.add(lblUpgradePoints);	
 		
 	}
-
 	
 	// return the attacks arraylist
 	public ArrayList<Attack> getAttacksArrayList() {
@@ -62,8 +60,8 @@ public abstract class Hero {
 	}
 
 	// set all upgrade buttons to active
-	public abstract void enableUpgradeButtons();
+	public abstract void enableButtons();
 
 	// set all upgrade buttons to inactive
-	public abstract void disableUpgradeButtons();
+	public abstract void disableButtons();
 }
