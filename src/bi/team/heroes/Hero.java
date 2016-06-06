@@ -24,10 +24,6 @@ public abstract class Hero {
 	protected JButton btnUpgradeStat_4;
 	protected JButton btnUpgradeStat_5;
 	protected JButton btnUpgradeStat_6;
-	protected JButton btnUpgradeStat_7;
-	protected JButton btnUpgradeStat_8;
-	protected JButton btnUpgradeStat_9;
-	protected JButton btnUpgradeStat_10;
 	protected JLabel lblUpgradePoints;
 	protected JPanel panel_actionsTop;
 	protected JPanel panel_stances;

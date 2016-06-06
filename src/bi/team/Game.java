@@ -18,7 +18,6 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.border.TitledBorder;
 
 import bi.team.heroes.Barbarian;
 import bi.team.heroes.Chemist;
@@ -222,22 +221,8 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setBounds(248, 70, 497, 283);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		getContentPane().add(scroll);	
-
-		/*
-		 * create the top actions panel
-		 */
-
-		JPanel panel_rage = new JPanel();
-		panel_rage.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Rage", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_rage.setLayout(null);
-
-		// create rage icon
-		JLabel lblRageIcon = new JLabel("");
-		lblRageIcon.setBounds(5, 16, 24, 24);
-		lblRageIcon.setIcon(new ImageIcon(Game.class.getResource("/images/rage.png")));
-		panel_rage.add(lblRageIcon);
-
+		getContentPane().add(scroll);
+		
 		/*
 		 * create the player object
 		 */

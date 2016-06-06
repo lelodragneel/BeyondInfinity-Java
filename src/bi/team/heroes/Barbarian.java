@@ -101,10 +101,9 @@ public class Barbarian extends Hero implements ActionListener {
 		 * create and initialize attack buttons
 		 */
 		for (Attack x : AttacksArrayList) {
-			x.getButton().addActionListener(this);
-			x.getButton().setEnabled(false);		
+			x.getButton().addActionListener(this);	
 		}
-
+		
 		/*
 		 * create two stance buttons & panel
 		 */
@@ -356,7 +355,7 @@ public class Barbarian extends Hero implements ActionListener {
 		// display the 5 upgradable stats
 		game.addUpgradableStats(panel_vitality, panel_rage, panel_sharpness, panel_toughness, panel_riposteChance);
 		
-		// display default attacks
+		// display default attacks by default
 		showOffensiveAttacks();
 		
 	}
@@ -437,10 +436,6 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_4.setEnabled(true);
 		btnUpgradeStat_5.setEnabled(true);
 		btnUpgradeStat_6.setEnabled(true);
-		btnUpgradeStat_7.setEnabled(true);
-		btnUpgradeStat_8.setEnabled(true);
-		btnUpgradeStat_9.setEnabled(true);
-		btnUpgradeStat_10.setEnabled(true);
 	}
 	
 	// set all upgrade buttons to inactive
@@ -452,10 +447,6 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_4.setEnabled(false);
 		btnUpgradeStat_5.setEnabled(false);
 		btnUpgradeStat_6.setEnabled(false);
-		btnUpgradeStat_7.setEnabled(false);
-		btnUpgradeStat_8.setEnabled(false);
-		btnUpgradeStat_9.setEnabled(false);
-		btnUpgradeStat_10.setEnabled(false);
 	}
 	
 	// return the curRage
