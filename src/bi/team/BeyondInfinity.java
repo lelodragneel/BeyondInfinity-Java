@@ -90,7 +90,6 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create a root panel
 		contentPane = new JPanel();
 		contentPane.setLayout(null);
-		//contentPane.setBounds(0, 0, 644, 486);
 		contentPane.setBounds(0, 0, 644, 371);
 		contentPane.setVisible(true);
 		contentPane.setBackground(new Color(236, 240, 241));
@@ -188,13 +187,13 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		lblElementalist.setBounds(155, 155, 89, 33);
 		contentPane.add(lblElementalist);
 
-		lblBarbarian = new JLabel("<html><b>Guts</b> the Barbarian</html>");
+		lblBarbarian = new JLabel("<html><b>Brynjar</b> the Barbarian</html>");
 		lblBarbarian.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBarbarian.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblBarbarian.setBounds(33, 155, 89, 33);
 		contentPane.add(lblBarbarian);
 
-		lblSwordsman = new JLabel("<html><b>Seth</b> the Swordsman</html>");
+		lblSwordsman = new JLabel("<html><b>Einar</b> the Swordsman</html>");
 		lblSwordsman.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSwordsman.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblSwordsman.setBounds(399, 155, 89, 33);
@@ -521,17 +520,17 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			
 		} else if (selected == btnSex_male) {	
 			// change barbarian
-			lblBarbarian.setText("<html><b>Guts</b> the Barbarian</html>");
+			lblBarbarian.setText("<html><b>Brynjar</b> the Barbarian</html>");
 			btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_male.png")));
-			btnBarbarian.setToolTipText("Guts the Foolhardy");
+			btnBarbarian.setToolTipText("Brynjar the Foolhardy");
 			// change elementalist
 			lblElementalist.setText("<html><b>Seraph</b> the Elementalist</html>");
 			btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_male.png")));
 			btnElementalist.setToolTipText("Seraph the Valiant");
 			// change swordsman
-			lblSwordsman.setText("<html><b>Seth</b> the Swordsman</html>");
+			lblSwordsman.setText("<html><b>Einar</b> the Swordsman</html>");
 			btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_male.png")));
-			btnSwordsman.setToolTipText("Seth the Subjugator");
+			btnSwordsman.setToolTipText("Einar the Subjugator");
 			// change warlock
 			lblWarlock.setText("<html><b>Zardeth</b> the Warlock</html>");
 			btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_male.png")));

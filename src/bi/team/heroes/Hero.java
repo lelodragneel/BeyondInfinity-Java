@@ -1,6 +1,5 @@
 package bi.team.heroes;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
 
@@ -39,18 +38,11 @@ public abstract class Hero {
 
 		/*
 		 * create top actions panel
-		 */
-		// create background painted panel for stance buttons
-		
+		 */	
 		panel_actionsTop = new JPanel();
 		panel_actionsTop.setBounds(10, 462, 974, 30);
 		panel_actionsTop.setLayout(null);
 		game.getContentPane().add(panel_actionsTop);
-		
-		panel_stances = new JPanel();
-		panel_stances.setBounds(0, 0, 72, 30);
-		panel_stances.setBackground(new Color(135, 211, 124));
-		panel_actionsTop.add(panel_stances);
 		
 		// create label for upgrade points
 		JLabel labelUpgradePoints = new JLabel("Upgrade Points:");
@@ -63,8 +55,7 @@ public abstract class Hero {
 		lblUpgradePoints = new JLabel("0");
 		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblUpgradePoints.setBounds(547, 7, 46, 16);
-		panel_actionsTop.add(lblUpgradePoints);
-		
+		panel_actionsTop.add(lblUpgradePoints);	
 		
 	}
 
