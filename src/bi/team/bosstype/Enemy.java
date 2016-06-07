@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
@@ -14,18 +15,19 @@ import bi.team.map.Map;
 public abstract class Enemy extends JButton implements MouseListener {
 
 	// initialize variables
-	private String name;
-	private double curVitality;
-	private double maxVitality;
-	private double damage;
-	private double protection;
-	private double criticalDamage;
-	private double criticalChance;
-	private double curEnergy;
-	private double maxEnergy;
-	private double energyRecoveryRate;
-	private boolean alive;
+	protected String name;
 	protected int enemyNumber;
+	protected ImageIcon enemyImage;
+	protected double curVitality;
+	protected double maxVitality;
+	protected double damage;
+	protected double protection;
+	protected double criticalDamage;
+	protected double criticalChance;
+	protected double curEnergy;
+	protected double maxEnergy;
+	protected double energyRecoveryRate;
+	protected boolean alive;
 	private Enemy enemy;
 	private Map map;
 
@@ -33,7 +35,6 @@ public abstract class Enemy extends JButton implements MouseListener {
 	public Enemy(Map map, int enemyNumber) {
 		
 		alive = true;
-	
 		this.map = map;
 		
 		// create a label and configured its settings
@@ -63,7 +64,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println(super.getText());
+		System.out.println(name);
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
@@ -73,112 +74,15 @@ public abstract class Enemy extends JButton implements MouseListener {
 	public Enemy getEnemy() {
 		return enemy;
 	}
-	
-	
-	// boss takes damage
-	public void takeDamage(double dam){
-		curVitality -= dam;
+
+	// return the enemyNumber
+	public int getEnemyNumber() {
+		return enemyNumber;
 	}
 
-	// return boss's total health
-	public double getTotalHealth() {
-		return maxVitality;
+	// return the enemyImage
+	public ImageIcon getEnemyImage() {
+		return enemyImage;
 	}
-
-	// set boss's total health
-	public void setTotalHealth(double health) {
-		this.maxVitality = health;
-	}
-
-	// return boss's damage
-	public double getDamage() {
-		return damage;
-	}
-
-	// set boss's damage
-	public void setDamage(double damage) {
-		this.damage = damage;
-	}
-
-	// return boss's health
-	public double getHealth() {
-		return curVitality;
-	}
-
-	// return boss's health
-	public void setHealth(double health) {
-		this.curVitality = health;
-	}
-	// return the protection
-	public double getProtection() {
-		return protection;
-	}
-	// set the protection
-	public void setProtection(double protection) {
-		this.protection = protection;
-	}
-	// return the criticalDamage
-	public double getCriticalDamage() {
-		return criticalDamage;
-	}
-	// set the criticalDamage
-	public void setCriticalDamage(double criticalDamage) {
-		this.criticalDamage = criticalDamage;
-	}
-	// return the criticalChance
-	public double getCriticalChance() {
-		return criticalChance;
-	}
-	// set the criticalChance
-	public void setCriticalChance(double criticalChance) {
-		this.criticalChance = criticalChance;
-	}
-	// return the curEnergy
-	public double getCurEnergy() {
-		return curEnergy;
-	}
-	// set the curEnergy
-	public void setCurEnergy(double curEnergy) {
-		this.curEnergy = curEnergy;
-	}
-	// return the maxEnergy
-	public double getMaxEnergy() {
-		return maxEnergy;
-	}
-	// set the maxEnergy
-	public void setMaxEnergy(double maxEnergy) {
-		this.maxEnergy = maxEnergy;
-	}
-	// return the energyRecoveryRate
-	public double getEnergyRecoveryRate() {
-		return energyRecoveryRate;
-	}
-	// set the energyRecoveryRate
-	public void setEnergyRecoveryRate(double energyRecoveryRate) {
-		this.energyRecoveryRate = energyRecoveryRate;
-	}
-	// return the alive
-	public boolean isAlive() {
-		return alive;
-	}
-	// set the alive
-	public void setAlive(boolean alive) {
-		this.alive = alive;
-	}
-
-	/**
-	 * @param name the name to set
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	/**
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
-	
 
 }

@@ -114,8 +114,8 @@ public class InventoryFrame extends JLayeredPane {
 		gbc.weightx = gbc.weighty = 1.0;
 		gbc.insets = new Insets(3, 3, 3, 3);
 		
-		// add inv slots objects to array
-		for (int i = 0; i <= 67; i++) {
+		// add inventory slots objects to array
+		for (int i = 0; i < 50; i++) {
 			invSlotsArray.add(new InventorySlot(i));
 		}
 		
@@ -123,12 +123,12 @@ public class InventoryFrame extends JLayeredPane {
 		Iterator<InventorySlot> slots = invSlotsArray.listIterator();
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < 6; i++) {
-			for (int j = 0; j < 11 && slots.hasNext(); j++) {
+		for (int i = 0; i < 5; i++) {
+			for (int j = 0; j < 10 && slots.hasNext(); j++) {
 				gbc.gridx = x++;
 				panel_inventory.add(slots.next(), gbc);
 			}
-			gbc.gridy = y++;
+			gbc.gridy = ++y;
 			x = 0;
 		}
 		

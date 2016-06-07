@@ -16,6 +16,10 @@ public class MiniBoss extends Enemy {
 		super(map, enemyNumber);
 		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
+		// configure variables
+		name = super.getText();
+		//enemyImage = new ImageIcon(BeyondInfinity.class.getResource("images/enemies/"));
+		
 	}
 
 }
