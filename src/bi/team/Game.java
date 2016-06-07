@@ -55,10 +55,11 @@ public class Game extends JFrame implements ActionListener {
 	private Hero hero;
 	private JLabel upgradePoints;
 	private JLabel label_1;
-
+	
 	// create the frame
 	public Game(String name, String chosenHero, int giftNum) {
 
+		// TODO initialize image icon
 		// TODO initialize gift parameter
 
 		// instantiate objects
@@ -75,7 +76,7 @@ public class Game extends JFrame implements ActionListener {
 		this.setBounds(0, 0, 1000, 600);
 		this.setBackground(new Color(236, 240, 241));
 		this.setLocationRelativeTo(null);
-
+		
 		/*
 		 * create the map object/frame
 		 */
@@ -90,7 +91,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 11, 994, 560);
+		panel_frameOpacity.setBounds(0, 0, 994, 571);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);

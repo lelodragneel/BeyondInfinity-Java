@@ -22,7 +22,6 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected double maxVitality;
 	protected double damage;
 	protected double protection;
-	protected double criticalDamage;
 	protected double criticalChance;
 	protected double curEnergy;
 	protected double maxEnergy;

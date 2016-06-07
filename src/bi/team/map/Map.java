@@ -47,7 +47,7 @@ public class Map extends JLayeredPane {
 
 		// create panel for map grid
 		panel_map = new JPanel();
-		panel_map.setBounds(4, 4, 536, 348);
+		panel_map.setBounds(8, 6, 536, 348);
 		panel_map.setLayout(new GridBagLayout());
 		panel_map.setBackground(new Color(236, 236, 236));
 		this.add(panel_map);
@@ -55,7 +55,7 @@ public class Map extends JLayeredPane {
 		// create panel to display enemy information
 		panel_enemyHover = new JPanel();
 		panel_enemyHover.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_enemyHover.setBounds(545, 10, 145, 340);
+		panel_enemyHover.setBounds(550, 10, 140, 340);
 		this.add(panel_enemyHover);
 		panel_enemyHover.setLayout(null);
 		
@@ -89,7 +89,7 @@ public class Map extends JLayeredPane {
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = gbc.weighty = 1.0;
-		gbc.insets = new Insets(3, 3, 0, 0);
+		gbc.insets = new Insets(2, 2, 2, 2);
 		
 		// create 72 minibosses and 12 superbosses
 		for (int i = 0; i < 72; i++) {
