@@ -14,11 +14,9 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import bi.team.bosstype.Enemy;
-import bi.team.bosstype.GrandBoss;
-import bi.team.bosstype.GuardianBoss;
-import bi.team.bosstype.MiniBoss;
-import bi.team.bosstype.SuperBoss;
+import bi.team.enemies.*;
+import bi.team.enemies.meadowlands.*;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class Map extends JLayeredPane {
@@ -28,18 +26,34 @@ public class Map extends JLayeredPane {
 	 */
 	private ArrayList<Enemy> enemyEntries;
 	private JPanel panel_map;
-	private JPanel panel_enemyHover;
+	private JPanel panel_enemyInfo;
 	private JLabel lblEnemyName;
-	private JLabel lblEnemyImage;
+	private JLabel lblEnemyIcon;
 	
 	// constructor
 	public Map(int parent_width, int parent_height) {
 		
-		// create the main map frame
+		/*
+		 * Create objects of all enemies
+		 */
+		enemyEntries = new ArrayList<Enemy>();
+		enemyEntries.add(new Fuehirch(this));
+		enemyEntries.add(new Taobu(this));
+		enemyEntries.add(new Hawk_stag(this));
+		enemyEntries.add(new Oboko_of_the_sonne(this));
+		enemyEntries.add(new Shar_of_the_nacht(this));
+		enemyEntries.add(new Mantisray(this));
+		enemyEntries.add(new Alania_defender_of_the_meadow(this));
+		// TODO create rest of enemies
+		
+		
+		/*
+		 * Create the main map frame
+		 */
 		this.setOpaque(true);
-		int width = 700;
-		int height = 360;
-		this.setBounds(new Rectangle((parent_width / 2) - (width / 2), (parent_height / 2) - (height / 2) - 40,
+		int width = 715;
+		int height = 365;
+		this.setBounds(new Rectangle((Math.round(parent_width / 2) - (width / 2)), Math.round((parent_height / 2) - (height / 2) - 40),
 				width, height));
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 		this.setLayout(null);
@@ -47,28 +61,30 @@ public class Map extends JLayeredPane {
 
 		// create panel for map grid
 		panel_map = new JPanel();
-		panel_map.setBounds(8, 6, 536, 348);
+		panel_map.setBounds(170, 8, 539, 348);
 		panel_map.setLayout(new GridBagLayout());
 		panel_map.setBackground(new Color(236, 236, 236));
 		this.add(panel_map);
 		
 		// create panel to display enemy information
-		panel_enemyHover = new JPanel();
-		panel_enemyHover.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_enemyHover.setBounds(550, 10, 140, 340);
-		this.add(panel_enemyHover);
-		panel_enemyHover.setLayout(null);
+		panel_enemyInfo = new JPanel();
+		panel_enemyInfo.setBorder(new LineBorder(new Color(0, 0, 0), 0));
+		panel_enemyInfo.setBounds(2, 2, 168, 361);
+		panel_enemyInfo.setLayout(null);
+		this.add(panel_enemyInfo);
 		
 		// create label to display selected enemy name
 		lblEnemyName = new JLabel("");
+		lblEnemyName.setVerticalAlignment(SwingConstants.TOP);
 		lblEnemyName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblEnemyName.setBounds(10, 172, 125, 16);
-		panel_enemyHover.add(lblEnemyName);
+		lblEnemyName.setBounds(10, 164, 150, 36);
+		panel_enemyInfo.add(lblEnemyName);
 		
 		// create label to display selected enemy image
-		lblEnemyImage = new JLabel("");
-		lblEnemyImage.setBounds(10, 11, 125, 150);
-		panel_enemyHover.add(lblEnemyImage);
+		lblEnemyIcon = new JLabel("");
+		lblEnemyIcon.setBorder(new LineBorder(new Color(0, 0, 0)));
+		lblEnemyIcon.setBounds(10, 10, 150, 150);
+		panel_enemyInfo.add(lblEnemyIcon);
 		
 		// create the actual grid
 		createGrid();
@@ -76,38 +92,20 @@ public class Map extends JLayeredPane {
 	}
 	
 	// display enemy info
-	public void showEnemyInfo(Enemy entry) {
-		lblEnemyName.setText(entry.getName());
-		lblEnemyImage.setIcon(entry.getIcon());
+	public void showEnemyInfo(Enemy enemy) {
+		lblEnemyName.setText(enemy.getName());
+		lblEnemyIcon.setIcon(enemy.getEnemyImage());
+		
 	}
 
 	// create labels for the map grid then add them to the window
 	public void createGrid() {
 
 		// initialize variables
-		enemyEntries = new ArrayList<Enemy>();
 		GridBagConstraints gbc = new GridBagConstraints();
 		gbc.fill = GridBagConstraints.BOTH;
 		gbc.weightx = gbc.weighty = 1.0;
 		gbc.insets = new Insets(2, 2, 2, 2);
-		
-		// create 72 minibosses and 12 superbosses
-		for (int i = 0; i < 72; i++) {
-
-			if (i == 6 || i == 13 || i == 20 || i == 27 || i == 34 || i == 41 || i == 48 || i == 55 || i == 62
-					|| i == 69) {
-				enemyEntries.add(new SuperBoss(this, i));
-			} else {
-				enemyEntries.add(new MiniBoss(this, i));
-			}
-			
-		}
-
-		// create the 3 guardian bosses, and 1 grand boss (final boss)
-		enemyEntries.add(new GuardianBoss(this, 72));
-		enemyEntries.add(new GuardianBoss(this, 73));
-		enemyEntries.add(new GuardianBoss(this, 74));
-		enemyEntries.add(new GrandBoss(this, 75));
 		
 		// add the created 84 enemies to the gridbag grid
 		Iterator<Enemy> items = enemyEntries.listIterator();
@@ -123,19 +121,29 @@ public class Map extends JLayeredPane {
 		}
 		
 		// add the 3 guardian bosses and the grand boss (final boss) to gridbag grid
-		gbc.gridy = 6;
-		gbc.gridx = 1;
-		panel_map.add(items.next(), gbc);
-		gbc.gridy = 6;
-		gbc.gridx = 4;
-		panel_map.add(items.next(), gbc);
-		gbc.gridy = 6;
-		gbc.gridx = 7;
-		panel_map.add(items.next(), gbc);
-		gbc.gridy = 6;
-		gbc.gridx = 10;
-		panel_map.add(items.next(), gbc);
+//		gbc.gridy = 6;
+//		gbc.gridx = 1;
+//		panel_map.add(items.next(), gbc);
+//		gbc.gridy = 6;
+//		gbc.gridx = 4;
+//		panel_map.add(items.next(), gbc);
+//		gbc.gridy = 6;
+//		gbc.gridx = 7;
+//		panel_map.add(items.next(), gbc);
+//		gbc.gridy = 6;
+//		gbc.gridx = 10;
+//		panel_map.add(items.next(), gbc);
 		
+	}
+	
+	// return the lblEnemyName
+	public JLabel getLblEnemyName() {
+		return lblEnemyName;
+	}
+
+	// return the lblEnemyIcon
+	public JLabel getLblEnemyIcon() {
+		return lblEnemyIcon;
 	}
 
 	// return the mapEntries

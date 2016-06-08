@@ -1,4 +1,4 @@
-package bi.team.bosstype;
+package bi.team.enemies;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -17,7 +17,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 	// initialize variables
 	protected String name;
 	protected int enemyNumber;
-	protected ImageIcon enemyImage;
+	protected ImageIcon enemyImage_small;
 	protected double curVitality;
 	protected double maxVitality;
 	protected double damage;
@@ -27,17 +27,16 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected double maxEnergy;
 	protected double energyRecoveryRate;
 	protected boolean alive;
-	private Enemy enemy;
 	private Map map;
 
 	// constructor
-	public Enemy(Map map, int enemyNumber) {
+	public Enemy(Map map) {
 		
+		// configure variables
 		alive = true;
 		this.map = map;
 		
 		// create a label and configured its settings
-		this.setText(enemyNumber + 1 + "");
 		this.setBackground(new Color(236, 236, 236));
 		this.setOpaque(true);
 		this.setVerticalAlignment(SwingConstants.BOTTOM);
@@ -68,10 +67,10 @@ public abstract class Enemy extends JButton implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
-
-	// return the enemy
-	public Enemy getEnemy() {
-		return enemy;
+	
+	// return the name
+	public String getName() {
+		return name;
 	}
 
 	// return the enemyNumber
@@ -81,7 +80,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 
 	// return the enemyImage
 	public ImageIcon getEnemyImage() {
-		return enemyImage;
+		return enemyImage_small;
 	}
 
 }

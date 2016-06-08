@@ -120,7 +120,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create barbarian button
 		btnBarbarian = new JToggleButton("");
 		btnBarbarian.setBorder(null);
-		btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_male.png")));
+		btnBarbarian.setIcon(new ImageIcon(getClass().getResource("/images/heroes/barbarian_male.png")));
 		btnBarbarian.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnBarbarian.setBackground(null);
 		btnBarbarian.setBounds(32, 192, 90, 120);
