@@ -18,17 +18,17 @@ import javax.swing.border.TitledBorder;
 import bi.team.Game;
 import bi.team.Load;
 import bi.team.heroes.attacks.Attack;
-import bi.team.heroes.attacks.barbarian.BattlerBash;
+import bi.team.heroes.attacks.barbarian.Battler_bash;
 import bi.team.heroes.attacks.barbarian.Charge;
-import bi.team.heroes.attacks.barbarian.HeavyBlow;
+import bi.team.heroes.attacks.barbarian.Heavy_blow;
 import bi.team.heroes.attacks.barbarian.Incapacitate;
-import bi.team.heroes.attacks.barbarian.RageIncite;
-import bi.team.heroes.attacks.barbarian.RaiseShield;
-import bi.team.heroes.attacks.barbarian.ShieldBash;
+import bi.team.heroes.attacks.barbarian.Rage_incite;
+import bi.team.heroes.attacks.barbarian.Raise_shield;
+import bi.team.heroes.attacks.barbarian.Shield_bash;
 import bi.team.heroes.attacks.barbarian.Strike;
-import bi.team.heroes.attacks.barbarian.TrueAssault;
+import bi.team.heroes.attacks.barbarian.True_assault;
 import bi.team.heroes.attacks.barbarian.Vengeance;
-import bi.team.heroes.attacks.barbarian.WhirlingTorment;
+import bi.team.heroes.attacks.barbarian.Whirling_torment;
 
 
 public class Barbarian extends Hero implements ActionListener {
@@ -84,17 +84,17 @@ public class Barbarian extends Hero implements ActionListener {
 		
 		// create this class's attacks
 		AttacksArrayList.add(new Strike(game));
-		AttacksArrayList.add(new HeavyBlow(game));
-		AttacksArrayList.add(new RageIncite(game));
+		AttacksArrayList.add(new Heavy_blow(game));
+		AttacksArrayList.add(new Rage_incite(game));
 		AttacksArrayList.add(new Vengeance(game));
-		AttacksArrayList.add(new BattlerBash(game));
-		AttacksArrayList.add(new TrueAssault(game));
+		AttacksArrayList.add(new Battler_bash(game));
+		AttacksArrayList.add(new True_assault(game));
 		AttacksArrayList.add(new Strike(game));
 		AttacksArrayList.add(new Charge(game));
-		AttacksArrayList.add(new RaiseShield(game));
+		AttacksArrayList.add(new Raise_shield(game));
 		AttacksArrayList.add(new Incapacitate(game));
-		AttacksArrayList.add(new ShieldBash(game));
-		AttacksArrayList.add(new WhirlingTorment(game));
+		AttacksArrayList.add(new Shield_bash(game));
+		AttacksArrayList.add(new Whirling_torment(game));
 
 		/*
 		 * create and initialize attack buttons

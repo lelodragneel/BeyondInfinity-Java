@@ -5,13 +5,13 @@ import javax.swing.JButton;
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class TrueAssault extends Attack {
+public class Raise_shield extends Attack {
 	
 	// constructor
-	public TrueAssault(Game game) {
-		super(game, new JButton("True Assault"));
-		maxWarmup = 5;
-		curWarmup = 5;
+	public Raise_shield(Game game) {
+		super(game, new JButton("Raise Shield"));
+		maxWarmup = 4;
+		curWarmup = 4;
 	}
 
 	@Override

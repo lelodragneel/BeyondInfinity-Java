@@ -5,10 +5,10 @@ import javax.swing.JButton;
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class WhirlingTorment extends Attack {
+public class Whirling_torment extends Attack {
 	
 	// constructor
-	public WhirlingTorment(Game game) {
+	public Whirling_torment(Game game) {
 		super(game, new JButton("Whirling Torment"));
 		maxWarmup = 5;
 		curWarmup = 5;

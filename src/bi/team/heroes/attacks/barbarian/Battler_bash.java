@@ -5,10 +5,10 @@ import javax.swing.JButton;
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class BattlerBash extends Attack {
+public class Battler_bash extends Attack {
 	
 	// constructor
-	public BattlerBash(Game game) {
+	public Battler_bash(Game game) {
 		super(game, new JButton("Battler Bash"));
 		maxWarmup = 3;
 		curWarmup = 3;

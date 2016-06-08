@@ -34,6 +34,7 @@ public abstract class Attack {
 		
 	}
 	
+	// abstract required methods
 	public abstract void startAttack();
 	public abstract void activeEffects();
 	public abstract void turnEffects();

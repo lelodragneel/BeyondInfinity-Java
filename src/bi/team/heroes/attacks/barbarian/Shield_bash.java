@@ -5,13 +5,13 @@ import javax.swing.JButton;
 import bi.team.Game;
 import bi.team.heroes.attacks.Attack;
 
-public class RageIncite extends Attack {
+public class Shield_bash extends Attack {
 	
 	// constructor
-	public RageIncite(Game game) {
-		super(game, new JButton("Rage Incite"));
-		maxWarmup = 2;
-		curWarmup = 2;
+	public Shield_bash(Game game) {
+		super(game, new JButton("Shield Bash"));
+		maxWarmup = 4;
+		curWarmup = 4;
 	}
 
 	@Override
