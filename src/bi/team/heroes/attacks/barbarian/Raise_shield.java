@@ -2,14 +2,13 @@ package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
-import bi.team.Game;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.Barbarian;
 
 public class Raise_shield extends Attack {
 	
 	// constructor
-	public Raise_shield(Game game) {
-		super(game, new JButton("Raise Shield"));
+	public Raise_shield(Barbarian hero) {
+		super(hero, new JButton("Raise Shield"));
 		maxWarmup = 4;
 		curWarmup = 4;
 	}

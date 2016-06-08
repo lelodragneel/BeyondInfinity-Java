@@ -2,14 +2,13 @@ package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
-import bi.team.Game;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.Barbarian;
 
 public class Incapacitate extends Attack {
 	
 	// constructor
-	public Incapacitate(Game game) {
-		super(game, new JButton("Incapacitate"));
+	public Incapacitate(Barbarian hero) {
+		super(hero, new JButton("Incapacitate"));
 		maxWarmup = 3;
 		curWarmup = 3;
 	}

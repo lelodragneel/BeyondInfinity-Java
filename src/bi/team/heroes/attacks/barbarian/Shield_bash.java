@@ -2,14 +2,13 @@ package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
-import bi.team.Game;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.Barbarian;
 
 public class Shield_bash extends Attack {
 	
 	// constructor
-	public Shield_bash(Game game) {
-		super(game, new JButton("Shield Bash"));
+	public Shield_bash(Barbarian hero) {
+		super(hero, new JButton("Shield Bash"));
 		maxWarmup = 4;
 		curWarmup = 4;
 	}

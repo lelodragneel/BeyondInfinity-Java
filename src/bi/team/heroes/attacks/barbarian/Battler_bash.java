@@ -2,14 +2,13 @@ package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
-import bi.team.Game;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.Barbarian;
 
 public class Battler_bash extends Attack {
 	
 	// constructor
-	public Battler_bash(Game game) {
-		super(game, new JButton("Battler Bash"));
+	public Battler_bash(Barbarian hero) {
+		super(hero, new JButton("Battler Bash"));
 		maxWarmup = 3;
 		curWarmup = 3;
 	}

@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
@@ -18,7 +19,7 @@ import javax.swing.border.TitledBorder;
 import bi.team.Game;
 import bi.team.Load;
 import bi.team.enemies.Enemy;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.heroes.attacks.barbarian.Battler_bash;
 import bi.team.heroes.attacks.barbarian.Charge;
 import bi.team.heroes.attacks.barbarian.Heavy_blow;
@@ -60,13 +61,14 @@ public class Barbarian extends Hero implements ActionListener {
 	private JLabel lblRage_7;
 	private JLabel lblRage_4;
 	private JLabel lblRage_8;
+	private JProgressBar prog;
 
 	// constructor
 	public Barbarian(Game game) {
-
 		super(game);
 
 		// instantiate variables
+		this.prog = game.getProgBar_playerVitality();
 		load = new Load(game);
 		AttacksArrayList = new ArrayList<Attack>();
 		maxVitality = 100;
@@ -78,24 +80,24 @@ public class Barbarian extends Hero implements ActionListener {
 		riposteChance = 10;
 
 		// configure player GUI
-		game.getProgBar_playerVitality().setMinimum(0);
-		game.getProgBar_playerVitality().setMaximum((int) maxVitality);
-		game.getProgBar_playerVitality().setValue((int) curVitality);
-		game.getProgBar_playerVitality().setString(game.getProgBar_playerVitality().getValue() + " / " + game.getProgBar_playerVitality().getMaximum());
+		prog.setMinimum(0);
+		prog.setMaximum((int) maxVitality);
+		prog.setValue((int) curVitality);
+		prog.setString(prog.getValue() + " / " + prog.getMaximum());
 		
 		// create this class's attacks
-		AttacksArrayList.add(new Strike(game));
-		AttacksArrayList.add(new Heavy_blow(game));
-		AttacksArrayList.add(new Rage_incite(game));
-		AttacksArrayList.add(new Vengeance(game));
-		AttacksArrayList.add(new Battler_bash(game));
-		AttacksArrayList.add(new True_assault(game));
-		AttacksArrayList.add(new Strike(game));
-		AttacksArrayList.add(new Charge(game));
-		AttacksArrayList.add(new Raise_shield(game));
-		AttacksArrayList.add(new Incapacitate(game));
-		AttacksArrayList.add(new Shield_bash(game));
-		AttacksArrayList.add(new Whirling_torment(game));
+		AttacksArrayList.add(new Strike(this));
+		AttacksArrayList.add(new Heavy_blow(this));
+		AttacksArrayList.add(new Rage_incite(this));
+		AttacksArrayList.add(new Vengeance(this));
+		AttacksArrayList.add(new Battler_bash(this));
+		AttacksArrayList.add(new True_assault(this));
+		AttacksArrayList.add(new Strike(this));
+		AttacksArrayList.add(new Charge(this));
+		AttacksArrayList.add(new Raise_shield(this));
+		AttacksArrayList.add(new Incapacitate(this));
+		AttacksArrayList.add(new Shield_bash(this));
+		AttacksArrayList.add(new Whirling_torment(this));
 
 		/*
 		 * create and initialize attack buttons
@@ -405,6 +407,14 @@ public class Barbarian extends Hero implements ActionListener {
 		curRage = b;
 		
 		// TODO remove curses
+		
+	}
+	
+	// change health bar value
+	public void takeDamage(double damage) {
+		curVitality -= damage;
+		prog.setValue((int)( curVitality - damage));
+		prog.setString(prog.getValue() + " / " + prog.getMaximum());
 		
 	}
 	

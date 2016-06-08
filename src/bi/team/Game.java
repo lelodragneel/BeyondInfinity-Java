@@ -25,7 +25,7 @@ import bi.team.heroes.Elementalist;
 import bi.team.heroes.Hero;
 import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
 
 @SuppressWarnings("serial")
@@ -60,7 +60,6 @@ public class Game extends JFrame implements ActionListener {
 	// create the frame
 	public Game(String name, String chosenHero, int giftNum) {
 
-		// TODO initialize image icon
 		// TODO initialize gift parameter
 
 		// instantiate objects

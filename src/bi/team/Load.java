@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.attacks.barbarian.Attack;
 
 public class Load implements ActionListener {
 

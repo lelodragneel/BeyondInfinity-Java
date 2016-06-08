@@ -1,4 +1,4 @@
-package bi.team.heroes.attacks;
+package bi.team.heroes.attacks.barbarian;
 
 import java.awt.Color;
 import java.awt.Insets;
@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import bi.team.Game;
 import bi.team.Load;
 import bi.team.MyGraphics;
+import bi.team.heroes.Barbarian;
 
 public abstract class Attack {
 
@@ -16,15 +17,18 @@ public abstract class Attack {
 	 */
 	protected JButton button;
 	protected String name;
+	protected double damage;
 	protected boolean isAvailable = true;
 	protected double maxWarmup;
 	protected double curWarmup;
 	protected Game game;
+	protected Barbarian hero;
 	protected Load load;
 
 	// constructor
-	public Attack(Game game, JButton button) {
+	public Attack(Barbarian hero, JButton button) {
 		load = new Load(game);
+		this.hero = hero;
 		this.button = button;
 		name = button.getText();
 		button.setBackground(Color.WHITE);

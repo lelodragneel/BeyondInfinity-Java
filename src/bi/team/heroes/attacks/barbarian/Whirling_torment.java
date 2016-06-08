@@ -2,14 +2,13 @@ package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
-import bi.team.Game;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.Barbarian;
 
 public class Whirling_torment extends Attack {
 	
 	// constructor
-	public Whirling_torment(Game game) {
-		super(game, new JButton("Whirling Torment"));
+	public Whirling_torment(Barbarian hero) {
+		super(hero, new JButton("Whirling Torment"));
 		maxWarmup = 5;
 		curWarmup = 5;
 	}

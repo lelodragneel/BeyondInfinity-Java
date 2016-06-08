@@ -2,14 +2,13 @@ package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
-import bi.team.Game;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.Barbarian;
 
 public class True_assault extends Attack {
 	
 	// constructor
-	public True_assault(Game game) {
-		super(game, new JButton("True Assault"));
+	public True_assault(Barbarian hero) {
+		super(hero, new JButton("True Assault"));
 		maxWarmup = 5;
 		curWarmup = 5;
 	}

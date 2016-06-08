@@ -6,7 +6,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.attacks.barbarian.Attack;
 
 @SuppressWarnings("serial")
 public class MyGraphics extends JPanel {

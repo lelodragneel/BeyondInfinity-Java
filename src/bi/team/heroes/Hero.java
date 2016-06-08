@@ -10,7 +10,7 @@ import javax.swing.SwingConstants;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.attacks.barbarian.Attack;
 
 public abstract class Hero {
 
@@ -68,4 +68,5 @@ public abstract class Hero {
 	
 	// prepare before a fight
 	public abstract void prepareFight(Enemy enemy);
+	
 }

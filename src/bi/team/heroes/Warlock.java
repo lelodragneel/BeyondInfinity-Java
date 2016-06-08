@@ -3,7 +3,7 @@ package bi.team.heroes;
 import java.util.ArrayList;
 
 import bi.team.Game;
-import bi.team.heroes.attacks.Attack;
+import bi.team.heroes.attacks.barbarian.Attack;
 
 
 public class Warlock extends Hero {
