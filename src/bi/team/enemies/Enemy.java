@@ -27,6 +27,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected double maxEnergy;
 	protected double energyRecoveryRate;
 	protected boolean alive;
+	private Enemy enemySelected;
 	private Map map;
 
 	// constructor
@@ -58,11 +59,14 @@ public abstract class Enemy extends JButton implements MouseListener {
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		map.showEnemyInfo(this);
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		System.out.println(name);
+		enemySelected = this;
+		System.out.println(enemySelected.getName());
+		map.getLblEnemyIcon().setIcon(enemyImage_small);
+		map.getLblEnemyName().setText(name);
+		map.getBtnChallenge().setEnabled(true);
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {

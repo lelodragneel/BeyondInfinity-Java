@@ -6,6 +6,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -17,9 +19,10 @@ import javax.swing.border.LineBorder;
 import bi.team.enemies.*;
 import bi.team.enemies.meadowlands.*;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class Map extends JLayeredPane {
+public class Map extends JLayeredPane implements ActionListener {
 
 	/*
 	 * initialize variables
@@ -29,6 +32,7 @@ public class Map extends JLayeredPane {
 	private JPanel panel_enemyInfo;
 	private JLabel lblEnemyName;
 	private JLabel lblEnemyIcon;
+	private JButton btnChallenge;
 	
 	// constructor
 	public Map(int parent_width, int parent_height) {
@@ -86,8 +90,24 @@ public class Map extends JLayeredPane {
 		lblEnemyIcon.setBounds(10, 10, 150, 150);
 		panel_enemyInfo.add(lblEnemyIcon);
 		
+		// create the challenge button
+		btnChallenge = new JButton("Challenge");
+		btnChallenge.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		btnChallenge.setBounds(39, 260, 90, 90);
+		btnChallenge.setFocusable(false);
+		btnChallenge.setBackground(null);
+		btnChallenge.setEnabled(false);
+		panel_enemyInfo.add(btnChallenge);
+		
 		// create the actual grid
 		createGrid();
+		
+	}
+	
+	// XXX action listener
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	
@@ -136,6 +156,11 @@ public class Map extends JLayeredPane {
 		
 	}
 	
+	// return the btnChallenge
+	public JButton getBtnChallenge() {
+		return btnChallenge;
+	}
+
 	// return the lblEnemyName
 	public JLabel getLblEnemyName() {
 		return lblEnemyName;
@@ -150,4 +175,5 @@ public class Map extends JLayeredPane {
 	public ArrayList<Enemy> getMapEntries() {
 		return enemyEntries;
 	}
+
 }

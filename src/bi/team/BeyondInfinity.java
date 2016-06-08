@@ -131,7 +131,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create elementalist button
 		btnElementalist = new JToggleButton("");
 		btnElementalist.setBorder(null);
-		btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_male.png")));
+		btnElementalist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/elementalist_male.png")));
 		btnElementalist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnElementalist.setBackground(null);
 		btnElementalist.setBounds(154, 192, 90, 120);
@@ -142,7 +142,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create chemist button
 		btnChemist = new JToggleButton("");
 		btnChemist.setBorder(null);
-		btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_male.png")));
+		btnChemist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/chemist_male.png")));
 		btnChemist.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnChemist.setBackground(null);
 		btnChemist.setBounds(276, 192, 90, 120);
@@ -153,7 +153,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create swordsman button
 		btnSwordsman = new JToggleButton("");
 		btnSwordsman.setBorder(null);
-		btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_male.png")));
+		btnSwordsman.setIcon(new ImageIcon(getClass().getResource("/images/heroes/swordsman_male.png")));
 		btnSwordsman.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSwordsman.setBackground(null);
 		btnSwordsman.setBounds(398, 192, 90, 120);
@@ -164,7 +164,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create warlock button
 		btnWarlock = new JToggleButton("");
 		btnWarlock.setBorder(null);
-		btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_male.png")));
+		btnWarlock.setIcon(new ImageIcon(getClass().getResource("/images/heroes/warlock_male.png")));
 		btnWarlock.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnWarlock.setFocusable(false);
 		btnWarlock.setBackground((Color) null);
@@ -303,7 +303,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		btnSex_male = new JButton("");
 		btnSex_male.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnSex_male.setSelected(true);
-		btnSex_male.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/male.png")));
+		btnSex_male.setIcon(new ImageIcon(getClass().getResource("/images/heroes/male.png")));
 		btnSex_male.setToolTipText("Male");
 		btnSex_male.setBounds(240, 98, 26, 26);
 		btnSex_male.setFocusable(false);
@@ -314,7 +314,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		// create button for female
 		btnSex_female = new JButton("");
 		btnSex_female.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnSex_female.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/female.png")));
+		btnSex_female.setIcon(new ImageIcon(getClass().getResource("/images/heroes/female.png")));
 		btnSex_female.setToolTipText("Female");
 		btnSex_female.setBounds(277, 98, 26, 26);
 		btnSex_female.setFocusable(false);
@@ -499,45 +499,45 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			
 			// change barbarian
 			lblBarbarian.setText("<html><b>Alani</b> the Barbarian</html>");
-			btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_female.png")));
+			btnBarbarian.setIcon(new ImageIcon(getClass().getResource("/images/heroes/barbarian_female.png")));
 			btnBarbarian.setToolTipText("Alani the Foolhardy");
 			// change elementalist
 			lblElementalist.setText("<html><b>Lora</b> the Elementalist</html>");
-			btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_female.png")));
+			btnElementalist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/elementalist_female.png")));
 			btnElementalist.setToolTipText("Lora the Valiant");
 			// change swordsman
 			lblSwordsman.setText("<html><b>Cira</b> the Swordswomen</html>");
-			btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_female.png")));
+			btnSwordsman.setIcon(new ImageIcon(getClass().getResource("/images/heroes/swordsman_female.png")));
 			btnSwordsman.setToolTipText("Cira the Subjugator");
 			// change warlock
 			lblWarlock.setText("<html><b>Gina</b> the Warlock</html>");
-			btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_female.png")));
+			btnWarlock.setIcon(new ImageIcon(getClass().getResource("/images/heroes/warlock_female.png")));
 			btnWarlock.setToolTipText("Gina the Darkspring");
 			// change chemist
 			lblChemist.setText("<html><b>Mira</b> the Chemist</html>");
-			btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_female.png")));
+			btnChemist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/chemist_female.png")));
 			btnChemist.setToolTipText("Mira the Despicable");
 			
 		} else if (selected == btnSex_male) {	
 			// change barbarian
 			lblBarbarian.setText("<html><b>Brynjar</b> the Barbarian</html>");
-			btnBarbarian.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/barbarian_male.png")));
+			btnBarbarian.setIcon(new ImageIcon(getClass().getResource("/images/heroes/barbarian_male.png")));
 			btnBarbarian.setToolTipText("Brynjar the Foolhardy");
 			// change elementalist
 			lblElementalist.setText("<html><b>Seraph</b> the Elementalist</html>");
-			btnElementalist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/elementalist_male.png")));
+			btnElementalist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/elementalist_male.png")));
 			btnElementalist.setToolTipText("Seraph the Valiant");
 			// change swordsman
 			lblSwordsman.setText("<html><b>Einar</b> the Swordsman</html>");
-			btnSwordsman.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/swordsman_male.png")));
+			btnSwordsman.setIcon(new ImageIcon(getClass().getResource("/images/heroes/swordsman_male.png")));
 			btnSwordsman.setToolTipText("Einar the Subjugator");
 			// change warlock
 			lblWarlock.setText("<html><b>Zardeth</b> the Warlock</html>");
-			btnWarlock.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/warlock_male.png")));
+			btnWarlock.setIcon(new ImageIcon(getClass().getResource("/images/heroes/warlock_male.png")));
 			btnWarlock.setToolTipText("Zardeth the Darkspring");
 			// change chemist
 			lblChemist.setText("<html><b>Merlin</b> the Chemist</html>");
-			btnChemist.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/heroes/chemist_male.png")));
+			btnChemist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/chemist_male.png")));
 			btnChemist.setToolTipText("Merlin the Despicable");
 		}
 		

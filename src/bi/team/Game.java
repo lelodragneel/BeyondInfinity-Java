@@ -210,7 +210,7 @@ public class Game extends JFrame implements ActionListener {
 		areaWallpaper = new JLabel();
 		areaWallpaper.setBounds(0, 0, 1044, 333);
 		panel_areaField.add(areaWallpaper);
-		areaWallpaper.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/areas/meadowlands.jpg")));
+		areaWallpaper.setIcon(new ImageIcon(getClass().getResource("/images/areas/meadowlands.jpg")));
 
 		// create the enemy's picture
 		JLabel lbl_enemyImage = new JLabel("");
