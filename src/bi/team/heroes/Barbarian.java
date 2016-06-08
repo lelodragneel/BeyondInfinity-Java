@@ -51,7 +51,6 @@ public class Barbarian extends Hero implements ActionListener {
 	private JLabel lblSharpness;
 	private JLabel lblToughness;
 	private JLabel lblRiposteChance;
-	private JLabel lblSharpnessDesc;
 	private JLabel lblRage_1;
 	private JLabel lblRage_2;
 	private JLabel lblRage_3;
@@ -175,7 +174,7 @@ public class Barbarian extends Hero implements ActionListener {
 		lblRageIcon.setIcon(new ImageIcon(Game.class.getResource("/images/rage.png")));
 		panel_rage.add(lblRageIcon);
 
-		// create damage upgrade button
+		// create rage upgrade button
 		btnUpgradeStat_2 = new JButton("+");
 		btnUpgradeStat_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeStat_2.setFocusable(false);
@@ -184,12 +183,12 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_2.setVisible(false);
 		panel_rage.add(btnUpgradeStat_2);
 		
-		// create the label that displays damage value
+		// create the label that displays rage value
 		lblRage = new JLabel(curRage + "/" + maxRage);
 		lblRage.setBounds(44, 16, 116, 24);
 		panel_rage.add(lblRage);
 		
-		// create damage description label
+		// create rage description label
 		JLabel lblRageDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
 		lblRageDesc.setVerticalAlignment(SwingConstants.TOP);
 		lblRageDesc.setForeground(Color.DARK_GRAY);
@@ -198,12 +197,12 @@ public class Barbarian extends Hero implements ActionListener {
 		panel_rage.add(lblRageDesc);
 
 		/* ------------- sharpness stat panel ------------- */
-		// create panel (of panel_stats) for protection
+		// create panel (of panel_stats) for sharpness
 		JPanel panel_sharpness = new JPanel();
 		panel_sharpness.setBorder(new TitledBorder(null, "Sharpness", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_sharpness.setLayout(null);
 
-		// create protection icon
+		// create sharpness icon
 		JLabel lblSharpnessIcon = new JLabel("");
 		lblSharpnessIcon.setBounds(10, 16, 24, 24);
 		lblSharpnessIcon.setIcon(new ImageIcon(getClass().getResource("/images/sharpness.png")));
@@ -218,13 +217,13 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_3.setVisible(false);
 		panel_sharpness.add(btnUpgradeStat_3);
 		
-		// create the label that displays protection value
+		// create the label that displays sharpness value
 		lblSharpness = new JLabel(sharpness + "");
 		lblSharpness.setBounds(44, 16, 116, 24);
 		panel_sharpness.add(lblSharpness);
 		
-		// create protection description label
-		lblSharpnessDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
+		// create sharpness description label
+		JLabel lblSharpnessDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
 		lblSharpnessDesc.setVerticalAlignment(SwingConstants.TOP);
 		lblSharpnessDesc.setForeground(Color.DARK_GRAY);
 		lblSharpnessDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 11));
@@ -238,13 +237,13 @@ public class Barbarian extends Hero implements ActionListener {
 				new TitledBorder(null, "Toughness", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_toughness.setLayout(null);
 
-		// create critical damage icon
+		// create toughness icon
 		JLabel lblToughnessIcon = new JLabel("");
 		lblToughnessIcon.setBounds(10, 16, 24, 24);
 		lblToughnessIcon.setIcon(new ImageIcon(getClass().getResource("/images/toughness.png")));
 		panel_toughness.add(lblToughnessIcon);
 
-		// create critical damage upgrade button
+		// create toughness upgrade button
 		btnUpgradeStat_4 = new JButton("+");
 		btnUpgradeStat_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeStat_4.setFocusable(false);
@@ -253,12 +252,12 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_4.setVisible(false);
 		panel_toughness.add(btnUpgradeStat_4);
 		
-		// create the label that displays critical damage value
+		// create the label that displays toughness value
 		lblToughness = new JLabel(toughness + "");
 		lblToughness.setBounds(44, 16, 116, 24);
 		panel_toughness.add(lblToughness);
 		
-		// create critical damage description label
+		// create toughness description label
 		JLabel lblToughnessDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
 		lblToughnessDesc.setVerticalAlignment(SwingConstants.TOP);
 		lblToughnessDesc.setForeground(Color.DARK_GRAY);
@@ -267,19 +266,19 @@ public class Barbarian extends Hero implements ActionListener {
 		panel_toughness.add(lblToughnessDesc);
 
 		/* ------------- riposte chance stat panel ------------- */
-		// create panel (of panel_stats) for critical chance
+		// create panel (of panel_stats) for riposte chance
 		JPanel panel_riposteChance = new JPanel();
 		panel_riposteChance.setBorder(
 				new TitledBorder(null, "Riposte Chance", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_riposteChance.setLayout(null);
 
-		// create critical chance icon
+		// create riposte chance icon
 		JLabel lblRiposteChanceIcon = new JLabel("");
 		lblRiposteChanceIcon.setBounds(10, 16, 24, 24);
 		lblRiposteChanceIcon.setIcon(new ImageIcon(getClass().getResource("/images/ripostechance.png")));
 		panel_riposteChance.add(lblRiposteChanceIcon);
 
-		// create critical chance upgrade button
+		// create riposte chance upgrade button
 		btnUpgradeStat_5 = new JButton("+");
 		btnUpgradeStat_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		btnUpgradeStat_5.setFocusable(false);
@@ -288,12 +287,12 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_5.setVisible(false);
 		panel_riposteChance.add(btnUpgradeStat_5);
 		
-		// create the label that displays critical chance value
+		// create the label that displays riposte chance value
 		lblRiposteChance = new JLabel(riposteChance + "%");
 		lblRiposteChance.setBounds(44, 16, 116, 24);
 		panel_riposteChance.add(lblRiposteChance);
 		
-		// create critical chance description label
+		// create riposte chance description label
 		JLabel lblRiposteChanceDesc = new JLabel("<html>FILLER DESCRIPTION.</html>");
 		lblRiposteChanceDesc.setVerticalAlignment(SwingConstants.TOP);
 		lblRiposteChanceDesc.setForeground(Color.DARK_GRAY);
@@ -352,7 +351,7 @@ public class Barbarian extends Hero implements ActionListener {
 		
 		/* --------------------------------------------------------- */
 		
-		// display the 5 upgradable stats
+		// add the 5 upgradable stats to game's frame
 		game.getPanel_stats().add(panel_vitality);
 		game.getPanel_stats().add(panel_rage);
 		game.getPanel_stats().add(panel_sharpness);
