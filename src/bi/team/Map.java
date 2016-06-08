@@ -1,4 +1,4 @@
-package bi.team.map;
+package bi.team;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -40,9 +40,13 @@ public class Map extends JLayeredPane implements ActionListener {
 	private JLabel lblEnemyIcon;
 	private JButton btnChallenge;
 	private Enemy enemySelected;
+	private Game game;
 	
 	// constructor
-	public Map(int parent_width, int parent_height) {
+	public Map(Game game) {
+		
+		// instantiate variables
+		this.game = game;
 		
 		/*
 		 * Create objects of all enemies
@@ -64,7 +68,7 @@ public class Map extends JLayeredPane implements ActionListener {
 		this.setOpaque(true);
 		int width = 715;
 		int height = 365;
-		this.setBounds(new Rectangle((Math.round(parent_width / 2) - (width / 2)), Math.round((parent_height / 2) - (height / 2) - 40),
+		this.setBounds(new Rectangle((Math.round(game.getWidth() / 2) - (width / 2)), Math.round((game.getHeight() / 2) - (height / 2) - 40),
 				width, height));
 		this.setBorder(new LineBorder(new Color(0, 0, 0)));
 		this.setLayout(null);
@@ -116,7 +120,7 @@ public class Map extends JLayeredPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnChallenge) {
-			System.out.println(enemySelected.getName() + " is selected!");
+			game.getHero().prepareFight(enemySelected);
 		}
 		
 	}

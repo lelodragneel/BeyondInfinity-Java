@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import bi.team.Game;
+import bi.team.enemies.Enemy;
 import bi.team.heroes.attacks.Attack;
 
 public abstract class Hero {
@@ -64,4 +65,7 @@ public abstract class Hero {
 
 	// set all upgrade buttons to inactive
 	public abstract void disableButtons();
+	
+	// prepare before a fight
+	public abstract void prepareFight(Enemy enemy);
 }

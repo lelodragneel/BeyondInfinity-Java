@@ -17,6 +17,7 @@ import javax.swing.border.TitledBorder;
 
 import bi.team.Game;
 import bi.team.Load;
+import bi.team.enemies.Enemy;
 import bi.team.heroes.attacks.Attack;
 import bi.team.heroes.attacks.barbarian.Battler_bash;
 import bi.team.heroes.attacks.barbarian.Charge;
@@ -41,8 +42,8 @@ public class Barbarian extends Hero implements ActionListener {
 	private JButton btnDefensive;
 	private double maxVitality;
 	private double curVitality;
-	private double maxRage;
-	private double curRage;
+	private int maxRage;
+	private int curRage;
 	private double sharpness;
 	private double toughness;
 	private double riposteChance;
@@ -171,7 +172,7 @@ public class Barbarian extends Hero implements ActionListener {
 		// create rage icon
 		JLabel lblRageIcon = new JLabel("");
 		lblRageIcon.setBounds(10, 16, 24, 24);
-		lblRageIcon.setIcon(new ImageIcon(Game.class.getResource("/images/rage.png")));
+		lblRageIcon.setIcon(new ImageIcon(getClass().getResource("/images/rage.png")));
 		panel_rage.add(lblRageIcon);
 
 		// create rage upgrade button
@@ -310,42 +311,42 @@ public class Barbarian extends Hero implements ActionListener {
 		game.getPanel_player().add(lblRage);
 		
 		lblRage_1 = new JLabel("");
-		lblRage_1.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_1.setIcon(new ImageIcon(getClass().getResource("/images/rage_on.png")));
 		lblRage_1.setBounds(42, 38, 20, 20);
 		game.getPanel_player().add(lblRage_1);
 		
 		lblRage_2 = new JLabel("");
-		lblRage_2.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_2.setIcon(new ImageIcon(getClass().getResource("/images/rage_on.png")));
 		lblRage_2.setBounds(64, 38, 20, 20);
 		game.getPanel_player().add(lblRage_2);
 		
 		lblRage_3 = new JLabel("");
-		lblRage_3.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
+		lblRage_3.setIcon(new ImageIcon(getClass().getResource("/images/rage_on.png")));
 		lblRage_3.setBounds(86, 38, 20, 20);
 		game.getPanel_player().add(lblRage_3);
 		
+		lblRage_4 = new JLabel("");
+		lblRage_4.setIcon(new ImageIcon(getClass().getResource("/images/rage_on.png")));
+		lblRage_4.setBounds(108, 38, 20, 20);
+		game.getPanel_player().add(lblRage_4);
+		
 		lblRage_5 = new JLabel("");
-		lblRage_5.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_5.setIcon(new ImageIcon(getClass().getResource("/images/rage_off.png")));
 		lblRage_5.setBounds(130, 38, 20, 20);
 		game.getPanel_player().add(lblRage_5);
 		
 		lblRage_6 = new JLabel("");
-		lblRage_6.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_6.setIcon(new ImageIcon(getClass().getResource("/images/rage_off.png")));
 		lblRage_6.setBounds(152, 38, 20, 20);
 		game.getPanel_player().add(lblRage_6);
 		
 		lblRage_7 = new JLabel("");
-		lblRage_7.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_7.setIcon(new ImageIcon(getClass().getResource("/images/rage_off.png")));
 		lblRage_7.setBounds(174, 38, 20, 20);
 		game.getPanel_player().add(lblRage_7);
 		
-		lblRage_4 = new JLabel("");
-		lblRage_4.setIcon(new ImageIcon(Game.class.getResource("/images/rage_on.png")));
-		lblRage_4.setBounds(108, 38, 20, 20);
-		game.getPanel_player().add(lblRage_4);
-		
 		lblRage_8 = new JLabel("");
-		lblRage_8.setIcon(new ImageIcon(Game.class.getResource("/images/rage_off.png")));
+		lblRage_8.setIcon(new ImageIcon(getClass().getResource("/images/rage_off.png")));
 		lblRage_8.setBounds(196, 38, 20, 20);
 		game.getPanel_player().add(lblRage_8);
 		
@@ -390,6 +391,23 @@ public class Barbarian extends Hero implements ActionListener {
 
 	}
 
+	// reset all stats, and prepare for fight
+	public void prepareFight(Enemy enemy) {
+		
+		System.out.println("Now facing => " + enemy.getName());
+		
+		// reset health
+		double a = maxVitality;
+		curVitality = a;
+		
+		// reset rage
+		int b = maxRage;
+		curRage = b;
+		
+		// TODO remove curses
+		
+	}
+	
 	// show offensive attacks and remove defensive attacks
 	public void showOffensiveAttacks() {
 
@@ -455,22 +473,22 @@ public class Barbarian extends Hero implements ActionListener {
 	}
 	
 	// return the curRage
-	public double getCurRage() {
+	public int getCurRage() {
 		return curRage;
 	}
 
 	// set the curRage
-	public void setCurRage(double curRage) {
+	public void setCurRage(int curRage) {
 		this.curRage = curRage;
 	}
 
 	// return the maxRage
-	public double getMaxRage() {
+	public int getMaxRage() {
 		return maxRage;
 	}
 
 	// set the maxRage
-	public void setMaxRage(double maxRage) {
+	public void setMaxRage(int maxRage) {
 		this.maxRage = maxRage;
 	}
 
@@ -492,16 +510,6 @@ public class Barbarian extends Hero implements ActionListener {
 	// set the maxVitality
 	public void setMaxVitality(double maxVitality) {
 		this.maxVitality = maxVitality;
-	}
-
-	// return the rage
-	public double getRage() {
-		return curRage;
-	}
-
-	// set the rage
-	public void setRage(double rage) {
-		this.curRage = rage;
 	}
 
 	// return the sharpness

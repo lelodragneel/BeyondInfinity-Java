@@ -27,7 +27,6 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.Attack;
 import bi.team.inventory.InventoryFrame;
-import bi.team.map.Map;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -82,7 +81,7 @@ public class Game extends JFrame implements ActionListener {
 		/*
 		 * create the map object/frame
 		 */
-		map = new Map(getWidth(), getHeight());
+		map = new Map(this);
 		getContentPane().add(map);
 
 		/*

@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import bi.team.map.Map;
+import bi.team.Map;
 
 @SuppressWarnings("serial")
 public abstract class Enemy extends JButton implements MouseListener {

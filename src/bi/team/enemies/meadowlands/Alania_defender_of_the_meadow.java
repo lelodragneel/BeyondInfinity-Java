@@ -5,8 +5,8 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.border.LineBorder;
 
+import bi.team.Map;
 import bi.team.enemies.Enemy;
-import bi.team.map.Map;
 
 @SuppressWarnings("serial")
 public class Alania_defender_of_the_meadow extends Enemy {
