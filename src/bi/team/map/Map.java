@@ -11,15 +11,21 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import bi.team.enemies.*;
-import bi.team.enemies.meadowlands.*;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
+import bi.team.enemies.Enemy;
+import bi.team.enemies.meadowlands.Alania_defender_of_the_meadow;
+import bi.team.enemies.meadowlands.Fuehirch;
+import bi.team.enemies.meadowlands.Hawk_stag;
+import bi.team.enemies.meadowlands.Mantisray;
+import bi.team.enemies.meadowlands.Oboko_of_the_sonne;
+import bi.team.enemies.meadowlands.Shar_of_the_nacht;
+import bi.team.enemies.meadowlands.Taobu;
 
 @SuppressWarnings("serial")
 public class Map extends JLayeredPane implements ActionListener {
@@ -33,6 +39,7 @@ public class Map extends JLayeredPane implements ActionListener {
 	private JLabel lblEnemyName;
 	private JLabel lblEnemyIcon;
 	private JButton btnChallenge;
+	private Enemy enemySelected;
 	
 	// constructor
 	public Map(int parent_width, int parent_height) {
@@ -96,6 +103,7 @@ public class Map extends JLayeredPane implements ActionListener {
 		btnChallenge.setBounds(39, 260, 90, 90);
 		btnChallenge.setFocusable(false);
 		btnChallenge.setBackground(null);
+		btnChallenge.addActionListener(this);
 		btnChallenge.setEnabled(false);
 		panel_enemyInfo.add(btnChallenge);
 		
@@ -104,10 +112,12 @@ public class Map extends JLayeredPane implements ActionListener {
 		
 	}
 	
-	// XXX action listener
+	// action listener
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if (e.getSource() == btnChallenge) {
+			System.out.println(enemySelected.getName() + " is selected!");
+		}
 		
 	}
 	
@@ -155,7 +165,12 @@ public class Map extends JLayeredPane implements ActionListener {
 //		panel_map.add(items.next(), gbc);
 		
 	}
-	
+
+	// set the enemySelected
+	public void setEnemySelected(Enemy enemySelected) {
+		this.enemySelected = enemySelected;
+	}
+
 	// return the btnChallenge
 	public JButton getBtnChallenge() {
 		return btnChallenge;

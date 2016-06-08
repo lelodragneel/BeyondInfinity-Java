@@ -17,7 +17,7 @@ public class Oboko_of_the_sonne extends Enemy {
 		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
 		// configure variables
-		name = "<html>Oboko of the Sonne</html>";
+		name = "Oboko of the Sonne";
 		enemyNumber = 4;
 		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/oboko-of-the-sonne_small.png"));
 		

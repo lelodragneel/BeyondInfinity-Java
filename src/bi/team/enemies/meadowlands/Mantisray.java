@@ -17,7 +17,7 @@ public class Mantisray extends Enemy {
 		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
 		// configure variables
-		name = "<html>Mantisray</html>";
+		name = "Mantisray";
 		enemyNumber = 6;
 		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/mantisray_small.png"));
 		

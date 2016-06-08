@@ -323,6 +323,7 @@ public class Game extends JFrame implements ActionListener {
 		if (isMapShown) {
 			map.getLblEnemyIcon().setIcon(null);
 			map.getLblEnemyName().setText("");
+			map.getBtnChallenge().setEnabled(false);
 			map.setVisible(true);
 			panel_frameOpacity.setVisible(true);
 			disableAttackButtons();

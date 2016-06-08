@@ -17,7 +17,7 @@ public class Fuehirch extends Enemy {
 		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
 		// configure variables
-		name = "<html>Fuehirch</html>";
+		name = "Fuehirch";
 		enemyNumber = 1;
 		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/fuehirch_small.png"));
 		

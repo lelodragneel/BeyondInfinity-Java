@@ -110,8 +110,8 @@ public class Barbarian extends Hero implements ActionListener {
 		panel_stances = new JPanel();
 		panel_stances.setBounds(0, 0, 60, 30);
 		panel_stances.setBackground(new Color(135, 211, 124));
-		panel_actionsTop.add(panel_stances);
 		panel_stances.setLayout(null);
+		panel_actionsTop.add(panel_stances);
 		
 		// create offensive stance
 		btnOffensive = new JButton("");

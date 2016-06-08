@@ -11,7 +11,9 @@ import bi.team.MyGraphics;
 
 public abstract class Attack {
 
-	// initialize variables
+	/*
+	 * initialize variables
+	 */
 	protected JButton button;
 	protected String name;
 	protected boolean isAvailable = true;

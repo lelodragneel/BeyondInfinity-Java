@@ -17,7 +17,7 @@ public class Taobu extends Enemy {
 		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
 		// configure variables
-		name = "<html>Taobu</html>";
+		name = "Taobu";
 		enemyNumber = 3;
 		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/taobu_small.png"));
 		
