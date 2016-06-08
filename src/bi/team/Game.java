@@ -53,6 +53,8 @@ public class Game extends JFrame implements ActionListener {
 	private Map map;
 	private InventoryFrame inventory;
 	private Hero hero;
+	private JPanel panel_areaField;
+	private JLabel areaWallpaper;
 	private JLabel upgradePoints;
 	private JLabel label_1;
 	
@@ -70,10 +72,10 @@ public class Game extends JFrame implements ActionListener {
 		 */
 		this.setResizable(false);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 600, 615);
+		this.setBounds(100, 100, 1070, 700);
 		this.setTitle("[ver. alpha] BeyondInfinity");
 		this.getContentPane().setLayout(null);
-		this.setBounds(0, 0, 1000, 600);
+		this.setBounds(0, 0, 1070, 650);
 		this.setBackground(new Color(236, 240, 241));
 		this.setLocationRelativeTo(null);
 		
@@ -91,7 +93,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 994, 571);
+		panel_frameOpacity.setBounds(0, 0, 1064, 45);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -99,20 +101,21 @@ public class Game extends JFrame implements ActionListener {
 
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
+		panel_player.setBounds(10, 70, 228, 65);
 		panel_player.setBackground(new Color(204, 255, 153));
-		panel_player.setBounds(10, 70, 228, 283);
+		panel_player.setBorder(new LineBorder(Color.BLACK, 1));
 		panel_player.setLayout(null);
 		getContentPane().add(panel_player);
 
 		// create top panel to display vitality (health) bars
 		panel_top = new JPanel();
-		panel_top.setBounds(10, 21, 974, 38);
+		panel_top.setBounds(10, 21, 1044, 38);
 		panel_top.setLayout(null);
 		getContentPane().add(panel_top);
 
 		// create the button that toggles map
 		btnShowMap = new JButton();
-		btnShowMap.setBounds(936, 0, 38, 38);
+		btnShowMap.setBounds(1006, 0, 38, 38);
 		btnShowMap.setFocusable(false);
 		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
 		btnShowMap.addActionListener(this);
@@ -128,28 +131,29 @@ public class Game extends JFrame implements ActionListener {
 
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
-		panel_stats.setBounds(10, 364, 974, 87);
+		panel_stats.setBounds(10, 414, 1044, 87);
 		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
 		getContentPane().add(panel_stats);
 
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(755, 70, 229, 283);
+		panel_enemy.setBounds(826, 70, 228, 65);
+		panel_enemy.setBorder(new LineBorder(Color.BLACK, 1));
 		panel_enemy.setLayout(null);
 		getContentPane().add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 492, 974, 68);
+		panel_actions.setBounds(10, 542, 1044, 68);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		getContentPane().add(panel_actions);
 
 		// create the loading bar
 		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 994, 10);
+		progBar_loading.setBounds(0, 0, 1064, 10);
 		progBar_loading.setBorder(null);
 		progBar_loading.setValue(100);
 		progBar_loading.setForeground(new Color(52, 73, 94));
@@ -193,24 +197,36 @@ public class Game extends JFrame implements ActionListener {
 
 		// create label to display enemy's name
 		JLabel lbl_enemyName = new JLabel(" name");
-		lbl_enemyName.setBounds(11, 50, 189, 20);
+		lbl_enemyName.setBounds(13, 46, 189, 20);
 		panel_enemy.add(lbl_enemyName);
+
+		// create panel displaying background area and player images
+		panel_areaField = new JPanel();
+		panel_areaField.setBounds(10, 70, 1044, 333);
+		panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
+		getContentPane().add(panel_areaField);
+		panel_areaField.setLayout(null);
+		
+		areaWallpaper = new JLabel();
+		areaWallpaper.setBounds(0, 0, 1044, 333);
+		panel_areaField.add(areaWallpaper);
+		areaWallpaper.setIcon(new ImageIcon(BeyondInfinity.class.getResource("/images/areas/meadowlands.jpg")));
 
 		// create the enemy's picture
 		JLabel lbl_enemyImage = new JLabel("");
-		lbl_enemyImage.setBounds(10, 75, 209, 197);
-		panel_enemy.add(lbl_enemyImage);
+		lbl_enemyImage.setBounds(825, 75, 209, 230);
+		panel_areaField.add(lbl_enemyImage);
 
 		// create label to display player's name
 		JLabel lbl_playerName = new JLabel(name);
-		lbl_playerName.setBounds(73, 75, 75, 20);
-		panel_player.add(lbl_playerName);
+		lbl_playerName.setBounds(0, 76, 140, 20);
+		panel_areaField.add(lbl_playerName);
 
 		// create the player's picture
 		JLabel lbl_playerImage = new JLabel("");
-		lbl_playerImage.setBounds(10, 75, 208, 197);
-		panel_player.add(lbl_playerImage);
-
+		lbl_playerImage.setBounds(10, 75, 208, 230);
+		panel_areaField.add(lbl_playerImage);
+		
 		// create the area which displays event changes
 		textArea = new JTextArea(0, 0);
 		textArea.setLineWrap(true);
@@ -219,7 +235,7 @@ public class Game extends JFrame implements ActionListener {
 		textArea.setFont(new Font("Comic Sans MS", 0, 12));
 		textArea.setBackground(new Color(218, 223, 225));
 		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(248, 70, 497, 283);
+		scroll.setBounds(249, 70, 567, 283);
 		scroll.setBorder(null);
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		getContentPane().add(scroll);
@@ -239,7 +255,7 @@ public class Game extends JFrame implements ActionListener {
 			hero = new Warlock(this);
 		else
 			System.out.println("[Game.java] Could not create your class");
-
+		
 		// finally show frame
 		setVisible(true);
 
@@ -275,15 +291,6 @@ public class Game extends JFrame implements ActionListener {
 	//	}	
 
 	// END OF FIGHT METHODS *************************************
-
-	// XXX add upgradable stats panels to gui
-	public void addUpgradableStats(JPanel panel1, JPanel panel2, JPanel panel3, JPanel panel4, JPanel panel5) {
-		panel_stats.add(panel1);
-		panel_stats.add(panel2);
-		panel_stats.add(panel3);
-		panel_stats.add(panel4);
-		panel_stats.add(panel5);
-	}
 
 	// action listener
 	public void actionPerformed(ActionEvent evt) {
@@ -370,6 +377,11 @@ public class Game extends JFrame implements ActionListener {
 	// append a message to the middle display area
 	public static void appendMessage(String s) {
 		textArea.append("> " + s + "\n");
+	}
+	
+	// return the panel_stats
+	public JPanel getPanel_stats() {
+		return panel_stats;
 	}
 
 	// set value for the loading bar
