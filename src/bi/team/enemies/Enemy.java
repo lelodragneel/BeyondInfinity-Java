@@ -21,8 +21,8 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected int enemyNumber;
 	protected ImageIcon enemyImage_small;
 	// initialize enemy stats
-	protected double curVitality;
-	protected double maxVitality;
+	protected double curHealth;
+	protected double maxHealth;
 	protected double damage;
 	protected double protection;
 	protected double criticalChance;
@@ -45,17 +45,20 @@ public abstract class Enemy extends JButton implements MouseListener {
 		
 	}
 	
-	// XXX attack player
+	/*
+	 *  XXX attack player
+	 */
 	public void attackPlayer() {
-		curVitality -= damage;
-		game.getBar_playerHealth().setValue((int)( curVitality - damage));
+		game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
+		game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
 		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
 	}
 	
 	// prepare gui for battle
 	public void prepareFight() {
-		game.getBar_enemyHealth().setMaximum((int) maxVitality);
-		game.getBar_enemyHealth().setValue((int) maxVitality);
+		game.getBar_enemyHealth().setMaximum((int) maxHealth);
+		game.getBar_enemyHealth().setValue((int) maxHealth);
+		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
 	}
 	
 	// mouse listeners for hovering effects
@@ -95,6 +98,31 @@ public abstract class Enemy extends JButton implements MouseListener {
 	// return the enemyImage
 	public ImageIcon getEnemyImage() {
 		return enemyImage_small;
+	}
+
+	// return the damage
+	public double getDamage() {
+		return damage;
+	}
+
+	// return the curHealth
+	public double getCurHealth() {
+		return curHealth;
+	}
+
+	// set the curHealth
+	public void setCurHealth(double curHealth) {
+		this.curHealth = curHealth;
+	}
+
+	// return the maxHealth
+	public double getMaxHealth() {
+		return maxHealth;
+	}
+
+	// set the maxHealth
+	public void setMaxHealth(double maxHealth) {
+		this.maxHealth = maxHealth;
 	}
 	
 }

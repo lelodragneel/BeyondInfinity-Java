@@ -63,8 +63,13 @@ public abstract class Hero {
 		
 	}
 	
-	// attack the enemy (overridden)
-	public void attackEnemy(Attack attack) {	
+	/*
+	 * XXX attack the enemy (overridden)
+	 */
+	public void attackEnemy(Attack attack) {
+		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - game.getHero().getSharpness());
+		game.getBar_enemyHealth().setValue((int) game.getEnemySelected().getCurHealth());
+		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
 	}
 	
 	// return the attacks arraylist
@@ -78,8 +83,25 @@ public abstract class Hero {
 	// set all upgrade buttons to inactive
 	public abstract void disableButtons();
 	
-	// to be overridden
+	// start battle
 	public void setEnemyToFight(Enemy enemy) {
+	}
+	
+	// return the vitality
+	public abstract double getCurHealth();
+
+	// set the vitality
+	public abstract void setCurHealth(double curHealth);
+
+	// return the maxVitality
+	public abstract double getMaxHealth();
+
+	// set the maxVitality
+	public abstract void setMaxHealth(double maxHealth);
+	
+	// [barbarian override] get sharpness
+	public double getSharpness(){
+		return 0;	
 	}
 	
 }

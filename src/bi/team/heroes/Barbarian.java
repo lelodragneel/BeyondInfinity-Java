@@ -105,7 +105,8 @@ public class Barbarian extends Hero implements ActionListener {
 		 * create and initialize attack buttons
 		 */
 		for (Attack x : AttacksArrayList) {
-			x.getButton().addActionListener(this);	
+			x.getButton().addActionListener(this);
+			x.getButton().setEnabled(false);
 		}
 		
 		/*
@@ -512,26 +513,31 @@ public class Barbarian extends Hero implements ActionListener {
 	}
 
 	// return the vitality
-	public double getCurVitality() {
+	@Override
+	public double getCurHealth() {
 		return curVitality;
 	}
 
 	// set the vitality
-	public void setCurVitality(double vitality) {
+	@Override
+	public void setCurHealth(double vitality) {
 		this.curVitality = vitality;
 	}
 
 	// return the maxVitality
-	public double getMaxVitality() {
+	@Override
+	public double getMaxHealth() {
 		return maxVitality;
 	}
 
 	// set the maxVitality
-	public void setMaxVitality(double maxVitality) {
+	@Override
+	public void setMaxHealth(double maxVitality) {
 		this.maxVitality = maxVitality;
 	}
 
 	// return the sharpness
+	@Override
 	public double getSharpness() {
 		return sharpness;
 	}
