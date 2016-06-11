@@ -43,7 +43,7 @@ public class Game extends JFrame implements ActionListener {
 	/*
 	 * initialize variables
 	 */
-	private static boolean turn = true; 	// true for player's turn. false for enemy's turn
+	private static int turn = 1; 	// true for player's turn. false for enemy's turn
 	private static JTextArea textArea;
 	private JPanel panel_player;
 	private JPanel panel_top;
@@ -378,9 +378,19 @@ public class Game extends JFrame implements ActionListener {
 		bar_loading.setValue(val);
 	}
 
-	// return the current turn
+	// even number = player turn (returns true)
+	// odd number = enemy turn (returns false)
 	public static boolean getTurn() {
-		return turn;
+		if (turn == 1)
+			return true;
+		else
+			return (turn % 2) != 0;
+	}
+	
+	// change turn to the other
+	// true for player's turn. false for enemy's turn
+	public static void addTurn() {
+		turn += 1;
 	}
 
 	// return the panel_actions jpanel
@@ -437,9 +447,4 @@ public class Game extends JFrame implements ActionListener {
 		return map;
 	}
 
-	// change turn to the other
-	// true for player's turn. false for enemy's turn
-	public static void toggleTurn() {
-		turn = !turn;
-	}
 }

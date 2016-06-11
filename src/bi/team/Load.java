@@ -80,14 +80,14 @@ public class Load implements ActionListener {
 				// player attacks enemy
 				hero.attackEnemy(attack);
 				// change turns
-				Game.toggleTurn();
+				Game.addTurn();
 				nextTurn();
 			} else {
 				// enemy attacks the player
 				game.getEnemySelected().attackPlayer();
 				Game.appendMessage("enemy attacks you");;
 				// change turns
-				Game.toggleTurn();
+				Game.addTurn();
 				// re-enable buttons
 				game.enableAttackButtons();
 			}
