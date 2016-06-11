@@ -395,15 +395,14 @@ public class Barbarian extends Hero implements ActionListener {
 		}
 
 	}
-
-	// XXX attack the enemy
-	@Override
+	
+	/*
+	 * XXX attack the enemy
+	 */
 	public void attackEnemy(Attack attack) {
-		
-		curVitality -= sharpness;
-		game.getBar_enemyHealth().setValue((int)( curVitality - sharpness));
-		game.getBar_enemyHealth().setString(game.getBar_enemyHealth().getValue() + " / " + game.getBar_enemyHealth().getMaximum());
-		
+		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - game.getHero().getSharpness());
+		game.getBar_enemyHealth().setValue((int) game.getEnemySelected().getCurHealth());
+		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
 	}
 	
 	// reset all stats, and prepare for fight

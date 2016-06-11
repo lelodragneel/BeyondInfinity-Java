@@ -15,7 +15,7 @@ import bi.team.Game;
 public abstract class Enemy extends JButton implements MouseListener {
 
 	// initialize variables
-	private Game game;
+	protected Game game;
 	protected String name;
 	protected boolean alive;
 	protected int enemyNumber;
@@ -45,14 +45,8 @@ public abstract class Enemy extends JButton implements MouseListener {
 		
 	}
 	
-	/*
-	 *  XXX attack player
-	 */
-	public void attackPlayer() {
-		game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
-		game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
-		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
-	}
+	// XXX attack player
+	public abstract void attackPlayer();
 	
 	// prepare gui for battle
 	public void prepareFight() {

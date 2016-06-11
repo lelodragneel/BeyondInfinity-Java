@@ -63,14 +63,8 @@ public abstract class Hero {
 		
 	}
 	
-	/*
-	 * XXX attack the enemy (overridden)
-	 */
-	public void attackEnemy(Attack attack) {
-		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - game.getHero().getSharpness());
-		game.getBar_enemyHealth().setValue((int) game.getEnemySelected().getCurHealth());
-		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
-	}
+	// XXX attack the enemy (overridden)
+	public abstract void attackEnemy(Attack attack);
 	
 	// return the attacks arraylist
 	public ArrayList<Attack> getAttacksArrayList() {

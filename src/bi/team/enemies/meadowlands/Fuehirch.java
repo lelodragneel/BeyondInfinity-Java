@@ -26,4 +26,12 @@ public class Fuehirch extends Enemy {
 		
 	}
 
+	// attack player
+	public void attackPlayer() {
+		game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
+		game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
+		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
+		
+	}
+
 }
