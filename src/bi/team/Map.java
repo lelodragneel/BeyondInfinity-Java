@@ -8,7 +8,6 @@ import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JButton;
@@ -19,13 +18,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import bi.team.enemies.Enemy;
-import bi.team.enemies.meadowlands.Alania_defender_of_the_meadow;
-import bi.team.enemies.meadowlands.Fuehirch;
-import bi.team.enemies.meadowlands.Hawk_stag;
-import bi.team.enemies.meadowlands.Mantisray;
-import bi.team.enemies.meadowlands.Oboko_of_the_sonne;
-import bi.team.enemies.meadowlands.Shar_of_the_nacht;
-import bi.team.enemies.meadowlands.Taobu;
+import bi.team.heroes.Hero;
 
 @SuppressWarnings("serial")
 public class Map extends JLayeredPane implements ActionListener {
@@ -33,34 +26,18 @@ public class Map extends JLayeredPane implements ActionListener {
 	/*
 	 * initialize variables
 	 */
-	private ArrayList<Enemy> enemyEntries;
 	private JPanel panel_map;
 	private JPanel panel_enemyInfo;
 	private JLabel lblEnemyName;
 	private JLabel lblEnemyIcon;
 	private JButton btnChallenge;
-	private Enemy enemySelected;
 	private Game game;
 	
 	// constructor
 	public Map(Game game) {
 		
 		// instantiate variables
-		this.game = game;
-		
-		/*
-		 * Create objects of all enemies
-		 */
-		enemyEntries = new ArrayList<Enemy>();
-		enemyEntries.add(new Fuehirch(this));
-		enemyEntries.add(new Taobu(this));
-		enemyEntries.add(new Hawk_stag(this));
-		enemyEntries.add(new Oboko_of_the_sonne(this));
-		enemyEntries.add(new Shar_of_the_nacht(this));
-		enemyEntries.add(new Mantisray(this));
-		enemyEntries.add(new Alania_defender_of_the_meadow(this));
-		// TODO create rest of enemies
-		
+		this.game = game;	
 		
 		/*
 		 * Create the main map frame
@@ -120,7 +97,9 @@ public class Map extends JLayeredPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == btnChallenge) {
-			game.getHero().prepareFight(enemySelected);
+			game.getHero().setEnemyToFight(game.getEnemySelected());
+			game.getEnemySelected().prepareFight();
+			game.toggleMap();
 		}
 		
 	}
@@ -142,7 +121,7 @@ public class Map extends JLayeredPane implements ActionListener {
 		gbc.insets = new Insets(2, 2, 2, 2);
 		
 		// add the created 84 enemies to the gridbag grid
-		Iterator<Enemy> items = enemyEntries.listIterator();
+		Iterator<Enemy> items = game.getEnemyEntries().listIterator();
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < 6; i++) {
@@ -170,11 +149,6 @@ public class Map extends JLayeredPane implements ActionListener {
 		
 	}
 
-	// set the enemySelected
-	public void setEnemySelected(Enemy enemySelected) {
-		this.enemySelected = enemySelected;
-	}
-
 	// return the btnChallenge
 	public JButton getBtnChallenge() {
 		return btnChallenge;
@@ -190,9 +164,9 @@ public class Map extends JLayeredPane implements ActionListener {
 		return lblEnemyIcon;
 	}
 
-	// return the mapEntries
-	public ArrayList<Enemy> getMapEntries() {
-		return enemyEntries;
+	// return the game
+	public Hero getHero() {
+		return game.getHero();
 	}
 
 }

@@ -9,32 +9,30 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
-import bi.team.Map;
+import bi.team.Game;
 
 @SuppressWarnings("serial")
 public abstract class Enemy extends JButton implements MouseListener {
 
 	// initialize variables
+	private Game game;
 	protected String name;
+	protected boolean alive;
 	protected int enemyNumber;
 	protected ImageIcon enemyImage_small;
+	// initialize enemy stats
 	protected double curVitality;
 	protected double maxVitality;
 	protected double damage;
 	protected double protection;
 	protected double criticalChance;
-	protected double curEnergy;
-	protected double maxEnergy;
-	protected double energyRecoveryRate;
-	protected boolean alive;
-	private Map map;
 
 	// constructor
-	public Enemy(Map map) {
+	public Enemy(Game game) {
 		
 		// configure variables
 		alive = true;
-		this.map = map;
+		this.game = game;
 		
 		// create a label and configured its settings
 		this.setBackground(new Color(236, 236, 236));
@@ -45,6 +43,19 @@ public abstract class Enemy extends JButton implements MouseListener {
 		this.setFocusable(false);
 		this.addMouseListener(this);
 		
+	}
+	
+	// XXX attack player
+	public void attackPlayer() {
+		curVitality -= damage;
+		game.getBar_playerHealth().setValue((int)( curVitality - damage));
+		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
+	}
+	
+	// prepare gui for battle
+	public void prepareFight() {
+		game.getBar_enemyHealth().setMaximum((int) maxVitality);
+		game.getBar_enemyHealth().setValue((int) maxVitality);
 	}
 	
 	// mouse listeners for hovering effects
@@ -61,10 +72,10 @@ public abstract class Enemy extends JButton implements MouseListener {
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		map.setEnemySelected(this);
-		map.getLblEnemyIcon().setIcon(enemyImage_small);
-		map.getLblEnemyName().setText("<html>" + name + "</html>");
-		map.getBtnChallenge().setEnabled(true);
+		game.setEnemySelected(this);
+		game.getMap().getLblEnemyIcon().setIcon(enemyImage_small);
+		game.getMap().getLblEnemyName().setText("<html>" + name + "</html>");
+		game.getMap().getBtnChallenge().setEnabled(true);
 		
 	}
 	@Override

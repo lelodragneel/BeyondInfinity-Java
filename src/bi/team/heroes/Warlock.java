@@ -9,8 +9,11 @@ import bi.team.heroes.attacks.barbarian.Attack;
 public class Warlock extends Hero {
 
 	// constructor
-	public Warlock(Game game) {
+	public Warlock() {
 		
+	}
+	
+	public Warlock(Game game) {
 		super(game);
 		
 		// instantiate variables

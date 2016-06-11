@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -19,6 +20,14 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+import bi.team.enemies.Enemy;
+import bi.team.enemies.meadowlands.Alania_defender_of_the_meadow;
+import bi.team.enemies.meadowlands.Fuehirch;
+import bi.team.enemies.meadowlands.Hawk_stag;
+import bi.team.enemies.meadowlands.Mantisray;
+import bi.team.enemies.meadowlands.Oboko_of_the_sonne;
+import bi.team.enemies.meadowlands.Shar_of_the_nacht;
+import bi.team.enemies.meadowlands.Taobu;
 import bi.team.heroes.Barbarian;
 import bi.team.heroes.Chemist;
 import bi.team.heroes.Elementalist;
@@ -42,9 +51,9 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_enemy;
 	private JPanel panel_actions;
 	private JPanel panel_frameOpacity;
-	private JProgressBar progBar_loading;
-	private JProgressBar progBar_playerVitality;
-	private JProgressBar progBar_enemyVitality;
+	private JProgressBar bar_loading;
+	private JProgressBar bar_playerHealth;
+	private JProgressBar bar_enemyHealth;
 	private JButton btnShowMap;
 	private JButton btnShowInventory;
 	private boolean isMapShown;
@@ -55,16 +64,17 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_areaField;
 	private JLabel areaWallpaper;
 	private JLabel upgradePoints;
-	private JLabel label_1;
+	private ArrayList<Enemy> enemyEntries;
+	private Enemy enemySelected;
 	
 	// create the frame
-	public Game(String name, String chosenHero, int giftNum) {
+	public Game(String name, int chosenHero, int giftNum) {
 
-		// TODO initialize gift parameter
+		// TODO instantiate gift parameter
 
-		// instantiate objects
+		// health bar esthetics
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
-
+		
 		/*
 		 * build frame
 		 */
@@ -76,6 +86,19 @@ public class Game extends JFrame implements ActionListener {
 		this.setBounds(0, 0, 1070, 650);
 		this.setBackground(new Color(236, 240, 241));
 		this.setLocationRelativeTo(null);
+		
+		
+		/*
+		 * Create objects of all enemies
+		 */
+		enemyEntries = new ArrayList<Enemy>();
+		enemyEntries.add(new Fuehirch(this));
+		enemyEntries.add(new Taobu(this));
+		enemyEntries.add(new Hawk_stag(this));
+		enemyEntries.add(new Oboko_of_the_sonne(this));
+		enemyEntries.add(new Shar_of_the_nacht(this));
+		enemyEntries.add(new Mantisray(this));
+		enemyEntries.add(new Alania_defender_of_the_meadow(this));
 		
 		/*
 		 * create the map object/frame
@@ -150,12 +173,12 @@ public class Game extends JFrame implements ActionListener {
 		getContentPane().add(panel_actions);
 
 		// create the loading bar
-		progBar_loading = new JProgressBar();
-		progBar_loading.setBounds(0, 0, 1064, 10);
-		progBar_loading.setBorder(null);
-		progBar_loading.setValue(100);
-		progBar_loading.setForeground(new Color(52, 73, 94));
-		getContentPane().add(progBar_loading);
+		bar_loading = new JProgressBar();
+		bar_loading.setBounds(0, 0, 1064, 10);
+		bar_loading.setBorder(null);
+		bar_loading.setValue(100);
+		bar_loading.setForeground(new Color(52, 73, 94));
+		getContentPane().add(bar_loading);
 
 		// create heart for health bar
 		JLabel lblHp = new JLabel("HP");
@@ -164,47 +187,47 @@ public class Game extends JFrame implements ActionListener {
 		lblHp.setBounds(12, 11, 20, 14);
 		panel_player.add(lblHp);
 
-		JLabel lblHeart = new JLabel("");
-		lblHeart.setIcon(new ImageIcon(Game.class.getResource("/images/heart.png")));
-		lblHeart.setBounds(3, 3, 32, 32);
-		panel_player.add(lblHeart);
+		JLabel lblHeartPlayer = new JLabel("");
+		lblHeartPlayer.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
+		lblHeartPlayer.setBounds(3, 3, 32, 32);
+		panel_player.add(lblHeartPlayer);
 
 		// create the player's vitality (health) bar
-		progBar_playerVitality = new JProgressBar();
-		progBar_playerVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		progBar_playerVitality.setStringPainted(true);
-		progBar_playerVitality.setBounds(14, 11, 204, 16);
-		progBar_playerVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
-		progBar_playerVitality.setForeground(new Color(30, 139, 195));
-		panel_player.add(progBar_playerVitality);
+		bar_playerHealth = new JProgressBar();
+		bar_playerHealth.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		bar_playerHealth.setStringPainted(true);
+		bar_playerHealth.setBounds(14, 11, 204, 16);
+		bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
+		bar_playerHealth.setForeground(new Color(30, 139, 195));
+		panel_player.add(bar_playerHealth);
 
-		label_1 = new JLabel("");
-		label_1.setIcon(new ImageIcon(Game.class.getResource("/images/heart.png")));
-		label_1.setBounds(3, 3, 32, 32);
-		panel_enemy.add(label_1);
+		JLabel lblHeartEnemy = new JLabel("");
+		lblHeartEnemy.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
+		lblHeartEnemy.setBounds(3, 3, 32, 32);
+		panel_enemy.add(lblHeartEnemy);
 
 		// create progress bar to display the enemy's vitality (health)
-		progBar_enemyVitality = new JProgressBar();
-		progBar_enemyVitality.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		progBar_enemyVitality.setStringPainted(true);
-		progBar_enemyVitality.setBounds(14, 11, 205, 16);
-		progBar_enemyVitality.setBorder(new LineBorder(new Color(0, 0, 0)));
-		progBar_enemyVitality.setForeground(new Color(236, 100, 75));
-		//progBar_enemyVitality.setValue((int) boss.getTotalHealth());
-		panel_enemy.add(progBar_enemyVitality);
+		bar_enemyHealth = new JProgressBar();
+		bar_enemyHealth.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		bar_enemyHealth.setStringPainted(true);
+		bar_enemyHealth.setBounds(14, 11, 205, 16);
+		bar_enemyHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
+		bar_enemyHealth.setForeground(new Color(236, 100, 75));
+		panel_enemy.add(bar_enemyHealth);
 
 		// create label to display enemy's name
 		JLabel lbl_enemyName = new JLabel(" name");
 		lbl_enemyName.setBounds(13, 46, 189, 20);
 		panel_enemy.add(lbl_enemyName);
 
-		// create panel displaying background area and player images
+		// create panel displaying player images
 		panel_areaField = new JPanel();
 		panel_areaField.setBounds(10, 70, 1044, 333);
 		panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
 		getContentPane().add(panel_areaField);
 		panel_areaField.setLayout(null);
 		
+		// create label to display area image
 		areaWallpaper = new JLabel();
 		areaWallpaper.setBounds(0, 0, 1044, 333);
 		panel_areaField.add(areaWallpaper);
@@ -238,59 +261,24 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		getContentPane().add(scroll);
 		
-		/*
-		 * create the player object
-		 */
-		if (chosenHero.equals("swordsman"))
-			hero = new Swordsman(this);
-		else if (chosenHero.equals("elementalist"))
-			hero = new Elementalist(this);
-		else if (chosenHero.equals("chemist"))
-			hero = new Chemist(this);
-		else if (chosenHero.equals("barbarian"))
-			hero = new Barbarian(this);
-		else if (chosenHero.equals("warlock"))
-			hero = new Warlock(this);
-		else
-			System.out.println("[Game.java] Could not create your class");
+		// create selected hero
+		if (chosenHero == 1)
+			this.hero = new Barbarian(this);
+		else if (chosenHero == 2) 
+			this.hero = new Chemist(this);
+		else if (chosenHero == 3) 
+			this.hero = new Elementalist(this);
+		else if (chosenHero == 4) 
+			this.hero = new Swordsman(this);
+		else if (chosenHero == 5) 
+			this.hero = new Warlock(this);
 		
 		// finally show frame
 		setVisible(true);
 
-		/*
-		 * start game.
-		 * loop and find first alive enemy
-		 */
-		//		for(MapEntry x : map.getMapEntries()) {			
-		//			if (x.getBoss().isAlive()) {
-		//				curEnemy = x.getBoss();
-		//				appendMessage("Now facing -> " + curEnemy.getName() + ".");
-		//				turn = true;
-		//				faceEnemy(curEnemy);
-		//				break;
-		//			}	
-		//		}
-
 	}
 
-	/*
-	 * FIGHT METHODS *********************************************
-	 */
-
-	// start enemy fight
-	//	public void faceEnemy(Enemy enemy) {
-	//
-	//		
-	//		
-	//		// TODO load boss icon & health
-	//		
-	//		enableAttackButtons();
-	//		
-	//	}	
-
-	// END OF FIGHT METHODS *************************************
-
-	// action listener
+	// XXX action listener
 	public void actionPerformed(ActionEvent evt) {
 
 		// clicked map
@@ -387,7 +375,7 @@ public class Game extends JFrame implements ActionListener {
 
 	// set value for the loading bar
 	public void setProgBar_loading(int val) {
-		progBar_loading.setValue(val);
+		bar_loading.setValue(val);
 	}
 
 	// return the current turn
@@ -399,7 +387,16 @@ public class Game extends JFrame implements ActionListener {
 	public JPanel getPanel_actions() {
 		return panel_actions;
 	}
+	
+	// return the enemySelected
+	public Enemy getEnemySelected() {
+		return enemySelected;
+	}
 
+	// set the enemySelected
+	public void setEnemySelected(Enemy enemySelected) {
+		this.enemySelected = enemySelected;
+	}
 	// return the panel_player
 	public JPanel getPanel_player() {
 		return panel_player;
@@ -410,9 +407,19 @@ public class Game extends JFrame implements ActionListener {
 		return hero;
 	}
 
-	// return the progBar_playerVitality
-	public JProgressBar getProgBar_playerVitality() {
-		return progBar_playerVitality;
+	// return the bar_playerHealth
+	public JProgressBar getBar_playerHealth() {
+		return bar_playerHealth;
+	}
+
+	// return the bar_enemyHealth
+	public JProgressBar getBar_enemyHealth() {
+		return bar_enemyHealth;
+	}
+
+	// return the enemyEntries
+	public ArrayList<Enemy> getEnemyEntries() {
+		return enemyEntries;
 	}
 
 	// return the upgradePoints
@@ -423,6 +430,11 @@ public class Game extends JFrame implements ActionListener {
 	// set the upgradePoints
 	public void setUpgradePoints(JLabel upgradePoints) {
 		this.upgradePoints = upgradePoints;
+	}
+
+	// return the map
+	public Map getMap() {
+		return map;
 	}
 
 	// change turn to the other

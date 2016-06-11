@@ -3,14 +3,18 @@ package bi.team.heroes;
 import java.util.ArrayList;
 
 import bi.team.Game;
+import bi.team.enemies.Enemy;
 import bi.team.heroes.attacks.barbarian.Attack;
 
 
 public class Chemist extends Hero {
 	
 	// constructor
-	public Chemist(Game game) {
+	public Chemist() {
 		
+	}
+	
+	public Chemist(Game game) {
 		super(game);
 		
 		// instantiate variables
@@ -28,6 +32,12 @@ public class Chemist extends Hero {
 
 	@Override
 	public void disableButtons() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setEnemyToFight(Enemy enemy) {
 		// TODO Auto-generated method stub
 		
 	}

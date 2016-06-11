@@ -9,8 +9,11 @@ import bi.team.heroes.attacks.barbarian.Attack;
 public class Swordsman extends Hero {
 	
 	// constructor
-	public Swordsman(Game game) {
+	public Swordsman() {
 		
+	}
+	
+	public Swordsman(Game game) {
 		super(game);
 		
 		// instantiate variables

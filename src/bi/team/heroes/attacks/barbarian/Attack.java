@@ -27,7 +27,7 @@ public abstract class Attack {
 
 	// constructor
 	public Attack(Barbarian hero, JButton button) {
-		load = new Load(game);
+		load = new Load(game, hero);
 		this.hero = hero;
 		this.button = button;
 		name = button.getText();

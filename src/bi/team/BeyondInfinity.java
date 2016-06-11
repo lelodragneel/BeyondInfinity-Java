@@ -56,7 +56,6 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JToggleButton btnGift_RingOfMending;
 	private JToggleButton btnGift_WillOfVanquish;
 	private JToggleButton btnGift_BlueOrb;
-	private JLabel lblEnterName;
 	private JLabel lblChemist;
 	private JLabel lblElementalist;
 	private JLabel lblBarbarian;
@@ -80,12 +79,12 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 //		});
 		
 		// frame initializing
-		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 400);
-		setTitle("BeyondInfinity");
-		getContentPane().setLayout(null);
-		setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setBounds(100, 100, 650, 400);
+		this.setTitle("BeyondInfinity");
+		this.getContentPane().setLayout(null);
+		this.setLocationRelativeTo(null);
 
 		// create a root panel
 		contentPane = new JPanel();
@@ -294,7 +293,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		lblChooseSex.setBounds(160, 97, 70, 26);
 		contentPane.add(lblChooseSex);
 		
-		lblEnterName = new JLabel("Enter name:");
+		JLabel lblEnterName = new JLabel("Enter name:");
 		lblEnterName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblEnterName.setBounds(160, 64, 70, 22);
 		contentPane.add(lblEnterName);
@@ -327,11 +326,12 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 		
 		/* -------------------------------------- */
 		
+		// checks if there has been previous progress
+		checkSave();
+		
 		// finally show frame
 		setVisible(true);
 
-		// checks if there has been previous progress
-		checkSave();
 	}
 
 	// check appdata file status and create directories/files
@@ -421,7 +421,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 	}
 
-	// actionlistener for the submit button
+	// XXX actionlistener for the submit button
 	public void actionPerformed(ActionEvent e) {
 
 		// check selected gift 
@@ -462,19 +462,18 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 			// create the chosen hero
 			if (btnBarbarian.isSelected())
-				startGameFrame("barbarian");
+				startGameFrame(1);
 			else if (btnChemist.isSelected())
-				startGameFrame("chemist");
+				startGameFrame(2);
 			else if (btnElementalist.isSelected())
-				startGameFrame("elementalist");
+				startGameFrame(3);
 			else if (btnSwordsman.isSelected())
-				startGameFrame("swordsman");
+				startGameFrame(4);
 			else if (btnWarlock.isSelected())
-				startGameFrame("warlock");
+				startGameFrame(5);
 			else {
 				JOptionPane.showMessageDialog(this, "You forgot to select a hero!", "Alert", JOptionPane.ERROR_MESSAGE);
 				return;
-
 			}
 		}
 	}
@@ -566,7 +565,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	}
 
 	// start building the actual frame of the game
-	public void startGameFrame(String chosenHero) {
+	public void startGameFrame(int chosenHero) {
 
 		// get selected gift
 		int giftNum;
@@ -582,7 +581,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			JOptionPane.showMessageDialog(this, "You forgot to select a starting-gift!");
 			return;
 		}
-
+		
 		// safely instantiate the game frame
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {

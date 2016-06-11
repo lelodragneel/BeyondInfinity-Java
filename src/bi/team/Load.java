@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import bi.team.heroes.Hero;
 import bi.team.heroes.attacks.barbarian.Attack;
 
 public class Load implements ActionListener {
@@ -14,10 +15,12 @@ public class Load implements ActionListener {
 	private int i;
 	private Game game;
 	private Attack attack;
+	private Hero hero;
 
 	// constructor
-	public Load(Game game) {
+	public Load(Game game, Hero hero) {
 		this.game = game;
+		this.hero = hero;
 	}
 
 	// TODO implement a new improved double-sided loading bar
@@ -74,15 +77,17 @@ public class Load implements ActionListener {
 
 			// perform attacks
 			if (Game.getTurn()) {
-				attack.startAttack();
-				attack.turnEffects();
+				// player attacks enemy
+				hero.attackEnemy(attack);
 				// change turns
 				Game.toggleTurn();
 				nextTurn();
 			} else {
+				// enemy attacks the player
+				game.getEnemySelected().attackPlayer();
+				Game.appendMessage("enemy attacks you");;
 				// change turns
 				Game.toggleTurn();
-				Game.appendMessage("enemy attacks you");;
 				// re-enable buttons
 				game.enableAttackButtons();
 			}

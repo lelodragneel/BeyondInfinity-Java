@@ -10,7 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JProgressBar;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
@@ -39,15 +38,6 @@ public class Barbarian extends Hero implements ActionListener {
 	 * initialize variables
 	 */
 	private Load load;
-	private JButton btnOffensive;
-	private JButton btnDefensive;
-	private double maxVitality;
-	private double curVitality;
-	private int maxRage;
-	private int curRage;
-	private double sharpness;
-	private double toughness;
-	private double riposteChance;
 	private JLabel lblVitality;
 	private JLabel lblRage;
 	private JLabel lblSharpness;
@@ -61,15 +51,27 @@ public class Barbarian extends Hero implements ActionListener {
 	private JLabel lblRage_7;
 	private JLabel lblRage_4;
 	private JLabel lblRage_8;
-	private JProgressBar prog;
+	private JButton btnOffensive;
+	private JButton btnDefensive;
+	// initialize hero stats
+	private double curVitality;
+	private double maxVitality;
+	private int curRage;
+	private int maxRage;
+	private double sharpness;
+	private double toughness;
+	private double riposteChance;
 
 	// constructor
+	public Barbarian() {
+
+	}
+	
 	public Barbarian(Game game) {
 		super(game);
 
 		// instantiate variables
-		this.prog = game.getProgBar_playerVitality();
-		load = new Load(game);
+		load = new Load(game, this);
 		AttacksArrayList = new ArrayList<Attack>();
 		maxVitality = 100;
 		curVitality = 100;
@@ -80,10 +82,10 @@ public class Barbarian extends Hero implements ActionListener {
 		riposteChance = 10;
 
 		// configure player GUI
-		prog.setMinimum(0);
-		prog.setMaximum((int) maxVitality);
-		prog.setValue((int) curVitality);
-		prog.setString(prog.getValue() + " / " + prog.getMaximum());
+		game.getBar_playerHealth().setMinimum(0);
+		game.getBar_playerHealth().setMaximum((int) maxVitality);
+		game.getBar_playerHealth().setValue((int) curVitality);
+		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
 		
 		// create this class's attacks
 		AttacksArrayList.add(new Strike(this));
@@ -393,10 +395,19 @@ public class Barbarian extends Hero implements ActionListener {
 
 	}
 
-	// reset all stats, and prepare for fight
-	public void prepareFight(Enemy enemy) {
+	// XXX attack the enemy
+	@Override
+	public void attackEnemy(Attack attack) {
 		
-		System.out.println("Now facing => " + enemy.getName());
+		curVitality -= sharpness;
+		game.getBar_enemyHealth().setValue((int)( curVitality - sharpness));
+		game.getBar_enemyHealth().setString(game.getBar_enemyHealth().getValue() + " / " + game.getBar_enemyHealth().getMaximum());
+		
+	}
+	
+	// reset all stats, and prepare for fight
+	@Override
+	public void setEnemyToFight(Enemy enemy) {
 		
 		// reset health
 		double a = maxVitality;
@@ -406,15 +417,13 @@ public class Barbarian extends Hero implements ActionListener {
 		int b = maxRage;
 		curRage = b;
 		
-		// TODO remove curses
+		// reset health bar
+		game.getBar_playerHealth().setMaximum((int) maxVitality);
+		game.getBar_playerHealth().setValue((int) maxVitality);
 		
-	}
-	
-	// change health bar value
-	public void takeDamage(double damage) {
-		curVitality -= damage;
-		prog.setValue((int)( curVitality - damage));
-		prog.setString(prog.getValue() + " / " + prog.getMaximum());
+		// assign current enemy fighting
+		game.setEnemySelected(enemy);
+		System.out.println("Now facing => " + enemy.getName());
 		
 	}
 	
@@ -551,7 +560,5 @@ public class Barbarian extends Hero implements ActionListener {
 	public void setToughness(double toughness) {
 		this.toughness = toughness;
 	}
-
-
 
 }

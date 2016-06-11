@@ -27,11 +27,19 @@ public abstract class Hero {
 	protected JLabel lblUpgradePoints;
 	protected JPanel panel_actionsTop;
 	protected JPanel panel_stances;
+	// initialize hero stats
+	protected int turnsStunned;
 
 	// constructor
+	public Hero() {
+		
+	}
+	
 	public Hero(Game game) {
+		
+		// instantiate variable
 		this.game = game;
-
+		
 		/*
 		 * create top actions panel
 		 */	
@@ -55,6 +63,10 @@ public abstract class Hero {
 		
 	}
 	
+	// attack the enemy (overridden)
+	public void attackEnemy(Attack attack) {	
+	}
+	
 	// return the attacks arraylist
 	public ArrayList<Attack> getAttacksArrayList() {
 		return AttacksArrayList;
@@ -66,7 +78,8 @@ public abstract class Hero {
 	// set all upgrade buttons to inactive
 	public abstract void disableButtons();
 	
-	// prepare before a fight
-	public abstract void prepareFight(Enemy enemy);
+	// to be overridden
+	public void setEnemyToFight(Enemy enemy) {
+	}
 	
 }
