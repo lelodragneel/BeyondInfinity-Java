@@ -25,7 +25,11 @@ public class MyGraphics extends JPanel {
 		super.paintComponent(g);
 
 		// TODO cooldown visual
-		width = (int) (attack.getButton().getWidth() / attack.getCurWarmup());
+		if (attack.getCurWarmup() == attack.getMaxWarmup()) {
+			width = attack.getButton().getWidth();
+		} else {
+			width = (int) (attack.getButton().getWidth() / (attack.getMaxWarmup() - (attack.getMaxWarmup() / attack.getCurWarmup())));
+		}
 		
 		// paint the cooldown on the jbutton
 		this.setOpaque(false);

@@ -72,10 +72,5 @@ public abstract class Attack {
 	public JButton getButton() {
 		return button;
 	}
-
-	// return if attack is ready
-	public boolean isAvailable() {
-		return isAvailable;
-	}
 	
 }

@@ -49,11 +49,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 	public abstract void attackPlayer();
 	
 	// prepare gui for battle
-	public void prepareFight() {
-		game.getBar_enemyHealth().setMaximum((int) maxHealth);
-		game.getBar_enemyHealth().setValue((int) maxHealth);
-		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
-	}
+	public abstract void prepareFight();
 	
 	// mouse listeners for hovering effects
 	@Override

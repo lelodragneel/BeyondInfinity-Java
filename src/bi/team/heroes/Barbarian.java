@@ -386,7 +386,9 @@ public class Barbarian extends Hero implements ActionListener {
 			if (e.getSource() == x.getButton())
 
 				// check if ability is on cooldown
-				if (x.getCurWarmup() == 1) {
+				if (x.getCurWarmup() == 0) {
+					reduceWarmup();
+					x.setCurWarmup(x.getMaxWarmup());
 					load.nextTurn(x);
 				} else {
 					Game.appendMessage(x.getName() + " is not ready!");
@@ -400,9 +402,17 @@ public class Barbarian extends Hero implements ActionListener {
 	 * XXX attack the enemy
 	 */
 	public void attackEnemy(Attack attack) {
+		
+		// enemy takes damage
 		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - game.getHero().getSharpness());
+		
+		// paint enemy's health bar
 		game.getBar_enemyHealth().setValue((int) game.getEnemySelected().getCurHealth());
 		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
+		
+		// repaint health bars
+		game.repaint();
+		
 	}
 	
 	// reset all stats, and prepare for fight
@@ -420,6 +430,9 @@ public class Barbarian extends Hero implements ActionListener {
 		// reset health bar
 		game.getBar_playerHealth().setMaximum((int) maxVitality);
 		game.getBar_playerHealth().setValue((int) maxVitality);
+		
+		// reset turns
+		Game.setTurn(1);
 		
 		// assign current enemy fighting
 		game.setEnemySelected(enemy);

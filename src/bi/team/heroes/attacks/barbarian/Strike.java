@@ -10,8 +10,8 @@ public class Strike extends Attack {
 	// constructor
 	public Strike(Barbarian hero) {
 		super(hero, new JButton("Strike"));	
-		maxWarmup = 1;
-		curWarmup = 1;
+		maxWarmup = 0;
+		curWarmup = 0;
 		damage = hero.getSharpness();
 	}
 

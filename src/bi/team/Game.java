@@ -288,16 +288,6 @@ public class Game extends JFrame implements ActionListener {
 		if (evt.getSource() == btnShowInventory)
 			toggleInventory();
 
-		// check if any attacks were clicked
-		for (Attack x : hero.getAttacksArrayList()) {
-			if (evt.getSource() == x.getButton()) {
-				if (x.isAvailable()) {
-					// TODO attack is clicked				
-				}
-				break;
-			}
-		}
-
 	}
 
 	// toggle the map pane
@@ -387,10 +377,14 @@ public class Game extends JFrame implements ActionListener {
 			return (turn % 2) != 0;
 	}
 	
-	// change turn to the other
-	// true for player's turn. false for enemy's turn
+	// return turn number
 	public static void addTurn() {
 		turn += 1;
+	}
+	
+	// set the turn
+	public static void setTurn(int turn) {
+		Game.turn = turn;
 	}
 
 	// return the panel_actions jpanel

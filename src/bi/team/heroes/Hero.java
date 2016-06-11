@@ -63,7 +63,16 @@ public abstract class Hero {
 		
 	}
 	
-	// XXX attack the enemy (overridden)
+	// reduce all attacks warmup by 1
+	public void reduceWarmup() {
+		for (Attack x: AttacksArrayList) {
+			if (x.getCurWarmup() > 0 && x.getCurWarmup() <= x.getMaxWarmup()) {
+				x.setCurWarmup(x.getCurWarmup() - 1);
+			}
+		}
+	}
+	
+	// XXX attack the enemy
 	public abstract void attackEnemy(Attack attack);
 	
 	// return the attacks arraylist
