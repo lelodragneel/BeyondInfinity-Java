@@ -31,10 +31,6 @@ public abstract class Hero {
 	protected int turnsStunned;
 
 	// constructor
-	public Hero() {
-		
-	}
-	
 	public Hero(Game game) {
 		
 		// instantiate variable

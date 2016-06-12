@@ -24,7 +24,7 @@ public class MyGraphics extends JPanel {
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 
-		// TODO cooldown visual
+		// constraints
 		if (attack.getCurWarmup() == 0 && attack.getMaxWarmup() != 0) {
 			width = 0;
 		} else if (attack.getCurWarmup() == attack.getMaxWarmup()) {

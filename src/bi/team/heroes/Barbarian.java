@@ -63,10 +63,6 @@ public class Barbarian extends Hero implements ActionListener {
 	private double riposteChance;
 
 	// constructor
-	public Barbarian() {
-
-	}
-	
 	public Barbarian(Game game) {
 		super(game);
 
@@ -401,6 +397,8 @@ public class Barbarian extends Hero implements ActionListener {
 	 * XXX attack the enemy
 	 */
 	public void attackEnemy(Attack attack) {
+		
+		
 		
 		// enemy takes damage
 		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - game.getHero().getSharpness());

@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -224,14 +223,34 @@ public class Game extends JFrame implements ActionListener {
 		panel_areaField = new JPanel();
 		panel_areaField.setBounds(10, 70, 1044, 333);
 		panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
-		getContentPane().add(panel_areaField);
 		panel_areaField.setLayout(null);
+		getContentPane().add(panel_areaField);
 		
+		/*
+		 * create the area which displays event changes
+		 */
+		textArea = new JTextArea(0, 0);
+		textArea.setEditable(false);
+		textArea.setOpaque(false);
+		textArea.setBorder(null);
+		textArea.setFont(new Font("Comic Sans MS", 0, 14));
+		textArea.setAutoscrolls(true);
+		// create scrolling for text area
+		JScrollPane scroll = new JScrollPane(textArea);
+		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scroll.setAutoscrolls(true);
+		scroll.setBounds(297, 20, 450, 293);
+		scroll.setOpaque(false);
+		scroll.setBorder(null);
+		scroll.getViewport().setOpaque(false);
+		panel_areaField.add(scroll);
+
 		// create label to display area image
 		areaWallpaper = new JLabel();
 		areaWallpaper.setBounds(0, 0, 1044, 333);
-		panel_areaField.add(areaWallpaper);
 		areaWallpaper.setIcon(new ImageIcon(getClass().getResource("/images/areas/meadowlands.jpg")));
+		panel_areaField.add(areaWallpaper);
 
 		// create the enemy's picture
 		JLabel lbl_enemyImage = new JLabel("");
@@ -247,20 +266,7 @@ public class Game extends JFrame implements ActionListener {
 		JLabel lbl_playerImage = new JLabel("");
 		lbl_playerImage.setBounds(10, 75, 208, 230);
 		panel_areaField.add(lbl_playerImage);
-		
-		// create the area which displays event changes
-		textArea = new JTextArea(0, 0);
-		textArea.setLineWrap(true);
-		textArea.setEditable(false);
-		textArea.setBorder(new EmptyBorder(4, 4, 4, 4));
-		textArea.setFont(new Font("Comic Sans MS", 0, 12));
-		textArea.setBackground(new Color(218, 223, 225));
-		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setBounds(249, 70, 567, 283);
-		scroll.setBorder(null);
-		scroll.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		getContentPane().add(scroll);
-		
+
 		// create selected hero
 		if (chosenHero == 1)
 			this.hero = new Barbarian(this);
@@ -440,5 +446,4 @@ public class Game extends JFrame implements ActionListener {
 	public Map getMap() {
 		return map;
 	}
-
 }
