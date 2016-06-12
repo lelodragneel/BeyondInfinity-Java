@@ -9,8 +9,8 @@ public class Incapacitate extends Attack {
 	// constructor
 	public Incapacitate(Barbarian hero) {
 		super(hero, new JButton("Incapacitate"));
-		maxWarmup = 3;
-		curWarmup = 3;
+		maxWarmup = 4;
+		curWarmup = 4;
 	}
 
 	@Override

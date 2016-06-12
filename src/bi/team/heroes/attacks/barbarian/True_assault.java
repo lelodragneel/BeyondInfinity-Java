@@ -9,8 +9,8 @@ public class True_assault extends Attack {
 	// constructor
 	public True_assault(Barbarian hero) {
 		super(hero, new JButton("True Assault"));
-		maxWarmup = 5;
-		curWarmup = 5;
+		maxWarmup = 6;
+		curWarmup = 6;
 	}
 
 	@Override

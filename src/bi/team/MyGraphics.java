@@ -13,7 +13,7 @@ public class MyGraphics extends JPanel {
 
 	// initialize variables
 	private Attack attack;
-	private int width;
+	private double width;
 
 	// constructor
 	public MyGraphics(Attack attack) {
@@ -25,16 +25,18 @@ public class MyGraphics extends JPanel {
 		super.paintComponent(g);
 
 		// TODO cooldown visual
-		if (attack.getCurWarmup() == attack.getMaxWarmup()) {
+		if (attack.getCurWarmup() == 0 && attack.getMaxWarmup() != 0) {
+			width = 0;
+		} else if (attack.getCurWarmup() == attack.getMaxWarmup()) {
 			width = attack.getButton().getWidth();
-		} else {
-			width = (int) (attack.getButton().getWidth() / (attack.getMaxWarmup() - (attack.getMaxWarmup() / attack.getCurWarmup())));
+		} else {			
+			width = attack.getButton().getWidth() / (attack.getMaxWarmup() / attack.getCurWarmup());			
 		}
 		
 		// paint the cooldown on the jbutton
 		this.setOpaque(false);
 		g.setColor(new Color(0.2f, 0.28f, 0.37f, 0.15f));
-		g.fillRect(0, 0, width, attack.getButton().getHeight());
+		g.fillRect(0, 0, (int) width, attack.getButton().getHeight());
 		g.setFont(new Font("Tahoma Bold", Font.PLAIN, 12));
 		repaint();
 		

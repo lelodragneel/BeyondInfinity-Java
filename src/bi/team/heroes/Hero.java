@@ -66,8 +66,8 @@ public abstract class Hero {
 	// reduce all attacks warmup by 1
 	public void reduceWarmup() {
 		for (Attack x: AttacksArrayList) {
-			if (x.getCurWarmup() > 0 && x.getCurWarmup() <= x.getMaxWarmup()) {
-				x.setCurWarmup(x.getCurWarmup() - 1);
+			if (x.getCurWarmup() >= 0 && x.getCurWarmup() < x.getMaxWarmup()) {
+				x.setCurWarmup(x.getCurWarmup() + 1);
 			}
 		}
 	}

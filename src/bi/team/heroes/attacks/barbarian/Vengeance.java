@@ -9,8 +9,8 @@ public class Vengeance extends Attack {
 	// constructor
 	public Vengeance(Barbarian hero) {
 		super(hero, new JButton("Vengeance"));
-		maxWarmup = 3;
-		curWarmup = 3;
+		maxWarmup = 4;
+		curWarmup = 4;
 	}
 
 	@Override

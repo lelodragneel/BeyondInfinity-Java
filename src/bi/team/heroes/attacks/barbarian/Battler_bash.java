@@ -9,8 +9,8 @@ public class Battler_bash extends Attack {
 	// constructor
 	public Battler_bash(Barbarian hero) {
 		super(hero, new JButton("Battler Bash"));
-		maxWarmup = 3;
-		curWarmup = 3;
+		maxWarmup = 4;
+		curWarmup = 4;
 	}
 
 	@Override

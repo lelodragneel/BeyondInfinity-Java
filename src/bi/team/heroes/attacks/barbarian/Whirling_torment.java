@@ -9,8 +9,8 @@ public class Whirling_torment extends Attack {
 	// constructor
 	public Whirling_torment(Barbarian hero) {
 		super(hero, new JButton("Whirling Torment"));
-		maxWarmup = 5;
-		curWarmup = 5;
+		maxWarmup = 6;
+		curWarmup = 6;
 	}
 
 	@Override

@@ -382,18 +382,17 @@ public class Barbarian extends Hero implements ActionListener {
 		}
 
 		// check if attacks are clicked
-		for (Attack x : AttacksArrayList) {		
-			if (e.getSource() == x.getButton())
-
+		for (Attack x : AttacksArrayList) {
+			if (e.getSource() == x.getButton()) {
 				// check if ability is on cooldown
-				if (x.getCurWarmup() == 0) {
+				if (x.getCurWarmup() == x.getMaxWarmup()) {
 					reduceWarmup();
-					x.setCurWarmup(x.getMaxWarmup());
+					x.setCurWarmup(0);
 					load.nextTurn(x);
 				} else {
 					Game.appendMessage(x.getName() + " is not ready!");
 				}
-
+			}
 		}
 
 	}

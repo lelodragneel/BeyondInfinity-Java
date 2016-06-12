@@ -9,8 +9,8 @@ public class Shield_bash extends Attack {
 	// constructor
 	public Shield_bash(Barbarian hero) {
 		super(hero, new JButton("Shield Bash"));
-		maxWarmup = 4;
-		curWarmup = 4;
+		maxWarmup = 5;
+		curWarmup = 5;
 	}
 
 	@Override

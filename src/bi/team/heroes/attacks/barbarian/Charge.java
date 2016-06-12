@@ -9,8 +9,8 @@ public class Charge extends Attack {
 	// constructor
 	public Charge(Barbarian hero) {
 		super(hero, new JButton("Bane Blast"));
-		maxWarmup = 2;
-		curWarmup = 2;
+		maxWarmup = 3;
+		curWarmup = 3;
 	}
 
 	@Override
