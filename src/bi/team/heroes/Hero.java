@@ -1,12 +1,9 @@
 package bi.team.heroes;
 
-import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -24,8 +21,6 @@ public abstract class Hero {
 	protected JButton btnUpgradeStat_3;
 	protected JButton btnUpgradeStat_4;
 	protected JButton btnUpgradeStat_5;
-	protected JLabel lblUpgradePoints;
-	protected JPanel panel_actionsTop;
 	protected JPanel panel_stances;
 	// initialize hero stats
 	protected int turnsStunned;
@@ -35,27 +30,6 @@ public abstract class Hero {
 		
 		// instantiate variable
 		this.game = game;
-		
-		/*
-		 * create top actions panel
-		 */	
-		panel_actionsTop = new JPanel();
-		panel_actionsTop.setBounds(10, 462, 974, 30);
-		panel_actionsTop.setLayout(null);
-		game.add(panel_actionsTop);
-		
-		// create label for upgrade points
-		JLabel labelUpgradePoints = new JLabel("Upgrade Points:");
-		labelUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		labelUpgradePoints.setHorizontalAlignment(SwingConstants.RIGHT);
-		labelUpgradePoints.setBounds(443, 7, 94, 16);
-		panel_actionsTop.add(labelUpgradePoints);
-		
-		// create label to display upgrade points
-		lblUpgradePoints = new JLabel("0");
-		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblUpgradePoints.setBounds(547, 7, 46, 16);
-		panel_actionsTop.add(lblUpgradePoints);	
 		
 	}
 	
@@ -102,5 +76,4 @@ public abstract class Hero {
 	public double getSharpness(){
 		return 0;	
 	}
-	
 }

@@ -50,9 +50,15 @@ public class Game extends JFrame implements ActionListener {
 	private JPanel panel_enemy;
 	private JPanel panel_actions;
 	private JPanel panel_frameOpacity;
+	private JPanel panel_areaField;
+	private JPanel panel_actionsTop;
+	private JLabel areaWallpaper;
+	private JLabel upgradePoints;
+	private JLabel lblUpgradePoints;
 	private JProgressBar bar_loading;
 	private JProgressBar bar_playerHealth;
 	private JProgressBar bar_enemyHealth;
+	private JProgressBar bar_XPBar;
 	private JButton btnShowMap;
 	private JButton btnShowInventory;
 	private boolean isMapShown;
@@ -60,9 +66,6 @@ public class Game extends JFrame implements ActionListener {
 	private Map map;
 	private InventoryFrame inventory;
 	private Hero hero;
-	private JPanel panel_areaField;
-	private JLabel areaWallpaper;
-	private JLabel upgradePoints;
 	private ArrayList<Enemy> enemyEntries;
 	private Enemy enemySelected;
 	
@@ -113,7 +116,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 1064, 45);
+		panel_frameOpacity.setBounds(0, 0, 1064, 34);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -148,6 +151,17 @@ public class Game extends JFrame implements ActionListener {
 		btnShowInventory.setFocusable(false);
 		btnShowInventory.addActionListener(this);
 		panel_top.add(btnShowInventory);
+		
+		// create experience bar
+		bar_XPBar = new JProgressBar();
+		bar_XPBar.setForeground(new Color(126, 52, 157));
+		bar_XPBar.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+		bar_XPBar.setString("20 / 100 XP");
+		bar_XPBar.setValue(20);
+		bar_XPBar.setBorder(new LineBorder(new Color(0, 0, 0)));
+		bar_XPBar.setStringPainted(true);
+		bar_XPBar.setBounds(322, 12, 400, 14);
+		panel_top.add(bar_XPBar);
 
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
@@ -170,6 +184,18 @@ public class Game extends JFrame implements ActionListener {
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		getContentPane().add(panel_actions);
+		
+		// create top actions panel
+		panel_actionsTop = new JPanel();
+		panel_actionsTop.setBounds(10, 508, 1044, 34);
+		panel_actionsTop.setLayout(null);
+		getContentPane().add(panel_actionsTop);
+		
+		// create label to display upgrade points
+		lblUpgradePoints = new JLabel("Upgrade points:");
+		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblUpgradePoints.setBounds(854, 9, 100, 16);
+		panel_actionsTop.add(lblUpgradePoints);
 
 		// create the loading bar
 		bar_loading = new JProgressBar();
@@ -193,7 +219,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the player's vitality (health) bar
 		bar_playerHealth = new JProgressBar();
-		bar_playerHealth.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		bar_playerHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		bar_playerHealth.setStringPainted(true);
 		bar_playerHealth.setBounds(14, 11, 204, 16);
 		bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -207,7 +233,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create progress bar to display the enemy's vitality (health)
 		bar_enemyHealth = new JProgressBar();
-		bar_enemyHealth.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		bar_enemyHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		bar_enemyHealth.setStringPainted(true);
 		bar_enemyHealth.setBounds(14, 11, 205, 16);
 		bar_enemyHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -412,6 +438,16 @@ public class Game extends JFrame implements ActionListener {
 		return panel_player;
 	}
 
+	// return the lblUpgradePoints
+	public JLabel getLblUpgradePoints() {
+		return lblUpgradePoints;
+	}
+
+	// set the lblUpgradePoints
+	public void setLblUpgradePoints(JLabel lblUpgradePoints) {
+		this.lblUpgradePoints = lblUpgradePoints;
+	}
+
 	// return the player
 	public Hero getHero() {
 		return hero;
@@ -435,6 +471,16 @@ public class Game extends JFrame implements ActionListener {
 	// return the upgradePoints
 	public JLabel getUpgradePoints() {
 		return upgradePoints;
+	}
+
+	// return the panel_actionsTop
+	public JPanel getPanel_actionsTop() {
+		return panel_actionsTop;
+	}
+
+	// return the bar_XPBar
+	public JProgressBar getBar_XPBar() {
+		return bar_XPBar;
 	}
 
 	// set the upgradePoints
