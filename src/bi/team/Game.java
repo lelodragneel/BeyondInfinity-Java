@@ -42,7 +42,8 @@ public class Game extends JFrame implements ActionListener {
 	/*
 	 * initialize variables
 	 */
-	private static int turn = 1; 	// true for player's turn. false for enemy's turn
+	private static int turn = 1;
+	private static int level = 1;
 	private static JTextArea textArea;
 	private JPanel panel_player;
 	private JPanel panel_top;
@@ -68,6 +69,8 @@ public class Game extends JFrame implements ActionListener {
 	private Hero hero;
 	private ArrayList<Enemy> enemyEntries;
 	private Enemy enemySelected;
+	private JLabel lblLevel_current;
+	private JLabel lblLevel_next;
 	
 	// create the frame
 	public Game(String name, int chosenHero, int giftNum) {
@@ -116,7 +119,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create a panel that dims the frame, this is used when toggling map
 		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 1064, 34);
+		panel_frameOpacity.setBounds(0, 0, 1064, 19);
 		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
 		panel_frameOpacity.setOpaque(true);
 		panel_frameOpacity.setVisible(false);
@@ -162,7 +165,28 @@ public class Game extends JFrame implements ActionListener {
 		bar_XPBar.setStringPainted(true);
 		bar_XPBar.setBounds(322, 12, 400, 14);
 		panel_top.add(bar_XPBar);
-
+		
+		/*
+		 * create two icons for levels
+		 */
+		// current level
+		lblLevel_current = new JLabel(level + "");
+		lblLevel_current.setForeground(Color.WHITE);
+		lblLevel_current.setHorizontalTextPosition(JLabel.CENTER);
+		lblLevel_current.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		lblLevel_current.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
+		lblLevel_current.setBounds(274, 0, 38, 38);
+		panel_top.add(lblLevel_current);
+		
+		// next level
+		lblLevel_next = new JLabel((level + 1) + "");
+		lblLevel_next.setForeground(Color.WHITE);
+		lblLevel_next.setHorizontalTextPosition(JLabel.CENTER);
+		lblLevel_next.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+		lblLevel_next.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
+		lblLevel_next.setBounds(732, 0, 38, 38);
+		panel_top.add(lblLevel_next);
+		
 		// create bottom panel to display buttons for upgrades
 		panel_stats = new JPanel();
 		panel_stats.setBounds(10, 414, 1044, 87);
@@ -441,6 +465,16 @@ public class Game extends JFrame implements ActionListener {
 	// return the lblUpgradePoints
 	public JLabel getLblUpgradePoints() {
 		return lblUpgradePoints;
+	}
+
+	// return the level
+	public static int getLevel() {
+		return level;
+	}
+
+	// set the level
+	public static void setLevel(int level) {
+		Game.level = level;
 	}
 
 	// set the lblUpgradePoints
