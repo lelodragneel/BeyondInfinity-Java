@@ -229,17 +229,25 @@ public class Game extends JFrame implements ActionListener {
 		bar_loading.setForeground(new Color(52, 73, 94));
 		getContentPane().add(bar_loading);
 
-		// create heart for health bar
-		JLabel lblHp = new JLabel("HP");
-		lblHp.setForeground(Color.WHITE);
-		lblHp.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblHp.setBounds(12, 11, 20, 14);
-		panel_player.add(lblHp);
-
-		JLabel lblHeartPlayer = new JLabel("");
-		lblHeartPlayer.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
+		/*
+		 * create two heart icons for health bars
+		 */
+		// player's health icon
+		JLabel lblHeartPlayer = new JLabel("HP");
+		lblHeartPlayer.setForeground(Color.WHITE);
+		lblHeartPlayer.setHorizontalTextPosition(JLabel.CENTER);
+		lblHeartPlayer.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblHeartPlayer.setBounds(3, 3, 32, 32);
+		lblHeartPlayer.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
 		panel_player.add(lblHeartPlayer);
+		// enemy's health icon
+		JLabel lblHeartEnemy = new JLabel("HP");
+		lblHeartEnemy.setForeground(Color.WHITE);
+		lblHeartEnemy.setHorizontalTextPosition(JLabel.CENTER);
+		lblHeartEnemy.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblHeartEnemy.setBounds(3, 3, 32, 32);
+		lblHeartEnemy.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
+		panel_enemy.add(lblHeartEnemy);
 
 		// create the player's vitality (health) bar
 		bar_playerHealth = new JProgressBar();
@@ -249,11 +257,6 @@ public class Game extends JFrame implements ActionListener {
 		bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
 		bar_playerHealth.setForeground(new Color(30, 139, 195));
 		panel_player.add(bar_playerHealth);
-
-		JLabel lblHeartEnemy = new JLabel("");
-		lblHeartEnemy.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
-		lblHeartEnemy.setBounds(3, 3, 32, 32);
-		panel_enemy.add(lblHeartEnemy);
 
 		// create progress bar to display the enemy's vitality (health)
 		bar_enemyHealth = new JProgressBar();

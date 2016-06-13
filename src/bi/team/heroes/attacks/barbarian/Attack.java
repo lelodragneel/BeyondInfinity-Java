@@ -6,6 +6,7 @@ import java.awt.Insets;
 import javax.swing.JButton;
 
 import bi.team.Game;
+import bi.team.Load;
 import bi.team.MyGraphics;
 import bi.team.heroes.Barbarian;
 
@@ -22,6 +23,7 @@ public abstract class Attack {
 	protected double curWarmup;
 	protected Game game;
 	protected Barbarian hero;
+	protected Load load;
 
 	// constructor
 	public Attack(Barbarian hero, JButton button) {

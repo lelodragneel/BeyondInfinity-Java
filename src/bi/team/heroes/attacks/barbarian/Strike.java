@@ -8,7 +8,7 @@ import bi.team.heroes.Barbarian;
 public class Strike extends Attack {
 	
 	// constructor
-	public Strike(Barbarian hero) {
+	public Strike(Barbarian hero, Game game) {
 		super(hero, new JButton("Strike"));	
 		maxWarmup = 0;
 		curWarmup = 0;

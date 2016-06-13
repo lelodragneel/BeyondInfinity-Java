@@ -84,18 +84,18 @@ public class Barbarian extends Hero implements ActionListener {
 		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
 		
 		// create this class's attacks
-		AttacksArrayList.add(new Strike(this));
-		AttacksArrayList.add(new Heavy_blow(this));
-		AttacksArrayList.add(new Rage_incite(this));
-		AttacksArrayList.add(new Vengeance(this));
-		AttacksArrayList.add(new Battler_bash(this));
-		AttacksArrayList.add(new True_assault(this));
-		AttacksArrayList.add(new Strike(this));
-		AttacksArrayList.add(new Charge(this));
-		AttacksArrayList.add(new Raise_shield(this));
-		AttacksArrayList.add(new Incapacitate(this));
-		AttacksArrayList.add(new Shield_bash(this));
-		AttacksArrayList.add(new Whirling_torment(this));
+		AttacksArrayList.add(new Strike(this, game));
+		AttacksArrayList.add(new Heavy_blow(this, game));
+		AttacksArrayList.add(new Rage_incite(this, game));
+		AttacksArrayList.add(new Vengeance(this, game));
+		AttacksArrayList.add(new Battler_bash(this, game));
+		AttacksArrayList.add(new True_assault(this, game));
+		AttacksArrayList.add(new Strike(this, game));
+		AttacksArrayList.add(new Charge(this, game));
+		AttacksArrayList.add(new Raise_shield(this, game));
+		AttacksArrayList.add(new Incapacitate(this, game));
+		AttacksArrayList.add(new Shield_bash(this, game));
+		AttacksArrayList.add(new Whirling_torment(this, game));
 
 		/*
 		 * create and initialize attack buttons

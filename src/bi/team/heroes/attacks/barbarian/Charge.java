@@ -2,12 +2,13 @@ package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.JButton;
 
+import bi.team.Game;
 import bi.team.heroes.Barbarian;
 
 public class Charge extends Attack {
 
 	// constructor
-	public Charge(Barbarian hero) {
+	public Charge(Barbarian hero, Game game) {
 		super(hero, new JButton("Bane Blast"));
 		maxWarmup = 3;
 		curWarmup = 3;

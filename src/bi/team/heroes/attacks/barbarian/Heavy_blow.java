@@ -8,7 +8,7 @@ import bi.team.heroes.Barbarian;
 public class Heavy_blow extends Attack {
 	
 	// constructor
-	public Heavy_blow(Barbarian hero) {
+	public Heavy_blow(Barbarian hero, Game game) {
 		super(hero, new JButton("Heavy Blow"));
 		maxWarmup = 2;
 		curWarmup = 2;
