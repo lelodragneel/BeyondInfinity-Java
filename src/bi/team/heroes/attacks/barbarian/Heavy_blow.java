@@ -9,7 +9,7 @@ public class Heavy_blow extends Attack {
 	
 	// constructor
 	public Heavy_blow(Barbarian hero, Game game) {
-		super(hero, new JButton("Heavy Blow"));
+		super(hero, game, new JButton("Heavy Blow"));
 		maxWarmup = 2;
 		curWarmup = 2;
 	}

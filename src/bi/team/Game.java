@@ -91,8 +91,7 @@ public class Game extends JFrame implements ActionListener {
 		this.setBounds(0, 0, 1070, 650);
 		this.setBackground(new Color(236, 240, 241));
 		this.setLocationRelativeTo(null);
-		
-		
+			
 		/*
 		 * Create objects of all enemies
 		 */

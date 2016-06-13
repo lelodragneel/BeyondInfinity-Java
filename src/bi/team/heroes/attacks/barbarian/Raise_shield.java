@@ -9,7 +9,7 @@ public class Raise_shield extends Attack {
 	
 	// constructor
 	public Raise_shield(Barbarian hero, Game game) {
-		super(hero, new JButton("Raise Shield"));
+		super(hero, game, new JButton("Raise Shield"));
 		maxWarmup = 5;
 		curWarmup = 5;
 	}

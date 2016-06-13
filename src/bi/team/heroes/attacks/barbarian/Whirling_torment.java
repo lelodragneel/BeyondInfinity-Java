@@ -9,7 +9,7 @@ public class Whirling_torment extends Attack {
 	
 	// constructor
 	public Whirling_torment(Barbarian hero, Game game) {
-		super(hero, new JButton("Whirling Torment"));
+		super(hero, game, new JButton("Whirling Torment"));
 		maxWarmup = 6;
 		curWarmup = 6;
 	}

@@ -9,7 +9,7 @@ public class True_assault extends Attack {
 	
 	// constructor
 	public True_assault(Barbarian hero, Game game) {
-		super(hero, new JButton("True Assault"));
+		super(hero, game, new JButton("True Assault"));
 		maxWarmup = 6;
 		curWarmup = 6;
 	}

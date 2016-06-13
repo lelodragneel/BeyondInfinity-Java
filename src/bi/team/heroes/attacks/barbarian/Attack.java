@@ -17,7 +17,7 @@ public abstract class Attack {
 	 */
 	protected JButton button;
 	protected String name;
-	protected double damage;
+	protected int rageNeeded;
 	protected boolean isAvailable = true;
 	protected double maxWarmup;
 	protected double curWarmup;
@@ -26,8 +26,9 @@ public abstract class Attack {
 	protected Load load;
 
 	// constructor
-	public Attack(Barbarian hero, JButton button) {
+	public Attack(Barbarian hero, Game game, JButton button) {
 		this.hero = hero;
+		this.game = game;
 		this.button = button;
 		name = button.getText();
 		button.setBackground(Color.WHITE);
@@ -70,6 +71,11 @@ public abstract class Attack {
 	// return this button
 	public JButton getButton() {
 		return button;
+	}
+
+	// return the rageNeeded
+	public int getRageNeeded() {
+		return rageNeeded;
 	}
 	
 }

@@ -9,7 +9,7 @@ public class Charge extends Attack {
 
 	// constructor
 	public Charge(Barbarian hero, Game game) {
-		super(hero, new JButton("Bane Blast"));
+		super(hero, game, new JButton("Bane Blast"));
 		maxWarmup = 3;
 		curWarmup = 3;
 	}

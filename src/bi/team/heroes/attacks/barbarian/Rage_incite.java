@@ -9,7 +9,7 @@ public class Rage_incite extends Attack {
 	
 	// constructor
 	public Rage_incite(Barbarian hero, Game game) {
-		super(hero, new JButton("Rage Incite"));
+		super(hero, game, new JButton("Rage Incite"));
 		maxWarmup = 3;
 		curWarmup = 3;
 	}
