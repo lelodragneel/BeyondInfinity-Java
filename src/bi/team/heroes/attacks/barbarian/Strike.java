@@ -9,10 +9,11 @@ public class Strike extends Attack {
 	
 	// constructor
 	public Strike(Barbarian hero, Game game) {
-		super(hero, game, new JButton("Strike"));	
+		super(hero, game, new JButton("Strike"));
 		maxWarmup = 0;
 		curWarmup = 0;
 		rageNeeded = 0;
+		
 	}
 
 	@Override

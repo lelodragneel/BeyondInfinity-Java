@@ -12,11 +12,12 @@ public class True_assault extends Attack {
 		super(hero, game, new JButton("True Assault"));
 		maxWarmup = 6;
 		curWarmup = 6;
+		rageNeeded = 0;
+		damage = 200;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

@@ -394,7 +394,7 @@ public class Barbarian extends Hero implements ActionListener {
 					if (haveEnoughRage(x.getRageNeeded())) {
 						reduceWarmup();
 						x.setCurWarmup(0);
-						load.nextTurn(x);				
+						load.nextTurn(x);			
 					} else {
 						Game.appendMessage("Insufficient rage!");
 					}
@@ -496,7 +496,7 @@ public class Barbarian extends Hero implements ActionListener {
 		// toggle stance buttons
 		btnOffensive.setEnabled(false);
 		btnDefensive.setEnabled(true);
-
+		
 		// repaint GUI
 		game.repaint();
 		game.revalidate();

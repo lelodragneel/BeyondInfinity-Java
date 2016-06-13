@@ -12,11 +12,11 @@ public class Rage_incite extends Attack {
 		super(hero, game, new JButton("Rage Incite"));
 		maxWarmup = 3;
 		curWarmup = 3;
+		rageNeeded = 0;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

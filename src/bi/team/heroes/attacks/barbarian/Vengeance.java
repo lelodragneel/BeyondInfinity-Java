@@ -12,11 +12,11 @@ public class Vengeance extends Attack {
 		super(hero, game, new JButton("Vengeance"));
 		maxWarmup = 4;
 		curWarmup = 4;
+		rageNeeded = 0;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

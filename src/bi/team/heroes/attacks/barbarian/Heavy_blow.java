@@ -12,6 +12,8 @@ public class Heavy_blow extends Attack {
 		super(hero, game, new JButton("Heavy Blow"));
 		maxWarmup = 2;
 		curWarmup = 2;
+		rageNeeded = 0;
+		damage = 20;
 	}
 
 	@Override

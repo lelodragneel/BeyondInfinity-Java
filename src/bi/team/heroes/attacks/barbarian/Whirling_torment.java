@@ -12,11 +12,12 @@ public class Whirling_torment extends Attack {
 		super(hero, game, new JButton("Whirling Torment"));
 		maxWarmup = 6;
 		curWarmup = 6;
+		rageNeeded = 5;
+		damage = 150;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

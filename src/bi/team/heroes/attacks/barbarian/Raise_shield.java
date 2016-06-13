@@ -12,11 +12,11 @@ public class Raise_shield extends Attack {
 		super(hero, game, new JButton("Raise Shield"));
 		maxWarmup = 5;
 		curWarmup = 5;
+		rageNeeded = 0;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

@@ -12,11 +12,12 @@ public class Shield_bash extends Attack {
 		super(hero, game, new JButton("Shield Bash"));
 		maxWarmup = 5;
 		curWarmup = 5;
+		rageNeeded = 0;
+		damage = 100;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

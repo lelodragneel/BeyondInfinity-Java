@@ -12,11 +12,11 @@ public class Battler_bash extends Attack {
 		super(hero, game, new JButton("Battler Bash"));
 		maxWarmup = 4;
 		curWarmup = 4;
+		rageNeeded = 0;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

@@ -12,11 +12,12 @@ public class Charge extends Attack {
 		super(hero, game, new JButton("Bane Blast"));
 		maxWarmup = 3;
 		curWarmup = 3;
+		rageNeeded = 0;
+		damage = 10;
 	}
 
 	@Override
 	public void startAttack() {
-		load.nextTurn(this);
 		
 	}
 

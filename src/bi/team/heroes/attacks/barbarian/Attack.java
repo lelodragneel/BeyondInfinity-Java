@@ -18,6 +18,7 @@ public abstract class Attack {
 	protected JButton button;
 	protected String name;
 	protected int rageNeeded;
+	protected double damage;
 	protected boolean isAvailable = true;
 	protected double maxWarmup;
 	protected double curWarmup;
@@ -27,6 +28,8 @@ public abstract class Attack {
 
 	// constructor
 	public Attack(Barbarian hero, Game game, JButton button) {
+		
+		// instantiate objects
 		this.hero = hero;
 		this.game = game;
 		this.button = button;
@@ -35,6 +38,11 @@ public abstract class Attack {
 		button.setFocusable(false);
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.add(new MyGraphics(this));
+		
+		// create custom tooltip
+		
+		
+		//button.setToolTipText("<html><p width=\"100\"><img src=\"" + getClass().getResource("/images/energy.png") + "\"></p></html>");
 		
 	}
 	
@@ -77,5 +85,12 @@ public abstract class Attack {
 	public int getRageNeeded() {
 		return rageNeeded;
 	}
-	
+
+	// return the damage
+	public double getDamage() {
+		return damage;
+	}
 }
+
+
+
