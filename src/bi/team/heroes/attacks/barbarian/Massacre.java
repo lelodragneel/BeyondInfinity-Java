@@ -6,26 +6,26 @@ import bi.team.BeyondInfinity;
 import bi.team.Game;
 import bi.team.heroes.Barbarian;
 
-public class Shield_bash extends Attack {
+public class Massacre extends Attack {
 	
 	// constructor
-	public Shield_bash(Barbarian hero, Game game) {
+	public Massacre(Barbarian hero, Game game) {
 		super(hero, game, new JButton("<html>"
 				+ "<table width=\"162\">"
 				+ "<tr>"
-					+ "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\"" + BeyondInfinity.class.getResource("/images/attacks/shield_bash.png") + "\">" + "</th>"
-					+ "<td height=\"26\" align=\"center\"><font size=\"4\">Shield Bash</font></th>"
+					+ "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\"" + BeyondInfinity.class.getResource("/images/attacks/massacre.png") + "\">" + "</th>"
+					+ "<td height=\"26\" align=\"center\"><font size=\"4\">Massacre</font></th>"
 				+ "</tr>"
 				+ "<tr>"
-					+ "<td><p align=\"center\">4x <img src=\"" + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>"
+					+ "<td><p align=\"center\">5x <img src=\"" + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>"
 				+ "</tr>"
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 5;
-		curWarmup = 5;
-		rageNeeded = 0;
-		damage = 100;
+		maxWarmup = 6;
+		curWarmup = 6;
+		rageNeeded = 5;
+		damage = 150;
 	}
 
 	@Override
@@ -44,5 +44,7 @@ public class Shield_bash extends Attack {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	
 	
 }

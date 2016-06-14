@@ -29,7 +29,7 @@ import bi.team.heroes.attacks.barbarian.Shield_bash;
 import bi.team.heroes.attacks.barbarian.Strike;
 import bi.team.heroes.attacks.barbarian.True_assault;
 import bi.team.heroes.attacks.barbarian.Vengeance;
-import bi.team.heroes.attacks.barbarian.Whirling_torment;
+import bi.team.heroes.attacks.barbarian.Massacre;
 
 
 public class Barbarian extends Hero implements ActionListener {
@@ -96,7 +96,7 @@ public class Barbarian extends Hero implements ActionListener {
 		AttacksArrayList.add(new Raise_shield(this, game));
 		AttacksArrayList.add(new Incapacitate(this, game));
 		AttacksArrayList.add(new Shield_bash(this, game));
-		AttacksArrayList.add(new Whirling_torment(this, game));
+		AttacksArrayList.add(new Massacre(this, game));
 
 		/*
 		 * create and initialize attack buttons

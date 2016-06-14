@@ -13,7 +13,7 @@ public class Strike extends Attack {
 		super(hero, game, new JButton("<html>"
 				+ "<table width=\"162\">"
 					+ "<tr>"
-						+ "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\"" + BeyondInfinity.class.getResource("/images/strike.png") + "\">" + "</th>"
+						+ "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\"" + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\">" + "</th>"
 						+ "<td height=\"26\" align=\"center\"><font size=\"4\">Strike</font></th>"
 					+ "</tr>"
 					+ "<tr>"
