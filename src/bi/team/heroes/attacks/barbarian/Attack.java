@@ -39,11 +39,6 @@ public abstract class Attack {
 		button.setMargin(new Insets(0, 0, 0, 0));
 		button.add(new MyGraphics(this));
 		
-		// create custom tooltip
-		
-		
-		//button.setToolTipText("<html><p width=\"100\"><img src=\"" + getClass().getResource("/images/energy.png") + "\"></p></html>");
-		
 	}
 	
 	// abstract required methods

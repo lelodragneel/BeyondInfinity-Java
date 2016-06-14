@@ -120,6 +120,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnOffensive = new JButton("");
 		btnOffensive.setBounds(4, 4, 26, 26);
 		btnOffensive.setFocusable(false);
+		btnOffensive.setIcon(new ImageIcon(getClass().getResource("/images/stance_offensive.png")));
 		btnOffensive.addActionListener(this);
 		panel_stances.add(btnOffensive);
 
@@ -127,6 +128,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnDefensive = new JButton("");
 		btnDefensive.setBounds(36, 4, 26, 26);
 		btnDefensive.setFocusable(false);
+		btnDefensive.setIcon(new ImageIcon(getClass().getResource("/images/stance_defensive.png")));
 		btnDefensive.addActionListener(this);
 		panel_stances.add(btnDefensive);
 		
