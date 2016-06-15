@@ -1,6 +1,8 @@
 package bi.team.heroes.attacks.barbarian;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -31,10 +33,20 @@ public class Strike extends Attack {
 	}
 
 	@Override
-	public void startAttack() {
+	public void startAttack() throws BadLocationException {
+		
+		// generate rage
 		hero.generateRage(1);
+		
+		// deal damage to enemy
 		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - hero.getSharpness());
-		Game.appendMessage("used Strike");
+		
+		// display events
+		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
+		game.getDoc().insertString(game.getDoc().getLength(), (" " + hero.getSharpness() + " ") , null);
+		//game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
+		game.getDoc().insertString(game.getDoc().getLength(), ("\n") , null);
+		
 	}
 
 	@Override

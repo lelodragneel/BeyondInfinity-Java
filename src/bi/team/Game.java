@@ -14,10 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.StyledDocument;
 
 import bi.team.enemies.Enemy;
 import bi.team.enemies.meadowlands.Alania_defender_of_the_meadow;
@@ -44,7 +45,8 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static int turn = 1;
 	private static int level = 1;
-	private static JTextArea textArea;
+	private static JTextPane textArea;
+	private static StyledDocument doc;
 	private JPanel panel_player;
 	private JPanel panel_top;
 	private JPanel panel_stats;
@@ -88,7 +90,7 @@ public class Game extends JFrame implements ActionListener {
 		this.setBounds(100, 100, 1070, 700);
 		this.setTitle("[ver. alpha] BeyondInfinity");
 		this.getContentPane().setLayout(null);
-		this.setBounds(0, 0, 1070, 650);
+		this.setBounds(0, 0, 1070, 654);
 		this.setBackground(new Color(236, 240, 241));
 		this.setLocationRelativeTo(null);
 			
@@ -203,7 +205,7 @@ public class Game extends JFrame implements ActionListener {
 		// create actions panel for displaying attack buttons
 		panel_actions = new JPanel();
 		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 542, 1044, 68);
+		panel_actions.setBounds(10, 542, 1044, 72);
 		panel_actions.setBackground(new Color(135, 211, 124));
 		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
 		getContentPane().add(panel_actions);
@@ -281,12 +283,15 @@ public class Game extends JFrame implements ActionListener {
 		/*
 		 * create the area which displays event changes
 		 */
-		textArea = new JTextArea(0, 0);
+		textArea = new JTextPane();
 		textArea.setEditable(false);
 		textArea.setOpaque(false);
 		textArea.setBorder(null);
 		textArea.setFont(new Font("Comic Sans MS", 0, 14));
 		textArea.setAutoscrolls(true);
+		textArea.setBounds(297, 20, 450, 293);
+		textArea.setContentType("text/html");
+		doc = textArea.getStyledDocument();
 		// create scrolling for text area
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -410,11 +415,6 @@ public class Game extends JFrame implements ActionListener {
 		for (Attack x : hero.getAttacksArrayList())
 			x.getButton().setEnabled(false);
 	}
-
-	// append a message to the middle display area
-	public static void appendMessage(String s) {
-		textArea.append("> " + s + "\n");
-	}
 	
 	// return the panel_stats
 	public JPanel getPanel_stats() {
@@ -487,6 +487,16 @@ public class Game extends JFrame implements ActionListener {
 	// return the player
 	public Hero getHero() {
 		return hero;
+	}
+
+	// return the textArea
+	public JTextPane getTextArea() {
+		return textArea;
+	}
+
+	// return the doc
+	public StyledDocument getDoc() {
+		return doc;
 	}
 
 	// return the bar_playerHealth

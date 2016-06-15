@@ -30,7 +30,6 @@ public class Heavy_blow extends Attack {
 
 	@Override
 	public void startAttack() {
-		Game.appendMessage("used HeavyBlow");
 		
 	}
 

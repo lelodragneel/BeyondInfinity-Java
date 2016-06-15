@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.Load;
@@ -42,7 +43,7 @@ public abstract class Attack {
 	}
 	
 	// abstract required methods
-	public abstract void startAttack();
+	public abstract void startAttack() throws BadLocationException;
 	public abstract void activeEffects();
 	public abstract void turnEffects();
 	

@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.Load;
@@ -398,10 +399,16 @@ public class Barbarian extends Hero implements ActionListener {
 						x.setCurWarmup(0);
 						load.nextTurn(x);			
 					} else {
-						Game.appendMessage("Insufficient rage!");
+						try {
+							game.getDoc().insertString(game.getDoc().getLength(), "Insufficient Rage!\n", null);
+						} catch (BadLocationException e1) {
+						}
 					}
 				} else {
-					Game.appendMessage(x.getName() + " is not ready!");
+					try {
+						game.getDoc().insertString(game.getDoc().getLength(), x.getName() + " is not ready!", null);
+					} catch (BadLocationException e1) {
+					}
 				}
 			}
 		}
@@ -414,7 +421,10 @@ public class Barbarian extends Hero implements ActionListener {
 	public void attackEnemy(Attack attack) {
 		
 		// initiate the selected attack
-		attack.startAttack();
+		try {
+			attack.startAttack();
+		} catch (BadLocationException e) {
+		}
 		
 		// paint enemy's health bar
 		game.getBar_enemyHealth().setValue((int) game.getEnemySelected().getCurHealth());
