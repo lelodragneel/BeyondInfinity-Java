@@ -397,18 +397,18 @@ public class Barbarian extends Hero implements ActionListener {
 					if (haveEnoughRage(x.getRageNeeded())) {
 						reduceWarmup();
 						x.setCurWarmup(0);
-						load.nextTurn(x);			
+						load.nextTurn(x);
 					} else {
-						try {
-							game.getDoc().insertString(game.getDoc().getLength(), "Insufficient Rage!\n", null);
-						} catch (BadLocationException e1) {
-						}
+//						try {
+//							game.getDoc().insertString(game.getDoc().getLength(), "Insufficient Rage!\n", null);
+//						} catch (BadLocationException e1) {
+//						}
 					}
 				} else {
-					try {
-						game.getDoc().insertString(game.getDoc().getLength(), x.getName() + " is not ready!", null);
-					} catch (BadLocationException e1) {
-					}
+//					try {
+//						game.getDoc().insertString(game.getDoc().getLength(), x.getName() + " is not ready!", null);
+//					} catch (BadLocationException e1) {
+//					}
 				}
 			}
 		}

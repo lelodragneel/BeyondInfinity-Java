@@ -18,7 +18,8 @@ import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
 
 import bi.team.enemies.Enemy;
 import bi.team.enemies.meadowlands.Alania_defender_of_the_meadow;
@@ -46,7 +47,7 @@ public class Game extends JFrame implements ActionListener {
 	private static int turn = 1;
 	private static int level = 1;
 	private static JTextPane textArea;
-	private static StyledDocument doc;
+	private SimpleAttributeSet aSet;
 	private JPanel panel_player;
 	private JPanel panel_top;
 	private JPanel panel_stats;
@@ -73,6 +74,8 @@ public class Game extends JFrame implements ActionListener {
 	private Enemy enemySelected;
 	private JLabel lblLevel_current;
 	private JLabel lblLevel_next;
+	private SimpleAttributeSet leftAlign;
+	private SimpleAttributeSet rightAlign;
 	
 	// create the frame
 	public Game(String name, int chosenHero, int giftNum) {
@@ -290,8 +293,13 @@ public class Game extends JFrame implements ActionListener {
 		textArea.setFont(new Font("Comic Sans MS", 0, 14));
 		textArea.setAutoscrolls(true);
 		textArea.setBounds(297, 20, 450, 293);
-		textArea.setContentType("text/html");
-		doc = textArea.getStyledDocument();
+		
+		// create attribute set for text pane
+		aSet = new SimpleAttributeSet();
+		StyleConstants.setForeground(aSet, Color.DARK_GRAY);
+	    StyleConstants.setFontFamily(aSet, "Comic Sans MS");
+	    StyleConstants.setFontSize(aSet, 16);
+		
 		// create scrolling for text area
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -445,6 +453,11 @@ public class Game extends JFrame implements ActionListener {
 		Game.turn = turn;
 	}
 
+	// return the aSet
+	public SimpleAttributeSet getaSet() {
+		return aSet;
+	}
+
 	// return the panel_actions jpanel
 	public JPanel getPanel_actions() {
 		return panel_actions;
@@ -462,6 +475,16 @@ public class Game extends JFrame implements ActionListener {
 	// return the panel_player
 	public JPanel getPanel_player() {
 		return panel_player;
+	}
+
+	// return the leftAlign
+	public SimpleAttributeSet getLeftAlign() {
+		return leftAlign;
+	}
+
+	// return the rightAlign
+	public SimpleAttributeSet getRightAlign() {
+		return rightAlign;
 	}
 
 	// return the lblUpgradePoints
@@ -492,11 +515,6 @@ public class Game extends JFrame implements ActionListener {
 	// return the textArea
 	public JTextPane getTextArea() {
 		return textArea;
-	}
-
-	// return the doc
-	public StyledDocument getDoc() {
-		return doc;
 	}
 
 	// return the bar_playerHealth

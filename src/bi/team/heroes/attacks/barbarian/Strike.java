@@ -3,6 +3,7 @@ package bi.team.heroes.attacks.barbarian;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -42,11 +43,12 @@ public class Strike extends Attack {
 		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - hero.getSharpness());
 		
 		// display events
+		Document doc = game.getTextArea().getDocument();
+		doc.insertString(doc.getLength(), "\n", game.getaSet());
 		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
-		game.getDoc().insertString(game.getDoc().getLength(), (" " + hero.getSharpness() + " ") , null);
-		//game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
-		game.getDoc().insertString(game.getDoc().getLength(), ("\n") , null);
-		
+		doc.insertString(doc.getLength(), hero.getSharpness() + "", game.getaSet());
+		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/enemy.png")));
+
 	}
 
 	@Override
