@@ -14,14 +14,15 @@ public class Fuehirch extends Enemy {
 	// constructor
 	public Fuehirch(Game game) {
 		super(game);
-		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
 		// configure variables
+		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		name = "Fuehirch";
 		enemyNumber = 1;
 		damage = 10;
 		maxHealth = 90;
 		curHealth = 90;
+		experienceDrop = 0;
 		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/fuehirch_small.png"));
 		
 	}

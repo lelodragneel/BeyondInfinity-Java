@@ -46,6 +46,7 @@ public class Game extends JFrame implements ActionListener {
 	 */
 	private static int turn = 1;
 	private static int level = 1;
+	private static double curExperience;
 	private static JTextPane textArea;
 	private SimpleAttributeSet aSet;
 	private JPanel panel_player;
@@ -379,7 +380,9 @@ public class Game extends JFrame implements ActionListener {
 		} else {
 			map.setVisible(false);
 			panel_frameOpacity.setVisible(false);
-			enableAttackButtons();
+			if (enemySelected != null) {
+				enableAttackButtons();				
+			}
 			hero.enableButtons();
 			btnShowInventory.setEnabled(true);
 		}
@@ -432,6 +435,11 @@ public class Game extends JFrame implements ActionListener {
 	// set value for the loading bar
 	public void setProgBar_loading(int val) {
 		bar_loading.setValue(val);
+	}
+
+	// return the curExperience
+	public static double getCurExperience() {
+		return curExperience;
 	}
 
 	// even number = player turn (returns true)
