@@ -66,6 +66,7 @@ public class Game extends JFrame implements ActionListener {
 	private JProgressBar bar_XPBar;
 	private JButton btnShowMap;
 	private JButton btnShowInventory;
+	private JButton btnSurrender;
 	private boolean isMapShown;
 	private boolean isInvShown;
 	private Map map;
@@ -301,6 +302,14 @@ public class Game extends JFrame implements ActionListener {
 	    StyleConstants.setFontFamily(aSet, "Comic Sans MS");
 	    StyleConstants.setFontSize(aSet, 16);
 		
+	    // create the surrender button
+	    btnSurrender = new JButton("");
+	    btnSurrender.setBounds(711, 277, 36, 36);
+	    btnSurrender.setFocusable(false);
+	    btnSurrender.setIcon(new ImageIcon(getClass().getResource("/images/suicide.png")));
+	    btnSurrender.setVisible(false);
+	    panel_areaField.add(btnSurrender);
+	    
 		// create scrolling for text area
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
@@ -319,19 +328,26 @@ public class Game extends JFrame implements ActionListener {
 		panel_areaField.add(areaWallpaper);
 
 		// create the enemy's picture
-		JLabel lbl_enemyImage = new JLabel("");
-		lbl_enemyImage.setBounds(825, 75, 209, 230);
-		panel_areaField.add(lbl_enemyImage);
+		JLabel lblEnemyImage = new JLabel("");
+		lblEnemyImage.setBounds(825, 100, 209, 222);
+		panel_areaField.add(lblEnemyImage);
 
 		// create label to display player's name
-		JLabel lbl_playerName = new JLabel(name);
-		lbl_playerName.setBounds(0, 76, 140, 20);
-		panel_areaField.add(lbl_playerName);
+		JLabel lblPlayerName = new JLabel(name);
+		lblPlayerName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblPlayerName.setBounds(10, 76, 208, 20);
+		panel_areaField.add(lblPlayerName);
 
 		// create the player's picture
-		JLabel lbl_playerImage = new JLabel("");
-		lbl_playerImage.setBounds(10, 75, 208, 230);
-		panel_areaField.add(lbl_playerImage);
+		JLabel lblPlayerImage = new JLabel("");
+		lblPlayerImage.setBounds(10, 100, 208, 222);
+		panel_areaField.add(lblPlayerImage);
+		
+		// create the enemy's name
+		JLabel lblEnemyName = new JLabel("<dynamic>");
+		lblEnemyName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblEnemyName.setBounds(826, 76, 208, 20);
+		panel_areaField.add(lblEnemyName);
 
 		// create selected hero
 		if (chosenHero == 1)
@@ -359,6 +375,10 @@ public class Game extends JFrame implements ActionListener {
 		// clicked inventory
 		if (evt.getSource() == btnShowInventory)
 			toggleInventory();
+		// clicked surrender
+		if (evt.getSource() == btnSurrender) {
+			// TODO surrender
+		}
 
 	}
 
@@ -377,10 +397,13 @@ public class Game extends JFrame implements ActionListener {
 			disableAttackButtons();
 			hero.disableButtons();
 			btnShowInventory.setEnabled(false);
+			btnSurrender.setEnabled(false);
 		} else {
 			map.setVisible(false);
 			panel_frameOpacity.setVisible(false);
 			if (enemySelected != null) {
+				btnSurrender.setVisible(true);
+				btnSurrender.setEnabled(true);
 				enableAttackButtons();				
 			}
 			hero.enableButtons();
