@@ -107,7 +107,7 @@ public class Map extends JLayeredPane implements ActionListener {
 	// display enemy info
 	public void showEnemyInfo(Enemy enemy) {
 		lblEnemyName.setText(enemy.getName());
-		lblEnemyIcon.setIcon(enemy.getEnemyImage());
+		lblEnemyIcon.setIcon(enemy.getEnemyImage_small());
 		
 	}
 

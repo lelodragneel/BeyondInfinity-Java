@@ -62,9 +62,6 @@ public abstract class Hero {
 	public void setEnemyToFight(Enemy enemy) {
 	}
 	
-	// initialize the player icon
-	public abstract void initializePlayerIcon();
-	
 	// return the vitality
 	public abstract double getCurHealth();
 

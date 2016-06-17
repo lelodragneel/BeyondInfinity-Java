@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
@@ -65,7 +66,11 @@ public class Barbarian extends Hero implements ActionListener {
 	private double riposteChance;
 	private ImageIcon maleImage;
 	private ImageIcon femaleImage;
-
+	private ImageIcon defensiveIcon;
+	private ImageIcon defensiveIcon_small;
+	private ImageIcon offensiveIcon;
+	private ImageIcon offensiveIcon_small;
+	
 	// constructor
 	public Barbarian(Game game) {
 		super(game);
@@ -82,6 +87,10 @@ public class Barbarian extends Hero implements ActionListener {
 		riposteChance = 10;
 		maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
 		femaleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_female_big.png"));
+		defensiveIcon = new ImageIcon(getClass().getResource("/images/stance_defensive.png"));
+		defensiveIcon_small = new ImageIcon(getClass().getResource("/images/stance_defensive_small.png"));
+		offensiveIcon = new ImageIcon(getClass().getResource("/images/stance_offensive.png"));
+		offensiveIcon_small = new ImageIcon(getClass().getResource("/images/stance_offensive_small.png"));
 
 		// configure player GUI
 		game.getBar_playerHealth().setMinimum(0);
@@ -125,7 +134,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnOffensive = new JButton("");
 		btnOffensive.setBounds(4, 4, 26, 26);
 		btnOffensive.setFocusable(false);
-		btnOffensive.setIcon(new ImageIcon(getClass().getResource("/images/stance_offensive.png")));
+		btnOffensive.setBackground(null);
 		btnOffensive.addActionListener(this);
 		panel_stances.add(btnOffensive);
 
@@ -133,7 +142,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnDefensive = new JButton("");
 		btnDefensive.setBounds(36, 4, 26, 26);
 		btnDefensive.setFocusable(false);
-		btnDefensive.setIcon(new ImageIcon(getClass().getResource("/images/stance_defensive.png")));
+		btnDefensive.setBackground(null);
 		btnDefensive.addActionListener(this);
 		panel_stances.add(btnDefensive);
 		
@@ -362,6 +371,9 @@ public class Barbarian extends Hero implements ActionListener {
 		rageIcons.add(lblRage_7);
 		rageIcons.add(lblRage_8);
 		
+		// draw player image on frame
+		game.getLblPlayerImage().setIcon(getHeroIcon());
+		
 		// paint rage bar
 		repaintRage();
 		
@@ -376,9 +388,6 @@ public class Barbarian extends Hero implements ActionListener {
 		
 		// display default attacks by default
 		showOffensiveAttacks();
-		
-		// display player icons
-		initializePlayerIcon();
 		
 	}
 
@@ -420,18 +429,6 @@ public class Barbarian extends Hero implements ActionListener {
 			}
 		}
 
-	}
-	
-	// initialize player icons
-	@Override
-	public void initializePlayerIcon() {
-		if (game.getHeroSex() == 1) {
-			game.getLblPlayerImage().setIcon(maleImage);
-		} else if (game.getHeroSex() == 2) {
-			game.getLblPlayerImage().setIcon(femaleImage);
-		} else {
-			System.out.println("[Barbarian.java] Something went wrong retrieving sex!");
-		}	
 	}
 	
 	/*
@@ -500,6 +497,9 @@ public class Barbarian extends Hero implements ActionListener {
 		curRage = 1;
 		repaintRage();
 		
+		// set enemy image on battlefield
+		game.getLblEnemyImage().setIcon(enemy.getEnemyImage());
+		
 		// reset health bar
 		game.getBar_playerHealth().setMaximum((int) maxVitality);
 		game.getBar_playerHealth().setValue((int) maxVitality);
@@ -525,8 +525,14 @@ public class Barbarian extends Hero implements ActionListener {
 		}
 
 		// toggle stance buttons
-		btnOffensive.setEnabled(false);
-		btnDefensive.setEnabled(true);
+		btnOffensive.setSelected(false);
+		btnDefensive.setSelected(true);
+		
+		// repaint stance icons
+		btnOffensive.setIcon(offensiveIcon_small);
+		btnDefensive.setIcon(defensiveIcon);
+		btnOffensive.setBorder(new LineBorder(Color.BLACK, 2));
+		btnDefensive.setBorder(new LineBorder(Color.BLACK, 1));
 		
 		// repaint GUI
 		game.repaint();
@@ -545,8 +551,14 @@ public class Barbarian extends Hero implements ActionListener {
 		}
 
 		// toggle stance buttons
-		btnOffensive.setEnabled(true);
-		btnDefensive.setEnabled(false);
+		btnOffensive.setSelected(true);
+		btnDefensive.setSelected(false);
+		
+		// repaint stance icons
+		btnOffensive.setIcon(offensiveIcon);
+		btnDefensive.setIcon(defensiveIcon_small);
+		btnOffensive.setBorder(new LineBorder(Color.BLACK, 1));
+		btnDefensive.setBorder(new LineBorder(Color.BLACK, 2));
 
 		// repaint GUI
 		game.repaint();
@@ -575,6 +587,18 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_5.setEnabled(false);
 		btnOffensive.setEnabled(false);
 		btnDefensive.setEnabled(false);
+	}
+	
+	// return the hero icon with proper gender
+	public ImageIcon getHeroIcon() {
+		if (game.getHeroSex() == 1) {
+			return maleImage;
+		} else if (game.getHeroSex() == 2) {
+			return femaleImage;
+		} else {
+			System.out.println("[Barbarian.java] Something went wrong retrieving player icon!");
+			return null;
+		}
 	}
 	
 	// return the curRage

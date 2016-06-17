@@ -20,6 +20,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected boolean alive;
 	protected int enemyNumber;
 	protected ImageIcon enemyImage_small;
+	protected ImageIcon enemyImage;
 	// initialize enemy stats
 	protected double curHealth;
 	protected double maxHealth;
@@ -75,7 +76,12 @@ public abstract class Enemy extends JButton implements MouseListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 	}
-	
+
+	// return the enemyImage_small
+	public ImageIcon getEnemyImage_small() {
+		return enemyImage_small;
+	}
+
 	// return the name
 	public String getName() {
 		return name;
@@ -93,7 +99,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 
 	// return the enemyImage
 	public ImageIcon getEnemyImage() {
-		return enemyImage_small;
+		return enemyImage;
 	}
 
 	// return the damage

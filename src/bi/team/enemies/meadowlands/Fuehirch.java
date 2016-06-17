@@ -23,6 +23,7 @@ public class Fuehirch extends Enemy {
 		maxHealth = 90;
 		curHealth = 90;
 		experienceDrop = 0;
+		enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/fuehirch.png"));
 		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/fuehirch_small.png"));
 		
 	}
