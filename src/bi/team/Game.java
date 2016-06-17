@@ -37,6 +37,7 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
+import javax.swing.SwingConstants;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -230,8 +231,16 @@ public class Game extends JFrame implements ActionListener {
 		// create label to display upgrade points
 		lblUpgradePoints = new JLabel("Upgrade points:");
 		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblUpgradePoints.setBounds(854, 9, 100, 16);
+		lblUpgradePoints.setBounds(472, 9, 100, 16);
 		panel_actionsTop.add(lblUpgradePoints);
+		
+	    // create the surrender button
+	    btnSurrender = new JButton("");
+	    btnSurrender.setBounds(1010, 0, 34, 34);
+	    panel_actionsTop.add(btnSurrender);
+	    btnSurrender.setFocusable(false);
+	    btnSurrender.setIcon(new ImageIcon(getClass().getResource("/images/suicide.png")));
+	    btnSurrender.setVisible(false);
 
 		// create the loading bar
 		bar_loading = new JProgressBar();
@@ -308,21 +317,13 @@ public class Game extends JFrame implements ActionListener {
 		StyleConstants.setForeground(aSet, Color.DARK_GRAY);
 	    StyleConstants.setFontFamily(aSet, "Comic Sans MS");
 	    StyleConstants.setFontSize(aSet, 16);
-		
-	    // create the surrender button
-	    btnSurrender = new JButton("");
-	    btnSurrender.setBounds(711, 277, 36, 36);
-	    btnSurrender.setFocusable(false);
-	    btnSurrender.setIcon(new ImageIcon(getClass().getResource("/images/suicide.png")));
-	    btnSurrender.setVisible(false);
-	    panel_areaField.add(btnSurrender);
 	    
 		// create scrolling for text area
 		JScrollPane scroll = new JScrollPane(textArea);
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setAutoscrolls(true);
-		scroll.setBounds(297, 20, 450, 293);
+		scroll.setBounds(379, 20, 286, 293);
 		scroll.setOpaque(false);
 		scroll.setBorder(null);
 		scroll.getViewport().setOpaque(false);
@@ -330,6 +331,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the enemy's picture
 		lblEnemyImage = new JLabel("");
+		lblEnemyImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEnemyImage.setBounds(825, 100, 209, 222);
 		panel_areaField.add(lblEnemyImage);
 
@@ -341,6 +343,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create the player's picture
 		lblPlayerImage = new JLabel("");
+		lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerImage.setBounds(10, 100, 208, 222);
 		panel_areaField.add(lblPlayerImage);
 		

@@ -14,13 +14,42 @@ public class Mantisray extends Enemy {
 	// constructor
 	public Mantisray(Game game) {
 		super(game);
-		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		
 		// configure variables
+		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 		name = "Mantisray";
 		enemyNumber = 6;
+		damage = 10;
+		maxHealth = 90;
+		curHealth = 90;
+		experienceDrop = 0;
+		enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/mantisray.png"));
 		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/mantisray_small.png"));
 		
+	}
+
+	// attack player
+	@Override
+	public void attackPlayer() {
+
+		// hero takes damage
+		game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
+		
+		// paint hero's health bar
+		game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
+		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
+		
+		// repaint health bars
+		game.repaint();
+		
+	}
+
+	// prepare gui for battle
+	@Override
+	public void prepareFight() {
+		game.getBar_enemyHealth().setMaximum((int) maxHealth);
+		game.getBar_enemyHealth().setValue((int) maxHealth);
+		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());	
 	}
 
 }

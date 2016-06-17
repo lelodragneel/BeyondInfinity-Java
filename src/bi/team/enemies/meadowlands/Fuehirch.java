@@ -29,6 +29,7 @@ public class Fuehirch extends Enemy {
 	}
 
 	// attack player
+	@Override
 	public void attackPlayer() {
 		
 		// hero takes damage
@@ -44,6 +45,7 @@ public class Fuehirch extends Enemy {
 	}
 	
 	// prepare gui for battle
+	@Override
 	public void prepareFight() {
 		game.getBar_enemyHealth().setMaximum((int) maxHealth);
 		game.getBar_enemyHealth().setValue((int) maxHealth);
