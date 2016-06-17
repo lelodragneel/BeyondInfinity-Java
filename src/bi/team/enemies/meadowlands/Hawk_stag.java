@@ -37,7 +37,7 @@ public class Hawk_stag extends Enemy {
 		
 		// paint hero's health bar
 		game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
-		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
+		game.getBar_playerHealth().setString(game.getHero().getCurHealth() + " / " + game.getHero().getMaxHealth());
 		
 		// repaint health bars
 		game.repaint();
@@ -49,7 +49,7 @@ public class Hawk_stag extends Enemy {
 	public void prepareFight() {
 		game.getBar_enemyHealth().setMaximum((int) maxHealth);
 		game.getBar_enemyHealth().setValue((int) maxHealth);
-		game.getBar_enemyHealth().setString(game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
+		game.getBar_enemyHealth().setString(curHealth + " / " + maxHealth);
 	}
 
 }

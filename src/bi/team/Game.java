@@ -237,10 +237,11 @@ public class Game extends JFrame implements ActionListener {
 	    // create the surrender button
 	    btnSurrender = new JButton("");
 	    btnSurrender.setBounds(1010, 0, 34, 34);
-	    panel_actionsTop.add(btnSurrender);
 	    btnSurrender.setFocusable(false);
+	    btnSurrender.addActionListener(this);
 	    btnSurrender.setIcon(new ImageIcon(getClass().getResource("/images/suicide.png")));
 	    btnSurrender.setVisible(false);
+	    panel_actionsTop.add(btnSurrender);
 
 		// create the loading bar
 		bar_loading = new JProgressBar();
@@ -323,7 +324,7 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setAutoscrolls(true);
-		scroll.setBounds(379, 20, 286, 293);
+		scroll.setBounds(384, 11, 275, 311);
 		scroll.setOpaque(false);
 		scroll.setBorder(null);
 		scroll.getViewport().setOpaque(false);
@@ -387,7 +388,7 @@ public class Game extends JFrame implements ActionListener {
 			toggleInventory();
 		// clicked surrender
 		if (evt.getSource() == btnSurrender) {
-			// TODO surrender
+			hero.surrender();
 		}
 
 	}
@@ -424,7 +425,7 @@ public class Game extends JFrame implements ActionListener {
 		repaint();
 
 	}
-
+	
 	// toggle the inventory pane
 	public void toggleInventory() {
 

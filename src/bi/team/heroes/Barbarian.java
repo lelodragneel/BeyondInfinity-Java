@@ -96,7 +96,7 @@ public class Barbarian extends Hero implements ActionListener {
 		game.getBar_playerHealth().setMinimum(0);
 		game.getBar_playerHealth().setMaximum((int) maxVitality);
 		game.getBar_playerHealth().setValue((int) curVitality);
-		game.getBar_playerHealth().setString(game.getBar_playerHealth().getValue() + " / " + game.getBar_playerHealth().getMaximum());
+		game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
 		
 		// create this class's attacks
 		AttacksArrayList.add(new Strike(this, game));
@@ -485,6 +485,43 @@ public class Barbarian extends Hero implements ActionListener {
 		}	
 	}
 	
+	// surrender
+	@Override
+	public void surrender() {
+		
+		// unselect current enemy
+		game.setEnemySelected(null);
+		
+		// reset health
+		double a = maxVitality;
+		curVitality = a;
+		
+		// reset rage
+		curRage = 1;
+		repaintRage();
+		
+		// reset health bar
+		game.getBar_playerHealth().setMaximum((int) maxVitality);
+		game.getBar_playerHealth().setValue((int) maxVitality);
+		game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
+		
+		// remove enemy image from battlefield
+		game.getLblEnemyImage().setIcon(null);
+		
+		// disable attack buttons
+		game.disableAttackButtons();
+		
+		// reset turns
+		Game.setTurn(1);
+		
+		// clear event area
+		game.getTextArea().setText("");
+		
+		// repaint
+		game.repaint();
+		
+	}
+	
 	// reset all stats, and prepare for fight
 	@Override
 	public void setEnemyToFight(Enemy enemy) {
@@ -503,13 +540,13 @@ public class Barbarian extends Hero implements ActionListener {
 		// reset health bar
 		game.getBar_playerHealth().setMaximum((int) maxVitality);
 		game.getBar_playerHealth().setValue((int) maxVitality);
+		game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
 		
 		// reset turns
 		Game.setTurn(1);
 		
 		// assign current enemy fighting
 		game.setEnemySelected(enemy);
-		System.out.println("Now facing => " + enemy.getName());
 		
 	}
 	

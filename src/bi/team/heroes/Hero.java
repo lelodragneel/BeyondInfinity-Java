@@ -62,6 +62,9 @@ public abstract class Hero {
 	public void setEnemyToFight(Enemy enemy) {
 	}
 	
+	// surrender
+	public abstract void surrender();
+	
 	// return the vitality
 	public abstract double getCurHealth();
 
