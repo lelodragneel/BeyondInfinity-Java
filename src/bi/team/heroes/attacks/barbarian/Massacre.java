@@ -22,8 +22,8 @@ public class Massacre extends Attack {
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 6;
-		curWarmup = 6;
+		maxWarmup = 2;
+		curWarmup = 2;
 		rageNeeded = 5;
 		damage = 150;
 	}

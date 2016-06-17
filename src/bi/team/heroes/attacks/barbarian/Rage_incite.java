@@ -22,9 +22,10 @@ public class Rage_incite extends Attack {
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 3;
-		curWarmup = 3;
-		rageNeeded = 0;
+		maxWarmup = 2;
+		curWarmup = 2;
+		rageNeeded = 5;
+		damage = 0;
 	}
 
 	@Override

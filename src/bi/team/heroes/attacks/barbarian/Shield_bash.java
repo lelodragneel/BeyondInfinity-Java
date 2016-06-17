@@ -22,9 +22,9 @@ public class Shield_bash extends Attack {
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 5;
-		curWarmup = 5;
-		rageNeeded = 0;
+		maxWarmup = 2;
+		curWarmup = 2;
+		rageNeeded = 4;
 		damage = 100;
 	}
 

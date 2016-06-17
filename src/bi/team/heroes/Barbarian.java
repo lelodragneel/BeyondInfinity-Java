@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
@@ -25,13 +26,13 @@ import bi.team.heroes.attacks.barbarian.Battler_bash;
 import bi.team.heroes.attacks.barbarian.Charge;
 import bi.team.heroes.attacks.barbarian.Heavy_blow;
 import bi.team.heroes.attacks.barbarian.Incapacitate;
+import bi.team.heroes.attacks.barbarian.Massacre;
 import bi.team.heroes.attacks.barbarian.Rage_incite;
 import bi.team.heroes.attacks.barbarian.Raise_shield;
 import bi.team.heroes.attacks.barbarian.Shield_bash;
 import bi.team.heroes.attacks.barbarian.Strike;
 import bi.team.heroes.attacks.barbarian.True_assault;
 import bi.team.heroes.attacks.barbarian.Vengeance;
-import bi.team.heroes.attacks.barbarian.Massacre;
 
 
 public class Barbarian extends Hero implements ActionListener {
@@ -415,12 +416,14 @@ public class Barbarian extends Hero implements ActionListener {
 						x.setCurWarmup(0);
 						load.nextTurn(x);
 					} else {
+						continue;
 //						try {
 //							game.getDoc().insertString(game.getDoc().getLength(), "Insufficient Rage!\n", null);
 //						} catch (BadLocationException e1) {
 //						}
 					}
 				} else {
+					continue;
 //					try {
 //						game.getDoc().insertString(game.getDoc().getLength(), x.getName() + " is not ready!", null);
 //					} catch (BadLocationException e1) {
@@ -489,36 +492,45 @@ public class Barbarian extends Hero implements ActionListener {
 	@Override
 	public void surrender() {
 		
-		// unselect current enemy
-		game.setEnemySelected(null);
+		// ask to confirm surrender
+		Object[] options = {"Yes", "No Way!"};
+		int s = JOptionPane.showOptionDialog(game, "Are you sure you want to surrender?", "Concede", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");
 		
-		// reset health
-		double a = maxVitality;
-		curVitality = a;
-		
-		// reset rage
-		curRage = 1;
-		repaintRage();
-		
-		// reset health bar
-		game.getBar_playerHealth().setMaximum((int) maxVitality);
-		game.getBar_playerHealth().setValue((int) maxVitality);
-		game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
-		
-		// remove enemy image from battlefield
-		game.getLblEnemyImage().setIcon(null);
-		
-		// disable attack buttons
-		game.disableAttackButtons();
-		
-		// reset turns
-		Game.setTurn(1);
-		
-		// clear event area
-		game.getTextArea().setText("");
-		
-		// repaint
-		game.repaint();
+		// 0 = surrender. 1 = don't surrender
+		if (s == 1) {
+			return;
+		} else {
+			// unselect current enemy
+			game.setEnemySelected(null);
+
+			// reset health
+			double a = maxVitality;
+			curVitality = a;
+
+			// reset rage
+			curRage = 1;
+			repaintRage();
+
+			// reset health bar
+			game.getBar_playerHealth().setMaximum((int) maxVitality);
+			game.getBar_playerHealth().setValue((int) maxVitality);
+			game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
+
+			// remove enemy image from battlefield
+			game.getLblEnemyImage().setIcon(null);
+
+			// disable attack buttons
+			game.disableAttackButtons();
+
+			// reset turns
+			Game.setTurn(1);
+
+			// clear event area
+			game.getTextArea().setText("");
+
+			// repaint
+			game.repaint();
+		}
 		
 	}
 	

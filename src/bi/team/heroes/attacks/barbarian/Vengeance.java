@@ -22,9 +22,10 @@ public class Vengeance extends Attack {
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 4;
-		curWarmup = 4;
-		rageNeeded = 0;
+		maxWarmup = 2;
+		curWarmup = 2;
+		rageNeeded = 4;
+		damage = 0;
 	}
 
 	@Override

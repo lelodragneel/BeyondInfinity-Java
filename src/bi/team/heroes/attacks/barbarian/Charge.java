@@ -22,9 +22,9 @@ public class Charge extends Attack {
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 3;
-		curWarmup = 3;
-		rageNeeded = 0;
+		maxWarmup = 2;
+		curWarmup = 2;
+		rageNeeded = 1;
 		damage = 10;
 	}
 

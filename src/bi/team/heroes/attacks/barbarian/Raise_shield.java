@@ -22,9 +22,10 @@ public class Raise_shield extends Attack {
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 5;
-		curWarmup = 5;
-		rageNeeded = 0;
+		maxWarmup = 2;
+		curWarmup = 2;
+		rageNeeded = 3;
+		damage = 0;
 	}
 
 	@Override

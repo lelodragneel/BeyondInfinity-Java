@@ -24,7 +24,7 @@ public class Heavy_blow extends Attack {
 		
 		maxWarmup = 2;
 		curWarmup = 2;
-		rageNeeded = 0;
+		rageNeeded = 1;
 		damage = 20;
 	}
 

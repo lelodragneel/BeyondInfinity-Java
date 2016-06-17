@@ -22,9 +22,9 @@ public class True_assault extends Attack {
 			+ "</table>"
 			+ "</html>"));
 		
-		maxWarmup = 6;
-		curWarmup = 6;
-		rageNeeded = 0;
+		maxWarmup = 2;
+		curWarmup = 2;
+		rageNeeded = 6;
 		damage = 200;
 	}
 
