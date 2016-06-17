@@ -76,13 +76,19 @@ public class Game extends JFrame implements ActionListener {
 	private Enemy enemySelected;
 	private JLabel lblLevel_current;
 	private JLabel lblLevel_next;
-	private SimpleAttributeSet leftAlign;
-	private SimpleAttributeSet rightAlign;
+	private JLabel lblEnemyName;
+	private JLabel lblPlayerName;
+	private JLabel lblEnemyImage;
+	private JLabel lblPlayerImage;
+	private int heroSex;
 	
 	// create the frame
-	public Game(String name, int chosenHero, int giftNum) {
+	public Game(String name, int chosenHero, int heroSex, int giftNum) {
 
 		// TODO instantiate gift parameter
+		
+		// instantiate objects
+		this.heroSex = heroSex;
 
 		// health bar esthetics
 		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
@@ -246,6 +252,7 @@ public class Game extends JFrame implements ActionListener {
 		lblHeartPlayer.setBounds(3, 3, 32, 32);
 		lblHeartPlayer.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
 		panel_player.add(lblHeartPlayer);
+		
 		// enemy's health icon
 		JLabel lblHeartEnemy = new JLabel("HP");
 		lblHeartEnemy.setForeground(Color.WHITE);
@@ -321,33 +328,33 @@ public class Game extends JFrame implements ActionListener {
 		scroll.getViewport().setOpaque(false);
 		panel_areaField.add(scroll);
 
-		// create label to display area image
-		areaWallpaper = new JLabel();
-		areaWallpaper.setBounds(0, 0, 1044, 333);
-		areaWallpaper.setIcon(new ImageIcon(getClass().getResource("/images/areas/meadowlands.jpg")));
-		panel_areaField.add(areaWallpaper);
-
 		// create the enemy's picture
-		JLabel lblEnemyImage = new JLabel("");
+		lblEnemyImage = new JLabel("");
 		lblEnemyImage.setBounds(825, 100, 209, 222);
 		panel_areaField.add(lblEnemyImage);
 
 		// create label to display player's name
-		JLabel lblPlayerName = new JLabel(name);
+		lblPlayerName = new JLabel(name);
 		lblPlayerName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblPlayerName.setBounds(10, 76, 208, 20);
 		panel_areaField.add(lblPlayerName);
 
 		// create the player's picture
-		JLabel lblPlayerImage = new JLabel("");
+		lblPlayerImage = new JLabel("");
 		lblPlayerImage.setBounds(10, 100, 208, 222);
 		panel_areaField.add(lblPlayerImage);
 		
 		// create the enemy's name
-		JLabel lblEnemyName = new JLabel("<dynamic>");
+		lblEnemyName = new JLabel("<dynamic>");
 		lblEnemyName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
 		lblEnemyName.setBounds(826, 76, 208, 20);
 		panel_areaField.add(lblEnemyName);
+		
+		// create label to display area image
+		areaWallpaper = new JLabel();
+		areaWallpaper.setBounds(0, 0, 1044, 333);
+		areaWallpaper.setIcon(new ImageIcon(getClass().getResource("/images/areas/meadowlands.jpg")));
+		panel_areaField.add(areaWallpaper);
 
 		// create selected hero
 		if (chosenHero == 1)
@@ -404,7 +411,7 @@ public class Game extends JFrame implements ActionListener {
 			if (enemySelected != null) {
 				btnSurrender.setVisible(true);
 				btnSurrender.setEnabled(true);
-				enableAttackButtons();				
+				enableAttackButtons();
 			}
 			hero.enableButtons();
 			btnShowInventory.setEnabled(true);
@@ -489,6 +496,16 @@ public class Game extends JFrame implements ActionListener {
 		return aSet;
 	}
 
+	// return the lblEnemyImage
+	public JLabel getLblEnemyImage() {
+		return lblEnemyImage;
+	}
+
+	// return the lblPlayerImage
+	public JLabel getLblPlayerImage() {
+		return lblPlayerImage;
+	}
+
 	// return the panel_actions jpanel
 	public JPanel getPanel_actions() {
 		return panel_actions;
@@ -506,16 +523,6 @@ public class Game extends JFrame implements ActionListener {
 	// return the panel_player
 	public JPanel getPanel_player() {
 		return panel_player;
-	}
-
-	// return the leftAlign
-	public SimpleAttributeSet getLeftAlign() {
-		return leftAlign;
-	}
-
-	// return the rightAlign
-	public SimpleAttributeSet getRightAlign() {
-		return rightAlign;
 	}
 
 	// return the lblUpgradePoints
@@ -576,6 +583,11 @@ public class Game extends JFrame implements ActionListener {
 	// return the bar_XPBar
 	public JProgressBar getBar_XPBar() {
 		return bar_XPBar;
+	}
+
+	// return the heroSex
+	public int getHeroSex() {
+		return heroSex;
 	}
 
 	// set the upgradePoints

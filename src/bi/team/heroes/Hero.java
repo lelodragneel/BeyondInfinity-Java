@@ -2,6 +2,7 @@ package bi.team.heroes;
 
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -22,6 +23,7 @@ public abstract class Hero {
 	protected JButton btnUpgradeStat_4;
 	protected JButton btnUpgradeStat_5;
 	protected JPanel panel_stances;
+	protected ImageIcon heroImage;
 	// initialize hero stats
 	protected int turnsStunned;
 
@@ -59,6 +61,9 @@ public abstract class Hero {
 	// start battle
 	public void setEnemyToFight(Enemy enemy) {
 	}
+	
+	// initialize the player icon
+	public abstract void initializePlayerIcon();
 	
 	// return the vitality
 	public abstract double getCurHealth();

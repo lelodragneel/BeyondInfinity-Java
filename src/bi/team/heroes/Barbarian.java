@@ -63,6 +63,8 @@ public class Barbarian extends Hero implements ActionListener {
 	private double sharpness;
 	private double toughness;
 	private double riposteChance;
+	private ImageIcon maleImage;
+	private ImageIcon femaleImage;
 
 	// constructor
 	public Barbarian(Game game) {
@@ -78,6 +80,8 @@ public class Barbarian extends Hero implements ActionListener {
 		sharpness = 1;
 		toughness = 5;
 		riposteChance = 10;
+		maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
+		femaleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_female_big.png"));
 
 		// configure player GUI
 		game.getBar_playerHealth().setMinimum(0);
@@ -373,6 +377,9 @@ public class Barbarian extends Hero implements ActionListener {
 		// display default attacks by default
 		showOffensiveAttacks();
 		
+		// display player icons
+		initializePlayerIcon();
+		
 	}
 
 	/*
@@ -413,6 +420,18 @@ public class Barbarian extends Hero implements ActionListener {
 			}
 		}
 
+	}
+	
+	// initialize player icons
+	@Override
+	public void initializePlayerIcon() {
+		if (game.getHeroSex() == 1) {
+			game.getLblPlayerImage().setIcon(maleImage);
+		} else if (game.getHeroSex() == 2) {
+			game.getLblPlayerImage().setIcon(femaleImage);
+		} else {
+			System.out.println("[Barbarian.java] Something went wrong retrieving sex!");
+		}	
 	}
 	
 	/*

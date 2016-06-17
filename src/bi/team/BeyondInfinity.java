@@ -61,6 +61,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 	private JLabel lblBarbarian;
 	private JLabel lblSwordsman;
 	private JLabel lblWarlock;
+	private int heroSex;	// 1 = male. 2 = female.
 	
 	// constructor
 	public BeyondInfinity() {	
@@ -517,6 +518,9 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			btnChemist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/chemist_female.png")));
 			btnChemist.setToolTipText("Mira the Despicable");
 			
+			// set gender
+			heroSex = 2;
+			
 		} else if (selected == btnSex_male) {	
 			// change barbarian
 			lblBarbarian.setText("<html><b>Brynjar</b> the Barbarian</html>");
@@ -538,6 +542,10 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 			lblChemist.setText("<html><b>Merlin</b> the Chemist</html>");
 			btnChemist.setIcon(new ImageIcon(getClass().getResource("/images/heroes/chemist_male.png")));
 			btnChemist.setToolTipText("Merlin the Despicable");
+			
+			// set gender
+			heroSex = 1;
+			
 		}
 		
 	}
@@ -588,7 +596,7 @@ public class BeyondInfinity extends JFrame implements ActionListener {
 
 				// TODO textfield validation
 
-				new Game(nameField.getText(), chosenHero, giftNum);
+				new Game(nameField.getText(), chosenHero, heroSex, giftNum);
 			}
 		});
 
