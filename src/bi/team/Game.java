@@ -394,7 +394,7 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
-	// hero dies
+	// resurrect the most-recently killed enemy
 	public void resurrectLatestEnemy() {
 		// TODO
 	}

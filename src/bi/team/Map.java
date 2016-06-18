@@ -68,7 +68,7 @@ public class Map extends JLayeredPane implements ActionListener {
 		// create label to display selected enemy name
 		lblEnemyName = new JLabel("");
 		lblEnemyName.setVerticalAlignment(SwingConstants.TOP);
-		lblEnemyName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+		lblEnemyName.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
 		lblEnemyName.setBounds(10, 164, 150, 36);
 		panel_enemyInfo.add(lblEnemyName);
 		

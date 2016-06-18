@@ -574,6 +574,9 @@ public class Barbarian extends Hero implements ActionListener {
 		game.getPanel_enemy().setVisible(true);
 		game.getLblEnemyName().setText(enemy.getName() + "");
 		
+		// clear event area
+		game.getTextArea().setText(""); 
+		
 		// reset turns
 		Game.setTurn(1);
 		

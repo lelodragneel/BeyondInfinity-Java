@@ -19,6 +19,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected String name;
 	protected boolean alive;
 	protected int enemyNumber;
+	private int valign;
 	protected ImageIcon enemyImage_small;
 	protected ImageIcon enemyImage;
 	// initialize enemy stats
@@ -28,7 +29,6 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected double protection;
 	protected double experienceDrop;
 	protected double criticalChance;
-	private int valign;
 
 	// constructor
 	public Enemy(Game game, int valign) {
@@ -39,7 +39,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 		this.valign = valign;
 		
 		// create a label and configured its settings
-		this.setBackground(new Color(236, 236, 236));
+		this.setBackground(new Color(46, 204, 113));
 		this.setOpaque(true);
 		this.setVerticalAlignment(SwingConstants.BOTTOM);
 		this.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -58,21 +58,38 @@ public abstract class Enemy extends JButton implements MouseListener {
 	// mouse listeners for hovering effects
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		this.setBackground(Color.LIGHT_GRAY);
+		if (alive) {
+			this.setBackground(new Color(38, 166, 91));
+		} else {
+			this.setBackground(new Color(192, 57, 43));
+		}
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
-		this.setBackground(new Color(236, 236, 236));
+		if (alive) {
+			this.setBackground(new Color(46, 204, 113));			
+		} else {
+			this.setBackground(new Color(239, 72, 54));
+		}
 	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
-		game.setEnemySelected(this);
+		
+		// set enemy name & image on map
 		game.getMap().getLblEnemyIcon().setIcon(enemyImage_small);
 		game.getMap().getLblEnemyName().setText("<html>" + name + "</html>");
-		game.getMap().getBtnChallenge().setEnabled(true);
+		
+		if (alive) {
+			// set this as selected enemy
+			game.setEnemySelected(this);
+			// enable challenge button
+			game.getMap().getBtnChallenge().setEnabled(true);
+		} else {
+			game.getMap().getBtnChallenge().setEnabled(false);
+		}
 		
 	}
 	@Override
@@ -92,6 +109,16 @@ public abstract class Enemy extends JButton implements MouseListener {
 	// return the name
 	public String getName() {
 		return name;
+	}
+
+	// return the alive
+	public boolean isAlive() {
+		return !(curHealth <= 0);
+	}
+
+	// set the alive
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 
 	// return the experienceDrop

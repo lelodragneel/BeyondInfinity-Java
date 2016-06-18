@@ -1,10 +1,12 @@
 package bi.team.heroes;
 
+import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -42,6 +44,25 @@ public abstract class Hero {
 				x.setCurWarmup(x.getCurWarmup() + 1);
 			}
 		}
+	}
+	
+	// hero kills enemy
+	public void killEnemy(Enemy enemy) {
+		
+		// set enemy to dead
+		enemy.setAlive(false);
+		
+		// set red background to enemy's map entry
+		enemy.setBackground(new Color(239, 72, 54));
+		
+		// set enemy's health bar to dead
+		game.getBar_enemyHealth().setString("dead");
+		
+		// replace enemy icon to grave on battlefield
+		game.getLblEnemyImage().setVerticalAlignment(SwingConstants.BOTTOM);
+		game.getLblEnemyImage().setIcon(new ImageIcon(getClass().getResource("/images/grave.png")));
+		
+		
 	}
 	
 	// XXX attack the enemy

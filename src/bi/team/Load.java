@@ -77,9 +77,14 @@ public class Load implements ActionListener {
 			if (Game.getTurn()) {
 				// player attacks enemy
 				hero.attackEnemy(attack);
-				// change turns
-				Game.addTurn();
-				nextTurn();
+				// check if enemy is dead
+				if (!game.getEnemySelected().isAlive()) {
+					hero.killEnemy(game.getEnemySelected());
+				} else {
+					// change turns
+					Game.addTurn();
+					nextTurn();				
+				}
 			} else {
 				// enemy attacks the player
 				game.getEnemySelected().attackPlayer();
