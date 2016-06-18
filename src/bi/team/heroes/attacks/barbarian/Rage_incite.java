@@ -1,6 +1,9 @@
 package bi.team.heroes.attacks.barbarian;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -25,11 +28,23 @@ public class Rage_incite extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 5;
-		damage = 0;
+
 	}
 
 	@Override
-	public void startAttack() {
+	public void startAttack() throws BadLocationException {
+		
+		// consume rage
+		hero.consumeRage(rageNeeded);
+		
+		// increase damage by 100%
+		hero.setDmgMultiplier(hero.getDmgMultiplier() + 1);
+		
+		// display events
+		Document doc = game.getTextArea().getDocument();
+		doc.insertString(doc.getLength(), "\n", game.getaSet());
+		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")));
+		doc.insertString(doc.getLength(), " activated", game.getaSet());
 		
 	}
 

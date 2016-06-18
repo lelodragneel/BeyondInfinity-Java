@@ -140,7 +140,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
-		panel_player.setBounds(20, 80, 228, 65);
+		panel_player.setBounds(20, 80, 260, 65);
 		panel_player.setBackground(new Color(204, 255, 153));
 		panel_player.setBorder(new LineBorder(Color.BLACK, 1));
 		panel_player.setLayout(null);
@@ -209,9 +209,10 @@ public class Game extends JFrame implements ActionListener {
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(816, 80, 228, 65);
+		panel_enemy.setBounds(784, 80, 260, 65);
 		panel_enemy.setBorder(new LineBorder(Color.BLACK, 1));
 		panel_enemy.setLayout(null);
+		panel_enemy.setVisible(false);
 		getContentPane().add(panel_enemy);
 
 		// create actions panel for displaying attack buttons
@@ -276,7 +277,8 @@ public class Game extends JFrame implements ActionListener {
 		bar_playerHealth = new JProgressBar();
 		bar_playerHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		bar_playerHealth.setStringPainted(true);
-		bar_playerHealth.setBounds(14, 11, 204, 16);
+		bar_playerHealth.setBounds(14, 11, 236, 16);
+		bar_playerHealth.setString("");
 		bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
 		bar_playerHealth.setForeground(new Color(30, 139, 195));
 		panel_player.add(bar_playerHealth);
@@ -285,15 +287,11 @@ public class Game extends JFrame implements ActionListener {
 		bar_enemyHealth = new JProgressBar();
 		bar_enemyHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		bar_enemyHealth.setStringPainted(true);
-		bar_enemyHealth.setBounds(14, 11, 205, 16);
+		bar_enemyHealth.setBounds(14, 11, 236, 16);
+		bar_enemyHealth.setString("");
 		bar_enemyHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
 		bar_enemyHealth.setForeground(new Color(236, 100, 75));
 		panel_enemy.add(bar_enemyHealth);
-
-		// create label to display enemy's name
-		JLabel lbl_enemyName = new JLabel(" name");
-		lbl_enemyName.setBounds(13, 46, 189, 20);
-		panel_enemy.add(lbl_enemyName);
 
 		// create panel displaying player images
 		panel_areaField = new JPanel();
@@ -324,7 +322,7 @@ public class Game extends JFrame implements ActionListener {
 		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
 		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setAutoscrolls(true);
-		scroll.setBounds(384, 11, 275, 311);
+		scroll.setBounds(384, 11, 275, 300);
 		scroll.setOpaque(false);
 		scroll.setBorder(null);
 		scroll.getViewport().setOpaque(false);
@@ -333,26 +331,28 @@ public class Game extends JFrame implements ActionListener {
 		// create the enemy's picture
 		lblEnemyImage = new JLabel("");
 		lblEnemyImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnemyImage.setBounds(825, 100, 209, 222);
+		lblEnemyImage.setBounds(774, 100, 260, 222);
 		panel_areaField.add(lblEnemyImage);
 
 		// create label to display player's name
 		lblPlayerName = new JLabel(name);
-		lblPlayerName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblPlayerName.setBounds(10, 76, 208, 20);
+		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayerName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+		lblPlayerName.setBounds(10, 76, 260, 20);
 		panel_areaField.add(lblPlayerName);
 
 		// create the player's picture
 		lblPlayerImage = new JLabel("");
 		lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPlayerImage.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblPlayerImage.setBounds(10, 100, 208, 222);
+		lblPlayerImage.setBounds(10, 100, 260, 222);
 		panel_areaField.add(lblPlayerImage);
 		
 		// create the enemy's name
-		lblEnemyName = new JLabel("<dynamic>");
-		lblEnemyName.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblEnemyName.setBounds(826, 76, 208, 20);
+		lblEnemyName = new JLabel("");
+		lblEnemyName.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnemyName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+		lblEnemyName.setBounds(774, 76, 260, 20);
 		panel_areaField.add(lblEnemyName);
 		
 		// create label to display area image
@@ -477,6 +477,16 @@ public class Game extends JFrame implements ActionListener {
 		bar_loading.setValue(val);
 	}
 
+	// return the lblEnemyName
+	public JLabel getLblEnemyName() {
+		return lblEnemyName;
+	}
+
+	// return the lblPlayerName
+	public JLabel getLblPlayerName() {
+		return lblPlayerName;
+	}
+
 	// return the curExperience
 	public static double getCurExperience() {
 		return curExperience;
@@ -496,6 +506,11 @@ public class Game extends JFrame implements ActionListener {
 		turn += 1;
 	}
 	
+	// return the panel_enemy
+	public JPanel getPanel_enemy() {
+		return panel_enemy;
+	}
+
 	// set the turn
 	public static void setTurn(int turn) {
 		Game.turn = turn;

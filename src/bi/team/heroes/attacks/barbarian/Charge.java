@@ -25,7 +25,7 @@ public class Charge extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 1;
-		damage = 10;
+
 	}
 
 	@Override

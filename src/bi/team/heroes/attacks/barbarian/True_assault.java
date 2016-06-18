@@ -25,7 +25,7 @@ public class True_assault extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 6;
-		damage = 200;
+
 	}
 
 	@Override

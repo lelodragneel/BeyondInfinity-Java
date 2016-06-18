@@ -19,14 +19,13 @@ public abstract class Attack {
 	protected JButton button;
 	protected String name;
 	protected int rageNeeded;
-	protected double damage;
 	protected boolean isAvailable = true;
 	protected double maxWarmup;
 	protected double curWarmup;
 	protected Game game;
 	protected Barbarian hero;
 	protected Load load;
-
+	
 	// constructor
 	public Attack(Barbarian hero, Game game, JButton button) {
 		
@@ -82,10 +81,6 @@ public abstract class Attack {
 		return rageNeeded;
 	}
 
-	// return the damage
-	public double getDamage() {
-		return damage;
-	}
 }
 
 

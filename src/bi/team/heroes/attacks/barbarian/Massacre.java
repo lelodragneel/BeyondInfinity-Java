@@ -25,7 +25,7 @@ public class Massacre extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 5;
-		damage = 150;
+
 	}
 
 	@Override

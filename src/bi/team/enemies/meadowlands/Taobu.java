@@ -14,7 +14,7 @@ public class Taobu extends Enemy {
 
 	// constructor
 	public Taobu(Game game) {
-		super(game, SwingConstants.BOTTOM);
+		super(game, SwingConstants.TOP);
 		
 		// configure variables
 		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));

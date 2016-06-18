@@ -25,7 +25,7 @@ public class Incapacitate extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 3;
-		damage = 0;
+
 	}
 
 	@Override

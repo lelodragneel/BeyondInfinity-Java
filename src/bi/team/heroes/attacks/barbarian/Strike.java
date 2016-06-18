@@ -29,8 +29,6 @@ public class Strike extends Attack {
 		curWarmup = 0;
 		rageNeeded = 0;
 		
-		System.out.println(button.getWidth());
-		
 	}
 
 	@Override
@@ -40,13 +38,14 @@ public class Strike extends Attack {
 		hero.generateRage(1);
 		
 		// deal damage to enemy
-		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - hero.getSharpness());
+		double dmg = hero.getSharpness() * hero.getDmgMultiplier();
+		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 		
 		// display events
 		Document doc = game.getTextArea().getDocument();
 		doc.insertString(doc.getLength(), "\n", game.getaSet());
 		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
-		doc.insertString(doc.getLength(), hero.getSharpness() + "", game.getaSet());
+		doc.insertString(doc.getLength(), dmg + "", game.getaSet());
 		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/enemy.png")));
 
 	}

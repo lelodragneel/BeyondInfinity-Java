@@ -71,6 +71,7 @@ public class Barbarian extends Hero implements ActionListener {
 	private ImageIcon defensiveIcon_small;
 	private ImageIcon offensiveIcon;
 	private ImageIcon offensiveIcon_small;
+	private double dmgMultiplier;
 	
 	// constructor
 	public Barbarian(Game game) {
@@ -81,11 +82,12 @@ public class Barbarian extends Hero implements ActionListener {
 		AttacksArrayList = new ArrayList<Attack>();
 		maxVitality = 100;
 		curVitality = 100;
-		maxRage = 8;
+		maxRage = 6;
 		curRage = 0;
-		sharpness = 1;
+		sharpness = 10;
 		toughness = 5;
 		riposteChance = 10;
+		dmgMultiplier = 1;
 		maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
 		femaleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_female_big.png"));
 		defensiveIcon = new ImageIcon(getClass().getResource("/images/stance_defensive.png"));
@@ -527,6 +529,10 @@ public class Barbarian extends Hero implements ActionListener {
 
 			// remove enemy image from battlefield
 			game.getLblEnemyImage().setIcon(null);
+			
+			// hide enemy panel & enemy name
+			game.getPanel_enemy().setVisible(false);
+			game.getLblEnemyName().setText("");
 
 			// disable attack buttons
 			game.disableAttackButtons();
@@ -563,6 +569,10 @@ public class Barbarian extends Hero implements ActionListener {
 		game.getBar_playerHealth().setMaximum((int) maxVitality);
 		game.getBar_playerHealth().setValue((int) maxVitality);
 		game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
+		
+		// show enemy panel & enemy name
+		game.getPanel_enemy().setVisible(true);
+		game.getLblEnemyName().setText(enemy.getName() + "");
 		
 		// reset turns
 		Game.setTurn(1);
@@ -660,6 +670,16 @@ public class Barbarian extends Hero implements ActionListener {
 		}
 	}
 	
+	// return the dmgMultiplier
+	public double getDmgMultiplier() {
+		return dmgMultiplier;
+	}
+
+	// set the dmgMultiplier
+	public void setDmgMultiplier(double dmgMultiplier) {
+		this.dmgMultiplier = dmgMultiplier;
+	}
+
 	// return the curRage
 	public int getCurRage() {
 		return curRage;

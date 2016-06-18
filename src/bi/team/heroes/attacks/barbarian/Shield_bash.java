@@ -25,7 +25,7 @@ public class Shield_bash extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 4;
-		damage = 100;
+
 	}
 
 	@Override

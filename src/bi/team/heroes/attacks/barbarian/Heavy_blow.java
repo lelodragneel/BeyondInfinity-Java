@@ -1,6 +1,9 @@
 package bi.team.heroes.attacks.barbarian;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -25,17 +28,30 @@ public class Heavy_blow extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 1;
-		damage = 20;
+
 	}
 
 	@Override
-	public void startAttack() {
+	public void startAttack() throws BadLocationException {
+		
+		// consume rage
+		hero.consumeRage(rageNeeded);
+		
+		// deal damage to enemy
+		double dmg = (20 + hero.getSharpness()) * hero.getDmgMultiplier();
+		game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
+		
+		// display events
+		Document doc = game.getTextArea().getDocument();
+		doc.insertString(doc.getLength(), "\n", game.getaSet());
+		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/heavy_blow.png")));
+		doc.insertString(doc.getLength(), dmg + "", game.getaSet());
+		game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/enemy.png")));
 		
 	}
 
 	@Override
 	public void activeEffects() {
-		System.out.println("heavyblow active");
 		
 	}
 

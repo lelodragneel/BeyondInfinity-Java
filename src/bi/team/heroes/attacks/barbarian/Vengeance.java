@@ -25,7 +25,7 @@ public class Vengeance extends Attack {
 		maxWarmup = 2;
 		curWarmup = 2;
 		rageNeeded = 4;
-		damage = 0;
+
 	}
 
 	@Override
