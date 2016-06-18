@@ -76,6 +76,8 @@ public class Map extends JLayeredPane implements ActionListener {
 		lblEnemyIcon = new JLabel("");
 		lblEnemyIcon.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblEnemyIcon.setBounds(10, 10, 150, 150);
+		lblEnemyIcon.setHorizontalAlignment(SwingConstants.CENTER);
+		lblEnemyIcon.setVerticalAlignment(SwingConstants.CENTER);
 		panel_enemyInfo.add(lblEnemyIcon);
 		
 		// create the challenge button
