@@ -28,13 +28,15 @@ public abstract class Enemy extends JButton implements MouseListener {
 	protected double protection;
 	protected double experienceDrop;
 	protected double criticalChance;
+	private int valign;
 
 	// constructor
-	public Enemy(Game game) {
+	public Enemy(Game game, int valign) {
 		
 		// configure variables
 		alive = true;
 		this.game = game;
+		this.valign = valign;
 		
 		// create a label and configured its settings
 		this.setBackground(new Color(236, 236, 236));
@@ -75,6 +77,11 @@ public abstract class Enemy extends JButton implements MouseListener {
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
+	}
+
+	// return the valign
+	public int getValign() {
+		return valign;
 	}
 
 	// return the enemyImage_small

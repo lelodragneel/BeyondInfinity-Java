@@ -62,6 +62,9 @@ public abstract class Hero {
 	public void setEnemyToFight(Enemy enemy) {
 	}
 	
+	// check if hero is alive/dead
+	public abstract boolean isAlive();
+	
 	// surrender
 	public abstract void surrender();
 	

@@ -3,6 +3,7 @@ package bi.team.enemies.meadowlands;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import bi.team.Game;
@@ -13,7 +14,7 @@ public class Hawk_stag extends Enemy {
 
 	// constructor
 	public Hawk_stag(Game game) {
-		super(game);
+		super(game, SwingConstants.BOTTOM);
 		
 		// configure variables
 		super.setBorder(new LineBorder(new Color(0, 0, 0), 1));

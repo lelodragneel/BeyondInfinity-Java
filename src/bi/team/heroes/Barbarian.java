@@ -454,6 +454,15 @@ public class Barbarian extends Hero implements ActionListener {
 		
 	}
 	
+	// check if hero is dead/alive
+	public boolean isAlive() {
+		if (curVitality <= 0) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
 	// generate rage
 	public void generateRage(int amount) {
 		for (int i = 0; i < amount; i++) {
@@ -548,6 +557,7 @@ public class Barbarian extends Hero implements ActionListener {
 		
 		// set enemy image on battlefield
 		game.getLblEnemyImage().setIcon(enemy.getEnemyImage());
+		game.getLblEnemyImage().setVerticalAlignment(enemy.getValign());
 		
 		// reset health bar
 		game.getBar_playerHealth().setMaximum((int) maxVitality);

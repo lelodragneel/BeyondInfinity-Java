@@ -140,7 +140,7 @@ public class Game extends JFrame implements ActionListener {
 
 		// create left panel for displaying hero info
 		panel_player = new JPanel();
-		panel_player.setBounds(10, 70, 228, 65);
+		panel_player.setBounds(20, 80, 228, 65);
 		panel_player.setBackground(new Color(204, 255, 153));
 		panel_player.setBorder(new LineBorder(Color.BLACK, 1));
 		panel_player.setLayout(null);
@@ -209,7 +209,7 @@ public class Game extends JFrame implements ActionListener {
 		// create right panel for displaying enemy info
 		panel_enemy = new JPanel();
 		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(826, 70, 228, 65);
+		panel_enemy.setBounds(816, 80, 228, 65);
 		panel_enemy.setBorder(new LineBorder(Color.BLACK, 1));
 		panel_enemy.setLayout(null);
 		getContentPane().add(panel_enemy);
@@ -345,6 +345,7 @@ public class Game extends JFrame implements ActionListener {
 		// create the player's picture
 		lblPlayerImage = new JLabel("");
 		lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPlayerImage.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblPlayerImage.setBounds(10, 100, 208, 222);
 		panel_areaField.add(lblPlayerImage);
 		
@@ -393,6 +394,11 @@ public class Game extends JFrame implements ActionListener {
 
 	}
 
+	// hero dies
+	public void resurrectLatestEnemy() {
+		// TODO
+	}
+	
 	// toggle the map pane
 	public void toggleMap() {
 

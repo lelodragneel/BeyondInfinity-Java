@@ -61,8 +61,6 @@ public class Load implements ActionListener {
 
 	}
 	
-	
-
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -85,6 +83,10 @@ public class Load implements ActionListener {
 			} else {
 				// enemy attacks the player
 				game.getEnemySelected().attackPlayer();
+				// check if hero is dead
+				if (!hero.isAlive()) {
+					game.resurrectLatestEnemy();
+				}
 				// change turns
 				Game.addTurn();
 				// re-enable buttons
