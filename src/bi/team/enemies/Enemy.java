@@ -1,6 +1,7 @@
 package bi.team.enemies;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -45,6 +46,7 @@ public abstract class Enemy extends JButton implements MouseListener {
 		this.setHorizontalAlignment(SwingConstants.RIGHT);
 		this.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
 		this.setFocusable(false);
+		this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		this.addMouseListener(this);
 		
 	}

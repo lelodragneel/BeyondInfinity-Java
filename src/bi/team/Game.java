@@ -1,6 +1,7 @@
 package bi.team;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -157,6 +158,7 @@ public class Game extends JFrame implements ActionListener {
 		btnShowMap.setBounds(1006, 0, 38, 38);
 		btnShowMap.setFocusable(false);
 		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
+		btnShowMap.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnShowMap.addActionListener(this);
 		panel_top.add(btnShowMap);
 
@@ -165,6 +167,7 @@ public class Game extends JFrame implements ActionListener {
 		btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/knapsack.png")));
 		btnShowInventory.setBounds(0, 0, 38, 38);
 		btnShowInventory.setFocusable(false);
+		btnShowInventory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnShowInventory.addActionListener(this);
 		panel_top.add(btnShowInventory);
 		
@@ -240,6 +243,7 @@ public class Game extends JFrame implements ActionListener {
 	    btnSurrender.setBounds(1010, 0, 34, 34);
 	    btnSurrender.setFocusable(false);
 	    btnSurrender.addActionListener(this);
+	    btnSurrender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 	    btnSurrender.setIcon(new ImageIcon(getClass().getResource("/images/suicide.png")));
 	    btnSurrender.setVisible(false);
 	    panel_actionsTop.add(btnSurrender);

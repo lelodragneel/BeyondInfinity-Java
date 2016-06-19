@@ -1,6 +1,7 @@
 package bi.team.heroes;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -138,6 +139,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnOffensive.setBounds(4, 4, 26, 26);
 		btnOffensive.setFocusable(false);
 		btnOffensive.setBackground(null);
+		btnOffensive.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnOffensive.addActionListener(this);
 		panel_stances.add(btnOffensive);
 
@@ -146,6 +148,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnDefensive.setBounds(36, 4, 26, 26);
 		btnDefensive.setFocusable(false);
 		btnDefensive.setBackground(null);
+		btnDefensive.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnDefensive.addActionListener(this);
 		panel_stances.add(btnDefensive);
 		
@@ -168,6 +171,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_1.setFocusable(false);
 		btnUpgradeStat_1.setBounds(170, 16, 28, 28);
+		btnUpgradeStat_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnUpgradeStat_1.setVisible(false);
 		panel_vitality.add(btnUpgradeStat_1);
 		
@@ -202,6 +206,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_2.setFocusable(false);
 		btnUpgradeStat_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_2.setBounds(170, 16, 28, 28);
+		btnUpgradeStat_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnUpgradeStat_2.setVisible(false);
 		panel_rage.add(btnUpgradeStat_2);
 		
@@ -236,6 +241,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_3.setFocusable(false);
 		btnUpgradeStat_3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_3.setBounds(170, 16, 28, 28);
+		btnUpgradeStat_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnUpgradeStat_3.setVisible(false);
 		panel_sharpness.add(btnUpgradeStat_3);
 		
@@ -271,6 +277,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_4.setFocusable(false);
 		btnUpgradeStat_4.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_4.setBounds(170, 16, 28, 28);
+		btnUpgradeStat_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnUpgradeStat_4.setVisible(false);
 		panel_toughness.add(btnUpgradeStat_4);
 		
@@ -306,6 +313,7 @@ public class Barbarian extends Hero implements ActionListener {
 		btnUpgradeStat_5.setFocusable(false);
 		btnUpgradeStat_5.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		btnUpgradeStat_5.setBounds(170, 16, 28, 28);
+		btnUpgradeStat_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnUpgradeStat_5.setVisible(false);
 		panel_riposteChance.add(btnUpgradeStat_5);
 		

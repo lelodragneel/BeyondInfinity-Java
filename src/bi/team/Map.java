@@ -1,6 +1,7 @@
 package bi.team;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -87,6 +88,7 @@ public class Map extends JLayeredPane implements ActionListener {
 		btnChallenge.setFocusable(false);
 		btnChallenge.setBackground(null);
 		btnChallenge.addActionListener(this);
+		btnChallenge.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnChallenge.setEnabled(false);
 		panel_enemyInfo.add(btnChallenge);
 		

@@ -1,6 +1,7 @@
 package bi.team.heroes.attacks.barbarian;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Insets;
 
 import javax.swing.JButton;
@@ -37,6 +38,7 @@ public abstract class Attack {
 		button.setBackground(Color.WHITE);
 		button.setFocusable(false);
 		button.setMargin(new Insets(0, 0, 0, 0));
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		button.add(new MyGraphics(this));
 		
 	}
