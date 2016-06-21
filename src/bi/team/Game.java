@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -38,594 +39,659 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
-import javax.swing.SwingConstants;
 
+/**
+ * BeyondInfinity A personal two-dimensional game being developed for entertainment and to gain more
+ * knowledge of the Java SE library.
+ * 
+ * @author Lawrence Ayoub
+ * @since February 24 2016
+ */
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
 
-	/*
-	 * initialize variables
-	 */
-	private static int turn = 1;
-	private static int level = 1;
-	private static double curExperience;
-	private static JTextPane textArea;
-	private SimpleAttributeSet aSet;
-	private JPanel panel_player;
-	private JPanel panel_top;
-	private JPanel panel_stats;
-	private JPanel panel_enemy;
-	private JPanel panel_actions;
-	private JPanel panel_frameOpacity;
-	private JPanel panel_areaField;
-	private JPanel panel_actionsTop;
-	private JLabel areaWallpaper;
-	private JLabel upgradePoints;
-	private JLabel lblUpgradePoints;
-	private JProgressBar bar_loading;
-	private JProgressBar bar_playerHealth;
-	private JProgressBar bar_enemyHealth;
-	private JProgressBar bar_XPBar;
-	private JButton btnShowMap;
-	private JButton btnShowInventory;
-	private JButton btnSurrender;
-	private boolean isMapShown;
-	private boolean isInvShown;
-	private Map map;
-	private InventoryFrame inventory;
-	private Hero hero;
-	private ArrayList<Enemy> enemyEntries;
-	private Enemy enemySelected;
-	private JLabel lblLevel_current;
-	private JLabel lblLevel_next;
-	private JLabel lblEnemyName;
-	private JLabel lblPlayerName;
-	private JLabel lblEnemyImage;
-	private JLabel lblPlayerImage;
-	private int heroSex;
-	
-	// create the frame
-	public Game(String name, int chosenHero, int heroSex, int giftNum) {
+  private static int turn = 1;
+  private static int level = 1;
+  private static double curExperience;
+  private static JTextPane textArea;
+  private SimpleAttributeSet aSet;
+  private JPanel panel_player;
+  private JPanel panel_top;
+  private JPanel panel_stats;
+  private JPanel panel_enemy;
+  private JPanel panel_actions;
+  private JPanel panel_frameOpacity;
+  private JPanel panel_areaField;
+  private JPanel panel_actionsTop;
+  private JLabel areaWallpaper;
+  private JLabel upgradePoints;
+  private JLabel lblUpgradePoints;
+  private JProgressBar bar_loading;
+  private JProgressBar bar_playerHealth;
+  private JProgressBar bar_enemyHealth;
+  private JProgressBar bar_XPBar;
+  private JButton btnShowMap;
+  private JButton btnShowInventory;
+  private JButton btnSurrender;
+  private boolean isMapShown;
+  private boolean isInvShown;
+  private Map map;
+  private InventoryFrame inventory;
+  private Hero hero;
+  private ArrayList<Enemy> enemyEntries;
+  private Enemy enemySelected;
+  private JLabel lblLevel_current;
+  private JLabel lblLevel_next;
+  private JLabel lblEnemyName;
+  private JLabel lblPlayerName;
+  private JLabel lblEnemyImage;
+  private JLabel lblPlayerImage;
+  private int heroSex;
 
-		// TODO instantiate gift parameter
-		
-		// instantiate objects
-		this.heroSex = heroSex;
+  /**
+   * Class constructor
+   * 
+   * @param name Name of the player
+   * @param chosenHero Chosen hero integer
+   * @param heroSex Gender of the chosen hero
+   * @param giftNum Chosen gift
+   */
+  public Game(String name, int chosenHero, int heroSex, int giftNum) {
+    // TODO instantiate gift parameter
+    this.heroSex = heroSex;
+    UIManager.put("ProgressBar.selectionForeground", Color.darkGray); // health bar esthetics
 
-		// health bar esthetics
-		UIManager.put("ProgressBar.selectionForeground", Color.darkGray);
-		
-		/*
-		 * build frame
-		 */
-		this.setResizable(false);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setBounds(100, 100, 1070, 700);
-		this.setTitle("[ver. alpha] BeyondInfinity");
-		this.getContentPane().setLayout(null);
-		this.setBounds(0, 0, 1070, 654);
-		this.setBackground(new Color(236, 240, 241));
-		this.setLocationRelativeTo(null);
-			
-		/*
-		 * Create objects of all enemies
-		 */
-		enemyEntries = new ArrayList<Enemy>();
-		enemyEntries.add(new Fuehirch(this));
-		enemyEntries.add(new Taobu(this));
-		enemyEntries.add(new Hawk_stag(this));
-		enemyEntries.add(new Oboko_of_the_sonne(this));
-		enemyEntries.add(new Shar_of_the_nacht(this));
-		enemyEntries.add(new Mantisray(this));
-		enemyEntries.add(new Alania_defender_of_the_meadow(this));
-		
-		/*
-		 * create the map object/frame
-		 */
-		map = new Map(this);
-		getContentPane().add(map);
+    /* Build frame */
+    this.setResizable(false);
+    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    this.setBounds(100, 100, 1070, 700);
+    this.setTitle("[ver. alpha] BeyondInfinity");
+    this.setLayout(null);
+    this.setBounds(0, 0, 1070, 654);
+    this.setBackground(new Color(236, 240, 241));
+    this.setLocationRelativeTo(null);
 
-		/*
-		 * create the inventory panel
-		 */
-		inventory = new InventoryFrame(getWidth(), getHeight());
-		getContentPane().add(inventory);
+    /* Create objects of all enemies */
+    enemyEntries = new ArrayList<Enemy>();
+    enemyEntries.add(new Fuehirch(this));
+    enemyEntries.add(new Taobu(this));
+    enemyEntries.add(new Hawk_stag(this));
+    enemyEntries.add(new Oboko_of_the_sonne(this));
+    enemyEntries.add(new Shar_of_the_nacht(this));
+    enemyEntries.add(new Mantisray(this));
+    enemyEntries.add(new Alania_defender_of_the_meadow(this));
 
-		// create a panel that dims the frame, this is used when toggling map
-		panel_frameOpacity = new JPanel();
-		panel_frameOpacity.setBounds(0, 0, 1064, 19);
-		panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
-		panel_frameOpacity.setOpaque(true);
-		panel_frameOpacity.setVisible(false);
-		getContentPane().add(panel_frameOpacity);
+    /* Create the map object/frame */
+    map = new Map(this);
+    getContentPane().add(map);
 
-		// create left panel for displaying hero info
-		panel_player = new JPanel();
-		panel_player.setBounds(20, 80, 260, 65);
-		panel_player.setBackground(new Color(204, 255, 153));
-		panel_player.setBorder(new LineBorder(Color.BLACK, 1));
-		panel_player.setLayout(null);
-		getContentPane().add(panel_player);
+    /* Create the inventory panel */
+    inventory = new InventoryFrame(getWidth(), getHeight());
+    getContentPane().add(inventory);
 
-		// create top panel to display vitality (health) bars
-		panel_top = new JPanel();
-		panel_top.setBounds(10, 21, 1044, 38);
-		panel_top.setLayout(null);
-		getContentPane().add(panel_top);
+    /* Create a panel that dims the frame, this is used when toggling map */
+    panel_frameOpacity = new JPanel();
+    panel_frameOpacity.setBounds(0, 0, 1064, 19);
+    panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
+    panel_frameOpacity.setOpaque(true);
+    panel_frameOpacity.setVisible(false);
+    getContentPane().add(panel_frameOpacity);
 
-		// create the button that toggles map
-		btnShowMap = new JButton();
-		btnShowMap.setBounds(1006, 0, 38, 38);
-		btnShowMap.setFocusable(false);
-		btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
-		btnShowMap.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnShowMap.addActionListener(this);
-		panel_top.add(btnShowMap);
+    /* Create left panel for displaying hero info */
+    panel_player = new JPanel();
+    panel_player.setBounds(20, 80, 260, 65);
+    panel_player.setBackground(new Color(204, 255, 153));
+    panel_player.setBorder(new LineBorder(Color.BLACK, 1));
+    panel_player.setLayout(null);
+    getContentPane().add(panel_player);
 
-		// create the button that toggles inventory
-		btnShowInventory = new JButton();
-		btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/knapsack.png")));
-		btnShowInventory.setBounds(0, 0, 38, 38);
-		btnShowInventory.setFocusable(false);
-		btnShowInventory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnShowInventory.addActionListener(this);
-		panel_top.add(btnShowInventory);
-		
-		// create experience bar
-		bar_XPBar = new JProgressBar();
-		bar_XPBar.setForeground(new Color(126, 52, 157));
-		bar_XPBar.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-		bar_XPBar.setString("20 / 100 XP");
-		bar_XPBar.setValue(20);
-		bar_XPBar.setBorder(new LineBorder(new Color(0, 0, 0)));
-		bar_XPBar.setStringPainted(true);
-		bar_XPBar.setBounds(322, 12, 400, 14);
-		panel_top.add(bar_XPBar);
-		
-		/*
-		 * create two icons for levels
-		 */
-		// current level
-		lblLevel_current = new JLabel(level + "");
-		lblLevel_current.setForeground(Color.WHITE);
-		lblLevel_current.setHorizontalTextPosition(JLabel.CENTER);
-		lblLevel_current.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		lblLevel_current.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
-		lblLevel_current.setBounds(274, 0, 38, 38);
-		panel_top.add(lblLevel_current);
-		
-		// next level
-		lblLevel_next = new JLabel((level + 1) + "");
-		lblLevel_next.setForeground(Color.WHITE);
-		lblLevel_next.setHorizontalTextPosition(JLabel.CENTER);
-		lblLevel_next.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
-		lblLevel_next.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
-		lblLevel_next.setBounds(732, 0, 38, 38);
-		panel_top.add(lblLevel_next);
-		
-		// create bottom panel to display buttons for upgrades
-		panel_stats = new JPanel();
-		panel_stats.setBounds(10, 414, 1044, 87);
-		panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
-		getContentPane().add(panel_stats);
+    /* Create top panel to display vitality (health) bars */
+    panel_top = new JPanel();
+    panel_top.setBounds(10, 21, 1044, 38);
+    panel_top.setLayout(null);
+    getContentPane().add(panel_top);
 
-		// create right panel for displaying enemy info
-		panel_enemy = new JPanel();
-		panel_enemy.setBackground(new Color(204, 255, 153));
-		panel_enemy.setBounds(784, 80, 260, 65);
-		panel_enemy.setBorder(new LineBorder(Color.BLACK, 1));
-		panel_enemy.setLayout(null);
-		panel_enemy.setVisible(false);
-		getContentPane().add(panel_enemy);
+    /* Create the button that toggles map */
+    btnShowMap = new JButton();
+    btnShowMap.setBounds(1006, 0, 38, 38);
+    btnShowMap.setFocusable(false);
+    btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
+    btnShowMap.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnShowMap.addActionListener(this);
+    panel_top.add(btnShowMap);
 
-		// create actions panel for displaying attack buttons
-		panel_actions = new JPanel();
-		panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-		panel_actions.setBounds(10, 542, 1044, 72);
-		panel_actions.setBackground(new Color(135, 211, 124));
-		panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
-		getContentPane().add(panel_actions);
-		
-		// create top actions panel
-		panel_actionsTop = new JPanel();
-		panel_actionsTop.setBounds(10, 508, 1044, 34);
-		panel_actionsTop.setLayout(null);
-		getContentPane().add(panel_actionsTop);
-		
-		// create label to display upgrade points
-		lblUpgradePoints = new JLabel("Upgrade points:");
-		lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblUpgradePoints.setBounds(472, 9, 100, 16);
-		panel_actionsTop.add(lblUpgradePoints);
-		
-	    // create the surrender button
-	    btnSurrender = new JButton("");
-	    btnSurrender.setBounds(1010, 0, 34, 34);
-	    btnSurrender.setFocusable(false);
-	    btnSurrender.addActionListener(this);
-	    btnSurrender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-	    btnSurrender.setIcon(new ImageIcon(getClass().getResource("/images/suicide.png")));
-	    btnSurrender.setVisible(false);
-	    panel_actionsTop.add(btnSurrender);
+    /* Create the button that toggles inventory */
+    btnShowInventory = new JButton();
+    btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/knapsack.png")));
+    btnShowInventory.setBounds(0, 0, 38, 38);
+    btnShowInventory.setFocusable(false);
+    btnShowInventory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnShowInventory.addActionListener(this);
+    panel_top.add(btnShowInventory);
 
-		// create the loading bar
-		bar_loading = new JProgressBar();
-		bar_loading.setBounds(0, 0, 1064, 10);
-		bar_loading.setBorder(null);
-		bar_loading.setValue(100);
-		bar_loading.setForeground(new Color(52, 73, 94));
-		getContentPane().add(bar_loading);
+    /* Create experience bar */
+    bar_XPBar = new JProgressBar();
+    bar_XPBar.setForeground(new Color(126, 52, 157));
+    bar_XPBar.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+    bar_XPBar.setString("20 / 100 XP");
+    bar_XPBar.setValue(20);
+    bar_XPBar.setBorder(new LineBorder(new Color(0, 0, 0)));
+    bar_XPBar.setStringPainted(true);
+    bar_XPBar.setBounds(322, 12, 400, 14);
+    panel_top.add(bar_XPBar);
 
-		/*
-		 * create two heart icons for health bars
-		 */
-		// player's health icon
-		JLabel lblHeartPlayer = new JLabel("HP");
-		lblHeartPlayer.setForeground(Color.WHITE);
-		lblHeartPlayer.setHorizontalTextPosition(JLabel.CENTER);
-		lblHeartPlayer.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblHeartPlayer.setBounds(3, 3, 32, 32);
-		lblHeartPlayer.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
-		panel_player.add(lblHeartPlayer);
-		
-		// enemy's health icon
-		JLabel lblHeartEnemy = new JLabel("HP");
-		lblHeartEnemy.setForeground(Color.WHITE);
-		lblHeartEnemy.setHorizontalTextPosition(JLabel.CENTER);
-		lblHeartEnemy.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-		lblHeartEnemy.setBounds(3, 3, 32, 32);
-		lblHeartEnemy.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
-		panel_enemy.add(lblHeartEnemy);
+    /* Create icon for current level */
+    lblLevel_current = new JLabel(level + "");
+    lblLevel_current.setForeground(Color.WHITE);
+    lblLevel_current.setHorizontalTextPosition(JLabel.CENTER);
+    lblLevel_current.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+    lblLevel_current.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
+    lblLevel_current.setBounds(274, 0, 38, 38);
+    panel_top.add(lblLevel_current);
 
-		// create the player's vitality (health) bar
-		bar_playerHealth = new JProgressBar();
-		bar_playerHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-		bar_playerHealth.setStringPainted(true);
-		bar_playerHealth.setBounds(14, 11, 236, 16);
-		bar_playerHealth.setString("");
-		bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
-		bar_playerHealth.setForeground(new Color(30, 139, 195));
-		panel_player.add(bar_playerHealth);
+    /* Create icon for next level */
+    lblLevel_next = new JLabel((level + 1) + "");
+    lblLevel_next.setForeground(Color.WHITE);
+    lblLevel_next.setHorizontalTextPosition(JLabel.CENTER);
+    lblLevel_next.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
+    lblLevel_next.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
+    lblLevel_next.setBounds(732, 0, 38, 38);
+    panel_top.add(lblLevel_next);
 
-		// create progress bar to display the enemy's vitality (health)
-		bar_enemyHealth = new JProgressBar();
-		bar_enemyHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-		bar_enemyHealth.setStringPainted(true);
-		bar_enemyHealth.setBounds(14, 11, 236, 16);
-		bar_enemyHealth.setString("");
-		bar_enemyHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
-		bar_enemyHealth.setForeground(new Color(236, 100, 75));
-		panel_enemy.add(bar_enemyHealth);
+    /* Create bottom panel to display buttons for upgrades */
+    panel_stats = new JPanel();
+    panel_stats.setBounds(10, 414, 1044, 87);
+    panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
+    getContentPane().add(panel_stats);
 
-		// create panel displaying player images
-		panel_areaField = new JPanel();
-		panel_areaField.setBounds(10, 70, 1044, 333);
-		panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_areaField.setLayout(null);
-		getContentPane().add(panel_areaField);
-		
-		/*
-		 * create the area which displays event changes
-		 */
-		textArea = new JTextPane();
-		textArea.setEditable(false);
-		textArea.setOpaque(false);
-		textArea.setBorder(null);
-		textArea.setFont(new Font("Comic Sans MS", 0, 14));
-		textArea.setAutoscrolls(true);
-		textArea.setBounds(297, 20, 450, 293);
-		
-		// create attribute set for text pane
-		aSet = new SimpleAttributeSet();
-		StyleConstants.setForeground(aSet, Color.DARK_GRAY);
-	    StyleConstants.setFontFamily(aSet, "Comic Sans MS");
-	    StyleConstants.setFontSize(aSet, 16);
-	    
-		// create scrolling for text area
-		JScrollPane scroll = new JScrollPane(textArea);
-		scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-		scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-		scroll.setAutoscrolls(true);
-		scroll.setBounds(384, 11, 275, 300);
-		scroll.setOpaque(false);
-		scroll.setBorder(null);
-		scroll.getViewport().setOpaque(false);
-		panel_areaField.add(scroll);
+    /* Create right panel for displaying enemy info */
+    panel_enemy = new JPanel();
+    panel_enemy.setBackground(new Color(204, 255, 153));
+    panel_enemy.setBounds(784, 80, 260, 65);
+    panel_enemy.setBorder(new LineBorder(Color.BLACK, 1));
+    panel_enemy.setLayout(null);
+    panel_enemy.setVisible(false);
+    getContentPane().add(panel_enemy);
 
-		// create the enemy's picture
-		lblEnemyImage = new JLabel("");
-		lblEnemyImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnemyImage.setBounds(774, 100, 260, 222);
-		panel_areaField.add(lblEnemyImage);
+    /* Create actions panel for displaying attack buttons */
+    panel_actions = new JPanel();
+    panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
+    panel_actions.setBounds(10, 542, 1044, 72);
+    panel_actions.setBackground(new Color(135, 211, 124));
+    panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
+    getContentPane().add(panel_actions);
 
-		// create label to display player's name
-		lblPlayerName = new JLabel(name);
-		lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayerName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-		lblPlayerName.setBounds(10, 76, 260, 20);
-		panel_areaField.add(lblPlayerName);
+    /* Create top actions panel */
+    panel_actionsTop = new JPanel();
+    panel_actionsTop.setBounds(10, 508, 1044, 34);
+    panel_actionsTop.setLayout(null);
+    getContentPane().add(panel_actionsTop);
 
-		// create the player's picture
-		lblPlayerImage = new JLabel("");
-		lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPlayerImage.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblPlayerImage.setBounds(10, 100, 260, 222);
-		panel_areaField.add(lblPlayerImage);
-		
-		// create the enemy's name
-		lblEnemyName = new JLabel("");
-		lblEnemyName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEnemyName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-		lblEnemyName.setBounds(774, 76, 260, 20);
-		panel_areaField.add(lblEnemyName);
-		
-		// create label to display area image
-		areaWallpaper = new JLabel();
-		areaWallpaper.setBounds(0, 0, 1044, 333);
-		areaWallpaper.setIcon(new ImageIcon(getClass().getResource("/images/areas/meadowlands.jpg")));
-		panel_areaField.add(areaWallpaper);
+    /* Create label to display upgrade points */
+    lblUpgradePoints = new JLabel("Upgrade points:");
+    lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+    lblUpgradePoints.setBounds(472, 9, 100, 16);
+    panel_actionsTop.add(lblUpgradePoints);
 
-		// create selected hero
-		if (chosenHero == 1)
-			this.hero = new Barbarian(this);
-		else if (chosenHero == 2) 
-			this.hero = new Chemist(this);
-		else if (chosenHero == 3) 
-			this.hero = new Elementalist(this);
-		else if (chosenHero == 4) 
-			this.hero = new Swordsman(this);
-		else if (chosenHero == 5) 
-			this.hero = new Warlock(this);
-		
-		// finally show frame
-		setVisible(true);
+    /* Create the surrender button */
+    btnSurrender = new JButton("");
+    btnSurrender.setBounds(1010, 0, 34, 34);
+    btnSurrender.setFocusable(false);
+    btnSurrender.addActionListener(this);
+    btnSurrender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnSurrender.setIcon(new ImageIcon(getClass().getResource("/images/suicide.png")));
+    btnSurrender.setVisible(false);
+    panel_actionsTop.add(btnSurrender);
 
-	}
+    /* Create the loading bar */
+    bar_loading = new JProgressBar();
+    bar_loading.setBounds(0, 0, 1064, 10);
+    bar_loading.setBorder(null);
+    bar_loading.setValue(100);
+    bar_loading.setForeground(new Color(52, 73, 94));
+    getContentPane().add(bar_loading);
 
-	// XXX action listener
-	public void actionPerformed(ActionEvent evt) {
+    /* Create player health icon */
+    JLabel lblHeartPlayer = new JLabel("HP");
+    lblHeartPlayer.setForeground(Color.WHITE);
+    lblHeartPlayer.setHorizontalTextPosition(JLabel.CENTER);
+    lblHeartPlayer.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+    lblHeartPlayer.setBounds(3, 3, 32, 32);
+    lblHeartPlayer.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
+    panel_player.add(lblHeartPlayer);
 
-		// clicked map
-		if (evt.getSource() == btnShowMap)
-			toggleMap();
-		// clicked inventory
-		if (evt.getSource() == btnShowInventory)
-			toggleInventory();
-		// clicked surrender
-		if (evt.getSource() == btnSurrender) {
-			hero.surrender();
-		}
+    /* Create enemy health icon */
+    JLabel lblHeartEnemy = new JLabel("HP");
+    lblHeartEnemy.setForeground(Color.WHITE);
+    lblHeartEnemy.setHorizontalTextPosition(JLabel.CENTER);
+    lblHeartEnemy.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+    lblHeartEnemy.setBounds(3, 3, 32, 32);
+    lblHeartEnemy.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
+    panel_enemy.add(lblHeartEnemy);
 
-	}
+    /* Create the player health bar */
+    bar_playerHealth = new JProgressBar();
+    bar_playerHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+    bar_playerHealth.setStringPainted(true);
+    bar_playerHealth.setBounds(14, 11, 236, 16);
+    bar_playerHealth.setString("");
+    bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
+    bar_playerHealth.setForeground(new Color(30, 139, 195));
+    panel_player.add(bar_playerHealth);
 
-	// resurrect the most-recently killed enemy
-	public void resurrectLatestEnemy() {
-		// TODO
-	}
-	
-	// toggle the map pane
-	public void toggleMap() {
+    /* Create the enemy health bar */
+    bar_enemyHealth = new JProgressBar();
+    bar_enemyHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
+    bar_enemyHealth.setStringPainted(true);
+    bar_enemyHealth.setBounds(14, 11, 236, 16);
+    bar_enemyHealth.setString("");
+    bar_enemyHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
+    bar_enemyHealth.setForeground(new Color(236, 100, 75));
+    panel_enemy.add(bar_enemyHealth);
 
-		// toggle between true and false
-		isMapShown = !isMapShown;
+    /* Create panel displaying player images */
+    panel_areaField = new JPanel();
+    panel_areaField.setBounds(10, 70, 1044, 333);
+    panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_areaField.setLayout(null);
+    getContentPane().add(panel_areaField);
 
-		if (isMapShown) {
-			map.getLblEnemyIcon().setIcon(null);
-			map.getLblEnemyName().setText("");
-			map.getBtnChallenge().setEnabled(false);
-			map.setVisible(true);
-			panel_frameOpacity.setVisible(true);
-			disableAttackButtons();
-			hero.disableButtons();
-			btnShowInventory.setEnabled(false);
-			btnSurrender.setEnabled(false);
-		} else {
-			map.setVisible(false);
-			panel_frameOpacity.setVisible(false);
-			if (enemySelected != null) {
-				btnSurrender.setVisible(true);
-				btnSurrender.setEnabled(true);
-				enableAttackButtons();
-			}
-			hero.enableButtons();
-			btnShowInventory.setEnabled(true);
-		}
+    /* Create the area which displays event changes */
+    textArea = new JTextPane();
+    textArea.setEditable(false);
+    textArea.setOpaque(false);
+    textArea.setBorder(null);
+    textArea.setFont(new Font("Comic Sans MS", 0, 14));
+    textArea.setAutoscrolls(true);
+    textArea.setBounds(297, 20, 450, 293);
 
-		// repaint frame to avoid graphical glitches
-		repaint();
+    /* Create attribute set for text pane */
+    aSet = new SimpleAttributeSet();
+    StyleConstants.setForeground(aSet, Color.DARK_GRAY);
+    StyleConstants.setFontFamily(aSet, "Comic Sans MS");
+    StyleConstants.setFontSize(aSet, 16);
 
-	}
-	
-	// toggle the inventory pane
-	public void toggleInventory() {
+    /* Create scrolling for text area */
+    JScrollPane scroll = new JScrollPane(textArea);
+    scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+    scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+    scroll.setAutoscrolls(true);
+    scroll.setBounds(384, 11, 275, 300);
+    scroll.setOpaque(false);
+    scroll.setBorder(null);
+    scroll.getViewport().setOpaque(false);
+    panel_areaField.add(scroll);
 
-		// toggle between true and false
-		isInvShown = !isInvShown;
+    /* Create the enemy's picture */
+    lblEnemyImage = new JLabel("");
+    lblEnemyImage.setHorizontalAlignment(SwingConstants.CENTER);
+    lblEnemyImage.setBounds(774, 100, 260, 222);
+    panel_areaField.add(lblEnemyImage);
 
-		if (isInvShown) {
-			inventory.setVisible(true);
-			panel_frameOpacity.setVisible(true);
-			disableAttackButtons();
-			hero.disableButtons();
-		} else {
-			inventory.setVisible(false);
-			panel_frameOpacity.setVisible(false);
-			enableAttackButtons();
-			hero.enableButtons();
-		}
+    /* Create label to display player's name */
+    lblPlayerName = new JLabel(name);
+    lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
+    lblPlayerName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+    lblPlayerName.setBounds(10, 76, 260, 20);
+    panel_areaField.add(lblPlayerName);
 
-		// repaint frame to avoid graphical glitches
-		repaint();
+    /* Create the player's picture */
+    lblPlayerImage = new JLabel("");
+    lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
+    lblPlayerImage.setVerticalAlignment(SwingConstants.BOTTOM);
+    lblPlayerImage.setBounds(10, 100, 260, 222);
+    panel_areaField.add(lblPlayerImage);
 
-	}
+    /* Create the enemy's name */
+    lblEnemyName = new JLabel("");
+    lblEnemyName.setHorizontalAlignment(SwingConstants.CENTER);
+    lblEnemyName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
+    lblEnemyName.setBounds(774, 76, 260, 20);
+    panel_areaField.add(lblEnemyName);
 
-	// set all attack buttons to active
-	public void enableAttackButtons() {
-		for (Attack x : hero.getAttacksArrayList())
-			x.getButton().setEnabled(true);
-	}
+    /* Create label to display area image */
+    areaWallpaper = new JLabel();
+    areaWallpaper.setBounds(0, 0, 1044, 333);
+    areaWallpaper.setIcon(new ImageIcon(getClass().getResource("/images/areas/meadowlands.jpg")));
+    panel_areaField.add(areaWallpaper);
 
-	// set all attack buttons to inactive
-	public void disableAttackButtons() {
-		for (Attack x : hero.getAttacksArrayList())
-			x.getButton().setEnabled(false);
-	}
-	
-	// return the panel_stats
-	public JPanel getPanel_stats() {
-		return panel_stats;
-	}
+    /* Create selected hero */
+    if (chosenHero == 1) {
+      this.hero = new Barbarian(this);
+    } else if (chosenHero == 2) {
+      this.hero = new Chemist(this);
+    } else if (chosenHero == 3) {
+      this.hero = new Elementalist(this);
+    } else if (chosenHero == 4) {
+      this.hero = new Swordsman(this);
+    } else if (chosenHero == 5) {
+      this.hero = new Warlock(this);
+    }
+    setVisible(true); // finally show frame
+  }
 
-	// set value for the loading bar
-	public void setProgBar_loading(int val) {
-		bar_loading.setValue(val);
-	}
+  /**
+   * Action listener
+   * 
+   * @param evt The ActionEvent
+   */
+  @Override
+  public void actionPerformed(ActionEvent evt) {
+    if (evt.getSource() == btnShowMap)
+      toggleMap();
+    if (evt.getSource() == btnShowInventory)
+      toggleInventory();
+    if (evt.getSource() == btnSurrender) {
+      hero.surrender();
+    }
+  }
 
-	// return the lblEnemyName
-	public JLabel getLblEnemyName() {
-		return lblEnemyName;
-	}
+  /**
+   * Resurrect the most-recently killed enemy
+   */
+  public void resurrectLatestEnemy() {
+    // TODO
+  }
 
-	// return the lblPlayerName
-	public JLabel getLblPlayerName() {
-		return lblPlayerName;
-	}
+  /**
+   * Toggle the map pane
+   */
+  public void toggleMap() {
 
-	// return the curExperience
-	public static double getCurExperience() {
-		return curExperience;
-	}
+    // toggle between true and false
+    isMapShown = !isMapShown;
 
-	// even number = player turn (returns true)
-	// odd number = enemy turn (returns false)
-	public static boolean getTurn() {
-		if (turn == 1)
-			return true;
-		else
-			return (turn % 2) != 0;
-	}
-	
-	// return turn number
-	public static void addTurn() {
-		turn += 1;
-	}
-	
-	// return the panel_enemy
-	public JPanel getPanel_enemy() {
-		return panel_enemy;
-	}
+    if (isMapShown) {
+      map.getLblEnemyIcon().setIcon(null);
+      map.getLblEnemyName().setText("");
+      map.getBtnChallenge().setEnabled(false);
+      map.setVisible(true);
+      panel_frameOpacity.setVisible(true);
+      disableAttackButtons();
+      hero.disableButtons();
+      btnShowInventory.setEnabled(false);
+      btnSurrender.setEnabled(false);
+    } else {
+      map.setVisible(false);
+      panel_frameOpacity.setVisible(false);
+      if (enemySelected != null) {
+        btnSurrender.setVisible(true);
+        btnSurrender.setEnabled(true);
+        enableAttackButtons();
+      }
+      hero.enableButtons();
+      btnShowInventory.setEnabled(true);
+    }
+    repaint(); // repaint frame to avoid graphical glitches
+  }
 
-	// set the turn
-	public static void setTurn(int turn) {
-		Game.turn = turn;
-	}
+  /**
+   * Toggle the inventory pane
+   */
+  public void toggleInventory() {
+    isInvShown = !isInvShown; // toggle between true and false
 
-	// return the aSet
-	public SimpleAttributeSet getaSet() {
-		return aSet;
-	}
+    if (isInvShown) {
+      inventory.setVisible(true);
+      panel_frameOpacity.setVisible(true);
+      disableAttackButtons();
+      hero.disableButtons();
+    } else {
+      inventory.setVisible(false);
+      panel_frameOpacity.setVisible(false);
+      enableAttackButtons();
+      hero.enableButtons();
+    }
+    repaint(); // repaint frame to avoid graphical glitches
+  }
 
-	// return the lblEnemyImage
-	public JLabel getLblEnemyImage() {
-		return lblEnemyImage;
-	}
+  /**
+   * Set all attack buttons to active
+   */
+  public void enableAttackButtons() {
+    for (Attack x : hero.getAttacksArrayList())
+      x.getButton().setEnabled(true);
+  }
 
-	// return the lblPlayerImage
-	public JLabel getLblPlayerImage() {
-		return lblPlayerImage;
-	}
+  /**
+   * Set all attack buttons to inactive
+   */
+  public void disableAttackButtons() {
+    for (Attack x : hero.getAttacksArrayList())
+      x.getButton().setEnabled(false);
+  }
 
-	// return the panel_actions jpanel
-	public JPanel getPanel_actions() {
-		return panel_actions;
-	}
-	
-	// return the enemySelected
-	public Enemy getEnemySelected() {
-		return enemySelected;
-	}
+  /**
+   * @return the panel_stats
+   */
+  public JPanel getPanel_stats() {
+    return panel_stats;
+  }
 
-	// set the enemySelected
-	public void setEnemySelected(Enemy enemySelected) {
-		this.enemySelected = enemySelected;
-	}
-	// return the panel_player
-	public JPanel getPanel_player() {
-		return panel_player;
-	}
+  /**
+   * Set value for the loading bar
+   * 
+   * @param val Progress bar integer value
+   */
+  public void setProgBar_loading(int val) {
+    bar_loading.setValue(val);
+  }
 
-	// return the lblUpgradePoints
-	public JLabel getLblUpgradePoints() {
-		return lblUpgradePoints;
-	}
+  /**
+   * @return the lblEnemyName
+   */
+  public JLabel getLblEnemyName() {
+    return lblEnemyName;
+  }
 
-	// return the level
-	public static int getLevel() {
-		return level;
-	}
+  /**
+   * @return the lblPlayerName
+   */
+  public JLabel getLblPlayerName() {
+    return lblPlayerName;
+  }
 
-	// set the level
-	public static void setLevel(int level) {
-		Game.level = level;
-	}
+  /**
+   * @return the curExperience
+   */
+  public static double getCurExperience() {
+    return curExperience;
+  }
 
-	// set the lblUpgradePoints
-	public void setLblUpgradePoints(JLabel lblUpgradePoints) {
-		this.lblUpgradePoints = lblUpgradePoints;
-	}
+  /**
+   * @return true if it's an even number
+   * @return false if it's an even number
+   */
+  public static boolean getTurn() {
+    if (turn == 1) {
+      return true;
+    } else {
+      return (turn % 2) != 0;
+    }
+  }
 
-	// return the player
-	public Hero getHero() {
-		return hero;
-	}
+  /**
+   * Increment turn by 1
+   */
+  public static void addTurn() {
+    turn += 1;
+  }
 
-	// return the textArea
-	public JTextPane getTextArea() {
-		return textArea;
-	}
+  /**
+   * @return the panel_enemy
+   */
+  public JPanel getPanel_enemy() {
+    return panel_enemy;
+  }
 
-	// return the bar_playerHealth
-	public JProgressBar getBar_playerHealth() {
-		return bar_playerHealth;
-	}
+  /**
+   * Set the turn
+   * 
+   * @param turn Integer value
+   */
+  public static void setTurn(int turn) {
+    Game.turn = turn;
+  }
 
-	// return the bar_enemyHealth
-	public JProgressBar getBar_enemyHealth() {
-		return bar_enemyHealth;
-	}
+  /**
+   * @return the aSet
+   */
+  public SimpleAttributeSet getaSet() {
+    return aSet;
+  }
 
-	// return the enemyEntries
-	public ArrayList<Enemy> getEnemyEntries() {
-		return enemyEntries;
-	}
+  /**
+   * @return the lblEnemyImage
+   */
+  public JLabel getLblEnemyImage() {
+    return lblEnemyImage;
+  }
 
-	// return the upgradePoints
-	public JLabel getUpgradePoints() {
-		return upgradePoints;
-	}
+  /**
+   * @return the lblPlayerImage
+   */
+  public JLabel getLblPlayerImage() {
+    return lblPlayerImage;
+  }
 
-	// return the panel_actionsTop
-	public JPanel getPanel_actionsTop() {
-		return panel_actionsTop;
-	}
+  /**
+   * @return the panel_actions
+   */
+  public JPanel getPanel_actions() {
+    return panel_actions;
+  }
 
-	// return the bar_XPBar
-	public JProgressBar getBar_XPBar() {
-		return bar_XPBar;
-	}
+  /**
+   * @return the enemySelected
+   */
+  public Enemy getEnemySelected() {
+    return enemySelected;
+  }
 
-	// return the heroSex
-	public int getHeroSex() {
-		return heroSex;
-	}
+  /**
+   * Set enemy
+   * 
+   * @param enemySelected Enemy object currently fighting
+   */
+  public void setEnemySelected(Enemy enemySelected) {
+    this.enemySelected = enemySelected;
+  }
 
-	// set the upgradePoints
-	public void setUpgradePoints(JLabel upgradePoints) {
-		this.upgradePoints = upgradePoints;
-	}
+  /**
+   * @return the panel_player
+   */
+  public JPanel getPanel_player() {
+    return panel_player;
+  }
 
-	// return the map
-	public Map getMap() {
-		return map;
-	}
+  /**
+   * @return the lblUpgradePoints
+   */
+  public JLabel getLblUpgradePoints() {
+    return lblUpgradePoints;
+  }
+
+  /**
+   * @return the hero level
+   */
+  public static int getLevel() {
+    return level;
+  }
+
+  /**
+   * Set the level
+   * 
+   * @param level Set the hero level
+   */
+  public static void setLevel(int level) {
+    Game.level = level;
+  }
+
+  /**
+   * Set the lblUpgradePoints
+   * 
+   * @param lblUpgradePoints Set a string from upgrade points
+   */
+  public void setLblUpgradePoints(JLabel lblUpgradePoints) {
+    this.lblUpgradePoints = lblUpgradePoints;
+  }
+
+  /**
+   * @return the player
+   */
+  public Hero getHero() {
+    return hero;
+  }
+
+  /**
+   * @return the textArea
+   */
+  public JTextPane getTextArea() {
+    return textArea;
+  }
+
+  /**
+   * @return the bar_playerHealth
+   */
+  public JProgressBar getBar_playerHealth() {
+    return bar_playerHealth;
+  }
+
+  /**
+   * @return the bar_enemyHealth
+   */
+  public JProgressBar getBar_enemyHealth() {
+    return bar_enemyHealth;
+  }
+
+  /**
+   * @return the enemyEntries
+   */
+  public ArrayList<Enemy> getEnemyEntries() {
+    return enemyEntries;
+  }
+
+  /**
+   * @return the upgradePoints
+   */
+  public JLabel getUpgradePoints() {
+    return upgradePoints;
+  }
+
+  /**
+   * @return the panel_actionsTop
+   */
+  public JPanel getPanel_actionsTop() {
+    return panel_actionsTop;
+  }
+
+  /**
+   * @return the bar_XPBar
+   */
+  public JProgressBar getBar_XPBar() {
+    return bar_XPBar;
+  }
+
+  /**
+   * @return the heroSex
+   */
+  public int getHeroSex() {
+    return heroSex;
+  }
+
+  /**
+   * Set the upgradePoints
+   * 
+   * @param upgradePoints Integer for earned upgrade points
+   */
+  public void setUpgradePoints(JLabel upgradePoints) {
+    this.upgradePoints = upgradePoints;
+  }
+
+  /**
+   * @return the map
+   */
+  public Map getMap() {
+    return map;
+  }
 }
