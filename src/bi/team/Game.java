@@ -40,16 +40,8 @@ import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
 
-/**
- * BeyondInfinity A personal two-dimensional game being developed for entertainment and to gain more
- * knowledge of the Java SE library.
- * 
- * @author Lawrence Ayoub
- * @since February 24 2016
- */
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
-
   private static int turn = 1;
   private static int level = 1;
   private static double curExperience;
@@ -99,7 +91,7 @@ public class Game extends JFrame implements ActionListener {
   public Game(String name, int chosenHero, int heroSex, int giftNum) {
     // TODO instantiate gift parameter
     this.heroSex = heroSex;
-    UIManager.put("ProgressBar.selectionForeground", Color.darkGray); // health bar esthetics
+    UIManager.put("ProgressBar.selectionForeground", Color.darkGray); // Health bar esthetics
 
     /* Build frame */
     this.setResizable(false);
@@ -367,14 +359,9 @@ public class Game extends JFrame implements ActionListener {
     } else if (chosenHero == 5) {
       this.hero = new Warlock(this);
     }
-    setVisible(true); // finally show frame
+    setVisible(true); // Finally, show frame
   }
 
-  /**
-   * Action listener
-   * 
-   * @param evt The ActionEvent
-   */
   @Override
   public void actionPerformed(ActionEvent evt) {
     if (evt.getSource() == btnShowMap)
@@ -429,7 +416,7 @@ public class Game extends JFrame implements ActionListener {
    * Toggle the inventory pane
    */
   public void toggleInventory() {
-    isInvShown = !isInvShown; // toggle between true and false
+    isInvShown = !isInvShown; // Toggle between true and false
 
     if (isInvShown) {
       inventory.setVisible(true);
@@ -442,7 +429,7 @@ public class Game extends JFrame implements ActionListener {
       enableAttackButtons();
       hero.enableButtons();
     }
-    repaint(); // repaint frame to avoid graphical glitches
+    repaint(); // Repaint frame to avoid graphical glitches
   }
 
   /**

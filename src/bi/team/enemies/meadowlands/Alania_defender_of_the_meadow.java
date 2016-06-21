@@ -12,45 +12,47 @@ import bi.team.enemies.Enemy;
 @SuppressWarnings("serial")
 public class Alania_defender_of_the_meadow extends Enemy {
 
-	// constructor
-	public Alania_defender_of_the_meadow(Game game) {
-		super(game, SwingConstants.BOTTOM);
-		
-		// configure variables
-		super.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-		name = "Alania Defender of the Meadow";
-		enemyNumber = 7;
-		damage = 10;
-		maxHealth = 90;
-		curHealth = 90;
-		experienceDrop = 0;
-		enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/alania-defender-of-the-meadow.png"));
-		enemyImage_small = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/alania-defender-of-the-meadow_small.png"));
-		
-	}
+  /**
+   * Class constructor
+   * 
+   * @param game The main game
+   */
+  public Alania_defender_of_the_meadow(Game game) {
+    super(game, SwingConstants.BOTTOM);
+    super.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+    
+    name = "Alania Defender of the Meadow";
+    enemyNumber = 7;
+    damage = 10;
+    maxHealth = 90;
+    curHealth = 90;
+    experienceDrop = 0;
+    enemyImage = new ImageIcon(
+        getClass().getResource("/images/enemies/meadowlands/alania-defender-of-the-meadow.png"));
+    enemyImage_small = new ImageIcon(getClass()
+        .getResource("/images/enemies/meadowlands/alania-defender-of-the-meadow_small.png"));
+  }
 
-	// attack player
-	@Override
-	public void attackPlayer() {
+  @Override
+  public void attackPlayer() {
 
-		// hero takes damage
-		game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
-		
-		// paint hero's health bar
-		game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
-		game.getBar_playerHealth().setString(game.getHero().getCurHealth() + " / " + game.getHero().getMaxHealth());
-		
-		// repaint health bars
-		game.repaint();
-		
-	}
+    /* Hero takes damage */
+    game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
 
-	// prepare gui for battle
-	@Override
-	public void prepareFight() {
-		game.getBar_enemyHealth().setMaximum((int) maxHealth);
-		game.getBar_enemyHealth().setValue((int) maxHealth);
-		game.getBar_enemyHealth().setString(curHealth + " / " + maxHealth);
-	}
+    /* Paint hero's health bar */
+    game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
+    game.getBar_playerHealth()
+        .setString(game.getHero().getCurHealth() + " / " + game.getHero().getMaxHealth());
 
+    game.repaint(); // Repaint health bars
+  }
+
+  @Override
+  public void prepareFight() {
+
+    /* Prepare enemy health bar */
+    game.getBar_enemyHealth().setMaximum((int) maxHealth);
+    game.getBar_enemyHealth().setValue((int) maxHealth);
+    game.getBar_enemyHealth().setString(curHealth + " / " + maxHealth);
+  }
 }
