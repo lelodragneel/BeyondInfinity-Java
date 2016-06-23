@@ -300,6 +300,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create attribute set for text pane */
     aSet = new SimpleAttributeSet();
+    StyleConstants.setAlignment(aSet, StyleConstants.ALIGN_CENTER);
     StyleConstants.setForeground(aSet, Color.DARK_GRAY);
     StyleConstants.setFontFamily(aSet, "Comic Sans MS");
     StyleConstants.setFontSize(aSet, 16);
@@ -309,7 +310,7 @@ public class Game extends JFrame implements ActionListener {
     scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     scroll.setAutoscrolls(true);
-    scroll.setBounds(384, 11, 275, 300);
+    scroll.setBounds(352, 11, 339, 300);
     scroll.setOpaque(false);
     scroll.setBorder(null);
     scroll.getViewport().setOpaque(false);
@@ -476,7 +477,7 @@ public class Game extends JFrame implements ActionListener {
     bar_XPBar.setValue(curExperience);
     bar_XPBar.setString(curExperience + " / " + getMaximumXp() + " XP");
 
-    /* update level indicators */
+    /* Update level indicators */
     lblLevel_current.setText(level + "");
     if ((level + 1) >= maxLevel) {
       lblLevel_next.setText(maxLevel + "");

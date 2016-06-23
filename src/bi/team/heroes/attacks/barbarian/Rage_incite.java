@@ -3,7 +3,6 @@ package bi.team.heroes.attacks.barbarian;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -38,10 +37,8 @@ public class Rage_incite extends Attack {
     hero.setDmgMultiplier(hero.getDmgMultiplier() + 1); // Increase dmg by 100%
 
     /* Display events */
-    Document doc = game.getTextArea().getDocument();
+    game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")));
+    doc.insertString(doc.getLength(), "activated", game.getaSet());
     doc.insertString(doc.getLength(), "\n", game.getaSet());
-    game.getTextArea()
-        .insertIcon(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")));
-    doc.insertString(doc.getLength(), " activated", game.getaSet());
   }
 }

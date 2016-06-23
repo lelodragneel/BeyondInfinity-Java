@@ -6,6 +6,7 @@ import java.awt.Insets;
 
 import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.StyledDocument;
 
 import bi.team.Game;
 import bi.team.MyGraphics;
@@ -19,6 +20,7 @@ public abstract class Attack {
   protected double curWarmup;
   protected Game game;
   protected Barbarian hero;
+  protected StyledDocument doc;
 
   /**
    * Class constructor
@@ -32,6 +34,8 @@ public abstract class Attack {
     this.game = game;
     this.button = button;
     this.name = button.getText();
+    doc = game.getTextArea().getStyledDocument();
+    doc.setParagraphAttributes(0, doc.getLength(), game.getaSet(), false);
 
     /* Configure attack button */
     button.setBackground(Color.WHITE);
