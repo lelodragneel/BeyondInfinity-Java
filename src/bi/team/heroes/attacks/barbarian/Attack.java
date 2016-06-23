@@ -8,82 +8,100 @@ import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
-import bi.team.Load;
 import bi.team.MyGraphics;
 import bi.team.heroes.Barbarian;
 
 public abstract class Attack {
+  private JButton button;
+  private String name;
+  protected int rageNeeded;
+  protected double maxWarmup;
+  protected double curWarmup;
+  protected Game game;
+  protected Barbarian hero;
 
-	/*
-	 * initialize variables
-	 */
-	protected JButton button;
-	protected String name;
-	protected int rageNeeded;
-	protected boolean isAvailable = true;
-	protected double maxWarmup;
-	protected double curWarmup;
-	protected Game game;
-	protected Barbarian hero;
-	protected Load load;
-	
-	// constructor
-	public Attack(Barbarian hero, Game game, JButton button) {
-		
-		// instantiate objects
-		this.hero = hero;
-		this.game = game;
-		this.button = button;
-		name = button.getText();
-		button.setBackground(Color.WHITE);
-		button.setFocusable(false);
-		button.setMargin(new Insets(0, 0, 0, 0));
-		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		button.add(new MyGraphics(this));
-		
-	}
-	
-	// abstract required methods
-	public abstract void startAttack() throws BadLocationException;
-	public abstract void activeEffects();
-	public abstract void turnEffects();
-	
-	// return the maxWarmup
-	public double getMaxWarmup() {
-		return maxWarmup;
-	}
+  /**
+   * Class constructor
+   * 
+   * @param hero The chosen hero
+   * @param game The main game
+   * @param button The attack button
+   */
+  public Attack(Barbarian hero, Game game, JButton button) {
+    this.hero = hero;
+    this.game = game;
+    this.button = button;
+    this.name = button.getText();
 
-	// set the maxWarmup
-	public void setMaxWarmup(double maxWarmup) {
-		this.maxWarmup = maxWarmup;
-	}
+    /* Configure attack button */
+    button.setBackground(Color.WHITE);
+    button.setFocusable(false);
+    button.setMargin(new Insets(0, 0, 0, 0));
+    button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    button.add(new MyGraphics(this));
+  }
 
-	// return the curWarmup
-	public double getCurWarmup() {
-		return curWarmup;
-	}
+  /**
+   * Execute player attack
+   * 
+   * @throws BadLocationException
+   */
+  public abstract void startAttack() throws BadLocationException;
 
-	// set the curWarmup
-	public void setCurWarmup(double curWarmup) {
-		this.curWarmup = curWarmup;
-	}
+  /**
+   * 
+   * @return the maximum warmup
+   */
+  public double getMaxWarmup() {
+    return maxWarmup;
+  }
 
-	// return attack's name
-	public String getName() {
-		return name;
-	}
-	
-	// return this button
-	public JButton getButton() {
-		return button;
-	}
+  /**
+   * Set the maximum warmup
+   * 
+   * @param maxWarmup The maximum warmup value
+   */
+  public void setMaxWarmup(double maxWarmup) {
+    this.maxWarmup = maxWarmup;
+  }
 
-	// return the rageNeeded
-	public int getRageNeeded() {
-		return rageNeeded;
-	}
+  /**
+   * @return the current warmup
+   */
+  public double getCurWarmup() {
+    return curWarmup;
+  }
+
+  /**
+   * Set the current warmup
+   * 
+   * @param curWarmup The current warmup value
+   */
+  public void setCurWarmup(double curWarmup) {
+    this.curWarmup = curWarmup;
+  }
+
+  /**
+   * @return the attack name
+   */
+  public String getName() {
+    return name;
+  }
+
+  /**
+   * @return the attack button
+   */
+  public JButton getButton() {
+    return button;
+  }
+
+  /**
+   * @return the rage needed to execute this attack
+   */
+  public int getRageNeeded() {
+    return rageNeeded;
+  }
 
 }
-
 
 
