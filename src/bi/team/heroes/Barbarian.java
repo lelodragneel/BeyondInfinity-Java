@@ -387,6 +387,7 @@ public class Barbarian extends Hero implements ActionListener {
 
     game.getLblPlayerImage().setIcon(getHeroIcon()); // Draw player image on frame
     repaintRage(); // Repaint rage bar
+    game.repaintXpBar(); // Update level & experience visual
     showOffensiveAttacks(); // Display offensive attacks by default
   }
 

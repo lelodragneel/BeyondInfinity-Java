@@ -44,7 +44,8 @@ import bi.team.inventory.InventoryFrame;
 public class Game extends JFrame implements ActionListener {
   private static int turn = 1;
   private static int level = 1;
-  private static double curExperience;
+  private static int maxLevel = 60;
+  private static int curExperience = 0;
   private static JTextPane textArea;
   private SimpleAttributeSet aSet;
   private JPanel panel_player;
@@ -98,7 +99,7 @@ public class Game extends JFrame implements ActionListener {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setBounds(100, 100, 1070, 700);
     this.setTitle("[ver. alpha] BeyondInfinity");
-    this.setLayout(null);
+    getContentPane().setLayout(null);
     this.setBounds(0, 0, 1070, 654);
     this.setBackground(new Color(236, 240, 241));
     this.setLocationRelativeTo(null);
@@ -163,9 +164,9 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create experience bar */
     bar_XPBar = new JProgressBar();
-    bar_XPBar.setForeground(new Color(126, 52, 157));
-    bar_XPBar.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
-    bar_XPBar.setString("20 / 100 XP");
+    bar_XPBar.setForeground(new Color(155, 89, 182));
+    bar_XPBar.setFont(new Font("Comic Sans MS", Font.BOLD, 10));
+    bar_XPBar.setString("");
     bar_XPBar.setValue(20);
     bar_XPBar.setBorder(new LineBorder(new Color(0, 0, 0)));
     bar_XPBar.setStringPainted(true);
@@ -446,6 +447,49 @@ public class Game extends JFrame implements ActionListener {
   public void disableAttackButtons() {
     for (Attack x : hero.getAttacksArrayList())
       x.getButton().setEnabled(false);
+  }
+
+  /**
+   * Add experience to player level, and level up if necessary
+   * 
+   * @param xp Integer value of experience to add
+   */
+  public void addExperience(int xp) {
+    double xpTillLevelup = (((Math.pow(level, 2)) * 1.2) + 210) - curExperience;
+
+    if ((xp >= xpTillLevelup) && (level != maxLevel)) { // Level up
+      level++;
+      curExperience = (int) Math.round(xp - xpTillLevelup);
+    } else { // Add experience
+      curExperience += xp;
+    }
+    repaintXpBar();
+  }
+
+  /**
+   * Updates the visual of the player level & experience bar
+   */
+  public void repaintXpBar() {
+
+    /* Update experiene bar */
+    bar_XPBar.setMaximum(getMaximumXp());
+    bar_XPBar.setValue(curExperience);
+    bar_XPBar.setString(curExperience + " / " + getMaximumXp() + " XP");
+
+    /* update level indicators */
+    lblLevel_current.setText(level + "");
+    if ((level + 1) >= maxLevel) {
+      lblLevel_next.setText(maxLevel + "");
+    } else {
+      lblLevel_next.setText((level + 1) + "");
+    }
+  }
+
+  /**
+   * @return an integer of the maximum experience of the hero's current level
+   */
+  public int getMaximumXp() {
+    return (int) Math.round(((Math.pow(level, 2)) * 1.2) + 210);
   }
 
   /**
