@@ -25,7 +25,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   protected double maxHealth;
   protected double damage;
   protected double protection;
-  protected double experienceDrop;
+  protected int experienceDrop;
   protected double criticalChance;
 
   /**
@@ -139,7 +139,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   /**
    * @return the experienceDrop
    */
-  public double getExperienceDrop() {
+  public int getExperienceDrop() {
     return experienceDrop;
   }
 

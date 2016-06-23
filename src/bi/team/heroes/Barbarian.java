@@ -54,6 +54,17 @@ public class Barbarian extends Hero implements ActionListener {
   private JButton btnOffensive;
   private JButton btnDefensive;
   private ArrayList<JLabel> rageIcons;
+  private ImageIcon maleImage;
+  private ImageIcon femaleImage;
+  private ImageIcon defensiveIcon;
+  private ImageIcon defensiveIcon_small;
+  private ImageIcon offensiveIcon;
+  private ImageIcon offensiveIcon_small;
+  private JButton btnUpgrade_vitality;
+  private JButton btnUpgrade_rage;
+  private JButton btnUpgrade_sharpness;
+  private JButton btnUpgrade_toughness;
+  private JButton btnUpgrade_riposteChance;
   private double curVitality;
   private double maxVitality;
   private int curRage;
@@ -61,12 +72,6 @@ public class Barbarian extends Hero implements ActionListener {
   private double sharpness;
   private double toughness;
   private double riposteChance;
-  private ImageIcon maleImage;
-  private ImageIcon femaleImage;
-  private ImageIcon defensiveIcon;
-  private ImageIcon defensiveIcon_small;
-  private ImageIcon offensiveIcon;
-  private ImageIcon offensiveIcon_small;
   private double dmgMultiplier;
 
   /**
@@ -98,9 +103,10 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Configure player GUI */
     game.getBar_playerHealth().setMinimum(0);
-    game.getBar_playerHealth().setMaximum((int) maxVitality);
-    game.getBar_playerHealth().setValue((int) curVitality);
-    game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
+    game.getBar_playerHealth().setMaximum((int) Math.round(maxVitality));
+    game.getBar_playerHealth().setValue((int) Math.round(curVitality));
+    game.getBar_playerHealth()
+        .setString((int) Math.round(curVitality) + " / " + (int) Math.round(maxVitality));
 
     /* Create this class's attacks */
     AttacksArrayList.add(new Strike(this, game));
@@ -162,17 +168,18 @@ public class Barbarian extends Hero implements ActionListener {
     panel_vitality.add(lblHealhIcon);
 
     /* Create vitality upgrade button */
-    btnUpgradeStat_1 = new JButton("+");
-    btnUpgradeStat_1.setFont(new Font("Tahoma", Font.PLAIN, 16));
-    btnUpgradeStat_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-    btnUpgradeStat_1.setFocusable(false);
-    btnUpgradeStat_1.setBounds(170, 16, 28, 28);
-    btnUpgradeStat_1.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    btnUpgradeStat_1.setVisible(false);
-    panel_vitality.add(btnUpgradeStat_1);
+    btnUpgrade_vitality = new JButton("+");
+    btnUpgrade_vitality.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnUpgrade_vitality.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+    btnUpgrade_vitality.setFocusable(false);
+    btnUpgrade_vitality.setBounds(170, 16, 28, 28);
+    btnUpgrade_vitality.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnUpgrade_vitality.addActionListener(this);
+    btnUpgrade_vitality.setVisible(false);
+    panel_vitality.add(btnUpgrade_vitality);
 
     /* Create the label that displays the maximum vitality value */
-    lblVitality = new JLabel(curVitality + "/" + maxVitality);
+    lblVitality = new JLabel(maxVitality + "");
     lblVitality.setBounds(44, 16, 116, 24);
     panel_vitality.add(lblVitality);
 
@@ -199,14 +206,15 @@ public class Barbarian extends Hero implements ActionListener {
     panel_rage.add(lblRageIcon);
 
     /* Create rage upgrade button */
-    btnUpgradeStat_2 = new JButton("+");
-    btnUpgradeStat_2.setFont(new Font("Tahoma", Font.PLAIN, 16));
-    btnUpgradeStat_2.setFocusable(false);
-    btnUpgradeStat_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-    btnUpgradeStat_2.setBounds(170, 16, 28, 28);
-    btnUpgradeStat_2.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    btnUpgradeStat_2.setVisible(false);
-    panel_rage.add(btnUpgradeStat_2);
+    btnUpgrade_rage = new JButton("+");
+    btnUpgrade_rage.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnUpgrade_rage.setFocusable(false);
+    btnUpgrade_rage.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+    btnUpgrade_rage.setBounds(170, 16, 28, 28);
+    btnUpgrade_rage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnUpgrade_rage.addActionListener(this);
+    btnUpgrade_rage.setVisible(false);
+    panel_rage.add(btnUpgrade_rage);
 
     /* Create the label that displays rage value */
     lblRage = new JLabel(curRage + "/" + maxRage);
@@ -236,14 +244,15 @@ public class Barbarian extends Hero implements ActionListener {
     panel_sharpness.add(lblSharpnessIcon);
 
     /* Create sharpness upgrade button */
-    btnUpgradeStat_3 = new JButton("+");
-    btnUpgradeStat_3.setFont(new Font("Tahoma", Font.PLAIN, 16));
-    btnUpgradeStat_3.setFocusable(false);
-    btnUpgradeStat_3.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-    btnUpgradeStat_3.setBounds(170, 16, 28, 28);
-    btnUpgradeStat_3.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    btnUpgradeStat_3.setVisible(false);
-    panel_sharpness.add(btnUpgradeStat_3);
+    btnUpgrade_sharpness = new JButton("+");
+    btnUpgrade_sharpness.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnUpgrade_sharpness.setFocusable(false);
+    btnUpgrade_sharpness.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+    btnUpgrade_sharpness.setBounds(170, 16, 28, 28);
+    btnUpgrade_sharpness.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnUpgrade_sharpness.addActionListener(this);
+    btnUpgrade_sharpness.setVisible(false);
+    panel_sharpness.add(btnUpgrade_sharpness);
 
     /* Create the label that displays sharpness value */
     lblSharpness = new JLabel(sharpness + "");
@@ -273,14 +282,15 @@ public class Barbarian extends Hero implements ActionListener {
     panel_toughness.add(lblToughnessIcon);
 
     /* Create toughness upgrade button */
-    btnUpgradeStat_4 = new JButton("+");
-    btnUpgradeStat_4.setFont(new Font("Tahoma", Font.PLAIN, 16));
-    btnUpgradeStat_4.setFocusable(false);
-    btnUpgradeStat_4.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-    btnUpgradeStat_4.setBounds(170, 16, 28, 28);
-    btnUpgradeStat_4.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    btnUpgradeStat_4.setVisible(false);
-    panel_toughness.add(btnUpgradeStat_4);
+    btnUpgrade_toughness = new JButton("+");
+    btnUpgrade_toughness.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnUpgrade_toughness.setFocusable(false);
+    btnUpgrade_toughness.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+    btnUpgrade_toughness.setBounds(170, 16, 28, 28);
+    btnUpgrade_toughness.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnUpgrade_toughness.addActionListener(this);
+    btnUpgrade_toughness.setVisible(false);
+    panel_toughness.add(btnUpgrade_toughness);
 
     /* Create the label that displays toughness value */
     lblToughness = new JLabel(toughness + "");
@@ -311,14 +321,15 @@ public class Barbarian extends Hero implements ActionListener {
     panel_riposteChance.add(lblRiposteChanceIcon);
 
     /* Create riposte chance upgrade button */
-    btnUpgradeStat_5 = new JButton("+");
-    btnUpgradeStat_5.setFont(new Font("Tahoma", Font.PLAIN, 16));
-    btnUpgradeStat_5.setFocusable(false);
-    btnUpgradeStat_5.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-    btnUpgradeStat_5.setBounds(170, 16, 28, 28);
-    btnUpgradeStat_5.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    btnUpgradeStat_5.setVisible(false);
-    panel_riposteChance.add(btnUpgradeStat_5);
+    btnUpgrade_riposteChance = new JButton("+");
+    btnUpgrade_riposteChance.setFont(new Font("Tahoma", Font.PLAIN, 16));
+    btnUpgrade_riposteChance.setFocusable(false);
+    btnUpgrade_riposteChance.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+    btnUpgrade_riposteChance.setBounds(170, 16, 28, 28);
+    btnUpgrade_riposteChance.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    btnUpgrade_riposteChance.addActionListener(this);
+    btnUpgrade_riposteChance.setVisible(false);
+    panel_riposteChance.add(btnUpgrade_riposteChance);
 
     /* Create the label that displays riposte chance value */
     lblRiposteChance = new JLabel(riposteChance + "%");
@@ -535,7 +546,7 @@ public class Barbarian extends Hero implements ActionListener {
       game.disableAttackButtons(); // Disable attack buttons
       Game.setTurn(1); // Reset turns
       game.getTextArea().setText(""); // Clear event area
-      game.repaint(); // Repaint
+      game.repaint();
     }
   }
 
@@ -619,22 +630,22 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public void enableButtons() {
-    btnUpgradeStat_1.setEnabled(true);
-    btnUpgradeStat_2.setEnabled(true);
-    btnUpgradeStat_3.setEnabled(true);
-    btnUpgradeStat_4.setEnabled(true);
-    btnUpgradeStat_5.setEnabled(true);
+    btnUpgrade_vitality.setEnabled(true);
+    btnUpgrade_rage.setEnabled(true);
+    btnUpgrade_sharpness.setEnabled(true);
+    btnUpgrade_toughness.setEnabled(true);
+    btnUpgrade_riposteChance.setEnabled(true);
     btnOffensive.setEnabled(true);
     btnDefensive.setEnabled(true);
   }
 
   @Override
   public void disableButtons() {
-    btnUpgradeStat_1.setEnabled(false);
-    btnUpgradeStat_2.setEnabled(false);
-    btnUpgradeStat_3.setEnabled(false);
-    btnUpgradeStat_4.setEnabled(false);
-    btnUpgradeStat_5.setEnabled(false);
+    btnUpgrade_vitality.setEnabled(false);
+    btnUpgrade_rage.setEnabled(false);
+    btnUpgrade_sharpness.setEnabled(false);
+    btnUpgrade_toughness.setEnabled(false);
+    btnUpgrade_riposteChance.setEnabled(false);
     btnOffensive.setEnabled(false);
     btnDefensive.setEnabled(false);
   }

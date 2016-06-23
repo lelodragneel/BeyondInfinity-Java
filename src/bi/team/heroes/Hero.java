@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -13,16 +12,13 @@ import bi.team.enemies.Enemy;
 import bi.team.heroes.attacks.barbarian.Attack;
 
 public abstract class Hero {
+  public static int level = 1;
+  public static int maxLevel = 60;
+  public static int curExperience = 0;
   protected ArrayList<Attack> AttacksArrayList;
   protected Game game;
-  protected JButton btnUpgradeStat_1;
-  protected JButton btnUpgradeStat_2;
-  protected JButton btnUpgradeStat_3;
-  protected JButton btnUpgradeStat_4;
-  protected JButton btnUpgradeStat_5;
+  protected int enhancementPoints;
   protected JPanel panel_stances;
-  protected ImageIcon heroImage;
-  protected int turnsStunned;
 
   /**
    * Class constructor
@@ -31,6 +27,24 @@ public abstract class Hero {
    */
   public Hero(Game game) {
     this.game = game;
+    enhancementPoints = 0;
+  }
+
+  /**
+   * Add experience to player level, and level up if necessary
+   * 
+   * @param xp Integer value of experience to add
+   */
+  public void addExperience(int xp) {
+    double xpTillLevelup = (((Math.pow(level, 2)) * 1.2) + 210) - curExperience;
+
+    if ((xp >= xpTillLevelup) && (level != maxLevel)) { // Level up
+      level++;
+      curExperience = (int) Math.round(xp - xpTillLevelup);
+    } else { // Add experience
+      curExperience += xp;
+    }
+    game.repaintXpBar();
   }
 
   /**
@@ -51,6 +65,7 @@ public abstract class Hero {
    */
   public void killEnemy(Enemy enemy) {
     enemy.setAlive(false); // Set enemy dead
+    addExperience(enemy.getExperienceDrop()); // Give the player experience
 
     /* Set graphics to kill enemy */
     enemy.setBackground(new Color(239, 72, 54));
@@ -130,5 +145,49 @@ public abstract class Hero {
    */
   public double getSharpness() {
     return 0;
+  }
+
+  /**
+   * @return the number of enhancements
+   */
+  public int getEnhancementPoints() {
+    return enhancementPoints;
+  }
+
+  /**
+   * @param enhancementPoints The integer value to set
+   */
+  public void setEnhancementPoints(int enhancementPoints) {
+    this.enhancementPoints = enhancementPoints;
+  }
+
+  /**
+   * @return the curExperience
+   */
+  public static double getCurExperience() {
+    return curExperience;
+  }
+
+  /**
+   * @return the hero level
+   */
+  public static int getLevel() {
+    return level;
+  }
+
+  /**
+   * Set the hero level
+   * 
+   * @param level Set the hero level
+   */
+  public static void setLevel(int level) {
+    Hero.level = level;
+  }
+
+  /**
+   * @return the maximum level a hero can reach
+   */
+  public static int getMaxLevel() {
+    return maxLevel;
   }
 }

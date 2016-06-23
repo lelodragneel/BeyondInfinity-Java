@@ -20,7 +20,7 @@ public class Fuehirch extends Enemy {
   public Fuehirch(Game game) {
     super(game, SwingConstants.BOTTOM);
     super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
-    
+
     name = "Fuehirch";
     enemyNumber = 1;
     damage = 10;

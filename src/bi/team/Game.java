@@ -43,9 +43,6 @@ import bi.team.inventory.InventoryFrame;
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
   private static int turn = 1;
-  private static int level = 1;
-  private static int maxLevel = 60;
-  private static int curExperience = 0;
   private static JTextPane textArea;
   private SimpleAttributeSet aSet;
   private JPanel panel_player;
@@ -174,7 +171,7 @@ public class Game extends JFrame implements ActionListener {
     panel_top.add(bar_XPBar);
 
     /* Create icon for current level */
-    lblLevel_current = new JLabel(level + "");
+    lblLevel_current = new JLabel(Hero.getLevel() + "");
     lblLevel_current.setForeground(Color.WHITE);
     lblLevel_current.setHorizontalTextPosition(JLabel.CENTER);
     lblLevel_current.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -183,7 +180,7 @@ public class Game extends JFrame implements ActionListener {
     panel_top.add(lblLevel_current);
 
     /* Create icon for next level */
-    lblLevel_next = new JLabel((level + 1) + "");
+    lblLevel_next = new JLabel((Hero.getLevel() + 1) + "");
     lblLevel_next.setForeground(Color.WHITE);
     lblLevel_next.setHorizontalTextPosition(JLabel.CENTER);
     lblLevel_next.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
@@ -387,7 +384,7 @@ public class Game extends JFrame implements ActionListener {
    */
   public void toggleMap() {
 
-    // toggle between true and false
+    // Toggle between true and false
     isMapShown = !isMapShown;
 
     if (isMapShown) {
@@ -411,7 +408,7 @@ public class Game extends JFrame implements ActionListener {
       hero.enableButtons();
       btnShowInventory.setEnabled(true);
     }
-    repaint(); // repaint frame to avoid graphical glitches
+    repaint(); // Repaint frame to avoid graphical glitches
   }
 
   /**
@@ -451,38 +448,21 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
-   * Add experience to player level, and level up if necessary
-   * 
-   * @param xp Integer value of experience to add
-   */
-  public void addExperience(int xp) {
-    double xpTillLevelup = (((Math.pow(level, 2)) * 1.2) + 210) - curExperience;
-
-    if ((xp >= xpTillLevelup) && (level != maxLevel)) { // Level up
-      level++;
-      curExperience = (int) Math.round(xp - xpTillLevelup);
-    } else { // Add experience
-      curExperience += xp;
-    }
-    repaintXpBar();
-  }
-
-  /**
    * Updates the visual of the player level & experience bar
    */
   public void repaintXpBar() {
 
     /* Update experiene bar */
     bar_XPBar.setMaximum(getMaximumXp());
-    bar_XPBar.setValue(curExperience);
-    bar_XPBar.setString(curExperience + " / " + getMaximumXp() + " XP");
+    bar_XPBar.setValue(Hero.curExperience);
+    bar_XPBar.setString(Hero.curExperience + " / " + getMaximumXp() + " XP");
 
     /* Update level indicators */
-    lblLevel_current.setText(level + "");
-    if ((level + 1) >= maxLevel) {
-      lblLevel_next.setText(maxLevel + "");
+    lblLevel_current.setText(Hero.getLevel() + "");
+    if ((Hero.getLevel() + 1) >= Hero.getMaxLevel()) {
+      lblLevel_next.setText(Hero.getMaxLevel() + "");
     } else {
-      lblLevel_next.setText((level + 1) + "");
+      lblLevel_next.setText((Hero.getLevel() + 1) + "");
     }
   }
 
@@ -490,7 +470,7 @@ public class Game extends JFrame implements ActionListener {
    * @return an integer of the maximum experience of the hero's current level
    */
   public int getMaximumXp() {
-    return (int) Math.round(((Math.pow(level, 2)) * 1.2) + 210);
+    return (int) Math.round(((Math.pow(Hero.getLevel(), 2)) * 1.2) + 210);
   }
 
   /**
@@ -521,13 +501,6 @@ public class Game extends JFrame implements ActionListener {
    */
   public JLabel getLblPlayerName() {
     return lblPlayerName;
-  }
-
-  /**
-   * @return the curExperience
-   */
-  public static double getCurExperience() {
-    return curExperience;
   }
 
   /**
@@ -621,22 +594,6 @@ public class Game extends JFrame implements ActionListener {
    */
   public JLabel getLblUpgradePoints() {
     return lblUpgradePoints;
-  }
-
-  /**
-   * @return the hero level
-   */
-  public static int getLevel() {
-    return level;
-  }
-
-  /**
-   * Set the level
-   * 
-   * @param level Set the hero level
-   */
-  public static void setLevel(int level) {
-    Game.level = level;
   }
 
   /**
