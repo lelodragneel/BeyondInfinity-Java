@@ -190,7 +190,7 @@ public class Barbarian extends Hero implements ActionListener {
     lblVitalityDesc.setVerticalAlignment(SwingConstants.TOP);
     lblVitalityDesc.setForeground(Color.DARK_GRAY);
     lblVitalityDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblVitalityDesc.setBounds(10, 46, 188, 32);
+    lblVitalityDesc.setBounds(10, 44, 188, 34);
     panel_vitality.add(lblVitalityDesc);
 
     /* ------------- rage panel ------------- */
@@ -229,7 +229,7 @@ public class Barbarian extends Hero implements ActionListener {
     lblRageDesc.setVerticalAlignment(SwingConstants.TOP);
     lblRageDesc.setForeground(Color.DARK_GRAY);
     lblRageDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblRageDesc.setBounds(10, 46, 188, 32);
+    lblRageDesc.setBounds(10, 44, 188, 34);
     panel_rage.add(lblRageDesc);
 
     /* ------------- strength panel ------------- */
@@ -268,7 +268,7 @@ public class Barbarian extends Hero implements ActionListener {
     lblStrengthDesc.setVerticalAlignment(SwingConstants.TOP);
     lblStrengthDesc.setForeground(Color.DARK_GRAY);
     lblStrengthDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblStrengthDesc.setBounds(10, 46, 188, 32);
+    lblStrengthDesc.setBounds(10, 44, 188, 34);
     panel_strength.add(lblStrengthDesc);
 
     /* ------------- toughness panel ------------- */
@@ -303,11 +303,11 @@ public class Barbarian extends Hero implements ActionListener {
     panel_toughness.add(lblToughness);
 
     /* Create toughness description label */
-    JLabel lblToughnessDesc = new JLabel("<html>The amount of damage to resist.</html>");
+    JLabel lblToughnessDesc = new JLabel("<html>The amount of damage to resist per attack.</html>");
     lblToughnessDesc.setVerticalAlignment(SwingConstants.TOP);
     lblToughnessDesc.setForeground(Color.DARK_GRAY);
     lblToughnessDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblToughnessDesc.setBounds(10, 46, 188, 32);
+    lblToughnessDesc.setBounds(10, 44, 188, 34);
     panel_toughness.add(lblToughnessDesc);
 
     /* ------------- riposte_chance panel ------------- */
@@ -347,7 +347,7 @@ public class Barbarian extends Hero implements ActionListener {
     lblRiposteChanceDesc.setVerticalAlignment(SwingConstants.TOP);
     lblRiposteChanceDesc.setForeground(Color.DARK_GRAY);
     lblRiposteChanceDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblRiposteChanceDesc.setBounds(10, 46, 188, 32);
+    lblRiposteChanceDesc.setBounds(10, 44, 188, 34);
     panel_riposteChance.add(lblRiposteChanceDesc);
 
     /* ------------------------------------------------- */
@@ -410,13 +410,28 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    
+    /* Stat buttons are clicked */
+    if (e.getSource() == btnUpgrade_vitality) {
+      upgradeVitality();
+    } else if (e.getSource() == btnUpgrade_rage) {
+      upgradeRage();
+    } else if (e.getSource() == btnUpgrade_strength) {
+      upgradeStrength();
+    } else if (e.getSource() == btnUpgrade_toughness) {
+      upgradeToughness();
+    } else if (e.getSource() == btnUpgrade_riposteChance) {
+      upgradeRiposteChance();
+    }
+    
+    /* Stance buttons are clicked */
     if (e.getSource() == btnOffensive) {
       showOffensiveAttacks();
     } else if (e.getSource() == btnDefensive) {
       showDefensiveAttacks();
     }
 
-    /* Check if attack buttons are clicked */
+    /* Attack buttons are clicked */
     for (Attack x : AttacksArrayList) {
       if (e.getSource() == x.getButton()) {
         if (x.getCurWarmup() == x.getMaxWarmup()) { // Check cooldown
@@ -656,6 +671,40 @@ public class Barbarian extends Hero implements ActionListener {
     btnDefensive.setEnabled(false);
   }
 
+  /**
+   * Called when upgrade button is clicked to upgrade vitality
+   */
+  public void upgradeVitality() {
+    
+  }
+  
+  /**
+   * Called when upgrade button is clicked to upgrade rage
+   */
+  public void upgradeRage() {
+    
+  }
+  
+  /**
+   * Called when upgrade button is clicked to upgrade strength
+   */
+  public void upgradeStrength() {
+    
+  }
+  
+  /**
+   * Called when upgrade button is clicked to upgrade toughness
+   */
+  public void upgradeToughness() {
+    
+  }
+  
+  /**
+   * Called when upgrade button is clicked to upgrade ripostechance
+   */
+  public void upgradeRiposteChance() {
+    
+  }
 
 
   /**

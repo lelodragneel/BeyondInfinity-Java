@@ -89,7 +89,8 @@ public class Game extends JFrame implements ActionListener {
   public Game(String name, int chosenHero, int heroSex, int giftNum) {
     // TODO instantiate gift parameter
     this.heroSex = heroSex;
-    UIManager.put("ProgressBar.selectionForeground", Color.darkGray); // Health bar esthetics
+    UIManager.put("ProgressBar.selectionForeground", new Color(236, 236, 236)); // Health bar
+                                                                                // esthetics
 
     /* Build frame */
     this.setResizable(false);
@@ -242,20 +243,20 @@ public class Game extends JFrame implements ActionListener {
     getContentPane().add(bar_loading);
 
     /* Create player health icon */
-    JLabel lblHeartPlayer = new JLabel("HP");
+    JLabel lblHeartPlayer = new JLabel("");
     lblHeartPlayer.setForeground(Color.WHITE);
     lblHeartPlayer.setHorizontalTextPosition(JLabel.CENTER);
     lblHeartPlayer.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblHeartPlayer.setBounds(3, 3, 32, 32);
+    lblHeartPlayer.setBounds(2, 3, 32, 32);
     lblHeartPlayer.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
     panel_player.add(lblHeartPlayer);
 
     /* Create enemy health icon */
-    JLabel lblHeartEnemy = new JLabel("HP");
+    JLabel lblHeartEnemy = new JLabel("");
     lblHeartEnemy.setForeground(Color.WHITE);
     lblHeartEnemy.setHorizontalTextPosition(JLabel.CENTER);
     lblHeartEnemy.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblHeartEnemy.setBounds(3, 3, 32, 32);
+    lblHeartEnemy.setBounds(2, 3, 32, 32);
     lblHeartEnemy.setIcon(new ImageIcon(getClass().getResource("/images/heart.png")));
     panel_enemy.add(lblHeartEnemy);
 
@@ -263,20 +264,20 @@ public class Game extends JFrame implements ActionListener {
     bar_playerHealth = new JProgressBar();
     bar_playerHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
     bar_playerHealth.setStringPainted(true);
-    bar_playerHealth.setBounds(14, 11, 236, 16);
+    bar_playerHealth.setBounds(26, 11, 224, 16);
     bar_playerHealth.setString("");
     bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
-    bar_playerHealth.setForeground(new Color(30, 139, 195));
+    bar_playerHealth.setForeground(new Color(68, 108, 179));
     panel_player.add(bar_playerHealth);
 
     /* Create the enemy health bar */
     bar_enemyHealth = new JProgressBar();
     bar_enemyHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
     bar_enemyHealth.setStringPainted(true);
-    bar_enemyHealth.setBounds(14, 11, 236, 16);
+    bar_enemyHealth.setBounds(26, 11, 224, 16);
     bar_enemyHealth.setString("");
     bar_enemyHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
-    bar_enemyHealth.setForeground(new Color(236, 100, 75));
+    bar_enemyHealth.setForeground(new Color(68, 108, 179));
     panel_enemy.add(bar_enemyHealth);
 
     /* Create panel displaying player images */
