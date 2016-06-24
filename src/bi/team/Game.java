@@ -376,7 +376,7 @@ public class Game extends JFrame implements ActionListener {
   /**
    * Resurrect the most-recently killed enemy
    */
-  public void resurrectLatestEnemy() {
+  public void enemyLevelup() {
     // TODO
   }
 
@@ -388,26 +388,28 @@ public class Game extends JFrame implements ActionListener {
     // Toggle between true and false
     isMapShown = !isMapShown;
 
-    if (isMapShown) {
+    if (isMapShown) { // Open map
       map.getLblEnemyIcon().setIcon(null);
       map.getLblEnemyName().setText("");
       map.getBtnChallenge().setEnabled(false);
       map.setVisible(true);
       panel_frameOpacity.setVisible(true);
       disableAttackButtons();
-      hero.disableAllButtons();
+      hero.disableStanceButtons();
       btnShowInventory.setEnabled(false);
       btnSurrender.setEnabled(false);
-    } else {
+      repaintUpgradeButtons();
+    } else { // Close map
       map.setVisible(false);
       panel_frameOpacity.setVisible(false);
+      hero.enableStanceButtons();
+      btnShowInventory.setEnabled(true);
+      repaintUpgradeButtons();
       if (enemySelected != null) { // If a fight is active
         btnSurrender.setVisible(true);
         btnSurrender.setEnabled(true);
         enableAttackButtons();
       }
-      hero.enableAllButtons();
-      btnShowInventory.setEnabled(true);
     }
     repaint(); // Repaint frame to avoid graphical glitches
   }
@@ -422,12 +424,12 @@ public class Game extends JFrame implements ActionListener {
       inventory.setVisible(true);
       panel_frameOpacity.setVisible(true);
       disableAttackButtons();
-      hero.disableAllButtons();
+      hero.disableStanceButtons();
     } else {
       inventory.setVisible(false);
       panel_frameOpacity.setVisible(false);
       enableAttackButtons();
-      hero.enableAllButtons();
+      hero.enableStanceButtons();
     }
     repaint(); // Repaint frame to avoid graphical glitches
   }
@@ -465,6 +467,53 @@ public class Game extends JFrame implements ActionListener {
     } else {
       lblLevel_next.setText((Hero.getLevel() + 1) + "");
     }
+  }
+
+  /**
+   * Updates the visual of the player & enemy health bars
+   */
+  public void repaintHealthBars() {
+
+    /* Paint hero health bar */
+    bar_playerHealth.setMaximum((int) Math.round(hero.getMaxHealth()));
+    if (hero.getCurHealth() <= 0) {
+      bar_playerHealth.setValue(0);
+      bar_playerHealth.setString("dead");
+    } else {
+      bar_playerHealth.setValue((int) hero.getCurHealth());
+      bar_playerHealth.setString(hero.getCurHealth() + " / " + hero.getMaxHealth());
+    }
+
+    /* Paint enemy health bar */
+    if (enemySelected != null) {
+      bar_enemyHealth.setMaximum((int) Math.round(enemySelected.getMaxHealth()));
+      if (enemySelected.getCurHealth() <= 0) {
+        bar_enemyHealth.setValue(0);
+        bar_enemyHealth.setString("dead");
+      } else {
+        bar_enemyHealth.setValue((int) enemySelected.getCurHealth());
+        bar_enemyHealth
+            .setString(enemySelected.getCurHealth() + " / " + enemySelected.getMaxHealth());
+      }
+    }
+    repaint();
+  }
+
+  /**
+   * Updates the visual of the upgrade buttons
+   */
+  public void repaintUpgradeButtons() {
+    if (hero.getEnhancementPoints() >= 1) {
+      hero.showUpgradeButtons();
+      if ((isMapShown) || (enemySelected != null)) {
+        hero.disableUpgradeButtons();
+      } else {
+        hero.enableUpgradeButtons();
+      }
+    } else {
+      hero.hideUpgradeButtons();
+    }
+    repaint();
   }
 
   /**

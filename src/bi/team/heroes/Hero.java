@@ -21,6 +21,7 @@ public abstract class Hero {
   protected Game game;
   protected int enhancementPoints;
   protected JPanel panel_stances;
+  protected int healthPoints;
 
   /**
    * Class constructor
@@ -87,6 +88,44 @@ public abstract class Hero {
     enhancementPoints += points;
     game.getLblEnhancementPoints()
         .setText("<html>Enhancement Points: <b>" + enhancementPoints + "</b></html>");
+    enableUpgradeButtons();
+    showUpgradeButtons();
+  }
+
+  /**
+   * Enable hero upgrade buttons
+   */
+  public void enableUpgradeButtons() {
+    for (JButton x : ArrayUpgradeButtons) {
+      x.setEnabled(true);
+    }
+  }
+
+  /**
+   * Disable hero upgrade buttons
+   */
+  public void disableUpgradeButtons() {
+    for (JButton x : ArrayUpgradeButtons) {
+      x.setEnabled(false);
+    }
+  }
+
+  /**
+   * Show hero upgrade buttons
+   */
+  public void showUpgradeButtons() {
+    for (JButton x : ArrayUpgradeButtons) {
+      x.setVisible(true);
+    }
+  }
+
+  /**
+   * Hide hero upgrade buttons
+   */
+  public void hideUpgradeButtons() {
+    for (JButton x : ArrayUpgradeButtons) {
+      x.setVisible(false);
+    }
   }
 
   /**
@@ -104,33 +143,22 @@ public abstract class Hero {
   }
 
   /**
-   * Set all upgrade buttons to active
+   * Set all stance buttons to active
    */
-  public abstract void enableAllButtons();
+  public abstract void enableStanceButtons();
 
   /**
-   * Set all upgrade buttons to inactive
+   * Set all stance buttons to inactive
    */
-  public abstract void disableAllButtons();
+  public abstract void disableStanceButtons();
+
 
   /**
-   * Show and enable hero upgrade buttons
+   * @param points The number of health points to add
    */
-  public void enableUpgradeButtons() {
-    for (JButton x : ArrayUpgradeButtons) {
-      x.setEnabled(true);
-      x.setVisible(true);
-    }
-  }
-
-  /**
-   * Hide and disable hero upgrade buttons
-   */
-  public void disableUpgradeButtons() {
-    for (JButton x : ArrayUpgradeButtons) {
-      x.setEnabled(false);
-      x.setVisible(false);
-    }
+  public void addHealthPoints(int points) {
+    healthPoints += points;
+    game.repaintHealthBars();
   }
 
   /**
@@ -167,13 +195,6 @@ public abstract class Hero {
    * @return the maxVitality
    */
   public abstract double getMaxHealth();
-
-  /**
-   * Set the maximum health
-   * 
-   * @param maxHealth The value of maximum health
-   */
-  public abstract void setMaxHealth(double maxHealth);
 
   /**
    * @return the value of strength

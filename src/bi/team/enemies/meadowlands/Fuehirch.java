@@ -38,11 +38,7 @@ public class Fuehirch extends Enemy {
     /* Hero takes damage */
     game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
 
-    /* Paint hero's health bar */
-    game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
-    game.getBar_playerHealth()
-        .setString(game.getHero().getCurHealth() + " / " + game.getHero().getMaxHealth());
-
+    game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }
 

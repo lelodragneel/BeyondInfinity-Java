@@ -25,13 +25,13 @@ public class Chemist extends Hero {
 	}
 
 	@Override
-	public void enableAllButtons() {
+	public void enableStanceButtons() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void disableAllButtons() {
+	public void disableStanceButtons() {
 		// TODO Auto-generated method stub
 		
 	}

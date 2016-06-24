@@ -66,7 +66,7 @@ public class Barbarian extends Hero implements ActionListener {
   private JButton btnUpgrade_toughness;
   private JButton btnUpgrade_riposteChance;
   private double curVitality;
-  private double maxVitality;
+  private final double maxVitality = 425 - 75 + (healthPoints * 75);
   private int curRage;
   private int maxRage;
   private double strength;
@@ -85,7 +85,7 @@ public class Barbarian extends Hero implements ActionListener {
     load = new Load(game, this);
     AttacksArrayList = new ArrayList<Attack>();
     ArrayUpgradeButtons = new ArrayList<JButton>();
-    maxVitality = 100;
+    healthPoints = 1;
     curVitality = 100;
     maxRage = 6;
     curRage = 0;
@@ -410,7 +410,7 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    
+
     /* Stat buttons are clicked */
     if (e.getSource() == btnUpgrade_vitality) {
       upgradeVitality();
@@ -423,7 +423,7 @@ public class Barbarian extends Hero implements ActionListener {
     } else if (e.getSource() == btnUpgrade_riposteChance) {
       upgradeRiposteChance();
     }
-    
+
     /* Stance buttons are clicked */
     if (e.getSource() == btnOffensive) {
       showOffensiveAttacks();
@@ -465,11 +465,7 @@ public class Barbarian extends Hero implements ActionListener {
     } catch (BadLocationException e) {
     }
 
-    /* Paint enemy's health bar */
-    game.getBar_enemyHealth().setValue((int) game.getEnemySelected().getCurHealth());
-    game.getBar_enemyHealth().setString(
-        game.getEnemySelected().getCurHealth() + " / " + game.getEnemySelected().getMaxHealth());
-
+    game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }
 
@@ -557,11 +553,6 @@ public class Barbarian extends Hero implements ActionListener {
       curRage = 1;
       repaintRage();
 
-      /* Reset health bar */
-      game.getBar_playerHealth().setMaximum((int) maxVitality);
-      game.getBar_playerHealth().setValue((int) maxVitality);
-      game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
-
       /* Remove enemy from battlefield */
       game.getLblEnemyImage().setIcon(null);
       game.getLblEnemyName().setText("");
@@ -570,8 +561,10 @@ public class Barbarian extends Hero implements ActionListener {
       game.disableAttackButtons(); // Disable attack buttons
       game.getBtnSurrender().setVisible(false);
       game.getBtnSurrender().setEnabled(false);
+      game.repaintUpgradeButtons();
       Game.setTurn(1); // Reset turns
       game.getTextArea().setText(""); // Clear event area
+      game.repaintHealthBars(); // Reset health bars
       game.repaint();
     }
   }
@@ -588,18 +581,18 @@ public class Barbarian extends Hero implements ActionListener {
     repaintRage();
 
     /* Prepare player health bar */
-    game.getBar_playerHealth().setMaximum((int) maxVitality);
-    game.getBar_playerHealth().setValue((int) maxVitality);
-    game.getBar_playerHealth().setString(curVitality + " / " + maxVitality);
+    game.getBar_playerHealth().setMaximum((int) (Math.round(maxVitality)));
+    game.repaintHealthBars();
 
     /* Show enemy on battlefield */
     game.getLblEnemyImage().setIcon(enemy.getEnemyImage());
     game.getLblEnemyImage().setVerticalAlignment(enemy.getValign());
-    game.getLblEnemyName().setText(enemy.getName() + "");
+    game.getLblEnemyName().setText(enemy.getName());
     game.getPanel_enemy().setVisible(true);
 
     game.getTextArea().setText(""); // Clear event area
     game.setEnemySelected(enemy); // Set enemy to fight
+    game.repaintUpgradeButtons();
     Game.setTurn(1); // Reset turns
   }
 
@@ -654,19 +647,13 @@ public class Barbarian extends Hero implements ActionListener {
   }
 
   @Override
-  public void enableAllButtons() {
-    for (JButton x : ArrayUpgradeButtons) {
-      x.setEnabled(true);
-    }
+  public void enableStanceButtons() {
     btnOffensive.setEnabled(true);
     btnDefensive.setEnabled(true);
   }
 
   @Override
-  public void disableAllButtons() {
-    for (JButton x : ArrayUpgradeButtons) {
-      x.setEnabled(false);
-    }
+  public void disableStanceButtons() {
     btnOffensive.setEnabled(false);
     btnDefensive.setEnabled(false);
   }
@@ -675,35 +662,35 @@ public class Barbarian extends Hero implements ActionListener {
    * Called when upgrade button is clicked to upgrade vitality
    */
   public void upgradeVitality() {
-    
+
   }
-  
+
   /**
    * Called when upgrade button is clicked to upgrade rage
    */
   public void upgradeRage() {
-    
+
   }
-  
+
   /**
    * Called when upgrade button is clicked to upgrade strength
    */
   public void upgradeStrength() {
-    
+
   }
-  
+
   /**
    * Called when upgrade button is clicked to upgrade toughness
    */
   public void upgradeToughness() {
-    
+
   }
-  
+
   /**
    * Called when upgrade button is clicked to upgrade ripostechance
    */
   public void upgradeRiposteChance() {
-    
+
   }
 
 
@@ -781,16 +768,6 @@ public class Barbarian extends Hero implements ActionListener {
   }
 
   @Override
-  public double getMaxHealth() {
-    return maxVitality;
-  }
-
-  @Override
-  public void setMaxHealth(double maxVitality) {
-    this.maxVitality = maxVitality;
-  }
-
-  @Override
   public double getStrength() {
     return strength;
   }
@@ -841,5 +818,10 @@ public class Barbarian extends Hero implements ActionListener {
    */
   public ArrayList<JButton> getArrayUpgradeButtons() {
     return ArrayUpgradeButtons;
+  }
+
+  @Override
+  public double getMaxHealth() {
+    return maxVitality;
   }
 }
