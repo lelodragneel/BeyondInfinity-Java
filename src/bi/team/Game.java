@@ -55,7 +55,7 @@ public class Game extends JFrame implements ActionListener {
   private JPanel panel_actionsTop;
   private JLabel areaWallpaper;
   private JLabel upgradePoints;
-  private JLabel lblUpgradePoints;
+  private JLabel lblEnhancementPoints;
   private JProgressBar bar_loading;
   private JProgressBar bar_playerHealth;
   private JProgressBar bar_enemyHealth;
@@ -218,10 +218,10 @@ public class Game extends JFrame implements ActionListener {
     getContentPane().add(panel_actionsTop);
 
     /* Create label to display upgrade points */
-    lblUpgradePoints = new JLabel("Upgrade points:");
-    lblUpgradePoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblUpgradePoints.setBounds(472, 9, 100, 16);
-    panel_actionsTop.add(lblUpgradePoints);
+    lblEnhancementPoints = new JLabel("<html>Enhancement Points: <b>0</b></html>");
+    lblEnhancementPoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
+    lblEnhancementPoints.setBounds(447, 9, 150, 16);
+    panel_actionsTop.add(lblEnhancementPoints);
 
     /* Create the surrender button */
     btnSurrender = new JButton("");
@@ -394,18 +394,18 @@ public class Game extends JFrame implements ActionListener {
       map.setVisible(true);
       panel_frameOpacity.setVisible(true);
       disableAttackButtons();
-      hero.disableButtons();
+      hero.disableAllButtons();
       btnShowInventory.setEnabled(false);
       btnSurrender.setEnabled(false);
     } else {
       map.setVisible(false);
       panel_frameOpacity.setVisible(false);
-      if (enemySelected != null) {
+      if (enemySelected != null) { // If a fight is active
         btnSurrender.setVisible(true);
         btnSurrender.setEnabled(true);
         enableAttackButtons();
       }
-      hero.enableButtons();
+      hero.enableAllButtons();
       btnShowInventory.setEnabled(true);
     }
     repaint(); // Repaint frame to avoid graphical glitches
@@ -421,12 +421,12 @@ public class Game extends JFrame implements ActionListener {
       inventory.setVisible(true);
       panel_frameOpacity.setVisible(true);
       disableAttackButtons();
-      hero.disableButtons();
+      hero.disableAllButtons();
     } else {
       inventory.setVisible(false);
       panel_frameOpacity.setVisible(false);
       enableAttackButtons();
-      hero.enableButtons();
+      hero.enableAllButtons();
     }
     repaint(); // Repaint frame to avoid graphical glitches
   }
@@ -574,6 +574,13 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
+   * @return the surrender button
+   */
+  public JButton getBtnSurrender() {
+    return btnSurrender;
+  }
+
+  /**
    * Set enemy
    * 
    * @param enemySelected Enemy object currently fighting
@@ -590,19 +597,19 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
-   * @return the lblUpgradePoints
+   * @return the number of enhancement points
    */
-  public JLabel getLblUpgradePoints() {
-    return lblUpgradePoints;
+  public JLabel getLblEnhancementPoints() {
+    return lblEnhancementPoints;
   }
 
   /**
-   * Set the lblUpgradePoints
+   * Set the the number of enhancement points
    * 
    * @param lblUpgradePoints Set a string from upgrade points
    */
   public void setLblUpgradePoints(JLabel lblUpgradePoints) {
-    this.lblUpgradePoints = lblUpgradePoints;
+    this.lblEnhancementPoints = lblUpgradePoints;
   }
 
   /**

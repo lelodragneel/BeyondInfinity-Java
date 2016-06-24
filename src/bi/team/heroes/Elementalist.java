@@ -35,13 +35,13 @@ public class Elementalist extends Hero {
 	}
 
 	@Override
-	public void enableButtons() {
+	public void enableAllButtons() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void disableButtons() {
+	public void disableAllButtons() {
 		// TODO Auto-generated method stub
 		
 	}

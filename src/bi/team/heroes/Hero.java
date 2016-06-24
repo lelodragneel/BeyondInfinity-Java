@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -16,6 +17,7 @@ public abstract class Hero {
   public static int maxLevel = 60;
   public static int curExperience = 0;
   protected ArrayList<Attack> AttacksArrayList;
+  protected ArrayList<JButton> ArrayUpgradeButtons;
   protected Game game;
   protected int enhancementPoints;
   protected JPanel panel_stances;
@@ -40,6 +42,8 @@ public abstract class Hero {
 
     if ((xp >= xpTillLevelup) && (level != maxLevel)) { // Level up
       level++;
+      addEnhancementPoints(1);
+      enableUpgradeButtons();
       curExperience = (int) Math.round(xp - xpTillLevelup);
     } else { // Add experience
       curExperience += xp;
@@ -65,6 +69,8 @@ public abstract class Hero {
    */
   public void killEnemy(Enemy enemy) {
     enemy.setAlive(false); // Set enemy dead
+    game.getBtnSurrender().setEnabled(false);
+    game.getBtnSurrender().setVisible(false);
     addExperience(enemy.getExperienceDrop()); // Give the player experience
 
     /* Set graphics to kill enemy */
@@ -72,6 +78,15 @@ public abstract class Hero {
     game.getBar_enemyHealth().setString("dead");
     game.getLblEnemyImage().setVerticalAlignment(SwingConstants.BOTTOM);
     game.getLblEnemyImage().setIcon(new ImageIcon(getClass().getResource("/images/grave.png")));
+  }
+
+  /**
+   * @param enhancementPoints The integer value to add
+   */
+  public void addEnhancementPoints(int points) {
+    enhancementPoints += points;
+    game.getLblEnhancementPoints()
+        .setText("<html>Enhancement Points: <b>" + enhancementPoints + "</b></html>");
   }
 
   /**
@@ -91,12 +106,32 @@ public abstract class Hero {
   /**
    * Set all upgrade buttons to active
    */
-  public abstract void enableButtons();
+  public abstract void enableAllButtons();
 
   /**
    * Set all upgrade buttons to inactive
    */
-  public abstract void disableButtons();
+  public abstract void disableAllButtons();
+
+  /**
+   * Show and enable hero upgrade buttons
+   */
+  public void enableUpgradeButtons() {
+    for (JButton x : ArrayUpgradeButtons) {
+      x.setEnabled(true);
+      x.setVisible(true);
+    }
+  }
+
+  /**
+   * Hide and disable hero upgrade buttons
+   */
+  public void disableUpgradeButtons() {
+    for (JButton x : ArrayUpgradeButtons) {
+      x.setEnabled(false);
+      x.setVisible(false);
+    }
+  }
 
   /**
    * Prepare the enemy to battle
@@ -141,24 +176,15 @@ public abstract class Hero {
   public abstract void setMaxHealth(double maxHealth);
 
   /**
-   * @return the sharpness
+   * @return the value of strength
    */
-  public double getSharpness() {
-    return 0;
-  }
+  public abstract double getStrength();
 
   /**
    * @return the number of enhancements
    */
   public int getEnhancementPoints() {
     return enhancementPoints;
-  }
-
-  /**
-   * @param enhancementPoints The integer value to set
-   */
-  public void setEnhancementPoints(int enhancementPoints) {
-    this.enhancementPoints = enhancementPoints;
   }
 
   /**

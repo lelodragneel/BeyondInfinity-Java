@@ -36,7 +36,7 @@ public class Heavy_blow extends Attack {
     hero.consumeRage(rageNeeded); // Consume rage
 
     /* Deal damage to enemy */
-    double dmg = (20 + hero.getSharpness()) * hero.getDmgMultiplier();
+    double dmg = (20 + hero.getStrength()) * hero.getDmgMultiplier();
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
     /* Display events */
