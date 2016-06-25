@@ -22,10 +22,9 @@ public class Hawk_stag extends Enemy {
     super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 
     name = "Hawk Stag";
-    enemyNumber = 2;
+    enemyNumber = 3;
     damage = 10;
-    maxHealth = 90;
-    curHealth = 90;
+    curHealth = getMaxHealth();
     experienceDrop = 0;
     enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/hawk-stag.png"));
     enemyImage_small =

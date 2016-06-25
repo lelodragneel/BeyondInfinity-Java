@@ -22,10 +22,9 @@ public class Taobu extends Enemy {
     super.setBorder(new LineBorder(new Color(0, 0, 0), 1));
 
     name = "Taobu";
-    enemyNumber = 3;
+    enemyNumber = 2;
     damage = 10;
-    maxHealth = 90;
-    curHealth = 90;
+    curHealth = getMaxHealth();
     experienceDrop = 0;
     enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/taobu.png"));
     enemyImage_small =

@@ -24,8 +24,7 @@ public class Oboko_of_the_sonne extends Enemy {
     name = "Oboko of the Sonne";
     enemyNumber = 4;
     damage = 10;
-    maxHealth = 90;
-    curHealth = 90;
+    curHealth = getMaxHealth();
     experienceDrop = 0;
     enemyImage =
         new ImageIcon(getClass().getResource("/images/enemies/meadowlands/oboko-of-the-sonne.png"));

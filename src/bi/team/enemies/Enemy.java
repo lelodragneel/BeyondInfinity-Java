@@ -161,7 +161,7 @@ public abstract class Enemy extends JButton implements MouseListener {
    * @return the enemy damage
    */
   public double getDamage() {
-    return Math.round(damage);
+    return (-0.01 * (Math.pow(enemyNumber, 2)) + (3.3 * enemyNumber));
   }
 
   /**
@@ -184,15 +184,6 @@ public abstract class Enemy extends JButton implements MouseListener {
    * @return the enemy maxHealth
    */
   public double getMaxHealth() {
-    return Math.round(maxHealth);
-  }
-
-  /**
-   * Set the enemy maxHealth
-   * 
-   * @param maxHealth Maximum enemy health value
-   */
-  public void setMaxHealth(double maxHealth) {
-    this.maxHealth = maxHealth;
+    return Math.round((300 - 85 + (enemyNumber * 85)));
   }
 }

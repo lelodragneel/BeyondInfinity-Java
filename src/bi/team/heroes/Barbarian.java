@@ -88,7 +88,6 @@ public class Barbarian extends Hero implements ActionListener {
     curVitality = 425;
     maxRage = 6;
     curRage = 0;
-    strength = 10;
     toughness = 5;
     riposteChance = 10;
     dmgMultiplier = 1;
@@ -257,7 +256,7 @@ public class Barbarian extends Hero implements ActionListener {
     panel_strength.add(btnUpgrade_strength);
 
     /* Create the label that displays strength value */
-    lblStrength = new JLabel(strength + "");
+    lblStrength = new JLabel(getStrength() + "");
     lblStrength.setBounds(44, 16, 116, 24);
     panel_strength.add(lblStrength);
 
@@ -654,7 +653,7 @@ public class Barbarian extends Hero implements ActionListener {
    * @return the maximum vitality
    */
   public int getMaxVitality() {
-    return Math.round(425 - 75 + (healthPoints * 75));
+    return Math.round(425 - 75 + (level * 75));
   }
 
   /**
@@ -768,16 +767,7 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public double getStrength() {
-    return strength;
-  }
-
-  /**
-   * Set the strength
-   * 
-   * @param strength The value of strength
-   */
-  public void setStrength(double strength) {
-    this.strength = strength;
+    return ((-0.01 * (Math.pow(level, 2)) + (3 * level) + 2.2));
   }
 
   /**
