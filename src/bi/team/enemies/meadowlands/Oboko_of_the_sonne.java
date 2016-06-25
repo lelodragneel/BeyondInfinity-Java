@@ -39,21 +39,14 @@ public class Oboko_of_the_sonne extends Enemy {
     /* Hero takes damage */
     game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
 
-    /* Paint hero's health bar */
-    game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
-    game.getBar_playerHealth()
-        .setString(game.getHero().getCurHealth() + " / " + game.getHero().getMaxHealth());
-
-    /* Repaint health bars */
-    game.repaint();
+    game.repaintHealthBars();
+    game.repaint(); // Repaint health bars
   }
 
   @Override
   public void prepareFight() {
 
     /* Prepare enemy health bar */
-    game.getBar_enemyHealth().setMaximum((int) maxHealth);
-    game.getBar_enemyHealth().setValue((int) maxHealth);
-    game.getBar_enemyHealth().setString(curHealth + " / " + maxHealth);
+    game.repaintHealthBars();
   }
 }

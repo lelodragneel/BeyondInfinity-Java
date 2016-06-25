@@ -46,8 +46,6 @@ public class Fuehirch extends Enemy {
   public void prepareFight() {
 
     /* Prepare enemy health bar */
-    game.getBar_enemyHealth().setMaximum((int) maxHealth);
-    game.getBar_enemyHealth().setValue((int) maxHealth);
-    game.getBar_enemyHealth().setString(curHealth + " / " + maxHealth);
+    game.repaintHealthBars();
   }
 }

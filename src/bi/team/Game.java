@@ -421,11 +421,13 @@ public class Game extends JFrame implements ActionListener {
     isInvShown = !isInvShown; // Toggle between true and false
 
     if (isInvShown) {
+      repaintUpgradeButtons();
       inventory.setVisible(true);
       panel_frameOpacity.setVisible(true);
       disableAttackButtons();
       hero.disableStanceButtons();
     } else {
+      repaintUpgradeButtons();
       inventory.setVisible(false);
       panel_frameOpacity.setVisible(false);
       enableAttackButtons();
@@ -467,6 +469,7 @@ public class Game extends JFrame implements ActionListener {
     } else {
       lblLevel_next.setText((Hero.getLevel() + 1) + "");
     }
+    repaint();
   }
 
   /**
@@ -475,25 +478,25 @@ public class Game extends JFrame implements ActionListener {
   public void repaintHealthBars() {
 
     /* Paint hero health bar */
-    bar_playerHealth.setMaximum((int) Math.round(hero.getMaxHealth()));
+    bar_playerHealth.setMaximum((int) hero.getMaxHealth());
     if (hero.getCurHealth() <= 0) {
       bar_playerHealth.setValue(0);
       bar_playerHealth.setString("dead");
     } else {
       bar_playerHealth.setValue((int) hero.getCurHealth());
-      bar_playerHealth.setString(hero.getCurHealth() + " / " + hero.getMaxHealth());
+      bar_playerHealth.setString((int) hero.getCurHealth() + " / " + (int) hero.getMaxHealth());
     }
 
     /* Paint enemy health bar */
     if (enemySelected != null) {
-      bar_enemyHealth.setMaximum((int) Math.round(enemySelected.getMaxHealth()));
+      bar_enemyHealth.setMaximum((int) enemySelected.getMaxHealth());
       if (enemySelected.getCurHealth() <= 0) {
         bar_enemyHealth.setValue(0);
         bar_enemyHealth.setString("dead");
       } else {
         bar_enemyHealth.setValue((int) enemySelected.getCurHealth());
-        bar_enemyHealth
-            .setString(enemySelected.getCurHealth() + " / " + enemySelected.getMaxHealth());
+        bar_enemyHealth.setString(
+            (int) enemySelected.getCurHealth() + " / " + (int) enemySelected.getMaxHealth());
       }
     }
     repaint();

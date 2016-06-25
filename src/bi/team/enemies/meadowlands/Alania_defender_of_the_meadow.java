@@ -39,11 +39,7 @@ public class Alania_defender_of_the_meadow extends Enemy {
     /* Hero takes damage */
     game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
 
-    /* Paint hero's health bar */
-    game.getBar_playerHealth().setValue((int) game.getHero().getCurHealth());
-    game.getBar_playerHealth()
-        .setString(game.getHero().getCurHealth() + " / " + game.getHero().getMaxHealth());
-
+    game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }
 
@@ -51,8 +47,6 @@ public class Alania_defender_of_the_meadow extends Enemy {
   public void prepareFight() {
 
     /* Prepare enemy health bar */
-    game.getBar_enemyHealth().setMaximum((int) maxHealth);
-    game.getBar_enemyHealth().setValue((int) maxHealth);
-    game.getBar_enemyHealth().setString(curHealth + " / " + maxHealth);
+    game.repaintHealthBars();
   }
 }

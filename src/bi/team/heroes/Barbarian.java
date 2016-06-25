@@ -66,7 +66,6 @@ public class Barbarian extends Hero implements ActionListener {
   private JButton btnUpgrade_toughness;
   private JButton btnUpgrade_riposteChance;
   private double curVitality;
-  private final double maxVitality = 425 - 75 + (healthPoints * 75);
   private int curRage;
   private int maxRage;
   private double strength;
@@ -86,7 +85,7 @@ public class Barbarian extends Hero implements ActionListener {
     AttacksArrayList = new ArrayList<Attack>();
     ArrayUpgradeButtons = new ArrayList<JButton>();
     healthPoints = 1;
-    curVitality = 100;
+    curVitality = 425;
     maxRage = 6;
     curRage = 0;
     strength = 10;
@@ -104,10 +103,9 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Configure player GUI */
     game.getBar_playerHealth().setMinimum(0);
-    game.getBar_playerHealth().setMaximum((int) Math.round(maxVitality));
-    game.getBar_playerHealth().setValue((int) Math.round(curVitality));
-    game.getBar_playerHealth()
-        .setString((int) Math.round(curVitality) + " / " + (int) Math.round(maxVitality));
+    game.getBar_playerHealth().setMaximum((int) getMaxVitality());
+    game.getBar_playerHealth().setValue((int) curVitality);
+    game.getBar_playerHealth().setString((int) curVitality + " / " + (int) getMaxVitality());
 
     /* Create this class's attacks */
     AttacksArrayList.add(new Strike(this, game));
@@ -181,7 +179,7 @@ public class Barbarian extends Hero implements ActionListener {
     panel_vitality.add(btnUpgrade_vitality);
 
     /* Create the label that displays the maximum vitality value */
-    lblVitality = new JLabel(maxVitality + "");
+    lblVitality = new JLabel(getMaxVitality() + "");
     lblVitality.setBounds(44, 16, 116, 24);
     panel_vitality.add(lblVitality);
 
@@ -544,10 +542,7 @@ public class Barbarian extends Hero implements ActionListener {
       return;
     } else { // Surrender
       game.setEnemySelected(null);
-
-      /* Reset health */
-      double a = maxVitality;
-      curVitality = a;
+      curVitality = getMaxVitality(); // Reset health
 
       /* Reset rage */
       curRage = 1;
@@ -571,17 +566,14 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public void setEnemyToFight(Enemy enemy) {
-
-    /* Reset health */
-    double a = maxVitality;
-    curVitality = a;
+    curVitality = getMaxVitality(); // Reset health
 
     /* Reset rage */
     curRage = 1;
     repaintRage();
 
     /* Prepare player health bar */
-    game.getBar_playerHealth().setMaximum((int) (Math.round(maxVitality)));
+    game.getBar_playerHealth().setMaximum(getMaxVitality());
     game.repaintHealthBars();
 
     /* Show enemy on battlefield */
@@ -656,6 +648,13 @@ public class Barbarian extends Hero implements ActionListener {
   public void disableStanceButtons() {
     btnOffensive.setEnabled(false);
     btnDefensive.setEnabled(false);
+  }
+
+  /**
+   * @return the maximum vitality
+   */
+  public int getMaxVitality() {
+    return Math.round(425 - 75 + (healthPoints * 75));
   }
 
   /**
@@ -822,6 +821,6 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public double getMaxHealth() {
-    return maxVitality;
+    return getMaxVitality();
   }
 }
