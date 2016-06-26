@@ -15,7 +15,7 @@ import bi.team.heroes.attacks.barbarian.Attack;
 public abstract class Hero {
   public static int level = 1;
   public static int maxLevel = 60;
-  public static int curExperience = 0;
+  public static double curExperience = 0;
   protected ArrayList<Attack> AttacksArrayList;
   protected ArrayList<JButton> ArrayUpgradeButtons;
   protected Game game;
@@ -36,18 +36,18 @@ public abstract class Hero {
   /**
    * Add experience to player level, and level up if necessary
    * 
-   * @param xp Integer value of experience to add
+   * @param d Integer value of experience to add
    */
-  public void addExperience(int xp) {
+  public void addExperience(double d) {
     double xpTillLevelup = (((Math.pow(level, 2)) * 1.2) + 210) - curExperience;
 
-    if ((xp >= xpTillLevelup) && (level != maxLevel)) { // Level up
+    if ((d >= xpTillLevelup) && (level != maxLevel)) { // Level up
       level++;
       addEnhancementPoints(1);
       enableUpgradeButtons();
-      curExperience = (int) Math.round(xp - xpTillLevelup);
+      curExperience = (int) Math.round(d - xpTillLevelup);
     } else { // Add experience
-      curExperience += xp;
+      curExperience += d;
     }
     game.repaintXpBar();
   }

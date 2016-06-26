@@ -68,7 +68,6 @@ public class Barbarian extends Hero implements ActionListener {
   private double curVitality;
   private int curRage;
   private int maxRage;
-  private double strength;
   private double toughness;
   private double riposteChance;
   private double dmgMultiplier;
@@ -435,6 +434,7 @@ public class Barbarian extends Hero implements ActionListener {
           if (haveEnoughRage(x.getRageNeeded())) { // Check needed rage to execute
             reduceWarmup();
             x.setCurWarmup(0);
+            addExperience(x.getExperienceEarned());
             load.nextTurn(x);
           } else {
             continue;

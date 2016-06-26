@@ -139,8 +139,8 @@ public abstract class Enemy extends JButton implements MouseListener {
   /**
    * @return the experienceDrop
    */
-  public int getExperienceDrop() {
-    return experienceDrop;
+  public double getExperienceDrop() {
+    return ((0.8 * (Math.pow(enemyNumber, 2))) + 210);
   }
 
   /**

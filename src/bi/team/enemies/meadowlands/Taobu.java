@@ -25,7 +25,6 @@ public class Taobu extends Enemy {
     enemyNumber = 2;
     damage = 10;
     curHealth = getMaxHealth();
-    experienceDrop = 0;
     enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/taobu.png"));
     enemyImage_small =
         new ImageIcon(getClass().getResource("/images/enemies/meadowlands/taobu_small.png"));

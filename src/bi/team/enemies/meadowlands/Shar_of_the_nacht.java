@@ -25,7 +25,6 @@ public class Shar_of_the_nacht extends Enemy {
     enemyNumber = 5;
     damage = 10;
     curHealth = getMaxHealth();
-    experienceDrop = 0;
     enemyImage =
         new ImageIcon(getClass().getResource("/images/enemies/meadowlands/shar-of-the-nacht.png"));
     enemyImage_small = new ImageIcon(

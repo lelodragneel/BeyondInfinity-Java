@@ -25,7 +25,6 @@ public class Alania_defender_of_the_meadow extends Enemy {
     enemyNumber = 7;
     damage = 10;
     curHealth = getMaxHealth();
-    experienceDrop = 0;
     enemyImage = new ImageIcon(
         getClass().getResource("/images/enemies/meadowlands/alania-defender-of-the-meadow.png"));
     enemyImage_small = new ImageIcon(getClass()

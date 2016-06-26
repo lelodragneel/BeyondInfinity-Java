@@ -25,7 +25,6 @@ public class Mantisray extends Enemy {
     enemyNumber = 6;
     damage = 10;
     curHealth = getMaxHealth();
-    experienceDrop = 0;
     enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/mantisray.png"));
     enemyImage_small =
         new ImageIcon(getClass().getResource("/images/enemies/meadowlands/mantisray_small.png"));

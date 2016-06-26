@@ -91,7 +91,6 @@ public class Game extends JFrame implements ActionListener {
     this.heroSex = heroSex;
     UIManager.put("ProgressBar.selectionForeground", new Color(236, 236, 236)); // Health bar
                                                                                 // esthetics
-
     /* Build frame */
     this.setResizable(false);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -459,7 +458,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Update experiene bar */
     bar_XPBar.setMaximum(getMaximumXp());
-    bar_XPBar.setValue(Hero.curExperience);
+    bar_XPBar.setValue((int) Math.round(Hero.curExperience));
     bar_XPBar.setString(Hero.curExperience + " / " + getMaximumXp() + " XP");
 
     /* Update level indicators */

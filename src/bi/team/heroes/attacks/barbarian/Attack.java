@@ -21,6 +21,7 @@ public abstract class Attack {
   protected Game game;
   protected Barbarian hero;
   protected StyledDocument doc;
+  protected double experienceEarned;
 
   /**
    * Class constructor
@@ -43,6 +44,13 @@ public abstract class Attack {
     button.setMargin(new Insets(0, 0, 0, 0));
     button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     button.add(new MyGraphics(this));
+  }
+
+  /**
+   * @return the number of experience to earn for executing attack
+   */
+  public double getExperienceEarned() {
+    return Math.pow(rageNeeded, 1.1) / 2;
   }
 
   /**
