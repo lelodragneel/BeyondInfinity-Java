@@ -137,7 +137,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create top panel to display vitality (health) bars */
     panel_top = new JPanel();
-    panel_top.setBounds(10, 21, 1044, 38);
+    panel_top.setBounds(10, 21, 1044, 48);
     panel_top.setLayout(null);
     getContentPane().add(panel_top);
 
@@ -530,6 +530,13 @@ public class Game extends JFrame implements ActionListener {
    */
   public JPanel getPanel_stats() {
     return panel_stats;
+  }
+
+  /**
+   * @return the top panel
+   */
+  public JPanel getPanel_top() {
+    return panel_top;
   }
 
   /**

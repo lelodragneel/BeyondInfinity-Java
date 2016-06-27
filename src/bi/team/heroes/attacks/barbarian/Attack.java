@@ -9,7 +9,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
 import bi.team.Game;
-import bi.team.MyGraphics;
+import bi.team.graphics.ButtonCooldowns;
 import bi.team.heroes.Barbarian;
 
 public abstract class Attack {
@@ -43,14 +43,18 @@ public abstract class Attack {
     button.setFocusable(false);
     button.setMargin(new Insets(0, 0, 0, 0));
     button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-    button.add(new MyGraphics(this));
+    button.add(new ButtonCooldowns(this));
   }
 
   /**
    * @return the number of experience to earn for executing attack
    */
   public double getExperienceEarned() {
-    return Math.pow(rageNeeded, 1.1) / 2;
+    if (rageNeeded == 0) {
+      return 0.2;
+    } else {
+      return Math.pow(rageNeeded, 1.1) / 2;  
+    }
   }
 
   /**

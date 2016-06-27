@@ -10,12 +10,14 @@ import javax.swing.SwingConstants;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
+import bi.team.graphics.XPAnimation;
 import bi.team.heroes.attacks.barbarian.Attack;
 
 public abstract class Hero {
   public static int level = 1;
   public static int maxLevel = 60;
   public static double curExperience = 0;
+  private XPAnimation xpAnimation;
   protected ArrayList<Attack> AttacksArrayList;
   protected ArrayList<JButton> ArrayUpgradeButtons;
   protected Game game;
@@ -31,6 +33,7 @@ public abstract class Hero {
   public Hero(Game game) {
     this.game = game;
     enhancementPoints = 0;
+    xpAnimation = new XPAnimation(game);
   }
 
   /**
@@ -49,6 +52,7 @@ public abstract class Hero {
     } else { // Add experience
       curExperience += d;
     }
+    xpAnimation.animateXP(d);
     game.repaintXpBar();
   }
 
@@ -70,6 +74,7 @@ public abstract class Hero {
    */
   public void killEnemy(Enemy enemy) {
     enemy.setAlive(false); // Set enemy dead
+    game.setEnemySelected(null);
     game.getBtnSurrender().setEnabled(false);
     game.getBtnSurrender().setVisible(false);
     addExperience(enemy.getExperienceDrop()); // Give the player experience

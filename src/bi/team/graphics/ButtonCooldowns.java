@@ -1,4 +1,4 @@
-package bi.team;
+package bi.team.graphics;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,7 +9,7 @@ import javax.swing.JPanel;
 import bi.team.heroes.attacks.barbarian.Attack;
 
 @SuppressWarnings("serial")
-public class MyGraphics extends JPanel {
+public class ButtonCooldowns extends JPanel {
   private Attack attack;
   private double width;
 
@@ -18,7 +18,7 @@ public class MyGraphics extends JPanel {
    * 
    * @param attack The attack button to draw graphics upon
    */
-  public MyGraphics(Attack attack) {
+  public ButtonCooldowns(Attack attack) {
     this.attack = attack;
   }
 
@@ -27,7 +27,7 @@ public class MyGraphics extends JPanel {
     super.paintComponent(g);
 
     /* Calculate button width according to the cooldowns */
-    if (attack.getCurWarmup() == 0 && attack.getMaxWarmup() != 0) {
+    if ((attack.getCurWarmup() == 0) && (attack.getMaxWarmup() != 0)) {
       width = 0;
     } else if (attack.getCurWarmup() == attack.getMaxWarmup()) {
       width = attack.getButton().getWidth();

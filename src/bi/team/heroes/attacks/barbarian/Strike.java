@@ -36,7 +36,7 @@ public class Strike extends Attack {
     hero.generateRage(1); // Generate rage
 
     /* Deal damage to enemy */
-    double dmg = hero.getStrength() * hero.getDmgMultiplier();
+    double dmg = hero.getStrength() * hero.getDmgMultiplier() + 100;
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
     /* Display events */

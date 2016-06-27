@@ -1,10 +1,11 @@
-package bi.team;
+package bi.team.graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import bi.team.Game;
 import bi.team.heroes.Hero;
 import bi.team.heroes.attacks.barbarian.Attack;
 

@@ -20,8 +20,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
-import bi.team.Load;
 import bi.team.enemies.Enemy;
+import bi.team.graphics.Load;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.heroes.attacks.barbarian.Battler_bash;
 import bi.team.heroes.attacks.barbarian.Charge;
