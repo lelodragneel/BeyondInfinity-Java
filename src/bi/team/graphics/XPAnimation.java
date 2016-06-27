@@ -21,7 +21,6 @@ public class XPAnimation implements ActionListener {
    * Class constructor
    */
   public XPAnimation(Game game) {
-    this.game = game;
     timer = new Timer(20, this);
 
     /* Initialize the XP label */
