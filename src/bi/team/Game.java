@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -388,6 +389,7 @@ public class Game extends JFrame implements ActionListener {
     isMapShown = !isMapShown;
 
     if (isMapShown) { // Open map
+      map.setEnemyFocused(null);
       map.getLblEnemyIcon().setIcon(null);
       map.getLblEnemyName().setText("");
       map.getBtnChallenge().setEnabled(false);
@@ -399,6 +401,7 @@ public class Game extends JFrame implements ActionListener {
       btnSurrender.setEnabled(false);
       repaintUpgradeButtons();
     } else { // Close map
+      map.setEnemyFocused(null);
       map.setVisible(false);
       panel_frameOpacity.setVisible(false);
       hero.enableStanceButtons();

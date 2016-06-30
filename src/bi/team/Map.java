@@ -29,6 +29,7 @@ public class Map extends JLayeredPane implements ActionListener {
   private JLabel lblEnemyIcon;
   private JButton btnChallenge;
   private Game game;
+  private Enemy enemyFocused;
 
   /**
    * Class constructor
@@ -94,11 +95,15 @@ public class Map extends JLayeredPane implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == btnChallenge) {
-      game.getHero().setEnemyToFight(game.getEnemySelected());
-      game.getEnemySelected().prepareFight();
+      if (enemyFocused == null) {
+        return;
+      } else {
+      game.getHero().setEnemyToFight(enemyFocused);
+      game.setEnemySelected(enemyFocused);
+      enemyFocused.prepareFight();
       game.toggleMap();
+      }
     }
-
   }
 
   /**
@@ -178,5 +183,19 @@ public class Map extends JLayeredPane implements ActionListener {
    */
   public Hero getHero() {
     return game.getHero();
+  }
+
+  /**
+   * @return the enemy focused
+   */
+  public Enemy getEnemyFocused() {
+    return enemyFocused;
+  }
+
+  /**
+   * @param enemyFocused The enemy selected from map
+   */
+  public void setEnemyFocused(Enemy enemyFocused) {
+    this.enemyFocused = enemyFocused;
   }
 }

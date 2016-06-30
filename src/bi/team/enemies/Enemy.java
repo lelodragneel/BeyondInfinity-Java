@@ -89,9 +89,10 @@ public abstract class Enemy extends JButton implements MouseListener {
     game.getMap().getLblEnemyName().setText("<html>" + name + "</html>");
 
     if (alive) {
-      game.setEnemySelected(this);
+      game.getMap().setEnemyFocused(this);
       game.getMap().getBtnChallenge().setEnabled(true);
     } else {
+      game.getMap().setEnemyFocused(null);
       game.getMap().getBtnChallenge().setEnabled(false);
     }
   }

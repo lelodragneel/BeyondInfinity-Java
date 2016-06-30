@@ -127,7 +127,7 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Create panel for stance buttons */
     panel_stances = new JPanel();
-    panel_stances.setBounds(0, 0, 68, 34);
+    panel_stances.setBounds(0, 0, 66, 34);
     panel_stances.setBackground(new Color(135, 211, 124));
     panel_stances.setLayout(null);
     game.getPanel_actionsTop().add(panel_stances);
@@ -528,14 +528,15 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public void surrender() {
+    int s = 0;
+
+    Object[] options = {"Yes", "No Way!"};
+    s = JOptionPane.showOptionDialog(game, "Are you sure you want to surrender?", "Concede",
+        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");
+
     if ((game.getEnemySelected() == null) || (!game.getEnemySelected().isAlive())) {
       return;
     }
-
-    /* Confirm surrender */
-    Object[] options = {"Yes", "No Way!"};
-    int s = JOptionPane.showOptionDialog(game, "Are you sure you want to surrender?", "Concede",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");
 
     if (s == 1) { // Cancel
       return;
@@ -565,26 +566,38 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public void setEnemyToFight(Enemy enemy) {
-    curVitality = getMaxVitality(); // Reset health
+    int s = 0;
 
-    /* Reset rage */
-    curRage = 1;
-    repaintRage();
+    if (game.getEnemySelected() != null) {
+      Object[] options = {"Yes", "No Way!"};
+      s = JOptionPane.showOptionDialog(game, "Are you sure you want to leave the fight?", "Concede",
+          JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");
+    }
 
-    /* Prepare player health bar */
-    game.getBar_playerHealth().setMaximum(getMaxVitality());
-    game.repaintHealthBars();
+    if (s == 1) {
+      return;
+    } else {
+      curVitality = getMaxVitality(); // Reset health
 
-    /* Show enemy on battlefield */
-    game.getLblEnemyImage().setIcon(enemy.getEnemyImage());
-    game.getLblEnemyImage().setVerticalAlignment(enemy.getValign());
-    game.getLblEnemyName().setText(enemy.getName());
-    game.getPanel_enemy().setVisible(true);
+      /* Reset rage */
+      curRage = 1;
+      repaintRage();
 
-    game.getTextArea().setText(""); // Clear event area
-    game.setEnemySelected(enemy); // Set enemy to fight
-    game.repaintUpgradeButtons();
-    Game.setTurn(1); // Reset turns
+      /* Prepare player health bar */
+      game.getBar_playerHealth().setMaximum(getMaxVitality());
+      game.repaintHealthBars();
+
+      /* Show enemy on battlefield */
+      game.getLblEnemyImage().setIcon(enemy.getEnemyImage());
+      game.getLblEnemyImage().setVerticalAlignment(enemy.getValign());
+      game.getLblEnemyName().setText(enemy.getName());
+      game.getPanel_enemy().setVisible(true);
+
+      game.getTextArea().setText(""); // Clear event area
+      game.setEnemySelected(enemy); // Set enemy to fight
+      game.repaintUpgradeButtons();
+      Game.setTurn(1); // Reset turns
+    }
   }
 
   /**
