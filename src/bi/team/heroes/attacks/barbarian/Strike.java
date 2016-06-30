@@ -40,6 +40,7 @@ public class Strike extends Attack {
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
     /* Display events */
+    game.getTextArea().setCaretPosition(game.getTextArea().getDocument().getLength());
     game.getTextArea()
         .insertIcon(new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
     doc.insertString(doc.getLength(), dmg + "", game.getaSet());
