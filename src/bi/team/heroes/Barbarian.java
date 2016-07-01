@@ -38,6 +38,11 @@ import bi.team.heroes.attacks.barbarian.Vengeance;
 
 public class Barbarian extends Hero implements ActionListener {
   private Load load;
+  private TitledBorder titledBorder_vitality;
+  private TitledBorder titledBorder_rage;
+  private TitledBorder titledBorder_strength;
+  private TitledBorder titledBorder_toughness;
+  private TitledBorder titledBorder_riposteChance;
   private JLabel lblVitality;
   private JLabel lblRage;
   private JLabel lblStrength;
@@ -51,6 +56,7 @@ public class Barbarian extends Hero implements ActionListener {
   private JLabel lblRage_7;
   private JLabel lblRage_4;
   private JLabel lblRage_8;
+  private JLabel lblRage_9;
   private JButton btnOffensive;
   private JButton btnDefensive;
   private ArrayList<JLabel> rageIcons;
@@ -70,7 +76,17 @@ public class Barbarian extends Hero implements ActionListener {
   private int maxRage;
   private double toughness;
   private double riposteChance;
-  private double dmgMultiplier;
+  private double dmgMultiplier = 1;
+  private int points_vitality = 1;
+  private int points_rage = 1;
+  private int points_strength = 1;
+  private int points_toughness = 1;
+  private int points_riposteChance = 1;
+  private final int maxPoints_vitality = 20;
+  private final int maxPoints_rage = 4;
+  private final int maxPoints_strength = 20;
+  private final int maxPoints_toughness = 42;
+  private final int maxPoints_riposteChance = 20;
 
   /**
    * Class constructor
@@ -87,9 +103,8 @@ public class Barbarian extends Hero implements ActionListener {
     curVitality = 425;
     maxRage = 6;
     curRage = 0;
-    toughness = 5;
-    riposteChance = 10;
-    dmgMultiplier = 1;
+    toughness = 4;
+    riposteChance = 6;
     maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
     femaleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_female_big.png"));
     defensiveIcon = new ImageIcon(getClass().getResource("/images/stance_defensive.png"));
@@ -153,8 +168,10 @@ public class Barbarian extends Hero implements ActionListener {
     /* ------------- vitality panel ------------- */
     /* Create panel for vitality */
     JPanel panel_vitality = new JPanel();
-    panel_vitality.setBorder(
-        new TitledBorder(null, "Vitality", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+    titledBorder_vitality =
+        new TitledBorder(null, "Vitality [" + points_vitality + "/" + maxPoints_vitality + "]",
+            TitledBorder.LEADING, TitledBorder.TOP, null, null);
+    panel_vitality.setBorder(titledBorder_vitality);
     panel_vitality.setLayout(null);
     game.getPanel_stats().add(panel_vitality);
 
@@ -192,8 +209,9 @@ public class Barbarian extends Hero implements ActionListener {
     /* ------------- rage panel ------------- */
     /* Create panel for rage */
     JPanel panel_rage = new JPanel();
-    panel_rage.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Rage",
-        TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+    titledBorder_rage = new TitledBorder(null, "Rage [" + points_rage + "/" + maxPoints_rage + "]",
+        TitledBorder.LEADING, TitledBorder.TOP, null, null);
+    panel_rage.setBorder(titledBorder_rage);
     panel_rage.setLayout(null);
     game.getPanel_stats().add(panel_rage);
 
@@ -231,8 +249,10 @@ public class Barbarian extends Hero implements ActionListener {
     /* ------------- strength panel ------------- */
     /* Create panel for strength */
     JPanel panel_strength = new JPanel();
-    panel_strength.setBorder(
-        new TitledBorder(null, "Strength", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+    titledBorder_strength =
+        new TitledBorder(null, "Strength [" + points_strength + "/" + maxPoints_strength + "]",
+            TitledBorder.LEADING, TitledBorder.TOP, null, null);
+    panel_strength.setBorder(titledBorder_strength);
     panel_strength.setLayout(null);
     game.getPanel_stats().add(panel_strength);
 
@@ -270,8 +290,10 @@ public class Barbarian extends Hero implements ActionListener {
     /* ------------- toughness panel ------------- */
     /* Create panel for critical damage */
     JPanel panel_toughness = new JPanel();
-    panel_toughness.setBorder(
-        new TitledBorder(null, "Toughness", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+    titledBorder_toughness =
+        new TitledBorder(null, "Toughness [" + points_toughness + "/" + maxPoints_toughness + "]",
+            TitledBorder.LEADING, TitledBorder.TOP, null, null);
+    panel_toughness.setBorder(titledBorder_toughness);
     panel_toughness.setLayout(null);
     game.getPanel_stats().add(panel_toughness);
 
@@ -294,12 +316,13 @@ public class Barbarian extends Hero implements ActionListener {
     panel_toughness.add(btnUpgrade_toughness);
 
     /* Create the label that displays toughness value */
-    lblToughness = new JLabel(toughness + "");
+    lblToughness = new JLabel(toughness + "%");
     lblToughness.setBounds(44, 16, 116, 24);
     panel_toughness.add(lblToughness);
 
     /* Create toughness description label */
-    JLabel lblToughnessDesc = new JLabel("<html>The amount of damage to resist per attack.</html>");
+    JLabel lblToughnessDesc =
+        new JLabel("<html>The percentage of damage to resist per attack.</html>");
     lblToughnessDesc.setVerticalAlignment(SwingConstants.TOP);
     lblToughnessDesc.setForeground(Color.DARK_GRAY);
     lblToughnessDesc.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
@@ -309,8 +332,10 @@ public class Barbarian extends Hero implements ActionListener {
     /* ------------- riposte_chance panel ------------- */
     /* Create panel for riposte chance */
     JPanel panel_riposteChance = new JPanel();
-    panel_riposteChance.setBorder(new TitledBorder(null, "Riposte Chance", TitledBorder.LEADING,
-        TitledBorder.TOP, null, null));
+    titledBorder_riposteChance = new TitledBorder(null,
+        "Riposte Chance [" + points_riposteChance + "/" + maxPoints_riposteChance + "]",
+        TitledBorder.LEADING, TitledBorder.TOP, null, null);
+    panel_riposteChance.setBorder(titledBorder_riposteChance);
     panel_riposteChance.setLayout(null);
     game.getPanel_stats().add(panel_riposteChance);
 
@@ -349,11 +374,11 @@ public class Barbarian extends Hero implements ActionListener {
     /* ------------------------------------------------- */
 
     /* Create the barbarian's rage bar */
-    lblRage = new JLabel("Rage");
-    lblRage.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-    lblRage.setHorizontalAlignment(SwingConstants.CENTER);
-    lblRage.setBounds(4, 38, 30, 20);
-    game.getPanel_player().add(lblRage);
+    JLabel labelRage = new JLabel("Rage");
+    labelRage.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+    labelRage.setHorizontalAlignment(SwingConstants.CENTER);
+    labelRage.setBounds(4, 38, 30, 20);
+    game.getPanel_player().add(labelRage);
 
     lblRage_1 = new JLabel("");
     lblRage_1.setBounds(42, 38, 20, 20);
@@ -387,6 +412,10 @@ public class Barbarian extends Hero implements ActionListener {
     lblRage_8.setBounds(196, 38, 20, 20);
     game.getPanel_player().add(lblRage_8);
 
+    lblRage_9 = new JLabel("");
+    lblRage_9.setBounds(218, 38, 20, 20);
+    game.getPanel_player().add(lblRage_9);
+
     /* Add all rage icons into an arraylist */
     rageIcons = new ArrayList<JLabel>();
     rageIcons.add(lblRage_1);
@@ -397,6 +426,7 @@ public class Barbarian extends Hero implements ActionListener {
     rageIcons.add(lblRage_6);
     rageIcons.add(lblRage_7);
     rageIcons.add(lblRage_8);
+    rageIcons.add(lblRage_9);
 
     game.getLblPlayerImage().setIcon(getHeroIcon()); // Draw player image on frame
     repaintRage(); // Repaint rage bar
@@ -662,48 +692,86 @@ public class Barbarian extends Hero implements ActionListener {
     btnDefensive.setEnabled(false);
   }
 
-  /**
-   * @return the maximum vitality
-   */
-  public int getMaxVitality() {
-    return Math.round(425 - 75 + (level * 75));
-  }
 
   /**
    * Called when upgrade button is clicked to upgrade vitality
    */
   public void upgradeVitality() {
-
+    if (((points_vitality + 1) <= maxPoints_vitality) && (enhancementPoints > 0)) {
+      points_vitality++;
+      enhancementPoints -= 1;
+    }
+    game.repaintHealthBars();
+    game.repaintUpgradeButtons();
+    titledBorder_vitality.setTitle("Vitality [" + points_vitality + "/" + maxPoints_vitality + "]");
+    lblVitality.setText(getMaxVitality() + "");
+    game.getLblEnhancementPoints()
+        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
   }
 
   /**
    * Called when upgrade button is clicked to upgrade rage
    */
   public void upgradeRage() {
-
+    if (((points_rage + 1) <= maxPoints_rage) && (enhancementPoints > 0)) {
+      points_rage++;
+      maxRage++;
+      repaintRage();
+      enhancementPoints -= 1;
+    }
+    game.repaintUpgradeButtons();
+    titledBorder_rage.setTitle("Rage [" + points_rage + "/" + maxPoints_rage + "]");
+    lblRage.setText(getMaxRage() + "");
+    game.getLblEnhancementPoints()
+        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
   }
 
   /**
    * Called when upgrade button is clicked to upgrade strength
    */
   public void upgradeStrength() {
-
+    if (((points_strength + 1) <= maxPoints_strength) && (enhancementPoints > 0)) {
+      points_strength++;
+      enhancementPoints -= 1;
+    }
+    game.repaintUpgradeButtons();
+    titledBorder_strength.setTitle("Strength [" + points_strength + "/" + maxPoints_strength + "]");
+    lblStrength.setText(getStrength() + "");
+    game.getLblEnhancementPoints()
+        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
   }
 
   /**
    * Called when upgrade button is clicked to upgrade toughness
    */
   public void upgradeToughness() {
-
+    if (((points_toughness + 1) <= maxPoints_toughness) && (enhancementPoints > 0)) {
+      points_toughness++;
+      enhancementPoints -= 1;
+    }
+    game.repaintUpgradeButtons();
+    titledBorder_toughness
+        .setTitle("Toughness [" + points_toughness + "/" + maxPoints_toughness + "]");
+    lblToughness.setText(getToughness() + "");
+    game.getLblEnhancementPoints()
+        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
   }
 
   /**
    * Called when upgrade button is clicked to upgrade ripostechance
    */
   public void upgradeRiposteChance() {
-
+    if (((points_riposteChance + 1) <= maxPoints_riposteChance) && (enhancementPoints > 0)) {
+      points_riposteChance++;
+      enhancementPoints -= 1;
+    }
+    game.repaintUpgradeButtons();
+    titledBorder_riposteChance
+        .setTitle("Riposte Chance [" + points_riposteChance + "/" + maxPoints_riposteChance + "]");
+    lblRiposteChance.setText(getRiposteChance() + "");
+    game.getLblEnhancementPoints()
+        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
   }
-
 
   /**
    * @return maleImage if hero is male
@@ -718,6 +786,13 @@ public class Barbarian extends Hero implements ActionListener {
       System.out.println("[Barbarian.java] Something went wrong retrieving player icon!");
       return null;
     }
+  }
+
+  /**
+   * @return the maximum vitality
+   */
+  public int getMaxVitality() {
+    return Math.round((425 - 75 + (level * 75)) + ((points_vitality * 75) - 75));
   }
 
   /**
@@ -780,7 +855,7 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public double getStrength() {
-    return ((-0.01 * (Math.pow(level, 2)) + (3 * level) + 2.2));
+    return ((-0.01 * (Math.pow(level, 2)) + (3 * level) + 2.2)) + (points_strength * 1.5);
   }
 
   /**

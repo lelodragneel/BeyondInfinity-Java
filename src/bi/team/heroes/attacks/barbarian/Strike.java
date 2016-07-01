@@ -38,7 +38,7 @@ public class Strike extends Attack {
     /* Deal damage to enemy */
     double dmg = hero.getStrength() * hero.getDmgMultiplier() + 100;
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
-
+    
     /* Display events */
     game.getTextArea().setCaretPosition(game.getTextArea().getDocument().getLength());
     game.getTextArea()
