@@ -872,7 +872,8 @@ public class Barbarian extends Hero implements ActionListener {
    * @return the riposteChance
    */
   public double getRiposteChance() {
-    return riposteChance;
+    return ((Math.pow(Math.E, (level * 0.016)) * 14) - 12)
+        + (Math.pow(Math.E, (points_riposteChance * 0.4)));
   }
 
   /**
@@ -888,8 +889,7 @@ public class Barbarian extends Hero implements ActionListener {
    * @return the toughness
    */
   public double getToughness() {
-    return ((Math.pow(Math.E, (level * 0.016)) * 14) - 12)
-        + (Math.pow(Math.E, (points_toughness * 0.4)));
+    return toughness;
   }
 
   /**
