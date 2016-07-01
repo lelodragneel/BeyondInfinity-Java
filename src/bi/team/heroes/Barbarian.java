@@ -73,8 +73,6 @@ public class Barbarian extends Hero implements ActionListener {
   private double curVitality;
   private int curRage;
   private int maxRage;
-  private double toughness;
-  private double riposteChance;
   private double dmgMultiplier = 1;
   private int points_vitality = 1;
   private int points_rage = 1;
@@ -84,7 +82,7 @@ public class Barbarian extends Hero implements ActionListener {
   private final int maxPoints_vitality = 20;
   private final int maxPoints_rage = 4;
   private final int maxPoints_strength = 20;
-  private final int maxPoints_toughness = 42;
+  private final int maxPoints_toughness = 30;
   private final int maxPoints_riposteChance = 20;
 
   /**
@@ -101,7 +99,6 @@ public class Barbarian extends Hero implements ActionListener {
     curVitality = 425;
     maxRage = 6;
     curRage = 0;
-    riposteChance = 6;
     maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
     femaleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_female_big.png"));
     defensiveIcon = new ImageIcon(getClass().getResource("/images/stance_defensive.png"));
@@ -356,7 +353,7 @@ public class Barbarian extends Hero implements ActionListener {
     panel_riposteChance.add(btnUpgrade_riposteChance);
 
     /* Create the label that displays riposte chance value */
-    lblRiposteChance = new JLabel(riposteChance + "%");
+    lblRiposteChance = new JLabel(getRiposteChance() + "%");
     lblRiposteChance.setBounds(44, 16, 116, 24);
     panel_riposteChance.add(lblRiposteChance);
 
@@ -873,32 +870,14 @@ public class Barbarian extends Hero implements ActionListener {
    */
   public double getRiposteChance() {
     return ((Math.pow(Math.E, (level * 0.016)) * 14) - 12)
-        + (Math.pow(Math.E, (points_riposteChance * 0.4)));
-  }
-
-  /**
-   * Set the riposteChance
-   * 
-   * @param riposteChance The value of riposte chance
-   */
-  public void setRiposteChance(double riposteChance) {
-    this.riposteChance = riposteChance;
+        + (Math.pow(Math.E, (points_riposteChance * 0.3)));
   }
 
   /**
    * @return the toughness
    */
   public double getToughness() {
-    return toughness;
-  }
-
-  /**
-   * Set the toughness
-   * 
-   * @param toughness The value of toughness
-   */
-  public void setToughness(double toughness) {
-    this.toughness = toughness;
+    return (Math.pow(Math.E, (level * 0.03)) * 2.8) + (points_toughness * 0.25);
   }
 
   /**
