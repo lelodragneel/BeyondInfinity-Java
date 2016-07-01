@@ -49,7 +49,7 @@ public abstract class Attack {
   /**
    * @return the number of experience to earn for executing attack
    */
-  public double getExperienceEarned() {
+  public double getAttackExperience() {
     if (rageNeeded == 0) {
       return 0.2;
     } else {

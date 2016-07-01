@@ -45,14 +45,14 @@ public abstract class Hero {
 
     if ((d >= xpTillLevelup) && (level != maxLevel)) { // Level up
       level++;
-      addEnhancementPoints(1);
-      enableUpgradeButtons();
       curExperience = (int) Math.round(d - xpTillLevelup);
     } else { // Add experience
       curExperience += d;
     }
     xpAnimation.animateXP(d);
     game.repaintXpBar();
+    game.repaintHealthBars();
+    repaintStats();
   }
 
   /**
@@ -77,6 +77,7 @@ public abstract class Hero {
     game.getBtnSurrender().setEnabled(false);
     game.getBtnSurrender().setVisible(false);
     addExperience(enemy.getExperienceDrop()); // Give the player experience
+    addEnhancementPoints(1); // Player earns enhancement point
 
     /* Set graphics to kill enemy */
     enemy.setBackground(new Color(239, 72, 54));
@@ -86,16 +87,15 @@ public abstract class Hero {
   }
 
   /**
-   * @param enhancementPoints The integer value to add
+   * @param enhancementPoints The number of enhancement points to add
    */
   public void addEnhancementPoints(int points) {
     enhancementPoints += points;
     game.getLblEnhancementPoints()
         .setText("<html>Enhancement Points: <b>" + enhancementPoints + "</b></html>");
-    enableUpgradeButtons();
-    showUpgradeButtons();
+    game.repaintUpgradeButtons();
   }
-
+  
   /**
    * Enable hero upgrade buttons
    */
@@ -132,6 +132,11 @@ public abstract class Hero {
     }
   }
 
+  /**
+   * Repaints and updates the stats values
+   */
+  public abstract void repaintStats();
+  
   /**
    * Player attacks the enemy
    * 

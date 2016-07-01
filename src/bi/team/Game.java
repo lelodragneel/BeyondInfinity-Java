@@ -12,7 +12,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
@@ -473,7 +472,7 @@ public class Game extends JFrame implements ActionListener {
     }
     repaint();
   }
-
+  
   /**
    * Updates the visual of the player & enemy health bars
    */

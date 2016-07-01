@@ -13,7 +13,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
@@ -463,7 +462,7 @@ public class Barbarian extends Hero implements ActionListener {
           if (haveEnoughRage(x.getRageNeeded())) { // Check needed rage to execute
             reduceWarmup();
             x.setCurWarmup(0);
-            addExperience(x.getExperienceEarned());
+            addExperience(x.getAttackExperience());
             load.nextTurn(x);
           } else {
             continue;
@@ -482,6 +481,36 @@ public class Barbarian extends Hero implements ActionListener {
         }
       }
     }
+  }
+
+  @Override
+  public void repaintStats() {
+
+    /* Repaint vitality */
+    titledBorder_vitality.setTitle("Vitality [" + points_vitality + "/" + maxPoints_vitality + "]");
+    lblVitality.setText(getMaxVitality() + "");
+
+    /* Repaint rage */
+    titledBorder_rage.setTitle("Rage [" + points_rage + "/" + maxPoints_rage + "]");
+    lblRage.setText(getMaxRage() + "");
+
+    /* Repaint strength */
+    titledBorder_strength.setTitle("Strength [" + points_strength + "/" + maxPoints_strength + "]");
+    lblStrength.setText(getStrength() + "");
+
+    /* Repaint toughness */
+    titledBorder_toughness
+        .setTitle("Toughness [" + points_toughness + "/" + maxPoints_toughness + "]");
+    lblToughness.setText(getToughness() + "");
+
+    /* Repaint riposte chance */
+    titledBorder_riposteChance
+        .setTitle("Riposte Chance [" + points_riposteChance + "/" + maxPoints_riposteChance + "]");
+    lblRiposteChance.setText(getRiposteChance() + "");
+
+    /* Misc */
+    game.getLblEnhancementPoints()
+        .setText("<html>Enhancement Points: <b>" + enhancementPoints + "</b></html>");
   }
 
   @Override
@@ -702,10 +731,7 @@ public class Barbarian extends Hero implements ActionListener {
     }
     game.repaintHealthBars();
     game.repaintUpgradeButtons();
-    titledBorder_vitality.setTitle("Vitality [" + points_vitality + "/" + maxPoints_vitality + "]");
-    lblVitality.setText(getMaxVitality() + "");
-    game.getLblEnhancementPoints()
-        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
+    repaintStats();
   }
 
   /**
@@ -719,10 +745,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
-    titledBorder_rage.setTitle("Rage [" + points_rage + "/" + maxPoints_rage + "]");
-    lblRage.setText(getMaxRage() + "");
-    game.getLblEnhancementPoints()
-        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
+    repaintStats();
   }
 
   /**
@@ -734,10 +757,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
-    titledBorder_strength.setTitle("Strength [" + points_strength + "/" + maxPoints_strength + "]");
-    lblStrength.setText(getStrength() + "");
-    game.getLblEnhancementPoints()
-        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
+    repaintStats();
   }
 
   /**
@@ -749,11 +769,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
-    titledBorder_toughness
-        .setTitle("Toughness [" + points_toughness + "/" + maxPoints_toughness + "]");
-    lblToughness.setText(getToughness() + "");
-    game.getLblEnhancementPoints()
-        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
+    repaintStats();
   }
 
   /**
@@ -765,11 +781,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
-    titledBorder_riposteChance
-        .setTitle("Riposte Chance [" + points_riposteChance + "/" + maxPoints_riposteChance + "]");
-    lblRiposteChance.setText(getRiposteChance() + "");
-    game.getLblEnhancementPoints()
-        .setText("<html>Enhancement Points: " + enhancementPoints + "</html>");
+    repaintStats();
   }
 
   /**

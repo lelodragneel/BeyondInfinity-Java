@@ -76,6 +76,7 @@ public class Load implements ActionListener {
         }
         Game.addTurn(); // Increment turns
         game.enableAttackButtons(); // Re-enable buttons
+        game.repaintUpgradeButtons();
       }
     }
   }

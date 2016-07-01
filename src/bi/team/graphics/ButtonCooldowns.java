@@ -37,7 +37,7 @@ public class ButtonCooldowns extends JPanel {
 
     /* Paint the cooldown on the button */
     this.setOpaque(false);
-    g.setColor(new Color(0.2f, 0.28f, 0.37f, 0.15f));
+    g.setColor(new Color(0.2f, 0.28f, 0.37f, 0.2f));
     g.fillRect(0, 0, (int) width, attack.getButton().getHeight());
     g.setFont(new Font("Tahoma Bold", Font.PLAIN, 12));
 
