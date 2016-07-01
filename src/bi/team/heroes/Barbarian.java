@@ -99,7 +99,6 @@ public class Barbarian extends Hero implements ActionListener {
     load = new Load(game, this);
     AttacksArrayList = new ArrayList<Attack>();
     ArrayUpgradeButtons = new ArrayList<JButton>();
-    healthPoints = 1;
     curVitality = 425;
     maxRage = 6;
     curRage = 0;

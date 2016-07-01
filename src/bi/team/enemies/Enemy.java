@@ -180,7 +180,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   public void setCurHealth(double curHealth) {
     this.curHealth = curHealth;
   }
-
+  
   /**
    * @return the enemy maxHealth
    */

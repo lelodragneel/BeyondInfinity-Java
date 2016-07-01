@@ -21,9 +21,8 @@ public abstract class Hero {
   protected ArrayList<Attack> AttacksArrayList;
   protected ArrayList<JButton> ArrayUpgradeButtons;
   protected Game game;
-  protected int enhancementPoints;
   protected JPanel panel_stances;
-  protected int healthPoints;
+  protected int enhancementPoints;
 
   /**
    * Class constructor
@@ -156,15 +155,6 @@ public abstract class Hero {
    * Set all stance buttons to inactive
    */
   public abstract void disableStanceButtons();
-
-
-  /**
-   * @param points The number of health points to add
-   */
-  public void addHealthPoints(int points) {
-    healthPoints += points;
-    game.repaintHealthBars();
-  }
 
   /**
    * Prepare the enemy to battle
