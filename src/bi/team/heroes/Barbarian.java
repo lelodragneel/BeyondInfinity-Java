@@ -101,7 +101,6 @@ public class Barbarian extends Hero implements ActionListener {
     curVitality = 425;
     maxRage = 6;
     curRage = 0;
-    toughness = 4;
     riposteChance = 6;
     maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
     femaleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_female_big.png"));
@@ -314,7 +313,7 @@ public class Barbarian extends Hero implements ActionListener {
     panel_toughness.add(btnUpgrade_toughness);
 
     /* Create the label that displays toughness value */
-    lblToughness = new JLabel(toughness + "%");
+    lblToughness = new JLabel(getToughness() + "%");
     lblToughness.setBounds(44, 16, 116, 24);
     panel_toughness.add(lblToughness);
 
@@ -889,7 +888,8 @@ public class Barbarian extends Hero implements ActionListener {
    * @return the toughness
    */
   public double getToughness() {
-    return toughness;
+    return ((Math.pow(Math.E, (level * 0.016)) * 14) - 12)
+        + (Math.pow(Math.E, (points_toughness * 0.4)));
   }
 
   /**
