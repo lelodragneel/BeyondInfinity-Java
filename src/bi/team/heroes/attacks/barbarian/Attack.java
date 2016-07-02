@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.ToolTipManager;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
@@ -44,6 +45,8 @@ public abstract class Attack {
     this.name = button.getText();
     doc = game.getTextArea().getStyledDocument();
     doc.setParagraphAttributes(0, doc.getLength(), game.getaSet(), false);
+    
+
 
     /* Configure attack button */
     button.setBackground(Color.WHITE);

@@ -17,6 +17,7 @@ import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
+import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -90,6 +91,11 @@ public class Game extends JFrame implements ActionListener {
     this.heroSex = heroSex;
     UIManager.put("ProgressBar.selectionForeground", new Color(236, 236, 236)); // Health bar
                                                                                 // esthetics
+
+    /* Configure tooltips delays */
+    ToolTipManager.sharedInstance().setInitialDelay(500); // Show tooltips after x seconds
+    ToolTipManager.sharedInstance().setDismissDelay(20000); // Dismiss tooltips in x seconds
+
     /* Build frame */
     this.setResizable(false);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -99,7 +105,7 @@ public class Game extends JFrame implements ActionListener {
     this.setBounds(0, 0, 1070, 654);
     this.setBackground(new Color(236, 240, 241));
     this.setLocationRelativeTo(null);
-    
+
     /* Create objects of all enemies */
     enemyEntries = new ArrayList<Enemy>();
     enemyEntries.add(new Fuehirch(this));
@@ -109,7 +115,7 @@ public class Game extends JFrame implements ActionListener {
     enemyEntries.add(new Shar_of_the_nacht(this));
     enemyEntries.add(new Mantisray(this));
     enemyEntries.add(new Alania_defender_of_the_meadow(this));
-    
+
     /* Create the map object/frame */
     map = new Map(this);
     getContentPane().add(map);
@@ -460,7 +466,8 @@ public class Game extends JFrame implements ActionListener {
     /* Update experience bar */
     bar_XPBar.setMaximum((int) Math.round(getMaximumXp()));
     bar_XPBar.setValue((int) Math.round(Hero.curExperience));
-    bar_XPBar.setString((int) Math.round(Hero.curExperience) + " / " + (int) Math.round(getMaximumXp()) + " XP");
+    bar_XPBar.setString(
+        (int) Math.round(Hero.curExperience) + " / " + (int) Math.round(getMaximumXp()) + " XP");
 
     /* Update level indicators */
     lblLevel_current.setText(Hero.getLevel() + "");
@@ -484,7 +491,8 @@ public class Game extends JFrame implements ActionListener {
       bar_playerHealth.setString("dead");
     } else {
       bar_playerHealth.setValue((int) Math.round(hero.getCurHealth()));
-      bar_playerHealth.setString((int) Math.round(hero.getCurHealth()) + " / " + (int) Math.round(hero.getMaxHealth()));
+      bar_playerHealth.setString(
+          (int) Math.round(hero.getCurHealth()) + " / " + (int) Math.round(hero.getMaxHealth()));
     }
 
     /* Paint enemy health bar */
@@ -495,8 +503,8 @@ public class Game extends JFrame implements ActionListener {
         bar_enemyHealth.setString("dead");
       } else {
         bar_enemyHealth.setValue((int) Math.round(enemySelected.getCurHealth()));
-        bar_enemyHealth.setString(
-            (int) Math.round(enemySelected.getCurHealth()) + " / " + (int) Math.round(enemySelected.getMaxHealth()));
+        bar_enemyHealth.setString((int) Math.round(enemySelected.getCurHealth()) + " / "
+            + (int) Math.round(enemySelected.getMaxHealth()));
       }
     }
     repaint();
