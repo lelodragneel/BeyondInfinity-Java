@@ -1,7 +1,12 @@
 package bi.team.heroes.attacks.barbarian;
 
+import java.awt.Color;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JToolTip;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
@@ -17,7 +22,11 @@ public class Strike extends Attack {
    * @param game The main game
    */
   public Strike(Barbarian hero, Game game) {
-    super(hero, game, new JButton());
+    super(hero, game, new JButton() {
+      public Point getToolTipLocation(MouseEvent event) {
+        return new Point((event.getX() + 20), (event.getY() + 10));
+      }
+    });
 
     button.setText("<html>" + "<table width=\"162\">" + "<tr>"
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""

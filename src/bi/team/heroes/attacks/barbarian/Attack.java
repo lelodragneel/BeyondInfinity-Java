@@ -45,8 +45,6 @@ public abstract class Attack {
     this.name = button.getText();
     doc = game.getTextArea().getStyledDocument();
     doc.setParagraphAttributes(0, doc.getLength(), game.getaSet(), false);
-    
-
 
     /* Configure attack button */
     button.setBackground(Color.WHITE);
