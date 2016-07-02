@@ -1,12 +1,10 @@
 package bi.team.heroes.attacks.barbarian;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JToolTip;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;

@@ -22,7 +22,7 @@ import bi.team.Game;
 import bi.team.enemies.Enemy;
 import bi.team.graphics.Load;
 import bi.team.heroes.attacks.barbarian.Attack;
-import bi.team.heroes.attacks.barbarian.Battler_bash;
+import bi.team.heroes.attacks.barbarian.Battle_bash;
 import bi.team.heroes.attacks.barbarian.Charge;
 import bi.team.heroes.attacks.barbarian.Heavy_blow;
 import bi.team.heroes.attacks.barbarian.Incapacitate;
@@ -116,7 +116,7 @@ public class Barbarian extends Hero implements ActionListener {
     AttacksArrayList.add(new Heavy_blow(this, game));
     AttacksArrayList.add(new Rage_incite(this, game));
     AttacksArrayList.add(new Vengeance(this, game));
-    AttacksArrayList.add(new Battler_bash(this, game));
+    AttacksArrayList.add(new Battle_bash(this, game));
     AttacksArrayList.add(new True_assault(this, game));
     AttacksArrayList.add(new Strike(this, game));
     AttacksArrayList.add(new Charge(this, game));
