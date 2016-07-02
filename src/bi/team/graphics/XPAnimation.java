@@ -28,7 +28,7 @@ public class XPAnimation implements ActionListener {
     lblXPEarned.setForeground(new Color(102, 51, 153, 255));
     lblXPEarned.setHorizontalAlignment(SwingConstants.CENTER);
     lblXPEarned.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblXPEarned.setBounds(499, 28, 46, 16);
+    lblXPEarned.setBounds(498, 28, 48, 16);
     game.getPanel_top().add(lblXPEarned);
   }
 
@@ -40,7 +40,7 @@ public class XPAnimation implements ActionListener {
   public void animateXP(double xp) {
     timer.stop();
     i = 100;
-    lblXPEarned.setText("+" + xp + " xp");
+    lblXPEarned.setText("+" + String.format("%.2f", xp) + " xp");
     lblXPEarned.setForeground(new Color(102, 51, 153, 255));
 
     timer.start();
