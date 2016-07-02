@@ -26,6 +26,16 @@ public class Strike extends Attack {
         + "<tr>" + "<td><p align=\"center\">0x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>");
+    button.setToolTipText("<html>" + styles + "<body> <table style=\"width:100%\"><tr>"
+        + "<td valign=\"top\"><img src=\""
+        + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\"></td>"
+        + "<td><span id=\"title\">Strike</span><br><br>"
+        + "<span id=\"s01\">Level:</span><b id=\"val\"> 1</b><br>"
+        + "<span id=\"s01\">Cost:</span><b id=\"val\"> 0</b>" + "<span id=\"s02\"> rage</span><br>"
+        + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> 2</b>"
+        + "<span id=\"s02\"> turns</span><br><br>"
+        + "<p id=\"desc\">A basic attack dealing <b id=\"val\">300</b> damage and generates<b id=\"val\"> 1</b> additional rage.</p><br>"
+        + "</td></tr></table>" + "</body><html>");
     maxWarmup = 0;
     curWarmup = 0;
     rageNeeded = 0;

@@ -22,6 +22,13 @@ public abstract class Attack {
   protected Barbarian hero;
   protected StyledDocument doc;
   protected double experienceEarned;
+  protected int attackLevel = 1;
+  protected final String styles =
+      "<style>" + "body {font-family: Comic Sans MS; background: #ECF0F1; width:300px;}"
+          + "#title {color: #282830; font-size: 12px;}" + "#desc {font-size: 10px; color: #282830;}"
+          + "#s01 {color: #60646D; font-size: 10px;}"
+          + "#s02 {font-size: 10px; color: #282830; font-style: italic;}"
+          + "#val {font-size: 10px; color: #5659C9;}" + "</style>";
 
   /**
    * Class constructor
@@ -53,7 +60,7 @@ public abstract class Attack {
     if (rageNeeded == 0) {
       return 0.2;
     } else {
-      return Math.pow(rageNeeded, 1.1) / 2;  
+      return Math.pow(rageNeeded, 1.1) / 2;
     }
   }
 
