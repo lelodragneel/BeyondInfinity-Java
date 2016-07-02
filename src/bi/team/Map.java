@@ -40,9 +40,9 @@ public class Map extends JLayeredPane implements ActionListener {
     this.game = game;
 
     /* Create the main map frame */
-    this.setOpaque(true);
     int width = 715;
     int height = 365;
+    this.setOpaque(true);
     this.setBounds(new Rectangle((Math.round(game.getWidth() / 2) - (width / 2)),
         Math.round((game.getHeight() / 2) - (height / 2) - 40), width, height));
     this.setBorder(new LineBorder(new Color(0, 0, 0)));

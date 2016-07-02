@@ -70,9 +70,9 @@ public class Barbarian extends Hero implements ActionListener {
   private JButton btnUpgrade_strength;
   private JButton btnUpgrade_toughness;
   private JButton btnUpgrade_riposteChance;
-  private double curVitality;
-  private int curRage;
-  private int maxRage;
+  private double curVitality = 425;
+  private int curRage = 0;
+  private int maxRage = 6;
   private double dmgMultiplier = 1;
   private int points_vitality = 1;
   private int points_rage = 1;
@@ -96,9 +96,6 @@ public class Barbarian extends Hero implements ActionListener {
     load = new Load(game, this);
     AttacksArrayList = new ArrayList<Attack>();
     ArrayUpgradeButtons = new ArrayList<JButton>();
-    curVitality = 425;
-    maxRage = 6;
-    curRage = 0;
     maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
     femaleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_female_big.png"));
     defensiveIcon = new ImageIcon(getClass().getResource("/images/stance_defensive.png"));
@@ -269,7 +266,7 @@ public class Barbarian extends Hero implements ActionListener {
     panel_strength.add(btnUpgrade_strength);
 
     /* Create the label that displays strength value */
-    lblStrength = new JLabel(getStrength() + "");
+    lblStrength = new JLabel(String.format("%.2f", getStrength()) + "");
     lblStrength.setBounds(44, 16, 116, 24);
     panel_strength.add(lblStrength);
 
@@ -310,7 +307,7 @@ public class Barbarian extends Hero implements ActionListener {
     panel_toughness.add(btnUpgrade_toughness);
 
     /* Create the label that displays toughness value */
-    lblToughness = new JLabel(getToughness() + "%");
+    lblToughness = new JLabel(String.format("%.2f", getToughness()) + "%");
     lblToughness.setBounds(44, 16, 116, 24);
     panel_toughness.add(lblToughness);
 
@@ -353,7 +350,7 @@ public class Barbarian extends Hero implements ActionListener {
     panel_riposteChance.add(btnUpgrade_riposteChance);
 
     /* Create the label that displays riposte chance value */
-    lblRiposteChance = new JLabel(getRiposteChance() + "%");
+    lblRiposteChance = new JLabel(String.format("%.2f", getRiposteChance()) + "%");
     lblRiposteChance.setBounds(44, 16, 116, 24);
     panel_riposteChance.add(lblRiposteChance);
 
@@ -492,17 +489,17 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Repaint strength */
     titledBorder_strength.setTitle("Strength [" + points_strength + "/" + maxPoints_strength + "]");
-    lblStrength.setText(getStrength() + "");
+    lblStrength.setText(String.format("%.2f", getStrength()));
 
     /* Repaint toughness */
     titledBorder_toughness
         .setTitle("Toughness [" + points_toughness + "/" + maxPoints_toughness + "]");
-    lblToughness.setText(getToughness() + "");
+    lblToughness.setText(String.format("%.2f", getToughness()) + "%");
 
     /* Repaint riposte chance */
     titledBorder_riposteChance
         .setTitle("Riposte Chance [" + points_riposteChance + "/" + maxPoints_riposteChance + "]");
-    lblRiposteChance.setText(getRiposteChance() + "");
+    lblRiposteChance.setText(String.format("%.2f", getRiposteChance()) + "%");
 
     /* Misc */
     game.getLblEnhancementPoints()
@@ -799,7 +796,7 @@ public class Barbarian extends Hero implements ActionListener {
    * @return the maximum vitality
    */
   public int getMaxVitality() {
-    return Math.round((425 - 75 + (level * 75)) + ((points_vitality * 75) - 75));
+    return (425 - 75 + (level * 75)) + ((points_vitality * 75) - 75);
   }
 
   /**

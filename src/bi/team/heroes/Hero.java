@@ -22,7 +22,7 @@ public abstract class Hero {
   protected ArrayList<JButton> ArrayUpgradeButtons;
   protected Game game;
   protected JPanel panel_stances;
-  protected int enhancementPoints;
+  protected int enhancementPoints = 0;
 
   /**
    * Class constructor
@@ -31,7 +31,6 @@ public abstract class Hero {
    */
   public Hero(Game game) {
     this.game = game;
-    enhancementPoints = 0;
     xpAnimation = new XPAnimation(game);
   }
 

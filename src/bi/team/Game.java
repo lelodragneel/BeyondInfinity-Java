@@ -87,7 +87,6 @@ public class Game extends JFrame implements ActionListener {
    * @param giftNum Chosen gift
    */
   public Game(String name, int chosenHero, int heroSex, int giftNum) {
-    // TODO instantiate gift parameter
     this.heroSex = heroSex;
     UIManager.put("ProgressBar.selectionForeground", new Color(236, 236, 236)); // Health bar
                                                                                 // esthetics
@@ -100,7 +99,7 @@ public class Game extends JFrame implements ActionListener {
     this.setBounds(0, 0, 1070, 654);
     this.setBackground(new Color(236, 240, 241));
     this.setLocationRelativeTo(null);
-
+    
     /* Create objects of all enemies */
     enemyEntries = new ArrayList<Enemy>();
     enemyEntries.add(new Fuehirch(this));
@@ -110,7 +109,7 @@ public class Game extends JFrame implements ActionListener {
     enemyEntries.add(new Shar_of_the_nacht(this));
     enemyEntries.add(new Mantisray(this));
     enemyEntries.add(new Alania_defender_of_the_meadow(this));
-
+    
     /* Create the map object/frame */
     map = new Map(this);
     getContentPane().add(map);
@@ -458,10 +457,10 @@ public class Game extends JFrame implements ActionListener {
    */
   public void repaintXpBar() {
 
-    /* Update experiene bar */
-    bar_XPBar.setMaximum(getMaximumXp());
+    /* Update experience bar */
+    bar_XPBar.setMaximum((int) Math.round(getMaximumXp()));
     bar_XPBar.setValue((int) Math.round(Hero.curExperience));
-    bar_XPBar.setString(Hero.curExperience + " / " + getMaximumXp() + " XP");
+    bar_XPBar.setString((int) Math.round(Hero.curExperience) + " / " + (int) Math.round(getMaximumXp()) + " XP");
 
     /* Update level indicators */
     lblLevel_current.setText(Hero.getLevel() + "");
@@ -472,20 +471,20 @@ public class Game extends JFrame implements ActionListener {
     }
     repaint();
   }
-  
+
   /**
    * Updates the visual of the player & enemy health bars
    */
   public void repaintHealthBars() {
 
     /* Paint hero health bar */
-    bar_playerHealth.setMaximum((int) hero.getMaxHealth());
+    bar_playerHealth.setMaximum((int) Math.round(hero.getMaxHealth()));
     if (hero.getCurHealth() <= 0) {
       bar_playerHealth.setValue(0);
       bar_playerHealth.setString("dead");
     } else {
-      bar_playerHealth.setValue((int) hero.getCurHealth());
-      bar_playerHealth.setString((int) hero.getCurHealth() + " / " + (int) hero.getMaxHealth());
+      bar_playerHealth.setValue((int) Math.round(hero.getCurHealth()));
+      bar_playerHealth.setString((int) Math.round(hero.getCurHealth()) + " / " + (int) Math.round(hero.getMaxHealth()));
     }
 
     /* Paint enemy health bar */
@@ -495,9 +494,9 @@ public class Game extends JFrame implements ActionListener {
         bar_enemyHealth.setValue(0);
         bar_enemyHealth.setString("dead");
       } else {
-        bar_enemyHealth.setValue((int) enemySelected.getCurHealth());
+        bar_enemyHealth.setValue((int) Math.round(enemySelected.getCurHealth()));
         bar_enemyHealth.setString(
-            (int) enemySelected.getCurHealth() + " / " + (int) enemySelected.getMaxHealth());
+            (int) Math.round(enemySelected.getCurHealth()) + " / " + (int) Math.round(enemySelected.getMaxHealth()));
       }
     }
     repaint();
@@ -523,8 +522,8 @@ public class Game extends JFrame implements ActionListener {
   /**
    * @return an integer of the maximum experience of the hero's current level
    */
-  public int getMaximumXp() {
-    return (int) Math.round(((Math.pow(Hero.getLevel(), 2)) * 1.2) + 210);
+  public double getMaximumXp() {
+    return ((Math.pow(Hero.getLevel(), 2)) * 1.2) + 210;
   }
 
   /**
