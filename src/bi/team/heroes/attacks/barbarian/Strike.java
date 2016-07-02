@@ -17,15 +17,15 @@ public class Strike extends Attack {
    * @param game The main game
    */
   public Strike(Barbarian hero, Game game) {
-    super(hero, game,
-        new JButton("<html>" + "<table width=\"162\">" + "<tr>"
-            + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
-            + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\">" + "</th>"
-            + "<td height=\"26\" align=\"center\"><font size=\"4\">Strike</font></th>" + "</tr>"
-            + "<tr>" + "<td><p align=\"center\">0x <img src=\""
-            + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
-            + "</table>" + "</html>"));
+    super(hero, game, new JButton());
 
+    button.setText("<html>" + "<table width=\"162\">" + "<tr>"
+        + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
+        + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\">" + "</th>"
+        + "<td height=\"26\" align=\"center\"><font size=\"4\">Strike</font></th>" + "</tr>"
+        + "<tr>" + "<td><p align=\"center\">0x <img src=\""
+        + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
+        + "</table>" + "</html>");
     maxWarmup = 0;
     curWarmup = 0;
     rageNeeded = 0;
@@ -38,7 +38,7 @@ public class Strike extends Attack {
     /* Deal damage to enemy */
     double dmg = hero.getStrength() * hero.getDmgMultiplier() + 300;
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
-    
+
     /* Display events */
     game.getTextArea().setCaretPosition(game.getTextArea().getDocument().getLength());
     game.getTextArea()
