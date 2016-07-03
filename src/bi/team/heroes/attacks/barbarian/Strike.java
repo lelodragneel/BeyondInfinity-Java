@@ -1,10 +1,6 @@
 package bi.team.heroes.attacks.barbarian;
 
-import java.awt.Point;
-import java.awt.event.MouseEvent;
-
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
@@ -20,11 +16,7 @@ public class Strike extends Attack {
    * @param game The main game
    */
   public Strike(Barbarian hero, Game game) {
-    super(hero, game, new JButton() {
-      public Point getToolTipLocation(MouseEvent event) {
-        return new Point((event.getX() + 20), (event.getY() + 10));
-      }
-    });
+    super(hero, game);
 
     button.setText("<html>" + "<table width=\"162\">" + "<tr>"
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
@@ -38,10 +30,10 @@ public class Strike extends Attack {
         + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\"></td>"
         + "<td><span id=\"title\">Strike</span><br><br>"
         + "<span id=\"s01\">Level:</span><b id=\"val\"> 1</b><br>"
-        + "<span id=\"s01\">Cost:</span><b id=\"val\"> 0</b>" + "<span id=\"s02\"> rage</span><br>"
+        + "<span id=\"s01\">Cost:</span><b id=\"val\"> 0</b>" + "<span id=\"s02\"> Rage</span><br>"
         + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> 2</b>"
-        + "<span id=\"s02\"> turns</span><br><br>"
-        + "<p id=\"desc\">A basic attack dealing <b id=\"val\">300</b> damage and generates<b id=\"val\"> 1</b> additional rage.</p><br>"
+        + "<span id=\"s02\"> Turns</span><br><br>"
+        + "<p id=\"desc\">A basic attack dealing <b id=\"val\">300</b> damage and generates<b id=\"val\"> 1</b> additional <span id=\"s02\">Rage</span>.</p><br>"
         + "</td></tr></table>" + "</body><html>");
     maxWarmup = 0;
     curWarmup = 0;

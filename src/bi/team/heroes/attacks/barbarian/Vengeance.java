@@ -1,7 +1,5 @@
 package bi.team.heroes.attacks.barbarian;
 
-import javax.swing.JButton;
-
 import bi.team.BeyondInfinity;
 import bi.team.Game;
 import bi.team.heroes.Barbarian;
@@ -15,7 +13,7 @@ public class Vengeance extends Attack {
    * @param game The main game
    */
   public Vengeance(Barbarian hero, Game game) {
-    super(hero, game, new JButton());
+    super(hero, game);
 
     button.setText(("<html>" + "<table width=\"162\">" + "<tr>"
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""

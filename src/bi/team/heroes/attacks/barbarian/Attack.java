@@ -3,9 +3,10 @@ package bi.team.heroes.attacks.barbarian;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Insets;
+import java.awt.Point;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
-import javax.swing.ToolTipManager;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.StyledDocument;
 
@@ -38,10 +39,15 @@ public abstract class Attack {
    * @param game The main game
    * @param button The attack button
    */
-  public Attack(Barbarian hero, Game game, JButton button) {
+  @SuppressWarnings("serial")
+  public Attack(Barbarian hero, Game game) {
     this.hero = hero;
     this.game = game;
-    this.button = button;
+    button = new JButton() {
+      public Point getToolTipLocation(MouseEvent event) {
+        return new Point((event.getX() + 20), (event.getY() + 10));
+      }
+    };
     this.name = button.getText();
     doc = game.getTextArea().getStyledDocument();
     doc.setParagraphAttributes(0, doc.getLength(), game.getaSet(), false);

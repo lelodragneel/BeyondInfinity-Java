@@ -1,7 +1,6 @@
 package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
@@ -17,7 +16,7 @@ public class Rage_incite extends Attack {
    * @param game The main game
    */
   public Rage_incite(Barbarian hero, Game game) {
-    super(hero, game, new JButton());
+    super(hero, game);
 
     button.setText(("<html>" + "<table width=\"162\">" + "<tr>"
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
