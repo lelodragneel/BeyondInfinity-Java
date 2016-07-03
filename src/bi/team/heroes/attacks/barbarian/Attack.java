@@ -18,8 +18,8 @@ public abstract class Attack {
   private String name;
   protected JButton button;
   protected int rageNeeded;
-  protected double maxWarmup;
-  protected double curWarmup;
+  protected int maxWarmup;
+  protected int curWarmup;
   protected Game game;
   protected Barbarian hero;
   protected StyledDocument doc;
@@ -83,7 +83,7 @@ public abstract class Attack {
    * 
    * @return the maximum warmup
    */
-  public double getMaxWarmup() {
+  public int getMaxWarmup() {
     return maxWarmup;
   }
 
@@ -92,14 +92,14 @@ public abstract class Attack {
    * 
    * @param maxWarmup The maximum warmup value
    */
-  public void setMaxWarmup(double maxWarmup) {
+  public void setMaxWarmup(int maxWarmup) {
     this.maxWarmup = maxWarmup;
   }
 
   /**
    * @return the current warmup
    */
-  public double getCurWarmup() {
+  public int getCurWarmup() {
     return curWarmup;
   }
 
@@ -108,7 +108,7 @@ public abstract class Attack {
    * 
    * @param curWarmup The current warmup value
    */
-  public void setCurWarmup(double curWarmup) {
+  public void setCurWarmup(int curWarmup) {
     this.curWarmup = curWarmup;
   }
 

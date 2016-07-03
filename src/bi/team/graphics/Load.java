@@ -72,7 +72,7 @@ public class Load implements ActionListener {
       } else { // If it's enemy's turn
         game.getEnemySelected().attackPlayer(); // Enemy attacks the player
         if (!hero.isAlive()) { // Check if hero is dead
-          game.enemyLevelup();
+          game.getEnemySelected().enemyLevelup();
         }
         Game.addTurn(); // Increment turns
         game.enableAttackButtons(); // Re-enable buttons
