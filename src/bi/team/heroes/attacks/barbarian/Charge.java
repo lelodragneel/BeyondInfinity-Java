@@ -15,6 +15,10 @@ public class Charge extends Attack {
   public Charge(Barbarian hero, Game game) {
     super(hero, game);
 
+    baseDamage = 0;
+    maxWarmup = 2;
+    curWarmup = 2;
+    rageNeeded = 1;
     button.setText(("<html>" + "<table width=\"162\">" + "<tr>"
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
         + BeyondInfinity.class.getResource("/images/attacks/charge.png") + "\">" + "</th>"
@@ -22,11 +26,12 @@ public class Charge extends Attack {
         + "<tr>" + "<td><p align=\"center\">1x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>"));
-    maxWarmup = 2;
-    curWarmup = 2;
-    rageNeeded = 1;
+    repaintTooltip();
   }
 
   @Override
   public void startAttack() {}
+
+  @Override
+  public void repaintTooltip() {}
 }

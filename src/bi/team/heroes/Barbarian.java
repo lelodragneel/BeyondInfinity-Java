@@ -726,6 +726,7 @@ public class Barbarian extends Hero implements ActionListener {
     }
     game.repaintHealthBars();
     game.repaintUpgradeButtons();
+    repaintTooltips();
     repaintStats();
   }
 
@@ -740,6 +741,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
+    repaintTooltips();
     repaintStats();
   }
 
@@ -752,6 +754,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
+    repaintTooltips();
     repaintStats();
   }
 
@@ -764,6 +767,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
+    repaintTooltips();
     repaintStats();
   }
 
@@ -776,6 +780,7 @@ public class Barbarian extends Hero implements ActionListener {
       enhancementPoints -= 1;
     }
     game.repaintUpgradeButtons();
+    repaintTooltips();
     repaintStats();
   }
 

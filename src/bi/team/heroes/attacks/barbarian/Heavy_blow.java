@@ -29,18 +29,7 @@ public class Heavy_blow extends Attack {
         + "<tr>" + "<td><p align=\"center\">1x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>"));
-    button.setToolTipText("<html>" + styles + "<body> <table style=\"width:100%\"><tr>"
-        + "<td valign=\"top\"><img src=\""
-        + BeyondInfinity.class.getResource("/images/attacks/heavy_blow.png") + "\"></td>"
-        + "<td><span id=\"title\">Heavy Blow</span><br><br>"
-        + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
-        + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
-        + "<span id=\"s02\"> Rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
-        + maxWarmup + "</b>" + "<span id=\"s02\"> Turns</span><br><br>" + "<p id=\"desc\">"
-        + hero.getName() + " swings " + game.getLang1()
-        + " axe with brute force to deal<b id=\"val\"> " + baseDamage + "</b> + <b id=\"val\"> ["
-        + hero.getStrength() + "]</b> damage to all enemies.</p><br>" + "</td></tr></table>"
-        + "</body><html>");
+    repaintTooltip();
   }
 
   @Override
@@ -57,5 +46,21 @@ public class Heavy_blow extends Attack {
     doc.insertString(doc.getLength(), dmg + "", game.getaSet());
     game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/enemy.png")));
     doc.insertString(doc.getLength(), "\n", game.getaSet());
+  }
+
+  @Override
+  public void repaintTooltip() {
+    button.setToolTipText("<html>" + styles + "<body> <table style=\"width:100%\"><tr>"
+        + "<td valign=\"top\"><img src=\""
+        + BeyondInfinity.class.getResource("/images/attacks/heavy_blow.png") + "\"></td>"
+        + "<td><span id=\"title\">Heavy Blow</span><br><br>"
+        + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
+        + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
+        + "<span id=\"s02\"> Rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
+        + maxWarmup + "</b>" + "<span id=\"s02\"> Turns</span><br><br>" + "<p id=\"desc\">"
+        + hero.getName() + " swings " + game.getLang1()
+        + " axe with brute force to deal<b id=\"val\"> " + baseDamage + "</b> + <b id=\"val\"> ["
+        + hero.getStrength() + "]</b> damage to all enemies.</p><br>" + "</td></tr></table>"
+        + "</body><html>");
   }
 }

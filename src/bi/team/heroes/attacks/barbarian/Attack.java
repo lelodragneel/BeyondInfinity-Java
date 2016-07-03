@@ -80,6 +80,11 @@ public abstract class Attack {
   public abstract void startAttack() throws BadLocationException;
 
   /**
+   * Repaints the tooltip with updated values
+   */
+  public abstract void repaintTooltip();
+  
+  /**
    * 
    * @return the maximum warmup
    */

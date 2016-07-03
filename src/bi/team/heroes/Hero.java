@@ -53,6 +53,7 @@ public abstract class Hero {
     xpAnimation.animateXP(d);
     game.repaintXpBar();
     game.repaintHealthBars();
+    repaintTooltips();
     repaintStats();
   }
 
@@ -64,6 +65,15 @@ public abstract class Hero {
       if (x.getCurWarmup() >= 0 && x.getCurWarmup() < x.getMaxWarmup()) {
         x.setCurWarmup(x.getCurWarmup() + 1);
       }
+    }
+  }
+
+  /**
+   * Updates the visual of the player attack tooltips
+   */
+  public void repaintTooltips() {
+    for (Attack x : AttacksArrayList) {
+      x.repaintTooltip();
     }
   }
 
