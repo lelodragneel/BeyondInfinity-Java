@@ -109,9 +109,10 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Configure player GUI */
     game.getBar_playerHealth().setMinimum(0);
-    game.getBar_playerHealth().setMaximum((int) getMaxVitality());
-    game.getBar_playerHealth().setValue((int) curVitality);
-    game.getBar_playerHealth().setString((int) curVitality + " / " + (int) getMaxVitality());
+    game.getBar_playerHealth().setMaximum((int) Math.round(getMaxVitality()));
+    game.getBar_playerHealth().setValue((int) Math.round(curVitality));
+    game.getBar_playerHealth()
+        .setString((int) Math.round(curVitality) + " / " + (int) Math.round(getMaxVitality()));
 
     /* Create this class's attacks */
     AttacksArrayList.add(new Strike(this, game));

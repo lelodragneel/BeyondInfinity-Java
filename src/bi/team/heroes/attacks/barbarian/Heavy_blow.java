@@ -40,12 +40,19 @@ public class Heavy_blow extends Attack {
     double dmg = (20 + hero.getStrength()) * hero.getDmgMultiplier();
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
+    /* Rage incite set active/inactive */
+    Rage_incite rageIncite = (Rage_incite) hero.getAttacksArrayList().get(2);
+    if (rageIncite.isActive()) {
+      hero.setDmgMultiplier(hero.getDmgMultiplier() - rageIncite.getAttackMultiplier());
+      rageIncite.setActive(false);
+    }
+
     /* Display events */
     game.getTextArea()
         .insertIcon(new ImageIcon(getClass().getResource("/images/attacks/heavy_blow.png")));
-    doc.insertString(doc.getLength(), dmg + "", game.getaSet());
-    game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/enemy.png")));
-    doc.insertString(doc.getLength(), "\n", game.getaSet());
+    game.getDoc().insertString(game.getDoc().getLength(), dmg + "", game.getaSet());
+    game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/impact_toEnemy.png")));
+    game.getDoc().insertString(game.getDoc().getLength(), "\n", game.getaSet());
   }
 
   @Override

@@ -41,13 +41,20 @@ public class Strike extends Attack {
     double dmg = hero.getStrength() * hero.getDmgMultiplier();
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
+    /* Rage incite set active/inactive */
+    Rage_incite rageIncite = (Rage_incite) hero.getAttacksArrayList().get(2);
+    if (rageIncite.isActive()) {
+      hero.setDmgMultiplier(hero.getDmgMultiplier() - rageIncite.getAttackMultiplier());
+      rageIncite.setActive(false);
+    }
+
     /* Display events */
     game.getTextArea().setCaretPosition(game.getTextArea().getDocument().getLength());
     game.getTextArea()
         .insertIcon(new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
-    doc.insertString(doc.getLength(), dmg + "", game.getaSet());
-    game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/enemy.png")));
-    doc.insertString(doc.getLength(), "\n", game.getaSet());
+    game.getDoc().insertString(game.getDoc().getLength(), " " + dmg + " ", game.getaSet());
+    game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/impact_toEnemy.png")));
+    game.getDoc().insertString(game.getDoc().getLength(), "\n", game.getaSet());
   }
 
   /**

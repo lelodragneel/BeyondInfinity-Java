@@ -5,6 +5,7 @@ import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -31,10 +32,18 @@ public class Fuehirch extends Enemy {
   }
 
   @Override
-  public void attackPlayer() {
+  public void attackPlayer() throws BadLocationException {
 
     /* Hero takes damage */
     game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
+
+    /* Display events */
+    game.getTextArea().setCaretPosition(game.getTextArea().getDocument().getLength());
+    game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/impact_toPlayer.png")));
+    game.getDoc().insertString(game.getDoc().getLength(), " " + damage + " ", game.getaSet());
+    game.getTextArea()
+        .insertIcon(new ImageIcon(getClass().getResource("/images/basic_damage.png")));
+    game.getDoc().insertString(game.getDoc().getLength(), "\n", game.getaSet());
 
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars

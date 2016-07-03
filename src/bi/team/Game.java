@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 
 import bi.team.enemies.Enemy;
 import bi.team.enemies.meadowlands.Alania_defender_of_the_meadow;
@@ -46,6 +47,7 @@ public class Game extends JFrame implements ActionListener {
   private static int turn = 1;
   private static JTextPane textArea;
   private SimpleAttributeSet aSet;
+  private StyledDocument doc;
   private JPanel panel_player;
   private JPanel panel_top;
   private JPanel panel_stats;
@@ -308,6 +310,9 @@ public class Game extends JFrame implements ActionListener {
     StyleConstants.setForeground(aSet, Color.DARK_GRAY);
     StyleConstants.setFontFamily(aSet, "Comic Sans MS");
     StyleConstants.setFontSize(aSet, 16);
+
+    doc = textArea.getStyledDocument();
+    doc.setParagraphAttributes(0, doc.getLength(), aSet, false);
 
     /* Create scrolling for text area */
     JScrollPane scroll = new JScrollPane(textArea);
@@ -579,6 +584,13 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
+   * @return the number of the current turn the player is on
+   */
+  public static int getTurnNum() {
+    return turn;
+  }
+
+  /**
    * Increment turn by 1
    */
   public static void addTurn() {
@@ -736,6 +748,13 @@ public class Game extends JFrame implements ActionListener {
    */
   public int getHeroSex() {
     return heroSex;
+  }
+
+  /**
+   * @return the StyledDocument
+   */
+  public StyledDocument getDoc() {
+    return doc;
   }
 
   /**

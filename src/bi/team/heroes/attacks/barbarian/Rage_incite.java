@@ -8,6 +8,8 @@ import bi.team.Game;
 import bi.team.heroes.Barbarian;
 
 public class Rage_incite extends Attack {
+  double attackMultiplier = 1;
+  boolean active = false;
 
   /**
    * Class constructor
@@ -35,15 +37,44 @@ public class Rage_incite extends Attack {
   @Override
   public void startAttack() throws BadLocationException {
     hero.consumeRage(rageNeeded); // Consume rage
-    hero.setDmgMultiplier(hero.getDmgMultiplier() + 1); // Increase dmg by 100%
+    active = true;
+    hero.setDmgMultiplier(hero.getDmgMultiplier() + attackMultiplier); // Increase dmg
 
     /* Display events */
     game.getTextArea()
         .insertIcon(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")));
-    doc.insertString(doc.getLength(), "activated", game.getaSet());
-    doc.insertString(doc.getLength(), "\n", game.getaSet());
+    game.getDoc().insertString(game.getDoc().getLength(), "activated", game.getaSet());
+    game.getDoc().insertString(game.getDoc().getLength(), "\n", game.getaSet());
   }
 
   @Override
   public void repaintTooltip() {}
+
+  /**
+   * @return the value which the damage is multiplied by
+   */
+  public double getAttackMultiplier() {
+    return attackMultiplier;
+  }
+
+  /**
+   * @param attackMultiplier The value which the damage is multiplied by
+   */
+  public void setAttackMultiplier(double attackMultiplier) {
+    this.attackMultiplier = attackMultiplier;
+  }
+
+  /**
+   * @return the boolean of whether or not Rage Incite is active
+   */
+  public boolean isActive() {
+    return active;
+  }
+
+  /**
+   * @param active Set the boolean of whether or not Rage Incite is active
+   */
+  public void setActive(boolean active) {
+    this.active = active;
+  }
 }

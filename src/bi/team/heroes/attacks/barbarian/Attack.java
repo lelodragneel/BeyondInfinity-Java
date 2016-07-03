@@ -22,7 +22,6 @@ public abstract class Attack {
   protected int curWarmup;
   protected Game game;
   protected Barbarian hero;
-  protected StyledDocument doc;
   protected double experienceEarned;
   protected int attackLevel = 1;
   protected double baseDamage;
@@ -50,8 +49,6 @@ public abstract class Attack {
       }
     };
     this.name = button.getText();
-    doc = game.getTextArea().getStyledDocument();
-    doc.setParagraphAttributes(0, doc.getLength(), game.getaSet(), false);
 
     /* Configure attack button */
     button.setBackground(Color.WHITE);
@@ -83,7 +80,7 @@ public abstract class Attack {
    * Repaints the tooltip with updated values
    */
   public abstract void repaintTooltip();
-  
+
   /**
    * 
    * @return the maximum warmup
