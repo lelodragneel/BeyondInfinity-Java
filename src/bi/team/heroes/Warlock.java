@@ -7,13 +7,8 @@ import bi.team.heroes.attacks.barbarian.Attack;
 
 
 public class Warlock extends Hero {
-
-	// constructor
-	public Warlock() {
-		
-	}
 	
-	public Warlock(Game game) {
+	public Warlock(Game game, int sex) {
 		super(game);
 		
 		// instantiate variables

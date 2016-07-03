@@ -78,6 +78,7 @@ public class Game extends JFrame implements ActionListener {
   private JLabel lblEnemyImage;
   private JLabel lblPlayerImage;
   private int heroSex;
+  private final String lang1;
 
   /**
    * Class constructor
@@ -89,6 +90,7 @@ public class Game extends JFrame implements ActionListener {
    */
   public Game(String name, int chosenHero, int heroSex, int giftNum) {
     this.heroSex = heroSex;
+    lang1 = (heroSex == 1) ? "his" : "her";
     UIManager.put("ProgressBar.selectionForeground", new Color(236, 236, 236)); // Health bar
                                                                                 // esthetics
 
@@ -353,15 +355,15 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create selected hero */
     if (chosenHero == 1) {
-      this.hero = new Barbarian(this);
+      this.hero = new Barbarian(this, heroSex);
     } else if (chosenHero == 2) {
-      this.hero = new Chemist(this);
+      this.hero = new Chemist(this, heroSex);
     } else if (chosenHero == 3) {
-      this.hero = new Elementalist(this);
+      this.hero = new Elementalist(this, heroSex);
     } else if (chosenHero == 4) {
-      this.hero = new Swordsman(this);
+      this.hero = new Swordsman(this, heroSex);
     } else if (chosenHero == 5) {
-      this.hero = new Warlock(this);
+      this.hero = new Warlock(this, heroSex);
     }
     setVisible(true); // Finally, show frame
   }
@@ -375,13 +377,6 @@ public class Game extends JFrame implements ActionListener {
     if (evt.getSource() == btnSurrender) {
       hero.surrender();
     }
-  }
-
-  /**
-   * Resurrect the most-recently killed enemy
-   */
-  public void enemyLevelup() {
-    // TODO
   }
 
   /**
@@ -757,5 +752,12 @@ public class Game extends JFrame implements ActionListener {
    */
   public Map getMap() {
     return map;
+  }
+
+  /**
+   * @return a string ("his" / "her") according to the hero's gender
+   */
+  public String getLang1() {
+    return lang1;
   }
 }

@@ -97,6 +97,13 @@ public abstract class Enemy extends JButton implements MouseListener {
     }
   }
 
+  /**
+   * Level up the most-recently killed enemy
+   */
+  public void enemyLevelup() {
+    // TODO
+  }
+
   @Override
   public void mouseReleased(MouseEvent e) {}
 
@@ -180,7 +187,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   public void setCurHealth(double curHealth) {
     this.curHealth = curHealth;
   }
-  
+
   /**
    * @return the enemy maxHealth
    */

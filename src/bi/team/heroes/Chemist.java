@@ -8,13 +8,8 @@ import bi.team.heroes.attacks.barbarian.Attack;
 
 
 public class Chemist extends Hero {
-	
-	// constructor
-	public Chemist() {
-		
-	}
-	
-	public Chemist(Game game) {
+
+	public Chemist(Game game, int sex) {
 		super(game);
 		
 		// instantiate variables

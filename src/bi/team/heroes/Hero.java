@@ -23,14 +23,16 @@ public abstract class Hero {
   protected Game game;
   protected JPanel panel_stances;
   protected int enhancementPoints = 0;
+  protected String name;
 
   /**
    * Class constructor
    * 
    * @param game The main game
    */
-  public Hero(Game game) {
+  public Hero(Game game, String name) {
     this.game = game;
+    this.name = name;
     xpAnimation = new XPAnimation(game);
   }
 
@@ -94,7 +96,7 @@ public abstract class Hero {
         .setText("<html>Enhancement Points: <b>" + enhancementPoints + "</b></html>");
     game.repaintUpgradeButtons();
   }
-  
+
   /**
    * Enable hero upgrade buttons
    */
@@ -135,7 +137,7 @@ public abstract class Hero {
    * Repaints and updates the stats values
    */
   public abstract void repaintStats();
-  
+
   /**
    * Player attacks the enemy
    * 
@@ -212,6 +214,13 @@ public abstract class Hero {
    */
   public static double getCurExperience() {
     return curExperience;
+  }
+
+  /**
+   * @return the name of the hero with the correct gender
+   */
+  public String getName() {
+    return name;
   }
 
   /**

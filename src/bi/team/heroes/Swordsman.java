@@ -7,13 +7,8 @@ import bi.team.heroes.attacks.barbarian.Attack;
 
 
 public class Swordsman extends Hero {
-	
-	// constructor
-	public Swordsman() {
-		
-	}
-	
-	public Swordsman(Game game) {
+
+	public Swordsman(Game game, int sex) {
 		super(game);
 		
 		// instantiate variables

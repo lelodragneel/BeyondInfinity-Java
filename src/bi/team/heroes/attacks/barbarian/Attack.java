@@ -15,8 +15,8 @@ import bi.team.graphics.ButtonCooldowns;
 import bi.team.heroes.Barbarian;
 
 public abstract class Attack {
-  protected JButton button;
   private String name;
+  protected JButton button;
   protected int rageNeeded;
   protected double maxWarmup;
   protected double curWarmup;
@@ -25,6 +25,7 @@ public abstract class Attack {
   protected StyledDocument doc;
   protected double experienceEarned;
   protected int attackLevel = 1;
+  protected double baseDamage;
   protected final String styles =
       "<style>" + "body {font-family: Comic Sans MS; background: #ECF0F1; width:300px;}"
           + "#title {color: #282830; font-size: 12px;}" + "#desc {font-size: 10px; color: #282830;}"
@@ -132,6 +133,19 @@ public abstract class Attack {
     return rageNeeded;
   }
 
+  /**
+   * @return the base attack damage of the attack
+   */
+  public double getBaseDamage() {
+    return baseDamage;
+  }
+
+  /**
+   * @param attackDamage Set base attack damage of the attack
+   */
+  public void setBaseDamage(double attackDamage) {
+    this.baseDamage = attackDamage;
+  }
 }
 
 

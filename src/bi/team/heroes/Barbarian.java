@@ -36,6 +36,8 @@ import bi.team.heroes.attacks.barbarian.Vengeance;
 
 
 public class Barbarian extends Hero implements ActionListener {
+  private final static String name_male = "Brynjar";
+  private final static String name_female = "Alani";
   private Load load;
   private TitledBorder titledBorder_vitality;
   private TitledBorder titledBorder_rage;
@@ -90,8 +92,8 @@ public class Barbarian extends Hero implements ActionListener {
    * 
    * @param game The main game
    */
-  public Barbarian(Game game) {
-    super(game);
+  public Barbarian(Game game, int sex) {
+    super(game, (1 == sex) ? name_male : name_female);
 
     load = new Load(game, this);
     AttacksArrayList = new ArrayList<Attack>();

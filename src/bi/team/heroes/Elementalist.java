@@ -12,13 +12,8 @@ import bi.team.heroes.attacks.elementalist.Rejuvenate;
 import bi.team.heroes.attacks.elementalist.Whack;
 
 public class Elementalist extends Hero {
-	
-	// constructor
-	public Elementalist() {
-		
-	}
-	
-	public Elementalist(Game game) {
+
+	public Elementalist(Game game, int sex) {
 		super(game);
 		
 		// instantiate variables
