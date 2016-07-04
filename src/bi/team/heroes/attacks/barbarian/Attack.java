@@ -15,7 +15,7 @@ import bi.team.graphics.ButtonCooldowns;
 import bi.team.heroes.Barbarian;
 
 public abstract class Attack {
-  private String name;
+  protected String name;
   protected JButton button;
   protected int rageNeeded;
   protected int maxWarmup;

@@ -26,6 +26,7 @@ public abstract class Hero {
   protected JPanel panel_stances;
   protected int enhancementPoints = 0;
   protected String name;
+  protected double dmgTakenPreviously;
 
   /**
    * Class constructor
@@ -270,5 +271,19 @@ public abstract class Hero {
    */
   public static int getMaxLevel() {
     return maxLevel;
+  }
+
+  /**
+   * @return the damage that was taken last turn
+   */
+  public double getDmgTakenPreviously() {
+    return dmgTakenPreviously;
+  }
+
+  /**
+   * @param dmgTakenPreviously Set the damage that was taken last turn
+   */
+  public void setDmgTakenPreviously(double dmgTakenPreviously) {
+    this.dmgTakenPreviously = dmgTakenPreviously;
   }
 }

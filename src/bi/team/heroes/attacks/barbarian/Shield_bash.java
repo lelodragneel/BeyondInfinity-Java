@@ -15,6 +15,7 @@ public class Shield_bash extends Attack {
   public Shield_bash(Barbarian hero, Game game) {
     super(hero, game);
 
+    name = "Shield Bash";
     baseDamage = 0;
     maxWarmup = 2;
     curWarmup = 2;
@@ -23,14 +24,16 @@ public class Shield_bash extends Attack {
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
         + BeyondInfinity.class.getResource("/images/attacks/shield_bash.png") + "\">" + "</th>"
         + "<td height=\"26\" align=\"center\"><font size=\"4\">Shield Bash</font></th>" + "</tr>"
-        + "<tr>" + "<td><p align=\"center\">4x <img src=\""
+        + "<tr>" + "<td><p align=\"center\">" + rageNeeded + "x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>"));
     repaintTooltip();
   }
 
   @Override
-  public void startAttack() {}
+  public void startAttack() {
+
+  }
 
   @Override
   public void repaintTooltip() {}

@@ -15,6 +15,7 @@ public class Incapacitate extends Attack {
   public Incapacitate(Barbarian hero, Game game) {
     super(hero, game);
 
+    name = "Incapacitate";
     baseDamage = 0;
     maxWarmup = 2;
     curWarmup = 2;
@@ -23,7 +24,7 @@ public class Incapacitate extends Attack {
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
         + BeyondInfinity.class.getResource("/images/attacks/incapacitate.png") + "\">" + "</th>"
         + "<td height=\"26\" align=\"center\"><font size=\"4\">Incapacitate</font></th>" + "</tr>"
-        + "<tr>" + "<td><p align=\"center\">3x <img src=\""
+        + "<tr>" + "<td><p align=\"center\">" + rageNeeded + "x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>"));
     repaintTooltip();

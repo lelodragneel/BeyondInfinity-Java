@@ -36,6 +36,7 @@ public class Fuehirch extends Enemy {
   public void attackPlayer() throws BadLocationException, IOException {
 
     /* Hero takes damage */
+    game.getHero().setDmgTakenPreviously(damage);
     game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
 
     /* Display events */

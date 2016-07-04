@@ -650,7 +650,9 @@ public class Barbarian extends Hero implements ActionListener {
 
       game.getTextPane().setText(""); // Clear event area
       game.setEnemySelected(enemy); // Set enemy to fight
+      dmgTakenPreviously = 0;
       game.repaintUpgradeButtons();
+
       Game.setTurn(1); // Reset turns
 
       /* Display events */

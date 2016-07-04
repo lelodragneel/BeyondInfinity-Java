@@ -20,6 +20,7 @@ public class Strike extends Attack {
   public Strike(Barbarian hero, Game game) {
     super(hero, game);
 
+    name = "Strike";
     baseDamage = 0;
     maxWarmup = 0;
     curWarmup = 0;
@@ -27,8 +28,8 @@ public class Strike extends Attack {
     button.setText("<html>" + "<table width=\"162\">" + "<tr>"
         + "<td width=\"48\" rowspan=\"2\" align=\"left\">" + "<img src=\""
         + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\">" + "</th>"
-        + "<td height=\"26\" align=\"center\"><font size=\"4\">Strike</font></th>" + "</tr>"
-        + "<tr>" + "<td><p align=\"center\">0x <img src=\""
+        + "<td height=\"26\" align=\"center\"><font size=\"4\">" + name + "</font></th>" + "</tr>"
+        + "<tr>" + "<td><p align=\"center\">" + rageNeeded + "x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>");
     repaintTooltip();
@@ -39,7 +40,8 @@ public class Strike extends Attack {
     hero.generateRage(rageToGenerate); // Generate rage
 
     /* Deal damage to enemy */
-    double dmg = hero.getStrength() * hero.getDmgMultiplier() + 200;
+    double dmg = hero.getStrength() * hero.getDmgMultiplier();
+    dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
     /* Display events */
@@ -76,10 +78,10 @@ public class Strike extends Attack {
 
   @Override
   public void repaintTooltip() {
-    button.setToolTipText("<html>" + styles + "<body> <table style=\"width:100%\"><tr>"
+    button.setToolTipText("<html>" + styles + "<body> <table><tr>"
         + "<td valign=\"top\"><img src=\""
         + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\"></td>"
-        + "<td><span id=\"title\">Strike</span><br><br>"
+        + "<td><span id=\"title\">" + name + "</span><br><br>"
         + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
         + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
         + "<span id=\"s02\"> Rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "

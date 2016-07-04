@@ -99,7 +99,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Configure tooltips delays */
     ToolTipManager.sharedInstance().setInitialDelay(500); // Show tooltips after x seconds
-    ToolTipManager.sharedInstance().setDismissDelay(20000); // Dismiss tooltips in x seconds
+    ToolTipManager.sharedInstance().setDismissDelay(30000); // Dismiss tooltips in x seconds
 
     /* Build frame */
     this.setResizable(false);
