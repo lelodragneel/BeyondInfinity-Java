@@ -23,7 +23,6 @@ public class Mantisray extends Enemy {
 
     name = "Mantisray";
     enemyNumber = 6;
-    damage = 10;
     curHealth = getMaxHealth();
     enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/mantisray.png"));
     enemyImage_small =
@@ -34,7 +33,9 @@ public class Mantisray extends Enemy {
   public void attackPlayer() {
 
     /* Hero takes damage */
-    game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
+    double dmg = getDamage() - (getDamage() * (game.getHero().getToughness() / 100));
+    dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
+    game.getHero().setCurHealth(game.getHero().getCurHealth() - dmg);
 
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
@@ -43,7 +44,7 @@ public class Mantisray extends Enemy {
   @Override
   public void prepareFight() {
     
-    /* Prepare enemy health bar */
+    curHealth = getMaxHealth(); // Reset health
     game.repaintHealthBars();
   }
 }

@@ -25,7 +25,6 @@ public class Fuehirch extends Enemy {
 
     name = "Fuehirch";
     enemyNumber = 1;
-    damage = 10;
     curHealth = getMaxHealth();
     enemyImage = new ImageIcon(getClass().getResource("/images/enemies/meadowlands/fuehirch.png"));
     enemyImage_small =
@@ -36,16 +35,18 @@ public class Fuehirch extends Enemy {
   public void attackPlayer() throws BadLocationException, IOException {
 
     /* Hero takes damage */
-    game.getHero().setDmgTakenPreviously(damage);
-    game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
+    double dmg = getDamage() - (getDamage() * (game.getHero().getToughness() / 100));
+    dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
+    game.getHero().setDmgTakenPreviously(dmg);
+    game.getHero().setCurHealth(game.getHero().getCurHealth() - dmg);
 
     /* Display events */
     game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
     game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
         "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
             + getClass().getResource("/images/impact_toPlayer.png")
-            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">"
-            + damage + "</span></td>" + "<td><img style=\"width:42px; height:42px;\" src=\""
+            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">" + dmg
+            + "</span></td>" + "<td><img style=\"width:42px; height:42px;\" src=\""
             + getClass().getResource("/images/basic_damage.png") + "\"></td></tr></table></center>",
         0, 0, null);
 
@@ -56,7 +57,7 @@ public class Fuehirch extends Enemy {
   @Override
   public void prepareFight() {
 
-    /* Prepare enemy health bar */
+    curHealth = getMaxHealth(); // Reset health
     game.repaintHealthBars();
   }
 }

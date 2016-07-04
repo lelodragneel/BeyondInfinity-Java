@@ -230,6 +230,11 @@ public abstract class Hero {
   public abstract double getStrength();
 
   /**
+   * @return the value of toughness
+   */
+  public abstract double getToughness();
+
+  /**
    * @return the number of enhancements
    */
   public int getEnhancementPoints() {

@@ -24,8 +24,6 @@ public abstract class Enemy extends JButton implements MouseListener {
   protected ImageIcon enemyImage_small;
   protected ImageIcon enemyImage;
   protected double curHealth;
-  protected double maxHealth;
-  protected double damage;
   protected double protection;
   protected int experienceDrop;
   protected double criticalChance;

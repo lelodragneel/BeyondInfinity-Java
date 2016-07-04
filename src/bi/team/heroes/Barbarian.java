@@ -891,9 +891,7 @@ public class Barbarian extends Hero implements ActionListener {
         + (Math.pow(Math.E, (points_riposteChance * 0.3)));
   }
 
-  /**
-   * @return the toughness
-   */
+  @Override
   public double getToughness() {
     return (Math.pow(Math.E, (level * 0.03)) * 2.8) + (points_toughness * 0.25);
   }
