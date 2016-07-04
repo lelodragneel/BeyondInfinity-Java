@@ -9,7 +9,6 @@ import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
 
 import bi.team.Game;
 import bi.team.graphics.ButtonCooldowns;

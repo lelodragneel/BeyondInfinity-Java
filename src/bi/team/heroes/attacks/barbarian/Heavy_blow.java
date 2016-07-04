@@ -2,7 +2,6 @@ package bi.team.heroes.attacks.barbarian;
 
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;

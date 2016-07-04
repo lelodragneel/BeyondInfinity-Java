@@ -652,6 +652,16 @@ public class Barbarian extends Hero implements ActionListener {
       game.setEnemySelected(enemy); // Set enemy to fight
       game.repaintUpgradeButtons();
       Game.setTurn(1); // Reset turns
+
+      /* Display events */
+      try {
+        game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
+        game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
+            "<center><table><tr><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">Now facing:  "
+                + game.getEnemySelected().getName() + "</span></td></tr></table></center>",
+            0, 0, null);
+      } catch (BadLocationException | IOException e) {
+      }
     }
   }
 

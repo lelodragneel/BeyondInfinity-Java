@@ -2,7 +2,6 @@ package bi.team.heroes.attacks.barbarian;
 
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
@@ -40,7 +39,7 @@ public class Strike extends Attack {
     hero.generateRage(rageToGenerate); // Generate rage
 
     /* Deal damage to enemy */
-    double dmg = hero.getStrength() * hero.getDmgMultiplier();
+    double dmg = hero.getStrength() * hero.getDmgMultiplier() + 200;
     game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
     /* Display events */

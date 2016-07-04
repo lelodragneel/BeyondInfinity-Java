@@ -6,7 +6,6 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -22,11 +21,7 @@ import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultCaret;
 import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
-import javax.swing.text.StyledDocument;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 
@@ -250,6 +245,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create the loading bar */
     bar_loading = new JProgressBar();
+    bar_loading.setDoubleBuffered(true);
     bar_loading.setBounds(0, 0, 1064, 10);
     bar_loading.setBorder(null);
     bar_loading.setValue(100);
@@ -318,7 +314,7 @@ public class Game extends JFrame implements ActionListener {
     scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     scroll.setAutoscrolls(true);
-    scroll.setBounds(352, 11, 339, 300);
+    scroll.setBounds(352, 0, 339, 322);
     scroll.setOpaque(false);
     scroll.setBorder(null);
     scroll.getViewport().setOpaque(false);

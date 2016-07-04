@@ -2,7 +2,6 @@ package bi.team.heroes.attacks.barbarian;
 
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
@@ -65,7 +64,7 @@ public class Rage_incite extends Attack {
     game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
         "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
             + getClass().getResource("/images/attacks/rage_incite.png")
-            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> used</span></td></tr></table></center>",
+            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> inactive</span></td></tr></table></center>",
         0, 0, null);
   }
 

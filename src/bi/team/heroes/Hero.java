@@ -1,12 +1,14 @@
 package bi.team.heroes;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -47,6 +49,19 @@ public abstract class Hero {
     if ((d >= xpTillLevelup) && (level != maxLevel)) { // Level up
       level++;
       curExperience = (int) Math.round(d - xpTillLevelup);
+
+      /* Display events */
+      try {
+        game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
+        game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
+            "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
+                + getClass().getResource("/images/levelup.png")
+                + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> You reached level "
+                + level + "!</span></td>" + "<td><img style=\"width:42px; height:42px;\" src=\""
+                + getClass().getResource("/images/levelup.png") + "\"></td></tr></table></center>",
+            0, 0, null);
+      } catch (BadLocationException | IOException e) {
+      }
     } else { // Add experience
       curExperience += d;
     }
@@ -55,6 +70,7 @@ public abstract class Hero {
     game.repaintHealthBars();
     repaintTooltips();
     repaintStats();
+
   }
 
   /**
