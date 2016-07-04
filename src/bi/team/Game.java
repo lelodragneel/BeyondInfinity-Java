@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -21,9 +22,13 @@ import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
+import javax.swing.text.html.HTMLDocument;
+import javax.swing.text.html.HTMLEditorKit;
 
 import bi.team.enemies.Enemy;
 import bi.team.enemies.meadowlands.Alania_defender_of_the_meadow;
@@ -45,9 +50,10 @@ import bi.team.inventory.InventoryFrame;
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
   private static int turn = 1;
-  private static JTextPane textArea;
+  private static JTextPane textPane;
   private SimpleAttributeSet aSet;
-  private StyledDocument doc;
+  private HTMLDocument doc;
+  private HTMLEditorKit editorKit;
   private JPanel panel_player;
   private JPanel panel_top;
   private JPanel panel_stats;
@@ -296,26 +302,19 @@ public class Game extends JFrame implements ActionListener {
     getContentPane().add(panel_areaField);
 
     /* Create the area which displays event changes */
-    textArea = new JTextPane();
-    textArea.setEditable(false);
-    textArea.setOpaque(false);
-    textArea.setBorder(null);
-    textArea.setFont(new Font("Comic Sans MS", 0, 14));
-    textArea.setAutoscrolls(true);
-    textArea.setBounds(297, 20, 450, 293);
-
-    /* Create attribute set for text pane */
-    aSet = new SimpleAttributeSet();
-    StyleConstants.setAlignment(aSet, StyleConstants.ALIGN_CENTER);
-    StyleConstants.setForeground(aSet, Color.DARK_GRAY);
-    StyleConstants.setFontFamily(aSet, "Comic Sans MS");
-    StyleConstants.setFontSize(aSet, 16);
-
-    doc = textArea.getStyledDocument();
-    doc.setParagraphAttributes(0, doc.getLength(), aSet, false);
+    textPane = new JTextPane();
+    textPane.setEditable(false);
+    textPane.setOpaque(false);
+    textPane.setBorder(null);
+    textPane.setFont(new Font("Comic Sans MS", 0, 14));
+    textPane.setAutoscrolls(true);
+    textPane.setBounds(297, 20, 450, 293);
+    textPane.setContentType("text/html");
+    doc = (HTMLDocument) textPane.getDocument();
+    editorKit = (HTMLEditorKit) textPane.getEditorKit();
 
     /* Create scrolling for text area */
-    JScrollPane scroll = new JScrollPane(textArea);
+    JScrollPane scroll = new JScrollPane(textPane);
     scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     scroll.setAutoscrolls(true);
@@ -697,8 +696,8 @@ public class Game extends JFrame implements ActionListener {
   /**
    * @return the textArea
    */
-  public JTextPane getTextArea() {
-    return textArea;
+  public JTextPane getTextPane() {
+    return textPane;
   }
 
   /**
@@ -751,10 +750,17 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
-   * @return the StyledDocument
+   * @return the HTMLDocument
    */
-  public StyledDocument getDoc() {
+  public HTMLDocument getDoc() {
     return doc;
+  }
+
+  /**
+   * @return the HTMLEditorKit
+   */
+  public HTMLEditorKit getEditorKit() {
+    return editorKit;
   }
 
   /**

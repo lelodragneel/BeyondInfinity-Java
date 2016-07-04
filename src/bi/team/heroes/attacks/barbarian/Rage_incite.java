@@ -1,5 +1,7 @@
 package bi.team.heroes.attacks.barbarian;
 
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 import javax.swing.text.BadLocationException;
 
@@ -35,16 +37,36 @@ public class Rage_incite extends Attack {
   }
 
   @Override
-  public void startAttack() throws BadLocationException {
+  public void startAttack() throws BadLocationException, IOException {
     hero.consumeRage(rageNeeded); // Consume rage
     active = true;
     hero.setDmgMultiplier(hero.getDmgMultiplier() + attackMultiplier); // Increase dmg
 
     /* Display events */
-    game.getTextArea()
-        .insertIcon(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")));
-    game.getDoc().insertString(game.getDoc().getLength(), "activated", game.getaSet());
-    game.getDoc().insertString(game.getDoc().getLength(), "\n", game.getaSet());
+    game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
+    game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
+        "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
+            + getClass().getResource("/images/attacks/rage_incite.png")
+            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> active</span></td></tr></table></center>",
+        0, 0, null);
+  }
+
+  /**
+   * Deactivate the damage multiplier of Rage Incite
+   * @throws IOException 
+   * @throws BadLocationException 
+   */
+  public void deactivate() throws BadLocationException, IOException {
+    hero.setDmgMultiplier(hero.getDmgMultiplier() - attackMultiplier); // Remove multiplier
+    active = false;
+    
+    /* Display events */
+    game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
+    game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
+        "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
+            + getClass().getResource("/images/attacks/rage_incite.png")
+            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> used</span></td></tr></table></center>",
+        0, 0, null);
   }
 
   @Override
@@ -69,12 +91,5 @@ public class Rage_incite extends Attack {
    */
   public boolean isActive() {
     return active;
-  }
-
-  /**
-   * @param active Set the boolean of whether or not Rage Incite is active
-   */
-  public void setActive(boolean active) {
-    this.active = active;
   }
 }

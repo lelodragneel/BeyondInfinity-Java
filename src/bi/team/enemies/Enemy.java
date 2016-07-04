@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -54,8 +55,9 @@ public abstract class Enemy extends JButton implements MouseListener {
   /**
    * Enemy attacks player
    * @throws BadLocationException 
+   * @throws IOException 
    */
-  public abstract void attackPlayer() throws BadLocationException;
+  public abstract void attackPlayer() throws BadLocationException, IOException;
 
   /**
    * Prepare the fight

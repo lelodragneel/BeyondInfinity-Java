@@ -2,6 +2,7 @@ package bi.team.graphics;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.Timer;
 import javax.swing.text.BadLocationException;
@@ -73,7 +74,7 @@ public class Load implements ActionListener {
       } else { // If it's enemy's turn
         try { // Enemy attacks the player
           game.getEnemySelected().attackPlayer();
-        } catch (BadLocationException e1) {
+        } catch (BadLocationException | IOException e1) {
         }
         if (!hero.isAlive()) { // Check if hero is dead
           game.getEnemySelected().enemyLevelup();

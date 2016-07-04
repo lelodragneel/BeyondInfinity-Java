@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.text.BadLocationException;
@@ -73,8 +74,9 @@ public abstract class Attack {
    * Execute player attack
    * 
    * @throws BadLocationException
+   * @throws IOException 
    */
-  public abstract void startAttack() throws BadLocationException;
+  public abstract void startAttack() throws BadLocationException, IOException;
 
   /**
    * Repaints the tooltip with updated values

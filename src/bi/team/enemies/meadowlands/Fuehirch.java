@@ -1,6 +1,7 @@
 package bi.team.enemies.meadowlands;
 
 import java.awt.Color;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
@@ -32,18 +33,20 @@ public class Fuehirch extends Enemy {
   }
 
   @Override
-  public void attackPlayer() throws BadLocationException {
+  public void attackPlayer() throws BadLocationException, IOException {
 
     /* Hero takes damage */
     game.getHero().setCurHealth(game.getHero().getCurHealth() - damage);
 
     /* Display events */
-    game.getTextArea().setCaretPosition(game.getTextArea().getDocument().getLength());
-    game.getTextArea().insertIcon(new ImageIcon(getClass().getResource("/images/impact_toPlayer.png")));
-    game.getDoc().insertString(game.getDoc().getLength(), " " + damage + " ", game.getaSet());
-    game.getTextArea()
-        .insertIcon(new ImageIcon(getClass().getResource("/images/basic_damage.png")));
-    game.getDoc().insertString(game.getDoc().getLength(), "\n", game.getaSet());
+    game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
+    game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
+        "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
+            + getClass().getResource("/images/impact_toPlayer.png")
+            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">"
+            + damage + "</span></td>" + "<td><img style=\"width:42px; height:42px;\" src=\""
+            + getClass().getResource("/images/basic_damage.png") + "\"></td></tr></table></center>",
+        0, 0, null);
 
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars

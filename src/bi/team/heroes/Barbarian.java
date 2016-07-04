@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -513,7 +514,7 @@ public class Barbarian extends Hero implements ActionListener {
   public void attackEnemy(Attack attack) {
     try {
       attack.startAttack();
-    } catch (BadLocationException e) {
+    } catch (BadLocationException | IOException e) {
     }
 
     game.repaintHealthBars();
@@ -612,7 +613,7 @@ public class Barbarian extends Hero implements ActionListener {
       game.getBtnSurrender().setEnabled(false);
       game.repaintUpgradeButtons();
       Game.setTurn(1); // Reset turns
-      game.getTextArea().setText(""); // Clear event area
+      game.getTextPane().setText(""); // Clear event area
       game.repaintHealthBars(); // Reset health bars
       game.repaint();
     }
@@ -647,7 +648,7 @@ public class Barbarian extends Hero implements ActionListener {
       game.getLblEnemyName().setText(enemy.getName());
       game.getPanel_enemy().setVisible(true);
 
-      game.getTextArea().setText(""); // Clear event area
+      game.getTextPane().setText(""); // Clear event area
       game.setEnemySelected(enemy); // Set enemy to fight
       game.repaintUpgradeButtons();
       Game.setTurn(1); // Reset turns
