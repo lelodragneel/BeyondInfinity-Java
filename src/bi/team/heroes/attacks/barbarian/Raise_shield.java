@@ -5,6 +5,11 @@ import bi.team.Game;
 import bi.team.heroes.Barbarian;
 
 public class Raise_shield extends Attack {
+  private boolean active = false;
+  private int turnActivated;
+  private int turnDuration;
+  private double blockPercentage;
+  private double reflectPercentage;
 
   /**
    * Class constructor
@@ -31,8 +36,26 @@ public class Raise_shield extends Attack {
   }
 
   @Override
-  public void startAttack() {}
-  
+  public void startAttack() {
+
+    turnActivated = Game.getTurnNum();
+
+  }
+
   @Override
   public void repaintTooltip() {}
+
+  /**
+   * @return the turn which Raise Shield was activated
+   */
+  public int getTurnActivated() {
+    return turnActivated;
+  }
+
+  /**
+   * @return the number of turns Raise Shield lasts for
+   */
+  public int getTurnDuration() {
+    return turnDuration;
+  }
 }

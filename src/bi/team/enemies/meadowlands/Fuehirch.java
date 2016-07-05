@@ -1,12 +1,10 @@
 package bi.team.enemies.meadowlands;
 
 import java.awt.Color;
-import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
-import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -32,24 +30,24 @@ public class Fuehirch extends Enemy {
   }
 
   @Override
-  public void attackPlayer() throws BadLocationException, IOException {
+  public void attackPlayer() {
 
     /* Hero takes damage */
-    double dmg = getDamage() - (getDamage() * (game.getHero().getToughness() / 100));
+    double dmg = getDamage();
+    game.getHero().takeDamage(dmg,
+        new ImageIcon(getClass().getResource("/images/basic_damage.png")));
+  }
+
+  @Override
+  public void takeDamage(double damage, ImageIcon attackIcon) {
+
+    /* Enemy takes damage */
+    double dmg = damage;
     dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
-    game.getHero().setDmgTakenPreviously(dmg);
-    game.getHero().setCurHealth(game.getHero().getCurHealth() - dmg);
+    curHealth = (curHealth - dmg);
 
-    /* Display events */
-    game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
-    game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
-        "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
-            + getClass().getResource("/images/impact_toPlayer.png")
-            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">" + dmg
-            + "</span></td>" + "<td><img style=\"width:42px; height:42px;\" src=\""
-            + getClass().getResource("/images/basic_damage.png") + "\"></td></tr></table></center>",
-        0, 0, null);
-
+    game.paintEvent(attackIcon, dmg + "",
+        new ImageIcon(getClass().getResource("/images/impact_toEnemy.png"))); // Paint event
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }
@@ -60,4 +58,5 @@ public class Fuehirch extends Enemy {
     curHealth = getMaxHealth(); // Reset health
     game.repaintHealthBars();
   }
+
 }

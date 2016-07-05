@@ -64,7 +64,10 @@ public class Load implements ActionListener {
     if (i > 100) { // Conditional check for who's turn
       timer.stop(); // Stop the loop
       if (Game.getTurn()) { // If it's player's turn
-        hero.attackEnemy(attack); // Player attacks enemy
+        try { // Player attacks enemy
+          attack.startAttack();
+        } catch (BadLocationException | IOException e1) {
+        }
         if (!game.getEnemySelected().isAlive()) { // Check if enemy is dead
           hero.killEnemy(game.getEnemySelected());
         } else {

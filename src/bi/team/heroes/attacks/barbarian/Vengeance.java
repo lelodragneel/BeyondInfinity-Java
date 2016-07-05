@@ -2,6 +2,7 @@ package bi.team.heroes.attacks.barbarian;
 
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
@@ -42,19 +43,9 @@ public class Vengeance extends Attack {
     /* Deal damage to enemy */
     double dmg = (baseDamage
         + (hero.getDmgTakenPreviously() * (vengeancePercentage / 100)) * hero.getDmgMultiplier());
-    dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
-    game.getEnemySelected().setCurHealth(game.getEnemySelected().getCurHealth() - dmg);
 
-    /* Display events */
-    game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
-    game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
-        "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
-            + getClass().getResource("/images/attacks/vengeance.png")
-            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">" + dmg
-            + "</span></td>" + "<td><img style=\"width:42px; height:42px;\" src=\""
-            + getClass().getResource("/images/impact_toEnemy.png")
-            + "\"></td></tr></table></center>",
-        0, 0, null);
+    game.getEnemySelected().takeDamage(dmg,
+        new ImageIcon(getClass().getResource("/images/attacks/vengeance.png")));
 
     /* Rage incite set active/inactive */
     Rage_incite rageIncite = (Rage_incite) hero.getAttacksArrayList().get(2);

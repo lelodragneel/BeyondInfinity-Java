@@ -27,6 +27,7 @@ public abstract class Hero {
   protected int enhancementPoints = 0;
   protected String name;
   protected double dmgTakenPreviously;
+  protected int turnsStunned;
 
   /**
    * Class constructor
@@ -51,18 +52,9 @@ public abstract class Hero {
       level++;
       curExperience = (int) Math.round(d - xpTillLevelup);
 
-      /* Display events */
-      try {
-        game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
-        game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
-            "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
-                + getClass().getResource("/images/levelup.png")
-                + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> You reached level "
-                + level + "!</span></td>" + "<td><img style=\"width:42px; height:42px;\" src=\""
-                + getClass().getResource("/images/levelup.png") + "\"></td></tr></table></center>",
-            0, 0, null);
-      } catch (BadLocationException | IOException e) {
-      }
+      game.paintEvent(new ImageIcon(getClass().getResource("/images/levelup.png")),
+          "You reached level " + level,
+          new ImageIcon(getClass().getResource("/images/levelup.png"))); // Paint level up event
     } else { // Add experience
       curExperience += d;
     }
@@ -166,11 +158,12 @@ public abstract class Hero {
   public abstract void repaintStats();
 
   /**
-   * Player attacks the enemy
+   * Hero takes damage from enemy
    * 
-   * @param attack The attack the player used
+   * @param damage The number of damage to deal to hero's health
+   * @param attackIcon The icon of the attack used
    */
-  public abstract void attackEnemy(Attack attack);
+  public abstract void takeDamage(double damage, ImageIcon attackIcon);
 
   /**
    * @return the attacks arraylist
@@ -290,5 +283,19 @@ public abstract class Hero {
    */
   public void setDmgTakenPreviously(double dmgTakenPreviously) {
     this.dmgTakenPreviously = dmgTakenPreviously;
+  }
+
+  /**
+   * @return the number of turns the hero is stunned for
+   */
+  public int getTurnsStunned() {
+    return turnsStunned;
+  }
+
+  /**
+   * @param turnsStunned Set the number of turns to be stunned for
+   */
+  public void setTurnsStunned(int turnsStunned) {
+    this.turnsStunned = turnsStunned;
   }
 }

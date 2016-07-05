@@ -481,6 +481,23 @@ public class Barbarian extends Hero implements ActionListener {
   }
 
   @Override
+  public void takeDamage(double damage, ImageIcon attackIcon) {
+
+    /* Hero takes damage */
+    double toughness = getToughness() / 100;
+    double dmg = damage - (damage * toughness);
+    dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
+
+    setDmgTakenPreviously(dmg);
+    setCurHealth(getCurHealth() - dmg);
+
+    game.paintEvent(new ImageIcon(getClass().getResource("/images/impact_toPlayer.png")), dmg + "",
+        attackIcon); // Paint event
+    game.repaintHealthBars();
+    game.repaint(); // Repaint health bars
+  }
+
+  @Override
   public void repaintStats() {
 
     /* Repaint vitality */
@@ -508,17 +525,6 @@ public class Barbarian extends Hero implements ActionListener {
     /* Misc */
     game.getLblEnhancementPoints()
         .setText("<html>Enhancement Points: <b>" + enhancementPoints + "</b></html>");
-  }
-
-  @Override
-  public void attackEnemy(Attack attack) {
-    try {
-      attack.startAttack();
-    } catch (BadLocationException | IOException e) {
-    }
-
-    game.repaintHealthBars();
-    game.repaint(); // Repaint health bars
   }
 
   @Override
@@ -654,16 +660,8 @@ public class Barbarian extends Hero implements ActionListener {
       game.repaintUpgradeButtons();
 
       Game.setTurn(1); // Reset turns
-
-      /* Display events */
-      try {
-        game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
-        game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
-            "<center><table><tr><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">Now facing:  "
-                + game.getEnemySelected().getName() + "</span></td></tr></table></center>",
-            0, 0, null);
-      } catch (BadLocationException | IOException e) {
-      }
+      game.paintEvent(null, "Now facing:  " + game.getEnemySelected().getName(), null); // Display
+                                                                                        // events
     }
   }
 

@@ -34,14 +34,25 @@ public class Shar_of_the_nacht extends Enemy {
   public void attackPlayer() {
 
     /* Hero takes damage */
-    double dmg = getDamage() - (getDamage() * (game.getHero().getToughness() / 100));
-    dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
-    game.getHero().setCurHealth(game.getHero().getCurHealth() - dmg);
+    double dmg = getDamage();
+    game.getHero().takeDamage(dmg,
+        new ImageIcon(getClass().getResource("/images/basic_damage.png")));
+  }
 
+  @Override
+  public void takeDamage(double damage, ImageIcon attackIcon) {
+
+    /* Enemy takes damage */
+    double dmg = damage;
+    dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
+    curHealth = (curHealth - dmg);
+
+    game.paintEvent(attackIcon, dmg + "",
+        new ImageIcon(getClass().getResource("/images/impact_toEnemy.png"))); // Paint event
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }
-
+  
   @Override
   public void prepareFight() {
 

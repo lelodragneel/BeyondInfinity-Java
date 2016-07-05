@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -21,6 +22,7 @@ import javax.swing.ToolTipManager;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
@@ -290,7 +292,83 @@ public class Game extends JFrame implements ActionListener {
     bar_enemyHealth.setForeground(new Color(68, 108, 179));
     panel_enemy.add(bar_enemyHealth);
 
-    /* Create panel displaying player images */
+    JPanel panel_playerBuffs = new JPanel();
+    panel_playerBuffs.setBounds(249, 165, 71, 227);
+    getContentPane().add(panel_playerBuffs);
+    panel_playerBuffs.setOpaque(false);
+    panel_playerBuffs.setLayout(new GridLayout(6, 2, 0, 0));
+
+    JLabel lblNewLabel = new JLabel("");
+    lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+    lblNewLabel.setBorder(new LineBorder(new Color(0, 0, 0)));
+    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_playerBuffs.add(lblNewLabel);
+
+    JLabel label = new JLabel("");
+    label.setHorizontalTextPosition(SwingConstants.CENTER);
+    label.setHorizontalAlignment(SwingConstants.CENTER);
+    label.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label);
+
+    JLabel label_1 = new JLabel("");
+    label_1.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_1.setHorizontalAlignment(SwingConstants.CENTER);
+    label_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_1);
+
+    JLabel label_2 = new JLabel("");
+    label_2.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_2.setHorizontalAlignment(SwingConstants.CENTER);
+    label_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_2);
+
+    JLabel label_3 = new JLabel("");
+    label_3.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_3.setHorizontalAlignment(SwingConstants.CENTER);
+    label_3.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_3);
+
+    JLabel label_4 = new JLabel("");
+    label_4.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_4.setHorizontalAlignment(SwingConstants.CENTER);
+    label_4.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_4);
+
+    JLabel label_5 = new JLabel("");
+    label_5.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_5.setHorizontalAlignment(SwingConstants.CENTER);
+    label_5.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_5);
+
+    JLabel label_6 = new JLabel("");
+    label_6.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_6.setHorizontalAlignment(SwingConstants.CENTER);
+    label_6.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_6);
+
+    JLabel label_7 = new JLabel("");
+    label_7.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_7.setHorizontalAlignment(SwingConstants.CENTER);
+    label_7.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_7);
+
+    JLabel label_8 = new JLabel("");
+    label_8.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_8.setHorizontalAlignment(SwingConstants.CENTER);
+    label_8.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_8);
+
+    JLabel label_9 = new JLabel("");
+    label_9.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_9.setHorizontalAlignment(SwingConstants.CENTER);
+    label_9.setBorder(new LineBorder(new Color(0, 0, 0)));
+    panel_playerBuffs.add(label_9);
+
+    JLabel label_10 = new JLabel("");
+    panel_playerBuffs.add(label_10);
+    label_10.setHorizontalTextPosition(SwingConstants.CENTER);
+    label_10.setHorizontalAlignment(SwingConstants.CENTER);
+    label_10.setBorder(new LineBorder(new Color(0, 0, 0)));
     panel_areaField = new JPanel();
     panel_areaField.setBounds(10, 70, 1044, 333);
     panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -314,7 +392,7 @@ public class Game extends JFrame implements ActionListener {
     scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     scroll.setAutoscrolls(true);
-    scroll.setBounds(352, 0, 339, 322);
+    scroll.setBounds(355, 0, 333, 322);
     scroll.setOpaque(false);
     scroll.setBorder(null);
     scroll.getViewport().setOpaque(false);
@@ -337,7 +415,7 @@ public class Game extends JFrame implements ActionListener {
     lblPlayerImage = new JLabel("");
     lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
     lblPlayerImage.setVerticalAlignment(SwingConstants.BOTTOM);
-    lblPlayerImage.setBounds(10, 100, 260, 222);
+    lblPlayerImage.setBounds(39, 100, 200, 222);
     panel_areaField.add(lblPlayerImage);
 
     /* Create the enemy's name */
@@ -520,6 +598,34 @@ public class Game extends JFrame implements ActionListener {
       hero.hideUpgradeButtons();
     }
     repaint();
+  }
+
+  /**
+   * Paint event in the middle of the screen
+   * 
+   */
+  public void paintEvent(ImageIcon leftImage, String msg, ImageIcon rightImage) {
+    String left = "";
+    String right = "";
+
+    if (leftImage != null) {
+      left = "<img style=\"width:42px; height:42px;\" src=\"" + leftImage + "\">";
+    }
+    if (rightImage != null) {
+      right = "<img style=\"width:42px; height:42px;\" src=\"" + rightImage + "\">";
+    }
+
+    String html = ("<center><table><tr><td>" + left
+        + "</td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\">" + msg
+        + "</span></td><td>" + right + "</td></tr></table></center>");
+
+    /* Display events */
+    textPane.setCaretPosition(textPane.getDocument().getLength());
+    try {
+      editorKit.insertHTML(doc, doc.getLength(), html, 0, 0, null);
+    } catch (BadLocationException | IOException e) {
+      e.printStackTrace();
+    }
   }
 
   /**

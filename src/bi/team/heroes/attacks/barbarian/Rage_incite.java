@@ -2,6 +2,7 @@ package bi.team.heroes.attacks.barbarian;
 
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
@@ -42,13 +43,8 @@ public class Rage_incite extends Attack {
     active = true;
     hero.setDmgMultiplier(hero.getDmgMultiplier() + attackMultiplier); // Increase dmg
 
-    /* Display events */
-    game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
-    game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
-        "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
-            + getClass().getResource("/images/attacks/rage_incite.png")
-            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> active</span></td></tr></table></center>",
-        0, 0, null);
+    game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")),
+        " active", null);
   }
 
   /**
@@ -61,28 +57,23 @@ public class Rage_incite extends Attack {
     hero.setDmgMultiplier(hero.getDmgMultiplier() - attackMultiplier); // Remove multiplier
     active = false;
 
-    /* Display events */
-    game.getTextPane().setCaretPosition(game.getTextPane().getDocument().getLength());
-    game.getEditorKit().insertHTML(game.getDoc(), game.getDoc().getLength(),
-        "<center><table><tr><td><img style=\"width:42px; height:42px;\" src=\""
-            + getClass().getResource("/images/attacks/rage_incite.png")
-            + "\"></td><td><span style=\"vertical-align:middle; font:12px Comic Sans MS;\"> inactive</span></td></tr></table></center>",
-        0, 0, null);
+    game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")),
+        " inactive", null);
   }
 
   @Override
   public void repaintTooltip() {
-    button.setToolTipText("<html>" + styles + "<body> <table><tr>"
-        + "<td valign=\"top\"><img src=\""
-        + BeyondInfinity.class.getResource("/images/attacks/rage_incite.png") + "\"></td>"
-        + "<td><span id=\"title\">" + name + "</span><br><br>"
-        + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
-        + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
-        + "<span id=\"s02\"> Rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
-        + maxWarmup + "</b>" + "<span id=\"s02\"> Turns</span><br><br>" + "<p id=\"desc\">"
-        + hero.getName() + " uses " + game.getLang1()
-        + " <span id=\"s02\">Rage</span> to double the damage of " + game.getLang1()
-        + " next attack.</p><br>" + "</td></tr></table>" + "</body><html>");
+    button
+        .setToolTipText("<html>" + styles + "<body> <table><tr>" + "<td valign=\"top\"><img src=\""
+            + BeyondInfinity.class.getResource("/images/attacks/rage_incite.png") + "\"></td>"
+            + "<td><span id=\"title\">" + name + "</span><br><br>"
+            + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
+            + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
+            + "<span id=\"s02\"> Rage</span><br>"
+            + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> " + maxWarmup + "</b>"
+            + "<span id=\"s02\"> Turns</span><br><br>" + "<p id=\"desc\">" + hero.getName()
+            + " uses " + game.getLang1() + " <span id=\"s02\">Rage</span> to double the damage of "
+            + game.getLang1() + " next attack.</p><br>" + "</td></tr></table>" + "</body><html>");
   }
 
   /**

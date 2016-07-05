@@ -52,10 +52,16 @@ public abstract class Enemy extends JButton implements MouseListener {
 
   /**
    * Enemy attacks player
-   * @throws BadLocationException 
-   * @throws IOException 
    */
   public abstract void attackPlayer() throws BadLocationException, IOException;
+
+  /**
+   * Enemy takes damage from hero
+   * 
+   * @param damage The number of damage to deal to enemy's health
+   * @param attackIcon The icon of the attack used
+   */
+  public abstract void takeDamage(double damage, ImageIcon attackIcon);
 
   /**
    * Prepare the fight
