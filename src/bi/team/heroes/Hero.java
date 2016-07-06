@@ -1,14 +1,12 @@
 package bi.team.heroes;
 
 import java.awt.Color;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -63,7 +61,6 @@ public abstract class Hero {
     game.repaintHealthBars();
     repaintTooltips();
     repaintStats();
-
   }
 
   /**

@@ -5,7 +5,6 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -17,7 +16,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -482,10 +480,21 @@ public class Barbarian extends Hero implements ActionListener {
 
   @Override
   public void takeDamage(double damage, ImageIcon attackIcon) {
+    double reflectDmg = 0;
 
     /* Hero takes damage */
     double toughness = getToughness() / 100;
     double dmg = damage - (damage * toughness);
+
+    /* Raise Shield block damage & reflect damage */
+    Raise_shield raiseShield = (Raise_shield) AttacksArrayList.get(8);
+    if (raiseShield.isActive()) {
+      double reflectPercentage = raiseShield.getReflectPercentage() / 100;
+      double blockPercentage = raiseShield.getBlockPercentage() / 100;
+      double damageBlocked = dmg * blockPercentage;
+      dmg -= damageBlocked; // Negate the blocked damage
+      reflectDmg = damageBlocked * reflectPercentage;
+    }
     dmg = Math.round(dmg * 100.0) / 100.0; // Round damage to 2 decimal places
 
     setDmgTakenPreviously(dmg);
@@ -493,6 +502,11 @@ public class Barbarian extends Hero implements ActionListener {
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/impact_toPlayer.png")), dmg + "",
         attackIcon); // Paint event
+    if (reflectDmg != 0) { // Inflict reflected damage
+      game.getEnemySelected().takeDamage(reflectDmg,
+          new ImageIcon(getClass().getResource("/images/attacks/raise_shield.png")));
+    }
+    raiseShield.reduceTurns();
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }

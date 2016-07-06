@@ -41,7 +41,7 @@ public class Strike extends Attack {
     hero.generateRage(rageToGenerate); // Generate rage
 
     /* Deal damage to enemy */
-    double dmg = hero.getStrength() * hero.getDmgMultiplier() + 200;
+    double dmg = hero.getStrength() * hero.getDmgMultiplier();
 
     game.getEnemySelected().takeDamage(dmg,
         new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
