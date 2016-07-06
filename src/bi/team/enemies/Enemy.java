@@ -27,6 +27,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   protected double protection;
   protected int experienceDrop;
   protected double criticalChance;
+  protected int turnsStunned = 0;
 
   /**
    * Class constructor
@@ -102,6 +103,15 @@ public abstract class Enemy extends JButton implements MouseListener {
     } else {
       game.getMap().setEnemyFocused(null);
       game.getMap().getBtnChallenge().setEnabled(false);
+    }
+  }
+
+  /**
+   * Reduce the number of turns stunned for if enemy is stunned
+   */
+  public void reduceTurnsStunned() {
+    if (turnsStunned >= 1) {
+      turnsStunned--;
     }
   }
 
@@ -201,5 +211,19 @@ public abstract class Enemy extends JButton implements MouseListener {
    */
   public double getMaxHealth() {
     return Math.round((300 - 85 + (enemyNumber * 85)));
+  }
+
+  /**
+   * @return the number of turns this enemy is stunned for
+   */
+  public int getTurnsStunned() {
+    return turnsStunned;
+  }
+
+  /**
+   * @param turnsStunned Set the number of turns this enemy is stunned for
+   */
+  public void setTurnsStunned(int turnsStunned) {
+    this.turnsStunned = turnsStunned;
   }
 }

@@ -32,14 +32,17 @@ public class Alania_defender_of_the_meadow extends Enemy {
 
   @Override
   public void attackPlayer() {
+    if (turnsStunned <= 0) {
 
-    /* Hero takes damage */
-    double dmg = getDamage();
-    game.getHero().takeDamage(dmg,
-        new ImageIcon(getClass().getResource("/images/basic_damage.png")));
-
+      /* Hero takes damage */
+      double dmg = getDamage();
+      game.getHero().takeDamage(dmg,
+          new ImageIcon(getClass().getResource("/images/basic_damage.png")));
+    } else {
+      turnsStunned--;
+    }
   }
-  
+
   @Override
   public void takeDamage(double damage, ImageIcon attackIcon) {
 
@@ -53,7 +56,7 @@ public class Alania_defender_of_the_meadow extends Enemy {
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }
-  
+
   @Override
   public void prepareFight() {
 

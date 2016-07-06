@@ -1,9 +1,6 @@
 package bi.team.heroes.attacks.barbarian;
 
-import java.io.IOException;
-
 import javax.swing.ImageIcon;
-import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -38,8 +35,9 @@ public class Rage_incite extends Attack {
   }
 
   @Override
-  public void startAttack() throws BadLocationException, IOException {
+  public void startAttack() {
     hero.consumeRage(rageNeeded); // Consume rage
+
     active = true;
     hero.setDmgMultiplier(hero.getDmgMultiplier() + attackMultiplier); // Increase dmg
 
@@ -49,11 +47,12 @@ public class Rage_incite extends Attack {
 
   /**
    * Deactivate the damage multiplier of Rage Incite
-   * 
-   * @throws IOException
-   * @throws BadLocationException
    */
-  public void deactivate() throws BadLocationException, IOException {
+  public void reduceTurns() {
+    if (!active) { // Error checking
+      return;
+    }
+
     hero.setDmgMultiplier(hero.getDmgMultiplier() - attackMultiplier); // Remove multiplier
     active = false;
 
@@ -88,12 +87,5 @@ public class Rage_incite extends Attack {
    */
   public void setAttackMultiplier(double attackMultiplier) {
     this.attackMultiplier = attackMultiplier;
-  }
-
-  /**
-   * @return the boolean of whether or not Rage Incite is active
-   */
-  public boolean isActive() {
-    return active;
   }
 }

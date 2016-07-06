@@ -38,6 +38,8 @@ public class Raise_shield extends Attack {
 
   @Override
   public void startAttack() {
+    hero.consumeRage(rageNeeded); // Consume rage
+    
     turnsLeft = getTurnDuration();
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/raise_shield.png")),

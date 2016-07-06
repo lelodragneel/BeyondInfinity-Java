@@ -39,7 +39,11 @@ public class Load implements ActionListener {
 
     game.disableAttackButtons(); // Disable buttons to prevent simultaneous attacks
     game.setProgBar_loading(0); // Reset loading bar
-    i = 0; // Reset count
+    if (hero.getTurnsStunned() > 0) {
+      i = 0;
+    } else {
+      i = 0; // Reset count
+    }
 
     timer = new Timer(15, this); // Timer triggering actionlistener every 15ms
     timer.start();
@@ -51,7 +55,11 @@ public class Load implements ActionListener {
   public void nextTurn() {
     game.disableAttackButtons(); // Disable buttons to prevent simultaneous attacks
     game.setProgBar_loading(0); // Reset loading bar
-    i = 0; // Reset count
+    if (game.getEnemySelected().getTurnsStunned() > 0) {
+      i = 100;
+    } else {
+      i = 0; // Reset count
+    }
 
     timer = new Timer(15, this); // Timer triggering actionlistener every 15ms
     timer.start();
@@ -64,10 +72,7 @@ public class Load implements ActionListener {
     if (i > 100) { // Conditional check for who's turn
       timer.stop(); // Stop the loop
       if (Game.getTurn()) { // If it's player's turn
-        try { // Player attacks enemy
-          attack.startAttack();
-        } catch (BadLocationException | IOException e1) {
-        }
+        hero.attackEnemy(attack);
         if (!game.getEnemySelected().isAlive()) { // Check if enemy is dead
           hero.killEnemy(game.getEnemySelected());
         } else {

@@ -5,6 +5,7 @@ import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -16,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
@@ -509,6 +511,22 @@ public class Barbarian extends Hero implements ActionListener {
     raiseShield.reduceTurns();
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
+  }
+
+  @Override
+  public void attackEnemy(Attack attack) {
+    Raise_shield raiseShield = (Raise_shield) AttacksArrayList.get(8);
+
+    if (turnsStunned <= 0) {
+      try {
+        attack.startAttack();
+      } catch (BadLocationException | IOException e) {
+        e.printStackTrace();
+      }
+    } else {
+      raiseShield.reduceTurns();
+      turnsStunned--;
+    }
   }
 
   @Override

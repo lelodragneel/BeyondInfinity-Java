@@ -31,11 +31,15 @@ public class Mantisray extends Enemy {
 
   @Override
   public void attackPlayer() {
+    if (turnsStunned <= 0) {
 
-    /* Hero takes damage */
-    double dmg = getDamage();
-    game.getHero().takeDamage(dmg,
-        new ImageIcon(getClass().getResource("/images/basic_damage.png")));
+      /* Hero takes damage */
+      double dmg = getDamage();
+      game.getHero().takeDamage(dmg,
+          new ImageIcon(getClass().getResource("/images/basic_damage.png")));
+    } else {
+      turnsStunned--;
+    }
   }
 
   @Override

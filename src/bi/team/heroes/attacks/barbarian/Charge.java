@@ -1,9 +1,6 @@
 package bi.team.heroes.attacks.barbarian;
 
-import java.io.IOException;
-
 import javax.swing.ImageIcon;
-import javax.swing.text.BadLocationException;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -37,7 +34,7 @@ public class Charge extends Attack {
   }
 
   @Override
-  public void startAttack() throws BadLocationException, IOException {
+  public void startAttack() {
     hero.consumeRage(rageNeeded); // Consume rage
 
     /* Deal damage to enemy */
@@ -49,9 +46,10 @@ public class Charge extends Attack {
 
     /* Rage incite set active/inactive */
     Rage_incite rageIncite = (Rage_incite) hero.getAttacksArrayList().get(2);
-    if (rageIncite.isActive()) {
-      rageIncite.deactivate();
-    }
+    rageIncite.reduceTurns();
+    /* Incapacitate set active/inactive */
+    Incapacitate incapacitate = (Incapacitate) hero.getAttacksArrayList().get(9);
+    incapacitate.reduceTurns();
   }
 
   @Override

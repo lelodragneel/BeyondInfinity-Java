@@ -25,7 +25,7 @@ public abstract class Hero {
   protected int enhancementPoints = 0;
   protected String name;
   protected double dmgTakenPreviously;
-  protected int turnsStunned;
+  protected int turnsStunned = 0;
 
   /**
    * Class constructor
@@ -150,6 +150,15 @@ public abstract class Hero {
   }
 
   /**
+   * Reduce the number of turns stunned for if enemy is stunned
+   */
+  public void reduceTurnsStunned() {
+    if (turnsStunned >= 1) {
+      turnsStunned--;
+    }
+  }
+
+  /**
    * Repaints and updates the stats values
    */
   public abstract void repaintStats();
@@ -168,6 +177,13 @@ public abstract class Hero {
   public ArrayList<Attack> getAttacksArrayList() {
     return AttacksArrayList;
   }
+
+  /**
+   * Hero attacks the enemy
+   * 
+   * @param attack The attack to be used on enemy
+   */
+  public abstract void attackEnemy(Attack attack);
 
   /**
    * Set all stance buttons to active
@@ -287,12 +303,5 @@ public abstract class Hero {
    */
   public int getTurnsStunned() {
     return turnsStunned;
-  }
-
-  /**
-   * @param turnsStunned Set the number of turns to be stunned for
-   */
-  public void setTurnsStunned(int turnsStunned) {
-    this.turnsStunned = turnsStunned;
   }
 }
