@@ -150,15 +150,6 @@ public abstract class Hero {
   }
 
   /**
-   * Reduce the number of turns stunned for if enemy is stunned
-   */
-  public void reduceTurnsStunned() {
-    if (turnsStunned >= 1) {
-      turnsStunned--;
-    }
-  }
-
-  /**
    * Repaints and updates the stats values
    */
   public abstract void repaintStats();
@@ -303,5 +294,12 @@ public abstract class Hero {
    */
   public int getTurnsStunned() {
     return turnsStunned;
+  }
+
+  /**
+   * @param turnsStunned Set the number of turns the hero is stunned for
+   */
+  public void addTurnsStunned(int turnsStunned) {
+    this.turnsStunned += turnsStunned;
   }
 }

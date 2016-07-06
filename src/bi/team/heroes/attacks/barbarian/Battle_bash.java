@@ -45,9 +45,6 @@ public class Battle_bash extends Attack {
     /* Rage incite set active/inactive */
     Rage_incite rageIncite = (Rage_incite) hero.getAttacksArrayList().get(2);
     rageIncite.reduceTurns();
-    /* Incapacitate set active/inactive */
-    Incapacitate incapacitate = (Incapacitate) hero.getAttacksArrayList().get(9);
-    incapacitate.reduceTurns();
   }
 
   @Override

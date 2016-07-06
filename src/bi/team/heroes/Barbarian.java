@@ -516,16 +516,33 @@ public class Barbarian extends Hero implements ActionListener {
   @Override
   public void attackEnemy(Attack attack) {
     Raise_shield raiseShield = (Raise_shield) AttacksArrayList.get(8);
+    Incapacitate incapacitate = (Incapacitate) AttacksArrayList.get(9);
+    Shield_bash shieldBash = (Shield_bash) AttacksArrayList.get(10);
 
     if (turnsStunned <= 0) {
       try {
         attack.startAttack();
       } catch (BadLocationException | IOException e) {
-        e.printStackTrace();
       }
     } else {
-      raiseShield.reduceTurns();
       turnsStunned--;
+      attack = null;
+    }
+
+    /* Reduce attacks cooldowns */
+    if (attack instanceof Raise_shield) {
+      incapacitate.reduceTurns();
+      shieldBash.reduceTurns();
+    } else if (attack instanceof Incapacitate) {
+      raiseShield.reduceTurns();
+      shieldBash.reduceTurns();
+    } else if (attack instanceof Shield_bash) {
+      raiseShield.reduceTurns();
+      incapacitate.reduceTurns();
+    } else {
+      raiseShield.reduceTurns();
+      incapacitate.reduceTurns();
+      shieldBash.reduceTurns();
     }
   }
 

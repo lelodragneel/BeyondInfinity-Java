@@ -1,10 +1,14 @@
 package bi.team.heroes.attacks.barbarian;
 
+import javax.swing.ImageIcon;
+
 import bi.team.BeyondInfinity;
 import bi.team.Game;
 import bi.team.heroes.Barbarian;
 
 public class Shield_bash extends Attack {
+  private int turnsLeft = 0;
+  private int turnDuration = 2;
 
   /**
    * Class constructor
@@ -32,9 +36,38 @@ public class Shield_bash extends Attack {
 
   @Override
   public void startAttack() {
+    hero.consumeRage(rageNeeded); // Consume rage
 
+    turnsLeft = getTurnDuration();
+    game.getEnemySelected().addTurnsStunned(turnDuration);
+
+    game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/shield_bash.png")),
+        " active", null);
   }
 
   @Override
   public void repaintTooltip() {}
+
+  /**
+   * Subtract 1 from turnsLeft which determines when this effect ends
+   */
+  public void reduceTurns() {
+    if (turnsLeft <= 0) { // Error checking
+      return;
+    }
+
+    turnsLeft -= 1;
+
+    if (turnsLeft == 0) {
+      game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/shield_bash.png")),
+          " inactive", null);
+    }
+  }
+
+  /**
+   * @return the turn duration to be stunned for
+   */
+  public int getTurnDuration() {
+    return turnDuration;
+  }
 }

@@ -42,7 +42,7 @@ public class Incapacitate extends Attack {
     turnsLeft = getTurnDuration();
     hero.setDmgMultiplier(hero.getDmgMultiplier() + (empowerPercentage / 100)); // Dmg multiplier
     game.getEnemySelected()
-        .setTurnsStunned(game.getEnemySelected().getTurnsStunned() + turnDuration); // Stun enemy
+        .addTurnsStunned(turnDuration); // Stun enemy
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/incapacitate.png")),
         " active", null);

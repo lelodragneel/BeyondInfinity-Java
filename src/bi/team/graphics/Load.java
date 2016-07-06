@@ -40,7 +40,7 @@ public class Load implements ActionListener {
     game.disableAttackButtons(); // Disable buttons to prevent simultaneous attacks
     game.setProgBar_loading(0); // Reset loading bar
     if (hero.getTurnsStunned() > 0) {
-      i = 0;
+      i = 100;
     } else {
       i = 0; // Reset count
     }
@@ -88,6 +88,9 @@ public class Load implements ActionListener {
           game.getEnemySelected().enemyLevelup();
         }
         Game.addTurn(); // Increment turns
+        if (hero.getTurnsStunned() > 0) {
+          nextTurn(attack);
+        }
         game.enableAttackButtons(); // Re-enable buttons
         game.repaintUpgradeButtons();
       }

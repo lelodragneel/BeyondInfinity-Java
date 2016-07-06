@@ -31,7 +31,13 @@ public class Massacre extends Attack {
   }
 
   @Override
-  public void startAttack() {}
+  public void startAttack() {
+    hero.consumeRage(rageNeeded); // Consume rage
+    
+    /* Rage incite set active/inactive */
+    Rage_incite rageIncite = (Rage_incite) hero.getAttacksArrayList().get(2);
+    rageIncite.reduceTurns();
+  }
 
   @Override
   public void repaintTooltip() {}

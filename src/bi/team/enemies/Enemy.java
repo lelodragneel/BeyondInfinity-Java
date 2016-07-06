@@ -107,15 +107,6 @@ public abstract class Enemy extends JButton implements MouseListener {
   }
 
   /**
-   * Reduce the number of turns stunned for if enemy is stunned
-   */
-  public void reduceTurnsStunned() {
-    if (turnsStunned >= 1) {
-      turnsStunned--;
-    }
-  }
-
-  /**
    * Level up the most-recently killed enemy
    */
   public void enemyLevelup() {
@@ -223,7 +214,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   /**
    * @param turnsStunned Set the number of turns this enemy is stunned for
    */
-  public void setTurnsStunned(int turnsStunned) {
-    this.turnsStunned = turnsStunned;
+  public void addTurnsStunned(int turnsStunned) {
+    this.turnsStunned += turnsStunned;
   }
 }
