@@ -577,6 +577,17 @@ public class Barbarian extends Hero implements ActionListener {
   }
 
   @Override
+  public void healHero(double amount) {
+    curVitality += amount;
+
+    if (curVitality > getMaxVitality()) {
+      curVitality = getMaxVitality();
+    }
+
+    game.repaintHealthBars();
+  }
+
+  @Override
   public boolean isAlive() {
     if (curVitality <= 0) {
       return false;

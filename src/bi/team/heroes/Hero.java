@@ -150,6 +150,13 @@ public abstract class Hero {
   }
 
   /**
+   * Heal hero
+   * 
+   * @param amount The amount of health to heal the hero for
+   */
+  public abstract void healHero(double amount);
+
+  /**
    * Repaints and updates the stats values
    */
   public abstract void repaintStats();
