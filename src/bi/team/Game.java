@@ -2,12 +2,17 @@ package bi.team;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -43,6 +48,7 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
+import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -59,9 +65,11 @@ public class Game extends JFrame implements ActionListener {
   private JPanel panel_frameOpacity;
   private JPanel panel_areaField;
   private JPanel panel_actionsTop;
+  private JPanel panel_playerBuffs;
   private JLabel areaWallpaper;
   private JLabel upgradePoints;
   private JLabel lblEnhancementPoints;
+  private ArrayList<JLabel> buffSlotsArrayList = new ArrayList<JLabel>();
   private JProgressBar bar_loading;
   private JProgressBar bar_playerHealth;
   private JProgressBar bar_enemyHealth;
@@ -292,83 +300,13 @@ public class Game extends JFrame implements ActionListener {
     bar_enemyHealth.setForeground(new Color(68, 108, 179));
     panel_enemy.add(bar_enemyHealth);
 
-    JPanel panel_playerBuffs = new JPanel();
+    /* Build panel for displaying buffs & debuffs */
+    panel_playerBuffs = new JPanel();
     panel_playerBuffs.setBounds(249, 165, 71, 227);
-    getContentPane().add(panel_playerBuffs);
     panel_playerBuffs.setOpaque(false);
-    panel_playerBuffs.setLayout(new GridLayout(6, 2, 0, 0));
+    panel_playerBuffs.setLayout(new GridBagLayout());
+    getContentPane().add(panel_playerBuffs);
 
-    JLabel lblNewLabel = new JLabel("");
-    lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-    lblNewLabel.setBorder(new LineBorder(new Color(0, 0, 0)));
-    lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-    panel_playerBuffs.add(lblNewLabel);
-
-    JLabel label = new JLabel("");
-    label.setHorizontalTextPosition(SwingConstants.CENTER);
-    label.setHorizontalAlignment(SwingConstants.CENTER);
-    label.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label);
-
-    JLabel label_1 = new JLabel("");
-    label_1.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_1.setHorizontalAlignment(SwingConstants.CENTER);
-    label_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_1);
-
-    JLabel label_2 = new JLabel("");
-    label_2.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_2.setHorizontalAlignment(SwingConstants.CENTER);
-    label_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_2);
-
-    JLabel label_3 = new JLabel("");
-    label_3.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_3.setHorizontalAlignment(SwingConstants.CENTER);
-    label_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_3);
-
-    JLabel label_4 = new JLabel("");
-    label_4.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_4.setHorizontalAlignment(SwingConstants.CENTER);
-    label_4.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_4);
-
-    JLabel label_5 = new JLabel("");
-    label_5.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_5.setHorizontalAlignment(SwingConstants.CENTER);
-    label_5.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_5);
-
-    JLabel label_6 = new JLabel("");
-    label_6.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_6.setHorizontalAlignment(SwingConstants.CENTER);
-    label_6.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_6);
-
-    JLabel label_7 = new JLabel("");
-    label_7.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_7.setHorizontalAlignment(SwingConstants.CENTER);
-    label_7.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_7);
-
-    JLabel label_8 = new JLabel("");
-    label_8.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_8.setHorizontalAlignment(SwingConstants.CENTER);
-    label_8.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_8);
-
-    JLabel label_9 = new JLabel("");
-    label_9.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_9.setHorizontalAlignment(SwingConstants.CENTER);
-    label_9.setBorder(new LineBorder(new Color(0, 0, 0)));
-    panel_playerBuffs.add(label_9);
-
-    JLabel label_10 = new JLabel("");
-    panel_playerBuffs.add(label_10);
-    label_10.setHorizontalTextPosition(SwingConstants.CENTER);
-    label_10.setHorizontalAlignment(SwingConstants.CENTER);
-    label_10.setBorder(new LineBorder(new Color(0, 0, 0)));
     panel_areaField = new JPanel();
     panel_areaField.setBounds(10, 70, 1044, 333);
     panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -443,6 +381,43 @@ public class Game extends JFrame implements ActionListener {
     } else if (chosenHero == 5) {
       this.hero = new Warlock(this, heroSex);
     }
+
+    JLabel l1 = new JLabel();
+    JLabel l2 = new JLabel();
+    JLabel l3 = new JLabel();
+    JLabel l4 = new JLabel();
+    JLabel l5 = new JLabel();
+    JLabel l6 = new JLabel();
+    JLabel l7 = new JLabel();
+    JLabel l8 = new JLabel();
+    JLabel l9 = new JLabel();
+    JLabel l10 = new JLabel();
+    JLabel l11 = new JLabel();
+    JLabel l12 = new JLabel();
+
+    buffSlotsArrayList.add(l1);
+    buffSlotsArrayList.add(l2);
+    buffSlotsArrayList.add(l3);
+    buffSlotsArrayList.add(l4);
+    buffSlotsArrayList.add(l5);
+    buffSlotsArrayList.add(l6);
+    buffSlotsArrayList.add(l7);
+    buffSlotsArrayList.add(l8);
+    buffSlotsArrayList.add(l9);
+    buffSlotsArrayList.add(l10);
+    buffSlotsArrayList.add(l11);
+    buffSlotsArrayList.add(l12);
+    for (JLabel x : buffSlotsArrayList) {
+      x.setBorder(new LineBorder(Color.BLACK));
+      //panel_playerBuffs.add(x);
+    }
+
+    // JLabel filler = new JLabel();
+    // filler.setBorder(new LineBorder(Color.BLACK));
+    // filler.setPreferredSize(new Dimension(10, 10));
+    //
+    // addBuff(filler);
+    addBuff(new JLabel());
     setVisible(true); // Finally, show frame
   }
 
@@ -454,6 +429,88 @@ public class Game extends JFrame implements ActionListener {
       toggleInventory();
     if (evt.getSource() == btnSurrender) {
       hero.surrender();
+    }
+  }
+
+  /**
+   * Add a buff or debuff to the hero
+   * 
+   * @param buff The buff/debuff to add
+   */
+  public void addBuff(JLabel buff) {
+    GridBagConstraints gbc = new GridBagConstraints();
+    Iterator<JLabel> slots;
+    int x = 0;
+    int y = 0;
+
+    //buffSlotsArrayList.add(buff);
+    System.out.println(buffSlotsArrayList.size());
+
+    /* Create buff slot constraints */
+    gbc.fill = GridBagConstraints.BOTH;
+    gbc.weightx = gbc.weighty = 1.0;
+    gbc.insets = new Insets(2, 2, 2, 2);
+
+    /* Iterate through array list and add buffs */
+    slots = buffSlotsArrayList.listIterator();
+    //panel_playerBuffs.removeAll();
+    for (int i = 0; i < 6; i++) {
+      for (int j = 0; j < 2; j++) {
+        gbc.gridx = x++;
+        panel_playerBuffs.add(slots.next(), gbc);
+        //        if (slots.hasNext()) {
+//          try {
+//            panel_playerBuffs.add(slots.next(), gbc);
+//            System.out.println("added");
+//          } catch (Exception e) {
+//          }
+//        } else {
+//          JPanel f = new JPanel();
+//          f.setBorder(new LineBorder(Color.BLACK));
+//          panel_playerBuffs.add(f, gbc);
+//          System.out.println("nope");
+//        }
+      }
+      gbc.gridy = ++y;
+      x = 0;
+    }
+  }
+
+  /**
+   * Remove a buff or debuff from the hero
+   * 
+   * @param buff The buff/debuff to add
+   */
+  public void removeBuff(JLabel buff) {
+    GridBagConstraints gbc = new GridBagConstraints();
+    Iterator<JLabel> slots;
+    int x = 0;
+    int y = 0;
+
+    buffSlotsArrayList.remove(buff);
+
+    /* Create buff slot constraints */
+    gbc.fill = GridBagConstraints.BOTH;
+    gbc.weightx = gbc.weighty = 1.0;
+    gbc.insets = new Insets(2, 2, 2, 2);
+
+    /* Iterate through array list and remove buffs */
+    slots = buffSlotsArrayList.listIterator();
+    panel_playerBuffs.removeAll();
+    for (int i = 0; i < 6; i++) {
+      for (int j = 0; j < 2 && slots.hasNext(); j++) {
+        gbc.gridx = x++;
+        if (slots.hasNext()) {
+          try {
+            panel_playerBuffs.add(slots.next(), gbc);
+          } catch (Exception e) {
+          }
+        } else {
+          panel_playerBuffs.add(new JLabel(), gbc);
+        }
+      }
+      gbc.gridy = ++y;
+      x = 0;
     }
   }
 

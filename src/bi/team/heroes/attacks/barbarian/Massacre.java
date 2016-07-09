@@ -52,7 +52,7 @@ public class Massacre extends Attack {
     hero.healHero(healthToRecover);
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/health_cross.png")),
-        "+ " + healthToRecover, new ImageIcon(getClass().getResource("/images/health_cross.png")));
+        "+" + healthToRecover, new ImageIcon(getClass().getResource("/images/health_cross.png")));
 
     /* Rage incite set active/inactive */
     Rage_incite rageIncite = (Rage_incite) hero.getAttacksArrayList().get(2);
