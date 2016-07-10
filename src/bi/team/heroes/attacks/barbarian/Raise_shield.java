@@ -1,6 +1,7 @@
 package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -11,6 +12,7 @@ public class Raise_shield extends Attack {
   private int turnDuration = 2;
   private double blockPercentage = 20;
   private double reflectPercentage = 50;
+  private JLabel buff_raiseShield = new JLabel();
 
   /**
    * Class constructor
@@ -33,6 +35,9 @@ public class Raise_shield extends Attack {
         + "<tr>" + "<td><p align=\"center\">" + rageNeeded + "x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>"));
+
+    buff_raiseShield
+        .setIcon(new ImageIcon(getClass().getResource("/images/buffs/buff_raiseShield.png")));
     repaintTooltip();
   }
 
@@ -44,6 +49,7 @@ public class Raise_shield extends Attack {
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/raise_shield.png")),
         " active", null);
+    hero.addBuff(buff_raiseShield);
   }
 
   @Override
@@ -61,6 +67,12 @@ public class Raise_shield extends Attack {
         + "%</b> incoming damage, and reflects <b id=\"val\">" + reflectPercentage
         + "%</b> of the blocked damage back to the attacker.</p><br>" + "</td></tr></table>"
         + "</body><html>");
+
+    buff_raiseShield.setToolTipText("<html>" + Game.buffStyles + "<body> <table><tr>"
+        + "<td><span id=\"title\">" + name + "</span><br><br>" + "<p id=\"desc\">" + hero.getName()
+        + " is blocking <b id=\"val\">" + blockPercentage
+        + "%</b> incoming damage, and reflecting <b id=\"val\">" + reflectPercentage
+        + "%</b> of the blocked damage.</p><br>" + "</td></tr></table>" + "</body><html>");
   }
 
   /**
@@ -84,6 +96,7 @@ public class Raise_shield extends Attack {
     if (turnsLeft == 0) {
       game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/raise_shield.png")),
           " inactive", null);
+      hero.removeBuff(buff_raiseShield);
     }
   }
 

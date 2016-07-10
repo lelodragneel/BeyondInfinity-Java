@@ -1,6 +1,7 @@
 package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -9,6 +10,7 @@ import bi.team.heroes.Barbarian;
 public class Rage_incite extends Attack {
   private double attackMultiplier = 1;
   private boolean active = false;
+  private JLabel buff_rageIncite = new JLabel();
 
   /**
    * Class constructor
@@ -31,6 +33,8 @@ public class Rage_incite extends Attack {
         + "<tr>" + "<td><p align=\"center\">" + rageNeeded + "x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>"));
+    buff_rageIncite
+        .setIcon(new ImageIcon(getClass().getResource("/images/buffs/buff_rageIncite.png")));
     repaintTooltip();
   }
 
@@ -43,6 +47,7 @@ public class Rage_incite extends Attack {
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")),
         " active", null);
+    hero.addBuff(buff_rageIncite);
   }
 
   /**
@@ -58,12 +63,13 @@ public class Rage_incite extends Attack {
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/rage_incite.png")),
         " inactive", null);
+    hero.removeBuff(buff_rageIncite);
   }
 
   @Override
   public void repaintTooltip() {
-    button
-        .setToolTipText("<html>" + Game.styles + "<body> <table><tr>" + "<td valign=\"top\"><img src=\""
+    button.setToolTipText(
+        "<html>" + Game.styles + "<body> <table><tr>" + "<td valign=\"top\"><img src=\""
             + BeyondInfinity.class.getResource("/images/attacks/rage_incite.png") + "\"></td>"
             + "<td><span id=\"title\">" + name + "</span><br><br>"
             + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
@@ -73,6 +79,11 @@ public class Rage_incite extends Attack {
             + "<span id=\"s02\"> Turns</span><br><br>" + "<p id=\"desc\">" + hero.getName()
             + " uses " + game.getLang1() + " <span id=\"s02\">Rage</span> to double the damage of "
             + game.getLang1() + " next attack.</p><br>" + "</td></tr></table>" + "</body><html>");
+
+    buff_rageIncite.setToolTipText("<html>" + Game.buffStyles + "<body> <table><tr>"
+        + "<td><span id=\"title\">" + name + "</span><br><br>" + "<p id=\"desc\">"
+        + "The next attack will deal double the damage.</p><br>" + "</td></tr></table>"
+        + "</body><html>");
   }
 
   /**

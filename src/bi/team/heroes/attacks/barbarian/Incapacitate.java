@@ -1,6 +1,7 @@
 package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
@@ -10,6 +11,7 @@ public class Incapacitate extends Attack {
   private double empowerPercentage = 20;
   private int turnDuration = 1;
   private int turnsLeft = 0;
+  private JLabel buff_incapacitate = new JLabel();
 
   /**
    * Class constructor
@@ -32,6 +34,9 @@ public class Incapacitate extends Attack {
         + "<tr>" + "<td><p align=\"center\">" + rageNeeded + "x <img src=\""
         + BeyondInfinity.class.getResource("/images/rage_mini.png") + "\"></p></td>" + "</tr>"
         + "</table>" + "</html>"));
+
+    buff_incapacitate
+        .setIcon(new ImageIcon(getClass().getResource("/images/buffs/buff_incapacitate.png")));
     repaintTooltip();
   }
 
@@ -41,11 +46,11 @@ public class Incapacitate extends Attack {
 
     turnsLeft = getTurnDuration();
     hero.setDmgMultiplier(hero.getDmgMultiplier() + (empowerPercentage / 100)); // Dmg multiplier
-    game.getEnemySelected()
-        .addTurnsStunned(turnDuration); // Stun enemy
+    game.getEnemySelected().addTurnsStunned(turnDuration); // Stun enemy
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/incapacitate.png")),
         " active", null);
+    hero.addBuff(buff_incapacitate);
   }
 
   /**
@@ -62,6 +67,7 @@ public class Incapacitate extends Attack {
       hero.setDmgMultiplier(hero.getDmgMultiplier() - (empowerPercentage / 100));
       game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/incapacitate.png")),
           " inactive", null);
+      hero.removeBuff(buff_incapacitate);
     }
   }
 
@@ -87,6 +93,10 @@ public class Incapacitate extends Attack {
         + "</b> turn(s) and empowering " + hero.getName() + "'s attacks by <b id=\"val\">"
         + empowerPercentage + "%</b>.</p><br>" + "</td></tr></table>" + "</body><html>");
 
+    buff_incapacitate.setToolTipText("<html>" + Game.buffStyles + "<body> <table><tr>"
+        + "<td><span id=\"title\">" + name + "</span><br><br>" + "<p id=\"desc\">" + hero.getName()
+        + "Attacks empowered by <b id=\"val\"> " + empowerPercentage + "%</b>.</p><br>"
+        + "</td></tr></table>" + "</body><html>");
   }
 
   /**

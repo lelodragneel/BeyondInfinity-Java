@@ -115,9 +115,9 @@ public class Barbarian extends Hero implements ActionListener {
     offensiveIcon_small =
         new ImageIcon(getClass().getResource("/images/stance_offensive_small.png"));
     buff_stanceOffensive
-        .setIcon(new ImageIcon(getClass().getResource("/images/buff_stanceOffensive.png")));
+        .setIcon(new ImageIcon(getClass().getResource("/images/buffs/buff_stanceOffensive.png")));
     buff_stanceDefensive
-        .setIcon(new ImageIcon(getClass().getResource("/images/buff_stanceDefensive.png")));
+        .setIcon(new ImageIcon(getClass().getResource("/images/buffs/buff_stanceDefensive.png")));
 
     /* Configure player GUI */
     game.getBar_playerHealth().setMinimum(0);
@@ -585,7 +585,6 @@ public class Barbarian extends Hero implements ActionListener {
         .setTitle("Riposte Chance [" + points_riposteChance + "/" + maxPoints_riposteChance + "]");
     lblRiposteChance.setText(String.format("%.2f", getRiposteChance()) + "%");
 
-    /* Misc */
     game.getLblEnhancementPoints()
         .setText("<html>Enhancement Points: <b>" + enhancementPoints + "</b></html>");
   }
