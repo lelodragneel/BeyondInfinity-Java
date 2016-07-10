@@ -611,6 +611,23 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
+   * Updates the visual of the upgrade buttons
+   */
+  public void repaintUpgradeButtons() {
+    if (hero.getEnhancementPoints() >= 1) {
+      hero.showUpgradeButtons();
+      if ((isMapShown) || (enemySelected != null)) {
+        hero.disableUpgradeButtons();
+      } else {
+        hero.enableUpgradeButtons();
+      }
+    } else {
+      hero.hideUpgradeButtons();
+    }
+    repaint();
+  }
+
+  /**
    * Updates the visual of the player & enemy health bars
    */
   public void repaintHealthBars() {
@@ -637,23 +654,6 @@ public class Game extends JFrame implements ActionListener {
         bar_enemyHealth.setString((int) Math.round(enemySelected.getCurHealth()) + " / "
             + (int) Math.round(enemySelected.getMaxHealth()));
       }
-    }
-    repaint();
-  }
-
-  /**
-   * Updates the visual of the upgrade buttons
-   */
-  public void repaintUpgradeButtons() {
-    if (hero.getEnhancementPoints() >= 1) {
-      hero.showUpgradeButtons();
-      if ((isMapShown) || (enemySelected != null)) {
-        hero.disableUpgradeButtons();
-      } else {
-        hero.enableUpgradeButtons();
-      }
-    } else {
-      hero.hideUpgradeButtons();
     }
     repaint();
   }

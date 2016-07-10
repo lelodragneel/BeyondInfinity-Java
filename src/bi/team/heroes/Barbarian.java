@@ -67,7 +67,7 @@ public class Barbarian extends Hero implements ActionListener {
   private String defensivePassiveName = "Safeguard";
   private double offensiveDamagePercentage = 15f;
   private double defensiveToughnessPercentage = 15f;
-  private int defensiveExtraHealth = 0;
+  private int defensiveExtraHealth = 100;
   private ArrayList<JLabel> rageIcons;
   private ImageIcon defensiveIcon;
   private ImageIcon defensiveIcon_small;
@@ -437,7 +437,6 @@ public class Barbarian extends Hero implements ActionListener {
     game.getLblPlayerImage().setIcon(getHeroIcon()); // Draw player image on frame
     repaintRage(); // Repaint rage bar
     game.repaintXpBar(); // Update level & experience visual
-    showDefensiveAttacks();
     showOffensiveAttacks(); // Display offensive attacks by default
   }
 
@@ -778,10 +777,6 @@ public class Barbarian extends Hero implements ActionListener {
     btnOffensive.setBorder(new LineBorder(Color.BLACK, 2));
     btnDefensive.setBorder(new LineBorder(Color.BLACK, 1));
 
-    /* Apply offensive passive to barbarian */
-    dmgMultiplier += (offensiveDamagePercentage / 100);
-    defensiveExtraHealth -= 100;
-
     /* Add & remove buffs & debuffs from array list */
     addBuff(buff_stanceOffensive);
     removeBuff(buff_stanceDefensive);
@@ -818,10 +813,6 @@ public class Barbarian extends Hero implements ActionListener {
     btnDefensive.setIcon(defensiveIcon_small);
     btnOffensive.setBorder(new LineBorder(Color.BLACK, 1));
     btnDefensive.setBorder(new LineBorder(Color.BLACK, 2));
-
-    /* Apply defensive passive to barbarian */
-    defensiveExtraHealth += 100;
-    dmgMultiplier -= (offensiveDamagePercentage / 100);
 
     /* Add & remove buffs & debuffs from array list */
     addBuff(buff_stanceDefensive);
@@ -959,10 +950,15 @@ public class Barbarian extends Hero implements ActionListener {
   }
 
   /**
-   * @return the dmgMultiplier
+   * @return the damage multiplier of the hero
    */
   public double getDmgMultiplier() {
-    return dmgMultiplier;
+    if (btnOffensive.isSelected()) {
+      double multiplier = dmgMultiplier + (offensiveDamagePercentage / 100);
+      return multiplier;
+    } else {
+      return dmgMultiplier;
+    }
   }
 
   /**
@@ -998,8 +994,6 @@ public class Barbarian extends Hero implements ActionListener {
   }
 
   /**
-   * Set the maxRage
-   * 
    * @param maxRage The number of maximum rage
    */
   public void setMaxRage(int maxRage) {
