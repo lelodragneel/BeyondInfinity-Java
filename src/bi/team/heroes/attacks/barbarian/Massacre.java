@@ -61,7 +61,7 @@ public class Massacre extends Attack {
 
   @Override
   public void repaintTooltip() {
-    button.setToolTipText("<html>" + styles + "<body> <table><tr>"
+    button.setToolTipText("<html>" + Game.styles + "<body> <table><tr>"
         + "<td valign=\"top\"><img src=\""
         + BeyondInfinity.class.getResource("/images/attacks/massacre.png") + "\"></td>"
         + "<td><span id=\"title\">" + name + "</span><br><br>"

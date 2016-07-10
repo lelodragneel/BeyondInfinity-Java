@@ -38,7 +38,7 @@ public class Strike extends Attack {
     hero.generateRage(rageToGenerate); // Generate rage
 
     /* Deal damage to enemy */
-    double dmg = hero.getStrength() * hero.getDmgMultiplier();
+    double dmg = hero.getStrength() * hero.getDmgMultiplier() + 300;
 
     game.getEnemySelected().takeDamage(dmg,
         new ImageIcon(getClass().getResource("/images/attacks/strike.png")));
@@ -64,7 +64,7 @@ public class Strike extends Attack {
 
   @Override
   public void repaintTooltip() {
-    button.setToolTipText("<html>" + styles + "<body> <table><tr>"
+    button.setToolTipText("<html>" + Game.styles + "<body> <table><tr>"
         + "<td valign=\"top\"><img src=\""
         + BeyondInfinity.class.getResource("/images/attacks/strike.png") + "\"></td>"
         + "<td><span id=\"title\">" + name + "</span><br><br>"

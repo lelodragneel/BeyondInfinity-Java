@@ -52,7 +52,7 @@ public class Charge extends Attack {
   @Override
   public void repaintTooltip() {
     button
-        .setToolTipText("<html>" + styles + "<body> <table><tr>" + "<td valign=\"top\"><img src=\""
+        .setToolTipText("<html>" + Game.styles + "<body> <table><tr>" + "<td valign=\"top\"><img src=\""
             + BeyondInfinity.class.getResource("/images/attacks/charge.png") + "\"></td>"
             + "<td><span id=\"title\">" + name + "</span><br><br>"
             + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"

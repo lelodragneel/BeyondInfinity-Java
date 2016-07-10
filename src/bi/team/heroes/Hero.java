@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -36,6 +37,28 @@ public abstract class Hero {
     this.game = game;
     this.name = name;
     xpAnimation = new XPAnimation(game);
+  }
+
+  /**
+   * Add a buff or debuff to the hero
+   * 
+   * @param buff The buff/debuff to add
+   */
+  public void addBuff(JLabel buff) {
+    game.getBuffsArrayList().add(buff);
+    repaintBuffTooltips();
+    game.repaintBuffs();
+  }
+
+  /**
+   * Remove a buff or debuff from the hero
+   * 
+   * @param buff The buff/debuff to add
+   */
+  public void removeBuff(JLabel buff) {
+    game.getBuffsArrayList().remove(buff);
+    repaintBuffTooltips();
+    game.repaintBuffs();
   }
 
   /**
@@ -75,7 +98,7 @@ public abstract class Hero {
   }
 
   /**
-   * Updates the visual of the player attack tooltips
+   * Updates the visual of the player attacks & buffs' tooltips
    */
   public void repaintTooltips() {
     for (Attack x : AttacksArrayList) {
@@ -148,6 +171,11 @@ public abstract class Hero {
       x.setVisible(false);
     }
   }
+
+  /**
+   * Repaints and updates hero-specific buff tooltips if needed
+   */
+  public abstract void repaintBuffTooltips();
 
   /**
    * Heal hero

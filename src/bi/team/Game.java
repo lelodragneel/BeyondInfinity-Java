@@ -2,19 +2,12 @@ package bi.team;
 
 import java.awt.Color;
 import java.awt.Cursor;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -50,12 +43,23 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
-import java.awt.Component;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
   private static int turn = 1;
   private static JTextPane textPane;
+  public static final String styles =
+      "<style>" + "body {font-family: Comic Sans MS; background: #ECF0F1; width:300px;}"
+          + "#title {color: #282830; font-size: 12px;}" + "#desc {font-size: 10px; color: #282830;}"
+          + "#s01 {color: #60646D; font-size: 10px;}"
+          + "#s02 {font-size: 10px; color: #282830; font-style: italic;}"
+          + "#val {font-size: 10px; color: #5659C9;}" + "</style>";
+  public static final String buffStyles =
+      "<style>" + "body {font-family: Comic Sans MS; background: #ECF0F1; width:200px;}"
+          + "#title {color: #282830; font-size: 12px;}" + "#desc {font-size: 10px; color: #282830;}"
+          + "#s01 {color: #60646D; font-size: 10px;}"
+          + "#s02 {font-size: 10px; color: #282830; font-style: italic;}"
+          + "#val {font-size: 10px; color: #5659C9;}" + "</style>";
   private SimpleAttributeSet aSet;
   private HTMLDocument doc;
   private HTMLEditorKit editorKit;
@@ -497,26 +501,6 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
-   * Add a buff or debuff to the hero
-   * 
-   * @param buff The buff/debuff to add
-   */
-  public void addBuff(JLabel buff) {
-    buffsArrayList.add(buff);
-    repaintBuffs();
-  }
-
-  /**
-   * Remove a buff or debuff from the hero
-   * 
-   * @param buff The buff/debuff to add
-   */
-  public void removeBuff(JLabel buff) {
-    buffsArrayList.remove(buff);
-    repaintBuffs();
-  }
-
-  /**
    * Updates the visual of the hero buffs & debuffs
    */
   public void repaintBuffs() {
@@ -916,6 +900,13 @@ public class Game extends JFrame implements ActionListener {
    */
   public JProgressBar getBar_XPBar() {
     return bar_XPBar;
+  }
+
+  /**
+   * @return the array of the buffs/debuffs
+   */
+  public ArrayList<JLabel> getBuffsArrayList() {
+    return buffsArrayList;
   }
 
   /**
