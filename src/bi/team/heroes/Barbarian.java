@@ -21,7 +21,7 @@ import javax.swing.text.BadLocationException;
 
 import bi.team.Game;
 import bi.team.enemies.Enemy;
-import bi.team.graphics.Load;
+import bi.team.graphics.PlayerLoad;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.heroes.attacks.barbarian.Battle_bash;
 import bi.team.heroes.attacks.barbarian.Charge;
@@ -39,7 +39,7 @@ import bi.team.heroes.attacks.barbarian.Vengeance;
 public class Barbarian extends Hero implements ActionListener {
   private final static String name_male = "Brynjar";
   private final static String name_female = "Alani";
-  private Load load;
+  private PlayerLoad playerLoad;
   private TitledBorder titledBorder_vitality;
   private TitledBorder titledBorder_rage;
   private TitledBorder titledBorder_strength;
@@ -103,7 +103,7 @@ public class Barbarian extends Hero implements ActionListener {
   public Barbarian(Game game, int sex) {
     super(game, (1 == sex) ? name_male : name_female);
 
-    load = new Load(game, this);
+    playerLoad = new PlayerLoad(game, this);
     AttacksArrayList = new ArrayList<Attack>();
     ArrayUpgradeButtons = new ArrayList<JButton>();
     maleImage = new ImageIcon(getClass().getResource("/images/heroes/barbarian_male_big.png"));
@@ -472,7 +472,7 @@ public class Barbarian extends Hero implements ActionListener {
             reduceWarmup();
             x.setCurWarmup(0);
             addExperience(x.getAttackExperience());
-            load.nextTurn(x);
+            playerLoad.nextTurn(x);
           } else {
             continue;
             // try {
