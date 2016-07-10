@@ -12,7 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map.Entry;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -69,7 +71,8 @@ public class Game extends JFrame implements ActionListener {
   private JLabel areaWallpaper;
   private JLabel upgradePoints;
   private JLabel lblEnhancementPoints;
-  private ArrayList<JLabel> buffSlotsArrayList = new ArrayList<JLabel>();
+  private ArrayList<JLabel> slotLabelsArrayList = new ArrayList<JLabel>();
+  private ArrayList<JLabel> buffsArrayList = new ArrayList<JLabel>();
   private JProgressBar bar_loading;
   private JProgressBar bar_playerHealth;
   private JProgressBar bar_enemyHealth;
@@ -92,6 +95,18 @@ public class Game extends JFrame implements ActionListener {
   private JLabel lblPlayerImage;
   private int heroSex;
   private final String lang1;
+  private JLabel buffSlot_6;
+  private JLabel buffSlot_12;
+  private JLabel buffSlot_5;
+  private JLabel buffSlot_11;
+  private JLabel buffSlot_4;
+  private JLabel buffSlot_10;
+  private JLabel buffSlot_3;
+  private JLabel buffSlot_9;
+  private JLabel buffSlot_2;
+  private JLabel buffSlot_8;
+  private JLabel buffSlot_1;
+  private JLabel buffSlot_7;
 
   /**
    * Class constructor
@@ -304,8 +319,80 @@ public class Game extends JFrame implements ActionListener {
     panel_playerBuffs = new JPanel();
     panel_playerBuffs.setBounds(249, 165, 71, 227);
     panel_playerBuffs.setOpaque(false);
-    panel_playerBuffs.setLayout(new GridBagLayout());
+    panel_playerBuffs.setLayout(new GridLayout(6, 2, 2, 2));
     getContentPane().add(panel_playerBuffs);
+
+    buffSlot_1 = new JLabel("");
+    buffSlot_1.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_1.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_1);
+    panel_playerBuffs.add(buffSlot_1);
+
+    buffSlot_2 = new JLabel("");
+    buffSlot_2.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_2.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_2);
+    panel_playerBuffs.add(buffSlot_2);
+
+    buffSlot_3 = new JLabel("");
+    buffSlot_3.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_3.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_3);
+    panel_playerBuffs.add(buffSlot_3);
+
+    buffSlot_4 = new JLabel("");
+    buffSlot_4.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_4.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_4);
+    panel_playerBuffs.add(buffSlot_4);
+
+    buffSlot_5 = new JLabel("");
+    buffSlot_5.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_5.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_5);
+    panel_playerBuffs.add(buffSlot_5);
+
+    buffSlot_6 = new JLabel("");
+    buffSlot_6.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_6.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_6);
+    panel_playerBuffs.add(buffSlot_6);
+
+    buffSlot_7 = new JLabel("");
+    buffSlot_7.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_7.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_7);
+    panel_playerBuffs.add(buffSlot_7);
+
+    buffSlot_8 = new JLabel("");
+    buffSlot_8.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_8.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_8);
+    panel_playerBuffs.add(buffSlot_8);
+
+    buffSlot_9 = new JLabel("");
+    buffSlot_9.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_9.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_9);
+    panel_playerBuffs.add(buffSlot_9);
+
+    buffSlot_10 = new JLabel("");
+    buffSlot_10.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_10.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_10);
+    panel_playerBuffs.add(buffSlot_10);
+
+    buffSlot_11 = new JLabel("");
+    buffSlot_11.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_11.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_11);
+    panel_playerBuffs.add(buffSlot_11);
+
+    buffSlot_12 = new JLabel("");
+    buffSlot_12.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlot_12.setVerticalAlignment(SwingConstants.CENTER);
+    slotLabelsArrayList.add(buffSlot_12);
+    panel_playerBuffs.add(buffSlot_12);
 
     panel_areaField = new JPanel();
     panel_areaField.setBounds(10, 70, 1044, 333);
@@ -382,54 +469,31 @@ public class Game extends JFrame implements ActionListener {
       this.hero = new Warlock(this, heroSex);
     }
 
-    JLabel l1 = new JLabel();
-    JLabel l2 = new JLabel();
-    JLabel l3 = new JLabel();
-    JLabel l4 = new JLabel();
-    JLabel l5 = new JLabel();
-    JLabel l6 = new JLabel();
-    JLabel l7 = new JLabel();
-    JLabel l8 = new JLabel();
-    JLabel l9 = new JLabel();
-    JLabel l10 = new JLabel();
-    JLabel l11 = new JLabel();
-    JLabel l12 = new JLabel();
-
-    buffSlotsArrayList.add(l1);
-    buffSlotsArrayList.add(l2);
-    buffSlotsArrayList.add(l3);
-    buffSlotsArrayList.add(l4);
-    buffSlotsArrayList.add(l5);
-    buffSlotsArrayList.add(l6);
-    buffSlotsArrayList.add(l7);
-    buffSlotsArrayList.add(l8);
-    buffSlotsArrayList.add(l9);
-    buffSlotsArrayList.add(l10);
-    buffSlotsArrayList.add(l11);
-    buffSlotsArrayList.add(l12);
-    for (JLabel x : buffSlotsArrayList) {
-      x.setBorder(new LineBorder(Color.BLACK));
-      //panel_playerBuffs.add(x);
-    }
-
-    // JLabel filler = new JLabel();
-    // filler.setBorder(new LineBorder(Color.BLACK));
-    // filler.setPreferredSize(new Dimension(10, 10));
-    //
-    // addBuff(filler);
-    addBuff(new JLabel());
     setVisible(true); // Finally, show frame
   }
 
   @Override
   public void actionPerformed(ActionEvent evt) {
-    if (evt.getSource() == btnShowMap)
+    if (evt.getSource() == btnShowMap) {
       toggleMap();
-    if (evt.getSource() == btnShowInventory)
+    } else if (evt.getSource() == btnShowInventory) {
       toggleInventory();
-    if (evt.getSource() == btnSurrender) {
+    } else if (evt.getSource() == btnSurrender) {
       hero.surrender();
     }
+  }
+
+  /**
+   * Creates and returns an empty configured buff slot
+   * 
+   * @return an empty configured buff slot
+   */
+  public JLabel getFillerLabel() {
+    JLabel filler = new JLabel("");
+    filler.setBorder(new LineBorder(new Color(0, 0, 0)));
+    filler.setHorizontalAlignment(SwingConstants.CENTER);
+    filler.setVerticalAlignment(SwingConstants.CENTER);
+    return filler;
   }
 
   /**
@@ -438,42 +502,8 @@ public class Game extends JFrame implements ActionListener {
    * @param buff The buff/debuff to add
    */
   public void addBuff(JLabel buff) {
-    GridBagConstraints gbc = new GridBagConstraints();
-    Iterator<JLabel> slots;
-    int x = 0;
-    int y = 0;
-
-    //buffSlotsArrayList.add(buff);
-    System.out.println(buffSlotsArrayList.size());
-
-    /* Create buff slot constraints */
-    gbc.fill = GridBagConstraints.BOTH;
-    gbc.weightx = gbc.weighty = 1.0;
-    gbc.insets = new Insets(2, 2, 2, 2);
-
-    /* Iterate through array list and add buffs */
-    slots = buffSlotsArrayList.listIterator();
-    //panel_playerBuffs.removeAll();
-    for (int i = 0; i < 6; i++) {
-      for (int j = 0; j < 2; j++) {
-        gbc.gridx = x++;
-        panel_playerBuffs.add(slots.next(), gbc);
-        //        if (slots.hasNext()) {
-//          try {
-//            panel_playerBuffs.add(slots.next(), gbc);
-//            System.out.println("added");
-//          } catch (Exception e) {
-//          }
-//        } else {
-//          JPanel f = new JPanel();
-//          f.setBorder(new LineBorder(Color.BLACK));
-//          panel_playerBuffs.add(f, gbc);
-//          System.out.println("nope");
-//        }
-      }
-      gbc.gridy = ++y;
-      x = 0;
-    }
+    buffsArrayList.add(buff);
+    repaintBuffs();
   }
 
   /**
@@ -482,35 +512,22 @@ public class Game extends JFrame implements ActionListener {
    * @param buff The buff/debuff to add
    */
   public void removeBuff(JLabel buff) {
-    GridBagConstraints gbc = new GridBagConstraints();
-    Iterator<JLabel> slots;
-    int x = 0;
-    int y = 0;
+    buffsArrayList.remove(buff);
+    repaintBuffs();
+  }
 
-    buffSlotsArrayList.remove(buff);
-
-    /* Create buff slot constraints */
-    gbc.fill = GridBagConstraints.BOTH;
-    gbc.weightx = gbc.weighty = 1.0;
-    gbc.insets = new Insets(2, 2, 2, 2);
-
-    /* Iterate through array list and remove buffs */
-    slots = buffSlotsArrayList.listIterator();
-    panel_playerBuffs.removeAll();
-    for (int i = 0; i < 6; i++) {
-      for (int j = 0; j < 2 && slots.hasNext(); j++) {
-        gbc.gridx = x++;
-        if (slots.hasNext()) {
-          try {
-            panel_playerBuffs.add(slots.next(), gbc);
-          } catch (Exception e) {
-          }
-        } else {
-          panel_playerBuffs.add(new JLabel(), gbc);
-        }
+  /**
+   * Updates the visual of the hero buffs & debuffs
+   */
+  public void repaintBuffs() {
+    for (int i = 0; i < slotLabelsArrayList.size() - 1; i++) {
+      try {
+        slotLabelsArrayList.get(i).setIcon(buffsArrayList.get(i).getIcon());
+        slotLabelsArrayList.get(i).setToolTipText(buffsArrayList.get(i).getToolTipText());
+      } catch (Exception e) {
+        slotLabelsArrayList.get(i).setIcon(null);
+        slotLabelsArrayList.get(i).setToolTipText("");
       }
-      gbc.gridy = ++y;
-      x = 0;
     }
   }
 
