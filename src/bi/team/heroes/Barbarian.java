@@ -74,9 +74,11 @@ public class Barbarian extends Hero implements ActionListener {
   private JButton btnUpgrade_toughness;
   private JButton btnUpgrade_riposteChance;
   private double curVitality = 425;
+  private int extraHealth = 0;
   private int curRage = 0;
   private int maxRage = 6;
   private double dmgMultiplier = 1;
+  private double toughnessMultiplier = 1;
   private int points_vitality = 1;
   private int points_rage = 1;
   private int points_strength = 1;
@@ -486,7 +488,7 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Hero takes damage */
     double toughness = getToughness() / 100;
-    double dmg = damage - (damage * toughness);
+    double dmg = damage - (damage * (toughness * toughnessMultiplier));
 
     /* Raise Shield block damage & reflect damage */
     Raise_shield raiseShield = (Raise_shield) AttacksArrayList.get(8);
@@ -746,6 +748,11 @@ public class Barbarian extends Hero implements ActionListener {
     btnOffensive.setBorder(new LineBorder(Color.BLACK, 2));
     btnDefensive.setBorder(new LineBorder(Color.BLACK, 1));
 
+    /* Apply offensive passive to barbarian */
+    dmgMultiplier += 0.15;
+    toughnessMultiplier -= 0.15;
+    extraHealth -= 100;
+
     game.repaint(); // Repaint GUI
     game.revalidate();
   }
@@ -770,6 +777,11 @@ public class Barbarian extends Hero implements ActionListener {
     btnDefensive.setIcon(defensiveIcon_small);
     btnOffensive.setBorder(new LineBorder(Color.BLACK, 1));
     btnDefensive.setBorder(new LineBorder(Color.BLACK, 2));
+
+    /* Apply defensive passive to barbarian */
+    toughnessMultiplier += 0.15;
+    extraHealth += 100;
+    dmgMultiplier -= 0.15;
 
     game.repaint(); // Repaint GUI
     game.revalidate();
@@ -875,7 +887,7 @@ public class Barbarian extends Hero implements ActionListener {
    * @return the maximum vitality
    */
   public int getMaxVitality() {
-    return (425 - 75 + (level * 75)) + ((points_vitality * 75) - 75);
+    return (425 - 75 + (level * 75)) + ((points_vitality * 75) - 75) + extraHealth;
   }
 
   /**
