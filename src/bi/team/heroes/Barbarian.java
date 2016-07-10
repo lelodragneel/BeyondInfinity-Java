@@ -428,6 +428,7 @@ public class Barbarian extends Hero implements ActionListener {
     game.getLblPlayerImage().setIcon(getHeroIcon()); // Draw player image on frame
     repaintRage(); // Repaint rage bar
     game.repaintXpBar(); // Update level & experience visual
+    showDefensiveAttacks();
     showOffensiveAttacks(); // Display offensive attacks by default
   }
 
@@ -731,6 +732,9 @@ public class Barbarian extends Hero implements ActionListener {
    * Toggle offensive attacks
    */
   public void showOffensiveAttacks() {
+    if (btnOffensive.isSelected()) { // Error checking
+      return;
+    }
 
     /* Add the offensive set of attacks */
     game.getPanel_actions().removeAll();
@@ -739,8 +743,8 @@ public class Barbarian extends Hero implements ActionListener {
     }
 
     /* Toggle stance buttons */
-    btnOffensive.setSelected(false);
-    btnDefensive.setSelected(true);
+    btnOffensive.setSelected(true);
+    btnDefensive.setSelected(false);
 
     /* Repaint stance icons */
     btnOffensive.setIcon(offensiveIcon_small);
@@ -753,6 +757,10 @@ public class Barbarian extends Hero implements ActionListener {
     toughnessMultiplier -= 0.15;
     extraHealth -= 100;
 
+    try {
+      game.repaintHealthBars();
+    } catch (Exception e) {
+    }
     game.repaint(); // Repaint GUI
     game.revalidate();
   }
@@ -761,6 +769,9 @@ public class Barbarian extends Hero implements ActionListener {
    * Toggle defensive attacks
    */
   public void showDefensiveAttacks() {
+    if (btnDefensive.isSelected()) { // Error checking
+      return;
+    }
 
     /* Add the defensive set of attacks */
     game.getPanel_actions().removeAll();
@@ -769,8 +780,8 @@ public class Barbarian extends Hero implements ActionListener {
     }
 
     /* Toggle stance buttons */
-    btnOffensive.setSelected(true);
-    btnDefensive.setSelected(false);
+    btnOffensive.setSelected(false);
+    btnDefensive.setSelected(true);
 
     /* Repaint stance icons */
     btnOffensive.setIcon(offensiveIcon);
@@ -783,6 +794,10 @@ public class Barbarian extends Hero implements ActionListener {
     extraHealth += 100;
     dmgMultiplier -= 0.15;
 
+    try {
+      game.repaintHealthBars();
+    } catch (Exception e) {
+    }
     game.repaint(); // Repaint GUI
     game.revalidate();
   }
