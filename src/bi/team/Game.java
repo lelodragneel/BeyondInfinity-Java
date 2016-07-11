@@ -75,6 +75,7 @@ public class Game extends JFrame implements ActionListener {
   private JLabel areaWallpaper;
   private JLabel upgradePoints;
   private JLabel lblEnhancementPoints;
+  private JLabel buff_stun;
   private ArrayList<JLabel> slotLabelsArrayList = new ArrayList<JLabel>();
   private ArrayList<JLabel> buffsArrayList = new ArrayList<JLabel>();
   private ArrayList<JLabel> enemySlotLabelsArrayList = new ArrayList<JLabel>();
@@ -138,6 +139,8 @@ public class Game extends JFrame implements ActionListener {
   public Game(String name, int chosenHero, int heroSex, int giftNum) {
     this.heroSex = heroSex;
     lang1 = (heroSex == 1) ? "his" : "her";
+    buff_stun = new JLabel("Stunned. Unable to attack.");
+    buff_stun.setIcon(new ImageIcon(getClass().getResource("/images/buffs/buff_stun.png")));
     UIManager.put("ProgressBar.selectionForeground", new Color(236, 236, 236)); // Health bar
                                                                                 // esthetics
 
@@ -827,6 +830,13 @@ public class Game extends JFrame implements ActionListener {
    */
   public JLabel getLblPlayerName() {
     return lblPlayerName;
+  }
+
+  /**
+   * @return the stun buff
+   */
+  public JLabel getBuff_stun() {
+    return buff_stun;
   }
 
   /**

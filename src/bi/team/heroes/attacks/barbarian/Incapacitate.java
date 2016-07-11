@@ -51,6 +51,7 @@ public class Incapacitate extends Attack {
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/incapacitate.png")),
         " active", null);
     hero.addBuff(buff_incapacitate);
+    game.getEnemySelected().addBuff(game.getBuff_stun());
   }
 
   /**
@@ -68,6 +69,7 @@ public class Incapacitate extends Attack {
       game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/incapacitate.png")),
           " inactive", null);
       hero.removeBuff(buff_incapacitate);
+      game.getEnemySelected().removeBuff(game.getBuff_stun());
     }
   }
 
