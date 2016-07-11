@@ -212,7 +212,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create the button that toggles inventory */
     btnShowInventory = new JButton();
-    btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/knapsack.png")));
+    btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/talent.png")));
     btnShowInventory.setBounds(1028, 0, 38, 38);
     btnShowInventory.setFocusable(false);
     btnShowInventory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
