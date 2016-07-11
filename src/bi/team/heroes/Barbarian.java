@@ -593,14 +593,15 @@ public class Barbarian extends Hero implements ActionListener {
   public void repaintBuffTooltips() {
     buff_stanceOffensive.setToolTipText("<html>" + Game.buffStyles + "<body> <table><tr>"
         + "<td><span id=\"title\">" + offensivePassiveName + "</span><br><br>" + "<p id=\"desc\">"
-        + getName() + " will deal <b id=\"val\">" + offensiveDamagePercentage
-        + "%</b> more damage in this stance.</p><br>" + "</td></tr></table>" + "</body><html>");
+        + getName() + " is dealing <b id=\"val\">" + offensiveDamagePercentage
+        + "%</b> more damage.</p><br>" + "</td></tr></table>" + "</body><html>");
 
     buff_stanceDefensive.setToolTipText("<html>" + Game.buffStyles + "<body> <table><tr>"
         + "<td><span id=\"title\">" + defensivePassiveName + "</span><br><br>" + "<p id=\"desc\">"
-        + "In this stance, " + getName() + " gains <b id=\"val\">" + defensiveExtraHealth
-        + "</b> vitality, and has increased <span id=\"s02\">Toughness</span> by <b id=\"val\">"
-        + defensiveToughnessPercentage + "%</b></p><br>" + "</td></tr></table>" + "</body><html>");
+        + getName() + " has an additional <b id=\"val\">" + defensiveExtraHealth
+        + "</b> vitality, and <b id=\"val\">" + defensiveToughnessPercentage
+        + "%</b> increased <span id=\"s02\">Toughness</span>" + ".</p><br>" + "</td></tr></table>"
+        + "</body><html>");
   }
 
   @Override
