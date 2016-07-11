@@ -624,14 +624,26 @@ public class Game extends JFrame implements ActionListener {
     }
 
     /* Check stun, ignite, and poison */
-    try {
+    try { // Player
+      if (hero.getTurnsStunned() > 0) {
+        if (!buffsArrayList.contains(buff_stun)) { // Add stun buff icon
+          hero.addBuff(buff_stun);
+        }
+      } else {
+        if (buffsArrayList.contains(buff_stun)) { // Remove stun buff icon
+          hero.removeBuff(buff_stun);
+        }
+      }
+    } catch (Exception e) {
+    }
+    try { // Enemy
       if (enemySelected.getTurnsStunned() > 0) {
         if (!enemyBuffsArrayList.contains(buff_stun)) { // Add stun buff icon
           enemySelected.addBuff(buff_stun);
         }
       } else {
-        if(enemyBuffsArrayList.contains(buff_stun)) {
-          enemySelected.removeBuff(buff_stun);          
+        if (enemyBuffsArrayList.contains(buff_stun)) { // Remove stun buff icon
+          enemySelected.removeBuff(buff_stun);
         }
       }
     } catch (Exception e) {
