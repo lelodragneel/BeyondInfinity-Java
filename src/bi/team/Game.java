@@ -587,7 +587,7 @@ public class Game extends JFrame implements ActionListener {
     } else if (evt.getSource() == btnShowInventory) {
       toggleInventory();
     } else if (evt.getSource() == btnSurrender) {
-      hero.surrender();
+      hero.surrender(true);
     }
   }
 
@@ -601,9 +601,11 @@ public class Game extends JFrame implements ActionListener {
       if (i < buffsArrayList.size()) {
         slotLabelsArrayList.get(i).setIcon(buffsArrayList.get(i).getIcon());
         slotLabelsArrayList.get(i).setToolTipText(buffsArrayList.get(i).getToolTipText());
+        slotLabelsArrayList.get(i).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
       } else {
         slotLabelsArrayList.get(i).setIcon(null);
         slotLabelsArrayList.get(i).setToolTipText("");
+        slotLabelsArrayList.get(i).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
       }
     }
 
@@ -612,9 +614,12 @@ public class Game extends JFrame implements ActionListener {
       if (i < enemyBuffsArrayList.size()) {
         enemySlotLabelsArrayList.get(i).setIcon(enemyBuffsArrayList.get(i).getIcon());
         enemySlotLabelsArrayList.get(i).setToolTipText(enemyBuffsArrayList.get(i).getToolTipText());
+        enemySlotLabelsArrayList.get(i).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
       } else {
         enemySlotLabelsArrayList.get(i).setIcon(null);
         enemySlotLabelsArrayList.get(i).setToolTipText("");
+        enemySlotLabelsArrayList.get(i)
+            .setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
       }
     }
   }

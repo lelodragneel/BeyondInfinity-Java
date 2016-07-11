@@ -58,6 +58,7 @@ public class EnemyLoad implements ActionListener {
         }
         if (!hero.isAlive()) { // Check if hero is dead
           game.getEnemySelected().enemyLevelup();
+          hero.surrender(false);
         }
         Game.addTurn(); // Increment turns
         if (hero.getTurnsStunned() > 0) {

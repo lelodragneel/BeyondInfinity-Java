@@ -252,8 +252,10 @@ public abstract class Hero {
 
   /**
    * Surrender
+   * 
+   * @param ask Boolean whether or not to ask use to confirm surrender
    */
-  public abstract void surrender();
+  public abstract void surrender(boolean ask);
 
   /**
    * @return the vitality

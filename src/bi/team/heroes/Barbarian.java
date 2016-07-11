@@ -676,12 +676,14 @@ public class Barbarian extends Hero implements ActionListener {
   }
 
   @Override
-  public void surrender() {
+  public void surrender(boolean ask) {
     int s = 0;
+    if (ask) {
+      Object[] options = {"Yes", "No Way!"};
+      s = JOptionPane.showOptionDialog(game, "Are you sure you want to surrender?", "Concede",
+          JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");      
+    }
 
-    Object[] options = {"Yes", "No Way!"};
-    s = JOptionPane.showOptionDialog(game, "Are you sure you want to surrender?", "Concede",
-        JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");
 
     if ((game.getEnemySelected() == null) || (!game.getEnemySelected().isAlive())) {
       return;
