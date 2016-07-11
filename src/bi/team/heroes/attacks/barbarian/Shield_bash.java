@@ -43,7 +43,7 @@ public class Shield_bash extends Attack {
 
     game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/shield_bash.png")),
         " active", null);
-    game.getEnemySelected().addBuff(game.getBuff_stun());
+    game.repaintBuffs();
   }
 
   @Override
@@ -74,7 +74,7 @@ public class Shield_bash extends Attack {
     if (turnsLeft == 0) {
       game.paintEvent(new ImageIcon(getClass().getResource("/images/attacks/shield_bash.png")),
           " inactive", null);
-      game.getEnemySelected().removeBuff(game.getBuff_stun());
+      game.repaintBuffs();
     }
   }
 

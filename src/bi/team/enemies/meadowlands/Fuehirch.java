@@ -34,9 +34,10 @@ public class Fuehirch extends Enemy {
     if (turnsStunned <= 0) {
 
       /* Hero takes damage */
-      double dmg = getDamage() + 100;
+      double dmg = getDamage();
       game.getHero().takeDamage(dmg,
           new ImageIcon(getClass().getResource("/images/basic_damage.png")));
+
     } else {
       turnsStunned--;
     }

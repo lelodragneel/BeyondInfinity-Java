@@ -622,6 +622,20 @@ public class Game extends JFrame implements ActionListener {
             .setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
       }
     }
+
+    /* Check stun, ignite, and poison */
+    try {
+      if (enemySelected.getTurnsStunned() > 0) {
+        if (!enemyBuffsArrayList.contains(buff_stun)) { // Add stun buff icon
+          enemySelected.addBuff(buff_stun);
+        }
+      } else {
+        if(enemyBuffsArrayList.contains(buff_stun)) {
+          enemySelected.removeBuff(buff_stun);          
+        }
+      }
+    } catch (Exception e) {
+    }
   }
 
   /**
