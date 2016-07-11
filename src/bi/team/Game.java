@@ -77,6 +77,8 @@ public class Game extends JFrame implements ActionListener {
   private JLabel lblEnhancementPoints;
   private ArrayList<JLabel> slotLabelsArrayList = new ArrayList<JLabel>();
   private ArrayList<JLabel> buffsArrayList = new ArrayList<JLabel>();
+  private ArrayList<JLabel> enemySlotLabelsArrayList = new ArrayList<JLabel>();
+  private ArrayList<JLabel> enemyBuffsArrayList = new ArrayList<JLabel>();
   private JProgressBar bar_loading;
   private JProgressBar bar_playerHealth;
   private JProgressBar bar_enemyHealth;
@@ -111,6 +113,19 @@ public class Game extends JFrame implements ActionListener {
   private JLabel buffSlot_10;
   private JLabel buffSlot_1;
   private JLabel buffSlot_4;
+  private JPanel panel_enemyBuffs;
+  private JLabel buffSlotEnemy_7;
+  private JLabel buffSlotEnemy_1;
+  private JLabel buffSlotEnemy_8;
+  private JLabel buffSlotEnemy_2;
+  private JLabel buffSlotEnemy_9;
+  private JLabel buffSlotEnemy_3;
+  private JLabel buffSlotEnemy_10;
+  private JLabel buffSlotEnemy_4;
+  private JLabel buffSlotEnemy_11;
+  private JLabel buffSlotEnemy_5;
+  private JLabel buffSlotEnemy_12;
+  private JLabel buffSlotEnemy_6;
 
   /**
    * Class constructor
@@ -319,9 +334,9 @@ public class Game extends JFrame implements ActionListener {
     bar_enemyHealth.setForeground(new Color(68, 108, 179));
     panel_enemy.add(bar_enemyHealth);
 
-    /* Build panel for displaying buffs & debuffs */
+    /* Build panel for displaying player buffs & debuffs */
     panel_playerBuffs = new JPanel();
-    panel_playerBuffs.setBounds(249, 165, 71, 227);
+    panel_playerBuffs.setBounds(250, 165, 71, 227);
     panel_playerBuffs.setOpaque(false);
     panel_playerBuffs.setLayout(new GridLayout(6, 2, 2, 2));
     getContentPane().add(panel_playerBuffs);
@@ -386,7 +401,7 @@ public class Game extends JFrame implements ActionListener {
     buffSlot_12.setVerticalAlignment(SwingConstants.CENTER);
     panel_playerBuffs.add(buffSlot_12);
 
-    /* Add label buff slots to array list */
+    /* Add label buff slots to player array list */
     slotLabelsArrayList.add(buffSlot_1);
     slotLabelsArrayList.add(buffSlot_2);
     slotLabelsArrayList.add(buffSlot_3);
@@ -399,6 +414,87 @@ public class Game extends JFrame implements ActionListener {
     slotLabelsArrayList.add(buffSlot_10);
     slotLabelsArrayList.add(buffSlot_11);
     slotLabelsArrayList.add(buffSlot_12);
+
+    /* Build panel for displaying enemy buffs & debuffs */
+    panel_enemyBuffs = new JPanel();
+    panel_enemyBuffs.setBounds(733, 165, 71, 227);
+    panel_enemyBuffs.setOpaque(false);
+    panel_enemyBuffs.setLayout(new GridLayout(6, 2, 2, 2));
+    getContentPane().add(panel_enemyBuffs);
+
+    buffSlotEnemy_7 = new JLabel("");
+    buffSlotEnemy_7.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_7.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_7);
+
+    buffSlotEnemy_1 = new JLabel("");
+    buffSlotEnemy_1.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_1.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_1);
+
+    buffSlotEnemy_8 = new JLabel("");
+    buffSlotEnemy_8.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_8.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_8);
+
+    buffSlotEnemy_2 = new JLabel("");
+    buffSlotEnemy_2.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_2.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_2);
+
+    buffSlotEnemy_9 = new JLabel("");
+    buffSlotEnemy_9.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_9.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_9);
+
+    buffSlotEnemy_3 = new JLabel("");
+    buffSlotEnemy_3.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_3.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_3);
+
+    buffSlotEnemy_10 = new JLabel("");
+    buffSlotEnemy_10.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_10.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_10);
+
+    buffSlotEnemy_4 = new JLabel("");
+    buffSlotEnemy_4.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_4.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_4);
+
+    buffSlotEnemy_11 = new JLabel("");
+    buffSlotEnemy_11.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_11.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_11);
+
+    buffSlotEnemy_5 = new JLabel("");
+    buffSlotEnemy_5.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_5.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_5);
+
+    buffSlotEnemy_12 = new JLabel("");
+    buffSlotEnemy_12.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_12.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_12);
+
+    buffSlotEnemy_6 = new JLabel("");
+    buffSlotEnemy_6.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_6.setHorizontalAlignment(SwingConstants.CENTER);
+    panel_enemyBuffs.add(buffSlotEnemy_6);
+
+    /* Add label buff slots to enemy array list */
+    enemySlotLabelsArrayList.add(buffSlotEnemy_1);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_2);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_3);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_4);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_5);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_6);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_7);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_8);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_9);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_10);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_11);
+    enemySlotLabelsArrayList.add(buffSlotEnemy_12);
 
     /* Create panel for displaying area wallpaper */
     panel_areaField = new JPanel();
@@ -433,7 +529,7 @@ public class Game extends JFrame implements ActionListener {
     /* Create the enemy's picture */
     lblEnemyImage = new JLabel("");
     lblEnemyImage.setHorizontalAlignment(SwingConstants.CENTER);
-    lblEnemyImage.setBounds(774, 100, 260, 222);
+    lblEnemyImage.setBounds(804, 100, 200, 222);
     panel_areaField.add(lblEnemyImage);
 
     /* Create label to display player's name */
@@ -447,7 +543,7 @@ public class Game extends JFrame implements ActionListener {
     lblPlayerImage = new JLabel("");
     lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
     lblPlayerImage.setVerticalAlignment(SwingConstants.BOTTOM);
-    lblPlayerImage.setBounds(39, 100, 200, 222);
+    lblPlayerImage.setBounds(40, 100, 200, 222);
     panel_areaField.add(lblPlayerImage);
 
     /* Create the enemy's name */
@@ -494,6 +590,8 @@ public class Game extends JFrame implements ActionListener {
    * Updates the visual of the hero buffs & debuffs
    */
   public void repaintBuffs() {
+
+    /* Repaint player buffs */
     for (int i = 0; i < slotLabelsArrayList.size(); i++) {
       if (i < buffsArrayList.size()) {
         slotLabelsArrayList.get(i).setIcon(buffsArrayList.get(i).getIcon());
@@ -501,6 +599,17 @@ public class Game extends JFrame implements ActionListener {
       } else {
         slotLabelsArrayList.get(i).setIcon(null);
         slotLabelsArrayList.get(i).setToolTipText("");
+      }
+    }
+
+    /* Repaint enemy buffs */
+    for (int i = 0; i < enemySlotLabelsArrayList.size(); i++) {
+      if (i < enemyBuffsArrayList.size()) {
+        enemySlotLabelsArrayList.get(i).setIcon(enemyBuffsArrayList.get(i).getIcon());
+        enemySlotLabelsArrayList.get(i).setToolTipText(enemyBuffsArrayList.get(i).getToolTipText());
+      } else {
+        enemySlotLabelsArrayList.get(i).setIcon(null);
+        enemySlotLabelsArrayList.get(i).setToolTipText("");
       }
     }
   }
@@ -893,10 +1002,17 @@ public class Game extends JFrame implements ActionListener {
   }
 
   /**
-   * @return the array of the buffs/debuffs
+   * @return the array of player the buffs/debuffs
    */
   public ArrayList<JLabel> getBuffsArrayList() {
     return buffsArrayList;
+  }
+
+  /**
+   * @return the array of enemy the buffs/debuffs
+   */
+  public ArrayList<JLabel> getEnemyBuffsArrayList() {
+    return enemyBuffsArrayList;
   }
 
   /**

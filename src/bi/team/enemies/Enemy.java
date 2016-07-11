@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
 
@@ -49,6 +50,41 @@ public abstract class Enemy extends JButton implements MouseListener {
     this.setFocusable(false);
     this.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     this.addMouseListener(this);
+  }
+
+  /**
+   * Add a buff or debuff to the enemy
+   * 
+   * @param buff The buff/debuff to add
+   */
+  public void addBuff(JLabel buff) {
+    if (game.getEnemyBuffsArrayList().size() < 12) {
+      game.getEnemyBuffsArrayList().add(buff);
+    }
+    game.repaintBuffs();
+  }
+
+  /**
+   * Add a buff or debuff to the enemy at a desired index
+   * 
+   * @param buff The buff/debuff to add
+   * @param index The number of the index to place the buff at
+   */
+  public void addBuff(JLabel buff, int index) {
+    if (game.getEnemyBuffsArrayList().size() < 12) {
+      game.getEnemyBuffsArrayList().add(index, buff);
+    }
+    game.repaintBuffs();
+  }
+
+  /**
+   * Remove a buff or debuff from the enemy
+   * 
+   * @param buff The buff/debuff to add
+   */
+  public void removeBuff(JLabel buff) {
+    game.getEnemyBuffsArrayList().remove(buff);
+    game.repaintBuffs();
   }
 
   /**
