@@ -43,6 +43,7 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
+import javax.swing.JSlider;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -212,7 +213,7 @@ public class Game extends JFrame implements ActionListener {
     /* Create the button that toggles inventory */
     btnShowInventory = new JButton();
     btnShowInventory.setIcon(new ImageIcon(Game.class.getResource("/images/knapsack.png")));
-    btnShowInventory.setBounds(0, 0, 38, 38);
+    btnShowInventory.setBounds(1028, 0, 38, 38);
     btnShowInventory.setFocusable(false);
     btnShowInventory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     btnShowInventory.addActionListener(this);
@@ -246,6 +247,17 @@ public class Game extends JFrame implements ActionListener {
     lblLevel_next.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
     lblLevel_next.setBounds(777, 0, 38, 38);
     panel_top.add(lblLevel_next);
+
+    /* Create the music pause/resume button */
+    JButton btnMusicToggle = new JButton("");
+    btnMusicToggle.setBounds(0, 0, 38, 38);
+    btnMusicToggle.setFocusable(false);
+    panel_top.add(btnMusicToggle);
+
+    /* Create the volume slider */
+    JSlider volumeSlider = new JSlider();
+    volumeSlider.setBounds(38, 6, 140, 26);
+    panel_top.add(volumeSlider);
 
     /* Create bottom panel to display buttons for upgrades */
     panel_stats = new JPanel();
