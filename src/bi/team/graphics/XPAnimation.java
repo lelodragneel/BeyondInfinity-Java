@@ -28,7 +28,7 @@ public class XPAnimation implements ActionListener {
     lblXPEarned.setForeground(new Color(102, 51, 153, 255));
     lblXPEarned.setHorizontalAlignment(SwingConstants.CENTER);
     lblXPEarned.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblXPEarned.setBounds(498, 28, 48, 16);
+    lblXPEarned.setBounds(533, 28, 48, 16);
     game.getPanel_top().add(lblXPEarned);
   }
 

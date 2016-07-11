@@ -51,6 +51,7 @@ public class EnemyLoad implements ActionListener {
 
     if (i < 0) { // Conditional check for who's turn
       timer.stop(); // Stop the loop
+      game.setProgBar_loading(100);
       if (!Game.getTurn()) { // If it's enemy's turn
         try { // Enemy attacks the player
           game.getEnemySelected().attackPlayer();

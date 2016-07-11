@@ -153,10 +153,10 @@ public class Game extends JFrame implements ActionListener {
     /* Build frame */
     this.setResizable(false);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setBounds(100, 100, 1070, 700);
+    this.setBounds(100, 100, 1160, 680);
     this.setTitle("[ver. alpha] BeyondInfinity");
     getContentPane().setLayout(null);
-    this.setBounds(0, 0, 1070, 654);
+    this.setBounds(0, 0, 1140, 680);
     this.setBackground(new Color(236, 240, 241));
     this.setLocationRelativeTo(null);
 
@@ -180,7 +180,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create a panel that dims the frame, this is used when toggling map */
     panel_frameOpacity = new JPanel();
-    panel_frameOpacity.setBounds(0, 0, 1064, 19);
+    panel_frameOpacity.setBounds(0, 0, 1134, 19);
     panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
     panel_frameOpacity.setOpaque(true);
     panel_frameOpacity.setVisible(false);
@@ -188,7 +188,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create left panel for displaying hero info */
     panel_player = new JPanel();
-    panel_player.setBounds(20, 80, 260, 65);
+    panel_player.setBounds(20, 80, 285, 65);
     panel_player.setBackground(new Color(204, 255, 153));
     panel_player.setBorder(new LineBorder(Color.BLACK, 1));
     panel_player.setLayout(null);
@@ -196,13 +196,13 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create top panel to display vitality (health) bars */
     panel_top = new JPanel();
-    panel_top.setBounds(10, 21, 1044, 48);
+    panel_top.setBounds(10, 21, 1114, 48);
     panel_top.setLayout(null);
     getContentPane().add(panel_top);
 
     /* Create the button that toggles map */
     btnShowMap = new JButton();
-    btnShowMap.setBounds(1006, 0, 38, 38);
+    btnShowMap.setBounds(1076, 0, 38, 38);
     btnShowMap.setFocusable(false);
     btnShowMap.setIcon(new ImageIcon(getClass().getResource("/images/map.png")));
     btnShowMap.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -226,7 +226,7 @@ public class Game extends JFrame implements ActionListener {
     bar_XPBar.setValue(20);
     bar_XPBar.setBorder(new LineBorder(new Color(0, 0, 0)));
     bar_XPBar.setStringPainted(true);
-    bar_XPBar.setBounds(322, 12, 400, 14);
+    bar_XPBar.setBounds(347, 12, 420, 14);
     panel_top.add(bar_XPBar);
 
     /* Create icon for current level */
@@ -235,7 +235,7 @@ public class Game extends JFrame implements ActionListener {
     lblLevel_current.setHorizontalTextPosition(JLabel.CENTER);
     lblLevel_current.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
     lblLevel_current.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
-    lblLevel_current.setBounds(274, 0, 38, 38);
+    lblLevel_current.setBounds(299, 0, 38, 38);
     panel_top.add(lblLevel_current);
 
     /* Create icon for next level */
@@ -244,19 +244,19 @@ public class Game extends JFrame implements ActionListener {
     lblLevel_next.setHorizontalTextPosition(JLabel.CENTER);
     lblLevel_next.setFont(new Font("Comic Sans MS", Font.PLAIN, 18));
     lblLevel_next.setIcon(new ImageIcon(getClass().getResource("/images/xpcircle.png")));
-    lblLevel_next.setBounds(732, 0, 38, 38);
+    lblLevel_next.setBounds(777, 0, 38, 38);
     panel_top.add(lblLevel_next);
 
     /* Create bottom panel to display buttons for upgrades */
     panel_stats = new JPanel();
-    panel_stats.setBounds(10, 414, 1044, 87);
+    panel_stats.setBounds(10, 436, 1114, 87);
     panel_stats.setLayout(new GridLayout(0, 5, 0, 0));
     getContentPane().add(panel_stats);
 
     /* Create right panel for displaying enemy info */
     panel_enemy = new JPanel();
     panel_enemy.setBackground(new Color(204, 255, 153));
-    panel_enemy.setBounds(784, 80, 260, 65);
+    panel_enemy.setBounds(829, 80, 285, 87);
     panel_enemy.setBorder(new LineBorder(Color.BLACK, 1));
     panel_enemy.setLayout(null);
     panel_enemy.setVisible(false);
@@ -265,26 +265,26 @@ public class Game extends JFrame implements ActionListener {
     /* Create actions panel for displaying attack buttons */
     panel_actions = new JPanel();
     panel_actions.setBorder(new EmptyBorder(10, 10, 10, 10));
-    panel_actions.setBounds(10, 542, 1044, 72);
+    panel_actions.setBounds(10, 568, 1114, 72);
     panel_actions.setBackground(new Color(135, 211, 124));
     panel_actions.setLayout(new GridLayout(0, 6, 10, 0));
     getContentPane().add(panel_actions);
 
     /* Create top actions panel */
     panel_actionsTop = new JPanel();
-    panel_actionsTop.setBounds(10, 508, 1044, 34);
+    panel_actionsTop.setBounds(10, 534, 1114, 34);
     panel_actionsTop.setLayout(null);
     getContentPane().add(panel_actionsTop);
 
     /* Create label to display upgrade points */
     lblEnhancementPoints = new JLabel("<html>Enhancement Points: <b>0</b></html>");
     lblEnhancementPoints.setFont(new Font("Comic Sans MS", Font.PLAIN, 12));
-    lblEnhancementPoints.setBounds(447, 9, 150, 16);
+    lblEnhancementPoints.setBounds(482, 9, 150, 16);
     panel_actionsTop.add(lblEnhancementPoints);
 
     /* Create the surrender button */
     btnSurrender = new JButton("");
-    btnSurrender.setBounds(1010, 0, 34, 34);
+    btnSurrender.setBounds(1080, 0, 34, 34);
     btnSurrender.setFocusable(false);
     btnSurrender.addActionListener(this);
     btnSurrender.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -295,7 +295,7 @@ public class Game extends JFrame implements ActionListener {
     /* Create the loading bar */
     bar_loading = new JProgressBar();
     bar_loading.setDoubleBuffered(true);
-    bar_loading.setBounds(0, 0, 1064, 10);
+    bar_loading.setBounds(0, 0, 1134, 10);
     bar_loading.setBorder(null);
     bar_loading.setValue(100);
     bar_loading.setForeground(new Color(52, 73, 94));
@@ -323,7 +323,7 @@ public class Game extends JFrame implements ActionListener {
     bar_playerHealth = new JProgressBar();
     bar_playerHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
     bar_playerHealth.setStringPainted(true);
-    bar_playerHealth.setBounds(26, 11, 224, 16);
+    bar_playerHealth.setBounds(26, 11, 249, 16);
     bar_playerHealth.setString("");
     bar_playerHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
     bar_playerHealth.setForeground(new Color(68, 108, 179));
@@ -333,7 +333,7 @@ public class Game extends JFrame implements ActionListener {
     bar_enemyHealth = new JProgressBar();
     bar_enemyHealth.setFont(new Font("Comic Sans MS", Font.PLAIN, 10));
     bar_enemyHealth.setStringPainted(true);
-    bar_enemyHealth.setBounds(26, 11, 224, 16);
+    bar_enemyHealth.setBounds(26, 11, 249, 16);
     bar_enemyHealth.setString("");
     bar_enemyHealth.setBorder(new LineBorder(new Color(0, 0, 0)));
     bar_enemyHealth.setForeground(new Color(68, 108, 179));
@@ -341,7 +341,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Build panel for displaying player buffs & debuffs */
     panel_playerBuffs = new JPanel();
-    panel_playerBuffs.setBounds(250, 165, 71, 227);
+    panel_playerBuffs.setBounds(262, 184, 71, 226);
     panel_playerBuffs.setOpaque(false);
     panel_playerBuffs.setLayout(new GridLayout(6, 2, 2, 2));
     getContentPane().add(panel_playerBuffs);
@@ -422,7 +422,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Build panel for displaying enemy buffs & debuffs */
     panel_enemyBuffs = new JPanel();
-    panel_enemyBuffs.setBounds(733, 165, 71, 227);
+    panel_enemyBuffs.setBounds(800, 184, 71, 226);
     panel_enemyBuffs.setOpaque(false);
     panel_enemyBuffs.setLayout(new GridLayout(6, 2, 2, 2));
     getContentPane().add(panel_enemyBuffs);
@@ -503,7 +503,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create panel for displaying area wallpaper */
     panel_areaField = new JPanel();
-    panel_areaField.setBounds(10, 70, 1044, 333);
+    panel_areaField.setBounds(10, 70, 1114, 353);
     panel_areaField.setBorder(new LineBorder(new Color(0, 0, 0)));
     panel_areaField.setLayout(null);
     getContentPane().add(panel_areaField);
@@ -525,7 +525,7 @@ public class Game extends JFrame implements ActionListener {
     scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
     scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
     scroll.setAutoscrolls(true);
-    scroll.setBounds(355, 0, 333, 322);
+    scroll.setBounds(390, 0, 333, 342);
     scroll.setOpaque(false);
     scroll.setBorder(null);
     scroll.getViewport().setOpaque(false);
@@ -534,33 +534,33 @@ public class Game extends JFrame implements ActionListener {
     /* Create the enemy's picture */
     lblEnemyImage = new JLabel("");
     lblEnemyImage.setHorizontalAlignment(SwingConstants.CENTER);
-    lblEnemyImage.setBounds(804, 100, 200, 222);
+    lblEnemyImage.setBounds(861, 120, 200, 222);
     panel_areaField.add(lblEnemyImage);
 
     /* Create label to display player's name */
     lblPlayerName = new JLabel(name);
     lblPlayerName.setHorizontalAlignment(SwingConstants.CENTER);
     lblPlayerName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-    lblPlayerName.setBounds(10, 76, 260, 20);
+    lblPlayerName.setBounds(10, 77, 285, 20);
     panel_areaField.add(lblPlayerName);
 
     /* Create the player's picture */
     lblPlayerImage = new JLabel("");
     lblPlayerImage.setHorizontalAlignment(SwingConstants.CENTER);
     lblPlayerImage.setVerticalAlignment(SwingConstants.BOTTOM);
-    lblPlayerImage.setBounds(40, 100, 200, 222);
+    lblPlayerImage.setBounds(52, 120, 200, 222);
     panel_areaField.add(lblPlayerImage);
 
     /* Create the enemy's name */
     lblEnemyName = new JLabel("");
     lblEnemyName.setHorizontalAlignment(SwingConstants.CENTER);
     lblEnemyName.setFont(new Font("Comic Sans MS", Font.BOLD, 14));
-    lblEnemyName.setBounds(774, 76, 260, 20);
+    lblEnemyName.setBounds(819, 99, 285, 20);
     panel_areaField.add(lblEnemyName);
 
     /* Create label to display area image */
     areaWallpaper = new JLabel();
-    areaWallpaper.setBounds(0, 0, 1044, 333);
+    areaWallpaper.setBounds(0, 0, 1114, 353);
     areaWallpaper.setIcon(new ImageIcon(getClass().getResource("/images/areas/meadowlands.jpg")));
     panel_areaField.add(areaWallpaper);
 
