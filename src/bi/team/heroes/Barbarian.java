@@ -777,8 +777,8 @@ public class Barbarian extends Hero implements ActionListener {
     btnDefensive.setBorder(new LineBorder(Color.BLACK, 1));
 
     /* Add & remove buffs & debuffs from array list */
-    addBuff(buff_stanceOffensive);
     removeBuff(buff_stanceDefensive);
+    addBuff(buff_stanceOffensive, 0);
 
     try {
       game.repaintHealthBars();
@@ -814,8 +814,8 @@ public class Barbarian extends Hero implements ActionListener {
     btnDefensive.setBorder(new LineBorder(Color.BLACK, 2));
 
     /* Add & remove buffs & debuffs from array list */
-    addBuff(buff_stanceDefensive);
     removeBuff(buff_stanceOffensive);
+    addBuff(buff_stanceDefensive, 0);
 
     try {
       game.repaintHealthBars();

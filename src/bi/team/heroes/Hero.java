@@ -45,7 +45,23 @@ public abstract class Hero {
    * @param buff The buff/debuff to add
    */
   public void addBuff(JLabel buff) {
-    game.getBuffsArrayList().add(buff);
+    if (game.getBuffsArrayList().size() < 12) {
+      game.getBuffsArrayList().add(buff);
+    }
+    repaintBuffTooltips();
+    game.repaintBuffs();
+  }
+
+  /**
+   * Add a buff or debuff to the hero at a desired index
+   * 
+   * @param buff The buff/debuff to add
+   * @param index The number of the index to place the buff at
+   */
+  public void addBuff(JLabel buff, int index) {
+    if (game.getBuffsArrayList().size() < 12) {
+      game.getBuffsArrayList().add(index, buff);
+    }
     repaintBuffTooltips();
     game.repaintBuffs();
   }

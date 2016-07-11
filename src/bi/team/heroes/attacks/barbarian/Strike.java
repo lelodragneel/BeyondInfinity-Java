@@ -1,6 +1,7 @@
 package bi.team.heroes.attacks.barbarian;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import bi.team.BeyondInfinity;
 import bi.team.Game;
