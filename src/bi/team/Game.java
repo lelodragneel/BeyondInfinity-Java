@@ -16,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.ToolTipManager;
@@ -43,7 +44,6 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
-import javax.swing.JSlider;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -351,6 +351,12 @@ public class Game extends JFrame implements ActionListener {
     bar_enemyHealth.setForeground(new Color(68, 108, 179));
     panel_enemy.add(bar_enemyHealth);
 
+    /* Create subpanel to display enemy abilities */
+    JPanel subpanel_enemyAbilities = new JPanel();
+    subpanel_enemyAbilities.setBounds(1, 38, 283, 48);
+    panel_enemy.add(subpanel_enemyAbilities);
+    subpanel_enemyAbilities.setLayout(new GridLayout(1, 0, 0, 0));
+
     /* Build panel for displaying player buffs & debuffs */
     panel_playerBuffs = new JPanel();
     panel_playerBuffs.setBounds(262, 184, 71, 226);
@@ -359,63 +365,75 @@ public class Game extends JFrame implements ActionListener {
     getContentPane().add(panel_playerBuffs);
 
     buffSlot_1 = new JLabel("");
-    buffSlot_1.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_1.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_1.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_1.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_1);
 
     buffSlot_7 = new JLabel("");
-    buffSlot_7.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_7.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_7.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_7.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_7.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_7);
 
     buffSlot_2 = new JLabel("");
-    buffSlot_2.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_2.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_2.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_2.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_2.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_2);
 
     buffSlot_8 = new JLabel("");
-    buffSlot_8.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_8.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_8.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_8.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_8.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_8);
 
     buffSlot_3 = new JLabel("");
-    buffSlot_3.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_3.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_3.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_3.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_3.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_3);
 
     buffSlot_9 = new JLabel("");
-    buffSlot_9.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_9.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_9.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_9.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_9.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_9);
 
     buffSlot_4 = new JLabel("");
-    buffSlot_4.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_4.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_4.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_4.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_4.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_4);
 
     buffSlot_10 = new JLabel("");
-    buffSlot_10.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_10.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_10.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_10.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_10.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_10);
 
     buffSlot_5 = new JLabel("");
-    buffSlot_5.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_5.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_5.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_5.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_5.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_5);
 
     buffSlot_11 = new JLabel("");
-    buffSlot_11.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_11.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_11.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_11.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_11.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_11);
 
     buffSlot_6 = new JLabel("");
-    buffSlot_6.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_6.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_6.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_6.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_6.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_6);
 
     buffSlot_12 = new JLabel("");
-    buffSlot_12.setHorizontalAlignment(SwingConstants.CENTER);
-    buffSlot_12.setVerticalAlignment(SwingConstants.CENTER);
+    buffSlot_12.setVerticalTextPosition(SwingConstants.CENTER);
+    buffSlot_12.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlot_12.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
     panel_playerBuffs.add(buffSlot_12);
 
     /* Add label buff slots to player array list */
@@ -440,63 +458,75 @@ public class Game extends JFrame implements ActionListener {
     getContentPane().add(panel_enemyBuffs);
 
     buffSlotEnemy_7 = new JLabel("");
-    buffSlotEnemy_7.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_7.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_7.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_7.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_7.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_7);
 
     buffSlotEnemy_1 = new JLabel("");
-    buffSlotEnemy_1.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_1.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_1.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_1.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_1);
 
     buffSlotEnemy_8 = new JLabel("");
-    buffSlotEnemy_8.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_8.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_8.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_8.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_8.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_8);
 
     buffSlotEnemy_2 = new JLabel("");
-    buffSlotEnemy_2.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_2.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_2.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_2.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_2.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_2);
 
     buffSlotEnemy_9 = new JLabel("");
-    buffSlotEnemy_9.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_9.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_9.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_9.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_9.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_9);
 
     buffSlotEnemy_3 = new JLabel("");
-    buffSlotEnemy_3.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_3.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_3.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_3.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_3.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_3);
 
     buffSlotEnemy_10 = new JLabel("");
-    buffSlotEnemy_10.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_10.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_10.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_10.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_10.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_10);
 
     buffSlotEnemy_4 = new JLabel("");
-    buffSlotEnemy_4.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_4.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_4.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_4.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_4.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_4);
 
     buffSlotEnemy_11 = new JLabel("");
-    buffSlotEnemy_11.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_11.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_11.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_11.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_11.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_11);
 
     buffSlotEnemy_5 = new JLabel("");
-    buffSlotEnemy_5.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_5.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_5.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_5.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_5.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_5);
 
     buffSlotEnemy_12 = new JLabel("");
-    buffSlotEnemy_12.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_12.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_12.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_12.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_12.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_12);
 
     buffSlotEnemy_6 = new JLabel("");
-    buffSlotEnemy_6.setVerticalAlignment(SwingConstants.CENTER);
-    buffSlotEnemy_6.setHorizontalAlignment(SwingConstants.CENTER);
+    buffSlotEnemy_6.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+    buffSlotEnemy_6.setHorizontalTextPosition(SwingConstants.CENTER);
+    buffSlotEnemy_6.setVerticalTextPosition(SwingConstants.CENTER);
     panel_enemyBuffs.add(buffSlotEnemy_6);
 
     /* Add label buff slots to enemy array list */
@@ -614,10 +644,12 @@ public class Game extends JFrame implements ActionListener {
         slotLabelsArrayList.get(i).setIcon(buffsArrayList.get(i).getIcon());
         slotLabelsArrayList.get(i).setToolTipText(buffsArrayList.get(i).getToolTipText());
         slotLabelsArrayList.get(i).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        slotLabelsArrayList.get(i).setText(buffsArrayList.get(i).getText());
       } else {
         slotLabelsArrayList.get(i).setIcon(null);
         slotLabelsArrayList.get(i).setToolTipText("");
         slotLabelsArrayList.get(i).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        slotLabelsArrayList.get(i).setText("");
       }
     }
 
@@ -632,6 +664,7 @@ public class Game extends JFrame implements ActionListener {
         enemySlotLabelsArrayList.get(i).setToolTipText("");
         enemySlotLabelsArrayList.get(i)
             .setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        enemySlotLabelsArrayList.get(i).setText("");
       }
     }
 
@@ -640,6 +673,11 @@ public class Game extends JFrame implements ActionListener {
       if (hero.getTurnsStunned() > 0) {
         if (!buffsArrayList.contains(buff_stun)) { // Add stun buff icon
           hero.addBuff(buff_stun);
+        }
+        for (int i = 0; i < buffsArrayList.size(); i++) { // Add badge to stun buff
+          if (buffsArrayList.get(i) == buff_stun) {
+            slotLabelsArrayList.get(i).setText(hero.getTurnsStunned() + "");
+          }
         }
       } else {
         if (buffsArrayList.contains(buff_stun)) { // Remove stun buff icon
@@ -652,6 +690,11 @@ public class Game extends JFrame implements ActionListener {
       if (enemySelected.getTurnsStunned() > 0) {
         if (!enemyBuffsArrayList.contains(buff_stun)) { // Add stun buff icon
           enemySelected.addBuff(buff_stun);
+        }
+        for (int i = 0; i < enemyBuffsArrayList.size(); i++) { // Add badge to stun buff
+          if (enemyBuffsArrayList.get(i) == buff_stun) {
+            enemySlotLabelsArrayList.get(i).setText(enemySelected.getTurnsStunned() + "");
+          }
         }
       } else {
         if (enemyBuffsArrayList.contains(buff_stun)) { // Remove stun buff icon

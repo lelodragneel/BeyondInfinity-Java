@@ -558,6 +558,8 @@ public class Barbarian extends Hero implements ActionListener {
       incapacitate.reduceTurns();
       shieldBash.reduceTurns();
     }
+    
+    game.repaintBuffs();
   }
 
   @Override
