@@ -723,32 +723,7 @@ public class Game extends JFrame implements ActionListener {
     panel_enemyBuffs.setLayout(new GridLayout(6, 2, 2, 2));
     getContentPane().add(panel_enemyBuffs);
 
-    /* Create enemy buff slot 1 */
-    JPanel enemyBuffContainer_1 = new JPanel();
-    enemyBuffContainer_1.setOpaque(false);
-    enemyBuffContainer_1.setLayout(null);
-    panel_enemyBuffs.add(enemyBuffContainer_1);
-
-    JPanel enemyBadgePanel_1 = new JPanel();
-    enemyBadgePanel_1.setOpaque(false);
-    enemyBadgePanel_1.setBounds(15, 16, 20, 20);
-    enemyBadgePanel_1.setLayout(null);
-    enemyBuffContainer_1.add(enemyBadgePanel_1);
-
-    enemyBuffSlot_1 = new JLabel("");
-    enemyBuffSlot_1.setBounds(0, 0, 20, 20);
-    enemyBuffSlot_1.setHorizontalTextPosition(SwingConstants.CENTER);
-    enemyBuffSlot_1.setHorizontalAlignment(SwingConstants.CENTER);
-    enemyBuffSlot_1.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-    enemyBuffSlot_1.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
-    enemyBadgePanel_1.add(enemyBuffSlot_1);
-
-    enemySlotPicture_1 = new JLabel("");
-    enemySlotPicture_1.setHorizontalAlignment(SwingConstants.CENTER);
-    enemySlotPicture_1.setBounds(0, 0, 35, 36);
-    enemyBuffContainer_1.add(enemySlotPicture_1);
-
-    /* Create player buff slot 7 */
+    /* Create enemy buff slot 7 */
     JPanel enemyBuffContainer_7 = new JPanel();
     enemyBuffContainer_7.setOpaque(false);
     enemyBuffContainer_7.setLayout(null);
@@ -773,30 +748,30 @@ public class Game extends JFrame implements ActionListener {
     enemySlotPicture_7.setBounds(0, 0, 35, 36);
     enemyBuffContainer_7.add(enemySlotPicture_7);
 
-    /* Create player buff slot 2 */
-    JPanel enemyBuffContainer_2 = new JPanel();
-    enemyBuffContainer_2.setOpaque(false);
-    enemyBuffContainer_2.setLayout(null);
-    panel_enemyBuffs.add(enemyBuffContainer_2);
+    /* Create enemy buff slot 1 */
+    JPanel enemyBuffContainer_1 = new JPanel();
+    enemyBuffContainer_1.setOpaque(false);
+    enemyBuffContainer_1.setLayout(null);
+    panel_enemyBuffs.add(enemyBuffContainer_1);
 
-    JPanel enemyBadgePanel_2 = new JPanel();
-    enemyBadgePanel_2.setLayout(null);
-    enemyBadgePanel_2.setOpaque(false);
-    enemyBadgePanel_2.setBounds(15, 16, 20, 20);
-    enemyBuffContainer_2.add(enemyBadgePanel_2);
+    JPanel enemyBadgePanel_1 = new JPanel();
+    enemyBadgePanel_1.setOpaque(false);
+    enemyBadgePanel_1.setBounds(15, 16, 20, 20);
+    enemyBadgePanel_1.setLayout(null);
+    enemyBuffContainer_1.add(enemyBadgePanel_1);
 
-    enemyBuffSlot_2 = new JLabel("");
-    enemyBuffSlot_2.setHorizontalTextPosition(SwingConstants.CENTER);
-    enemyBuffSlot_2.setHorizontalAlignment(SwingConstants.CENTER);
-    enemyBuffSlot_2.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-    enemyBuffSlot_2.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
-    enemyBuffSlot_2.setBounds(0, 0, 20, 20);
-    enemyBadgePanel_2.add(enemyBuffSlot_2);
+    enemyBuffSlot_1 = new JLabel("");
+    enemyBuffSlot_1.setBounds(0, 0, 20, 20);
+    enemyBuffSlot_1.setHorizontalTextPosition(SwingConstants.CENTER);
+    enemyBuffSlot_1.setHorizontalAlignment(SwingConstants.CENTER);
+    enemyBuffSlot_1.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+    enemyBuffSlot_1.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
+    enemyBadgePanel_1.add(enemyBuffSlot_1);
 
-    enemySlotPicture_2 = new JLabel("");
-    enemySlotPicture_2.setHorizontalAlignment(SwingConstants.CENTER);
-    enemySlotPicture_2.setBounds(0, 0, 35, 36);
-    enemyBuffContainer_2.add(enemySlotPicture_2);
+    enemySlotPicture_1 = new JLabel("");
+    enemySlotPicture_1.setBounds(0, 0, 35, 36);
+    enemySlotPicture_1.setHorizontalAlignment(SwingConstants.CENTER);
+    enemyBuffContainer_1.add(enemySlotPicture_1);
 
     /* Create player buff slot 8 */
     JPanel enemyBuffContainer_8 = new JPanel();
@@ -823,32 +798,32 @@ public class Game extends JFrame implements ActionListener {
     enemySlotPicture_8.setBounds(0, 0, 35, 36);
     enemyBuffContainer_8.add(enemySlotPicture_8);
 
+    /* Create enemy buff slot 2 */
+    JPanel enemyBuffContainer_2 = new JPanel();
+    enemyBuffContainer_2.setOpaque(false);
+    enemyBuffContainer_2.setLayout(null);
+    panel_enemyBuffs.add(enemyBuffContainer_2);
+
+    JPanel enemyBadgePanel_2 = new JPanel();
+    enemyBadgePanel_2.setLayout(null);
+    enemyBadgePanel_2.setOpaque(false);
+    enemyBadgePanel_2.setBounds(15, 16, 20, 20);
+    enemyBuffContainer_2.add(enemyBadgePanel_2);
+
+    enemyBuffSlot_2 = new JLabel("");
+    enemyBuffSlot_2.setHorizontalTextPosition(SwingConstants.CENTER);
+    enemyBuffSlot_2.setHorizontalAlignment(SwingConstants.CENTER);
+    enemyBuffSlot_2.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+    enemyBuffSlot_2.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
+    enemyBuffSlot_2.setBounds(0, 0, 20, 20);
+    enemyBadgePanel_2.add(enemyBuffSlot_2);
+
+    enemySlotPicture_2 = new JLabel("");
+    enemySlotPicture_2.setHorizontalAlignment(SwingConstants.CENTER);
+    enemySlotPicture_2.setBounds(0, 0, 35, 36);
+    enemyBuffContainer_2.add(enemySlotPicture_2);
+
     /* Create player buff slot 3 */
-    JPanel enemyBuffContainer_3 = new JPanel();
-    enemyBuffContainer_3.setOpaque(false);
-    enemyBuffContainer_3.setLayout(null);
-    panel_enemyBuffs.add(enemyBuffContainer_3);
-
-    JPanel enemyBadgePanel_3 = new JPanel();
-    enemyBadgePanel_3.setLayout(null);
-    enemyBadgePanel_3.setOpaque(false);
-    enemyBadgePanel_3.setBounds(15, 16, 20, 20);
-    enemyBuffContainer_3.add(enemyBadgePanel_3);
-
-    enemyBuffSlot_3 = new JLabel("");
-    enemyBuffSlot_3.setHorizontalTextPosition(SwingConstants.CENTER);
-    enemyBuffSlot_3.setHorizontalAlignment(SwingConstants.CENTER);
-    enemyBuffSlot_3.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-    enemyBuffSlot_3.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
-    enemyBuffSlot_3.setBounds(0, 0, 20, 20);
-    enemyBadgePanel_3.add(enemyBuffSlot_3);
-
-    enemySlotPicture_3 = new JLabel("");
-    enemySlotPicture_3.setHorizontalAlignment(SwingConstants.CENTER);
-    enemySlotPicture_3.setBounds(0, 0, 35, 36);
-    buffContainer_3.add(enemySlotPicture_3);
-
-    /* Create player buff slot 9 */
     JPanel enemyBuffContainer_9 = new JPanel();
     enemyBuffContainer_9.setOpaque(false);
     enemyBuffContainer_9.setLayout(null);
@@ -873,30 +848,30 @@ public class Game extends JFrame implements ActionListener {
     enemySlotPicture_9.setBounds(0, 0, 35, 36);
     enemyBuffContainer_9.add(enemySlotPicture_9);
 
-    /* Create player buff slot 4 */
-    JPanel enemyBuffContainer_4 = new JPanel();
-    enemyBuffContainer_4.setOpaque(false);
-    enemyBuffContainer_4.setLayout(null);
-    panel_enemyBuffs.add(enemyBuffContainer_4);
+    /* Create enemy buff slot 3 */
+    JPanel enemyBuffContainer_3 = new JPanel();
+    enemyBuffContainer_3.setOpaque(false);
+    enemyBuffContainer_3.setLayout(null);
+    panel_enemyBuffs.add(enemyBuffContainer_3);
 
-    JPanel enemyBadgePanel_4 = new JPanel();
-    enemyBadgePanel_4.setLayout(null);
-    enemyBadgePanel_4.setOpaque(false);
-    enemyBadgePanel_4.setBounds(15, 16, 20, 20);
-    enemyBuffContainer_4.add(enemyBadgePanel_4);
+    JPanel enemyBadgePanel_3 = new JPanel();
+    enemyBadgePanel_3.setLayout(null);
+    enemyBadgePanel_3.setOpaque(false);
+    enemyBadgePanel_3.setBounds(15, 16, 20, 20);
+    enemyBuffContainer_3.add(enemyBadgePanel_3);
 
-    enemyBuffSlot_4 = new JLabel("");
-    enemyBuffSlot_4.setHorizontalTextPosition(SwingConstants.CENTER);
-    enemyBuffSlot_4.setHorizontalAlignment(SwingConstants.CENTER);
-    enemyBuffSlot_4.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-    enemyBuffSlot_4.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
-    enemyBuffSlot_4.setBounds(0, 0, 20, 20);
-    enemyBadgePanel_4.add(enemyBuffSlot_4);
+    enemyBuffSlot_3 = new JLabel("");
+    enemyBuffSlot_3.setHorizontalTextPosition(SwingConstants.CENTER);
+    enemyBuffSlot_3.setHorizontalAlignment(SwingConstants.CENTER);
+    enemyBuffSlot_3.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+    enemyBuffSlot_3.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
+    enemyBuffSlot_3.setBounds(0, 0, 20, 20);
+    enemyBadgePanel_3.add(enemyBuffSlot_3);
 
-    enemySlotPicture_4 = new JLabel("");
-    enemySlotPicture_4.setHorizontalAlignment(SwingConstants.CENTER);
-    enemySlotPicture_4.setBounds(0, 0, 35, 36);
-    enemyBuffContainer_4.add(enemySlotPicture_4);
+    enemySlotPicture_3 = new JLabel("");
+    enemySlotPicture_3.setHorizontalAlignment(SwingConstants.CENTER);
+    enemySlotPicture_3.setBounds(0, 0, 35, 36);
+    buffContainer_3.add(enemySlotPicture_3);
 
     /* Create player buff slot 10 */
     JPanel enemyBuffContainer_10 = new JPanel();
@@ -923,30 +898,30 @@ public class Game extends JFrame implements ActionListener {
     enemySlotPicture_10.setBounds(0, 0, 35, 36);
     enemyBuffContainer_10.add(enemySlotPicture_10);
 
-    /* Create player buff slot 5 */
-    JPanel enemyBuffContainer_5 = new JPanel();
-    enemyBuffContainer_5.setOpaque(false);
-    enemyBuffContainer_5.setLayout(null);
-    panel_enemyBuffs.add(enemyBuffContainer_5);
+    /* Create enemy buff slot 4 */
+    JPanel enemyBuffContainer_4 = new JPanel();
+    enemyBuffContainer_4.setOpaque(false);
+    enemyBuffContainer_4.setLayout(null);
+    panel_enemyBuffs.add(enemyBuffContainer_4);
 
-    JPanel enemyBadgePanel_5 = new JPanel();
-    enemyBadgePanel_5.setLayout(null);
-    enemyBadgePanel_5.setOpaque(false);
-    enemyBadgePanel_5.setBounds(15, 16, 20, 20);
-    enemyBuffContainer_5.add(enemyBadgePanel_5);
+    JPanel enemyBadgePanel_4 = new JPanel();
+    enemyBadgePanel_4.setLayout(null);
+    enemyBadgePanel_4.setOpaque(false);
+    enemyBadgePanel_4.setBounds(15, 16, 20, 20);
+    enemyBuffContainer_4.add(enemyBadgePanel_4);
 
-    enemyBuffSlot_5 = new JLabel("");
-    enemyBuffSlot_5.setHorizontalTextPosition(SwingConstants.CENTER);
-    enemyBuffSlot_5.setHorizontalAlignment(SwingConstants.CENTER);
-    enemyBuffSlot_5.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-    enemyBuffSlot_5.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
-    enemyBuffSlot_5.setBounds(0, 0, 20, 20);
-    enemyBadgePanel_5.add(enemyBuffSlot_5);
+    enemyBuffSlot_4 = new JLabel("");
+    enemyBuffSlot_4.setHorizontalTextPosition(SwingConstants.CENTER);
+    enemyBuffSlot_4.setHorizontalAlignment(SwingConstants.CENTER);
+    enemyBuffSlot_4.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+    enemyBuffSlot_4.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
+    enemyBuffSlot_4.setBounds(0, 0, 20, 20);
+    enemyBadgePanel_4.add(enemyBuffSlot_4);
 
-    enemySlotPicture_5 = new JLabel("");
-    enemySlotPicture_5.setHorizontalAlignment(SwingConstants.CENTER);
-    enemySlotPicture_5.setBounds(0, 0, 35, 36);
-    enemyBuffContainer_5.add(enemySlotPicture_5);
+    enemySlotPicture_4 = new JLabel("");
+    enemySlotPicture_4.setHorizontalAlignment(SwingConstants.CENTER);
+    enemySlotPicture_4.setBounds(0, 0, 35, 36);
+    enemyBuffContainer_4.add(enemySlotPicture_4);
 
     /* Create player buff slot 11 */
     JPanel enemyBuffContainer_11 = new JPanel();
@@ -973,30 +948,30 @@ public class Game extends JFrame implements ActionListener {
     enemySlotPicture_11.setBounds(0, 0, 35, 36);
     enemyBuffContainer_11.add(enemySlotPicture_11);
 
-    /* Create player buff slot 6 */
-    JPanel enemyBuffContainer_6 = new JPanel();
-    enemyBuffContainer_6.setOpaque(false);
-    enemyBuffContainer_6.setLayout(null);
-    panel_enemyBuffs.add(enemyBuffContainer_6);
+    /* Create enemy buff slot 5 */
+    JPanel enemyBuffContainer_5 = new JPanel();
+    enemyBuffContainer_5.setOpaque(false);
+    enemyBuffContainer_5.setLayout(null);
+    panel_enemyBuffs.add(enemyBuffContainer_5);
 
-    JPanel enemyBadgePanel_6 = new JPanel();
-    enemyBadgePanel_6.setLayout(null);
-    enemyBadgePanel_6.setOpaque(false);
-    enemyBadgePanel_6.setBounds(15, 16, 20, 20);
-    enemyBuffContainer_6.add(enemyBadgePanel_6);
+    JPanel enemyBadgePanel_5 = new JPanel();
+    enemyBadgePanel_5.setLayout(null);
+    enemyBadgePanel_5.setOpaque(false);
+    enemyBadgePanel_5.setBounds(15, 16, 20, 20);
+    enemyBuffContainer_5.add(enemyBadgePanel_5);
 
-    enemyBuffSlot_6 = new JLabel("");
-    enemyBuffSlot_6.setHorizontalTextPosition(SwingConstants.CENTER);
-    enemyBuffSlot_6.setHorizontalAlignment(SwingConstants.CENTER);
-    enemyBuffSlot_6.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
-    enemyBuffSlot_6.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
-    enemyBuffSlot_6.setBounds(0, 0, 20, 20);
-    enemyBadgePanel_6.add(enemyBuffSlot_6);
+    enemyBuffSlot_5 = new JLabel("");
+    enemyBuffSlot_5.setHorizontalTextPosition(SwingConstants.CENTER);
+    enemyBuffSlot_5.setHorizontalAlignment(SwingConstants.CENTER);
+    enemyBuffSlot_5.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+    enemyBuffSlot_5.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
+    enemyBuffSlot_5.setBounds(0, 0, 20, 20);
+    enemyBadgePanel_5.add(enemyBuffSlot_5);
 
-    enemySlotPicture_6 = new JLabel("");
-    enemySlotPicture_6.setHorizontalAlignment(SwingConstants.CENTER);
-    enemySlotPicture_6.setBounds(0, 0, 35, 36);
-    enemyBuffContainer_6.add(enemySlotPicture_6);
+    enemySlotPicture_5 = new JLabel("");
+    enemySlotPicture_5.setHorizontalAlignment(SwingConstants.CENTER);
+    enemySlotPicture_5.setBounds(0, 0, 35, 36);
+    enemyBuffContainer_5.add(enemySlotPicture_5);
 
     /* Create player buff slot 12 */
     JPanel enemyBuffContainer_12 = new JPanel();
@@ -1022,6 +997,31 @@ public class Game extends JFrame implements ActionListener {
     enemySlotPicture_12.setHorizontalAlignment(SwingConstants.CENTER);
     enemySlotPicture_12.setBounds(0, 0, 35, 36);
     enemyBuffContainer_12.add(enemySlotPicture_12);
+
+    /* Create enemy buff slot 6 */
+    JPanel enemyBuffContainer_6 = new JPanel();
+    enemyBuffContainer_6.setOpaque(false);
+    enemyBuffContainer_6.setLayout(null);
+    panel_enemyBuffs.add(enemyBuffContainer_6);
+
+    JPanel enemyBadgePanel_6 = new JPanel();
+    enemyBadgePanel_6.setLayout(null);
+    enemyBadgePanel_6.setOpaque(false);
+    enemyBadgePanel_6.setBounds(15, 16, 20, 20);
+    enemyBuffContainer_6.add(enemyBadgePanel_6);
+
+    enemyBuffSlot_6 = new JLabel("");
+    enemyBuffSlot_6.setHorizontalTextPosition(SwingConstants.CENTER);
+    enemyBuffSlot_6.setHorizontalAlignment(SwingConstants.CENTER);
+    enemyBuffSlot_6.setFont(new Font("Comic Sans MS", Font.BOLD, 12));
+    enemyBuffSlot_6.setIcon(new ImageIcon(getClass().getResource("/images/buffs/circle.png")));
+    enemyBuffSlot_6.setBounds(0, 0, 20, 20);
+    enemyBadgePanel_6.add(enemyBuffSlot_6);
+
+    enemySlotPicture_6 = new JLabel("");
+    enemySlotPicture_6.setHorizontalAlignment(SwingConstants.CENTER);
+    enemySlotPicture_6.setBounds(0, 0, 35, 36);
+    enemyBuffContainer_6.add(enemySlotPicture_6);
 
     /* Add label buff slots to enemy array list */
     enemySlotLabelsArrayList.add(enemySlotPicture_1);
