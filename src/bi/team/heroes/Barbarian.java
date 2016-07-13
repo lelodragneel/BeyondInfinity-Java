@@ -160,6 +160,14 @@ public class Barbarian extends Hero implements ActionListener {
     btnOffensive.setBackground(null);
     btnOffensive.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     btnOffensive.addActionListener(this);
+    btnOffensive.setToolTipText("<html>" + Game.styles + "<body> <table><tr>"
+        + "<td><span id=\"title\">[Stance] Offensive</span><br><br>"
+        + "<span id=\"s01\">Cost:</span> <b id=\"val\">1</b>"
+        + "<span id=\"s02\"> Rage</span><br><br>" + "<p id=\"desc\">" + getName()
+        + " enters the offensive stance, activating <u>Determination</u>.<br><br>"
+        + "<u>Determination</u>: " + getName() + "'s attacks deal <b id=\"val\">"
+        + offensiveDamagePercentage + "</b> more damage.</p><br>" + "</td></tr></table>"
+        + "</body><html>");
     panel_stances.add(btnOffensive);
 
     /* Create defensive stance */
@@ -169,6 +177,15 @@ public class Barbarian extends Hero implements ActionListener {
     btnDefensive.setBackground(null);
     btnDefensive.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
     btnDefensive.addActionListener(this);
+    btnDefensive.setToolTipText("<html>" + Game.styles + "<body> <table><tr>"
+        + "<td><span id=\"title\">[Stance] Defensive</span><br><br>"
+        + "<span id=\"s01\">Cost:</span> <b id=\"val\">1</b>"
+        + "<span id=\"s02\"> Rage</span><br><br>" + "<p id=\"desc\">" + getName()
+        + " enters the defensive stance, activating <u>Safeguard</u>.<br><br>"
+        + "<u>Safeguard</u>: " + getName() + " gains an additional <b id=\"val\">"
+        + defensiveExtraHealth + "</b> vitality, and increases " + game.getLang1()
+        + " toughness by <b id=\"val\">" + defensiveToughnessPercentage + "%</b>.</p><br>"
+        + "</td></tr></table>" + "</body><html>");
     panel_stances.add(btnDefensive);
 
     /* ------------- vitality panel ------------- */
@@ -458,9 +475,15 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Stance buttons are clicked */
     if (e.getSource() == btnOffensive) {
-      showOffensiveAttacks();
+      if (haveEnoughRage(1)) {
+        showOffensiveAttacks();
+        consumeRage(1);
+      }
     } else if (e.getSource() == btnDefensive) {
-      showDefensiveAttacks();
+      if (haveEnoughRage(1)) {
+        showDefensiveAttacks();
+        consumeRage(1);
+      }
     }
 
     /* Attack buttons are clicked */
@@ -558,7 +581,7 @@ public class Barbarian extends Hero implements ActionListener {
       incapacitate.reduceTurns();
       shieldBash.reduceTurns();
     }
-    
+
     game.repaintBuffs();
   }
 
@@ -683,7 +706,7 @@ public class Barbarian extends Hero implements ActionListener {
     if (ask) {
       Object[] options = {"Yes", "No Way!"};
       s = JOptionPane.showOptionDialog(game, "Are you sure you want to surrender?", "Concede",
-          JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");      
+          JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");
     }
 
 
