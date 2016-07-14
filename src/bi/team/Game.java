@@ -1144,20 +1144,44 @@ public class Game extends JFrame implements ActionListener {
    */
   public void repaintBuffs() {
 
+    /* Check player burn */
+    try { // Remove expired burns
+      int size = hero.getBurnArrayList().size();
+      for (int i = 0; i < size; i++) {
+        if (hero.getBurnArrayList().get(i).getTurnsLeft() <= 0) {
+          int index = buffsArrayList.indexOf(hero.getBurnArrayList().get(i));
+          hero.getBurnArrayList().remove(i);
+          buffsArrayList.remove(index);
+          slotLabelsArrayList.get(index).setIcon(null);
+          slotLabelsArrayList.get(index).setToolTipText("");
+          badgesArrayList.get(index).setText("");
+        }
+      }
+      for (int i = 0; i < hero.getBurnArrayList().size(); i++) { // Add burn label to buff slot
+        if (!buffsArrayList.contains(hero.getBurnArrayList().get(i))) {
+          buffsArrayList.add(hero.getBurnArrayList().get(i));
+        }
+      }
+    } catch (Exception e) {
+    }
+
     /* Repaint player buffs */
     for (int i = 0; i < slotLabelsArrayList.size(); i++) {
       if (i < buffsArrayList.size()) {
         slotLabelsArrayList.get(i).setIcon(buffsArrayList.get(i).getIcon());
         slotLabelsArrayList.get(i).setToolTipText(buffsArrayList.get(i).getToolTipText());
         slotLabelsArrayList.get(i).setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        if (buffsArrayList.get(i) instanceof Burn) {
+          badgesArrayList.get(i).setText(((Burn) buffsArrayList.get(i)).getTurnsLeft() + "");
+          badgesArrayList.get(i).setVisible(true);
+        }
       } else {
         slotLabelsArrayList.get(i).setIcon(null);
         slotLabelsArrayList.get(i).setToolTipText("");
         slotLabelsArrayList.get(i).setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        slotLabelsArrayList.get(i).setText("");
+        badgesArrayList.get(i).setText("");
+        badgesArrayList.get(i).setVisible(false);
       }
-      badgesArrayList.get(i).setText("");
-      badgesArrayList.get(i).setVisible(false);
     }
 
     /* Repaint enemy buffs */
@@ -1171,13 +1195,12 @@ public class Game extends JFrame implements ActionListener {
         enemySlotLabelsArrayList.get(i).setToolTipText("");
         enemySlotLabelsArrayList.get(i)
             .setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        enemySlotLabelsArrayList.get(i).setText("");
+        enemyBadgesArrayList.get(i).setText("");
+        enemyBadgesArrayList.get(i).setVisible(false);
       }
-      enemyBadgesArrayList.get(i).setText("");
-      enemyBadgesArrayList.get(i).setVisible(false);
     }
 
-    /* Check stun, ignite, and poison */
+    /* Check stun */
     try { // Player
       if (hero.getTurnsStunned() > 0) {
         if (!buffsArrayList.contains(buff_stun)) { // Add stun buff icon
@@ -1196,7 +1219,6 @@ public class Game extends JFrame implements ActionListener {
           badgesArrayList.get(index).setText("");
           badgesArrayList.get(index).setVisible(false);
         }
-
       }
     } catch (Exception e) {
     }

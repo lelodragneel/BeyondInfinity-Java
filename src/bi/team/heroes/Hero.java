@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import bi.team.Burn;
 import bi.team.Game;
 import bi.team.enemies.Enemy;
 import bi.team.graphics.XPAnimation;
@@ -21,6 +22,7 @@ public abstract class Hero {
   private XPAnimation xpAnimation;
   protected ArrayList<Attack> AttacksArrayList;
   protected ArrayList<JButton> ArrayUpgradeButtons;
+  protected ArrayList<Burn> burnArrayList = new ArrayList<Burn>();
   protected Game game;
   protected JPanel panel_stances;
   protected int enhancementPoints = 0;
@@ -214,6 +216,11 @@ public abstract class Hero {
   public abstract void takeDamage(double damage, ImageIcon attackIcon);
 
   /**
+   * Check for active burns and apply damage to hero
+   */
+  public abstract void burn();
+
+  /**
    * @return the attacks arraylist
    */
   public ArrayList<Attack> getAttacksArrayList() {
@@ -354,5 +361,12 @@ public abstract class Hero {
    */
   public void addTurnsStunned(int turnsStunned) {
     this.turnsStunned += turnsStunned;
+  }
+
+  /**
+   * @return the array list of the burn effects
+   */
+  public ArrayList<Burn> getBurnArrayList() {
+    return burnArrayList;
   }
 }

@@ -19,6 +19,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
 
+import bi.team.Burn;
 import bi.team.Game;
 import bi.team.enemies.Enemy;
 import bi.team.graphics.PlayerLoad;
@@ -497,18 +498,9 @@ public class Barbarian extends Hero implements ActionListener {
             playerLoad.nextTurn(x);
           } else {
             continue;
-            // try {
-            // game.getDoc().insertString(game.getDoc().getLength(), "Insufficient Rage!\n", null);
-            // } catch (BadLocationException e1) {
-            // }
           }
         } else {
           continue;
-          // try {
-          // game.getDoc().insertString(game.getDoc().getLength(), x.getName() + " is not ready!",
-          // null);
-          // } catch (BadLocationException e1) {
-          // }
         }
       }
     }
@@ -545,7 +537,30 @@ public class Barbarian extends Hero implements ActionListener {
       game.getEnemySelected().takeDamage(reflectDmg,
           new ImageIcon(getClass().getResource("/images/attacks/raise_shield.png")));
     }
+
     raiseShield.reduceTurns();
+    game.repaintBuffs();
+    game.repaintHealthBars();
+    game.repaint(); // Repaint health bars
+  }
+
+  @Override
+  public void burn() {
+    game.repaintBuffs();
+
+    for (Burn x : burnArrayList) { // Apply all active burns to hero
+      double burnDmg = x.getBurnDamage();
+      burnDmg = Math.round(burnDmg * 100.0) / 100.0; // Round damage to 2 decimal places
+      x.reduceTurn();
+      setCurHealth(getCurHealth() - burnDmg);
+
+      game.paintEvent(new ImageIcon(getClass().getResource("/images/impact_toPlayer.png")),
+          burnDmg + "", new ImageIcon(getClass().getResource("/images/buffs/buff_fire.png")));
+    }
+
+    Raise_shield raiseShield = (Raise_shield) AttacksArrayList.get(8);
+    raiseShield.reduceTurns();
+    game.repaintBuffs();
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }
@@ -582,6 +597,7 @@ public class Barbarian extends Hero implements ActionListener {
       shieldBash.reduceTurns();
     }
 
+    game.repaintHealthBars();
     game.repaintBuffs();
   }
 

@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.text.BadLocationException;
 
+import bi.team.Burn;
 import bi.team.Game;
 
 @SuppressWarnings("serial")
@@ -29,6 +30,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   protected int experienceDrop;
   protected double criticalChance;
   protected int turnsStunned = 0;
+  protected Burn burn;
 
   /**
    * Class constructor
