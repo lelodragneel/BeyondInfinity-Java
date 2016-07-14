@@ -52,6 +52,8 @@ public class Hawk_stag extends Enemy {
 
     game.paintEvent(attackIcon, dmg + "",
         new ImageIcon(getClass().getResource("/images/impact_toEnemy.png"))); // Paint event
+    
+    game.repaintBuffs();
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }

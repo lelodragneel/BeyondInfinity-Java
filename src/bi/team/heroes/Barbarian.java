@@ -555,7 +555,7 @@ public class Barbarian extends Hero implements ActionListener {
       setCurHealth(getCurHealth() - burnDmg);
 
       game.paintEvent(new ImageIcon(getClass().getResource("/images/impact_toPlayer.png")),
-          burnDmg + "", new ImageIcon(getClass().getResource("/images/buffs/buff_fire.png")));
+          burnDmg + "", new ImageIcon(getClass().getResource("/images/burn.png")));
     }
 
     Raise_shield raiseShield = (Raise_shield) AttacksArrayList.get(8);

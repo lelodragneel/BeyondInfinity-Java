@@ -1165,6 +1165,28 @@ public class Game extends JFrame implements ActionListener {
     } catch (Exception e) {
     }
 
+    /* Check enemy burn */
+    try { // Remove expired burns
+      int size = enemySelected.getEnemyBurnArrayList().size();
+      for (int i = 0; i < size; i++) {
+        if (enemySelected.getEnemyBurnArrayList().get(i).getTurnsLeft() <= 0) {
+          int index = enemyBuffsArrayList.indexOf(enemySelected.getEnemyBurnArrayList().get(i));
+          enemySelected.getEnemyBurnArrayList().remove(i);
+          enemyBuffsArrayList.remove(index);
+          enemySlotLabelsArrayList.get(index).setIcon(null);
+          enemySlotLabelsArrayList.get(index).setToolTipText("");
+          enemyBadgesArrayList.get(index).setText("");
+        }
+      }
+      for (int i = 0; i < enemySelected.getEnemyBurnArrayList().size(); i++) { // Add burn label to
+                                                                               // buff slot
+        if (!enemyBuffsArrayList.contains(enemySelected.getEnemyBurnArrayList().get(i))) {
+          enemyBuffsArrayList.add(enemySelected.getEnemyBurnArrayList().get(i));
+        }
+      }
+    } catch (Exception e) {
+    }
+
     /* Repaint player buffs */
     for (int i = 0; i < slotLabelsArrayList.size(); i++) {
       if (i < buffsArrayList.size()) {

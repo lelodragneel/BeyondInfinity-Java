@@ -53,6 +53,8 @@ public class Shar_of_the_nacht extends Enemy {
 
     game.paintEvent(attackIcon, dmg + "",
         new ImageIcon(getClass().getResource("/images/impact_toEnemy.png"))); // Paint event
+    
+    game.repaintBuffs();
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }

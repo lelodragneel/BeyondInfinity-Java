@@ -9,13 +9,14 @@ import javax.swing.border.LineBorder;
 import bi.team.Burn;
 import bi.team.Game;
 import bi.team.enemies.Enemy;
+import bi.team.heroes.attacks.barbarian.Raise_shield;
 
 @SuppressWarnings("serial")
 public class Fuehirch extends Enemy {
   private double burnDamage = 40;
   private int burnDuration = 2;
   private int abilityMaxCooldown_1 = 3;
-  private int abilityCurCooldown_1 = 0;
+  private int abilityCurCooldown_1 = 3;
 
   /**
    * Class constructor
@@ -65,6 +66,8 @@ public class Fuehirch extends Enemy {
 
     game.paintEvent(attackIcon, dmg + "",
         new ImageIcon(getClass().getResource("/images/impact_toEnemy.png"))); // Paint event
+
+    game.repaintBuffs();
     game.repaintHealthBars();
     game.repaint(); // Repaint health bars
   }

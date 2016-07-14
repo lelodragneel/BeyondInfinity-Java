@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -29,6 +30,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   protected double protection;
   protected int experienceDrop;
   protected double criticalChance;
+  protected ArrayList<Burn> enemyBurnArrayList = new ArrayList<Burn>();
   protected int turnsStunned = 0;
   protected Burn burn;
 
@@ -145,6 +147,27 @@ public abstract class Enemy extends JButton implements MouseListener {
   }
 
   /**
+   * Check for active burns and apply damage to enemy
+   */
+  public void burn() {
+    game.repaintBuffs();
+
+    for (Burn x : enemyBurnArrayList) { // Apply all active burns to enemy
+      double burnDmg = x.getBurnDamage();
+      burnDmg = Math.round(burnDmg * 100.0) / 100.0; // Round damage to 2 decimal places
+      x.reduceTurn();
+      setCurHealth(getCurHealth() - burnDmg);
+
+      game.paintEvent(new ImageIcon(getClass().getResource("/images/burn.png")), burnDmg + "",
+          new ImageIcon(getClass().getResource("/images/impact_toEnemy.png")));
+    }
+
+    game.repaintBuffs();
+    game.repaintHealthBars();
+    game.repaint(); // Repaint health bars
+  }
+
+  /**
    * Level up the most-recently killed enemy
    */
   public void enemyLevelup() {
@@ -254,5 +277,12 @@ public abstract class Enemy extends JButton implements MouseListener {
    */
   public void addTurnsStunned(int turnsStunned) {
     this.turnsStunned += turnsStunned;
+  }
+
+  /**
+   * @return the burn array list
+   */
+  public ArrayList<Burn> getEnemyBurnArrayList() {
+    return enemyBurnArrayList;
   }
 }
