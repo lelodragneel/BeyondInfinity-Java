@@ -44,6 +44,7 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
+import java.awt.ComponentOrientation;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -207,7 +208,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create a panel that dims the frame, this is used when toggling map */
     panel_frameOpacity = new JPanel();
-    panel_frameOpacity.setBounds(0, 0, 1134, 19);
+    panel_frameOpacity.setBounds(0, 11, 1134, 21);
     panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
     panel_frameOpacity.setOpaque(true);
     panel_frameOpacity.setVisible(false);
@@ -332,6 +333,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create the loading bar */
     bar_loading = new JProgressBar();
+    bar_loading.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
     bar_loading.setDoubleBuffered(true);
     bar_loading.setBounds(0, 0, 1134, 10);
     bar_loading.setBorder(null);
@@ -1464,8 +1466,15 @@ public class Game extends JFrame implements ActionListener {
    * 
    * @param val Progress bar integer value
    */
-  public void setProgBar_loading(int val) {
+  public void setBar_loading(int val) {
     bar_loading.setValue(val);
+  }
+
+  /**
+   * @return the loading bar
+   */
+  public JProgressBar getBar_loading() {
+    return bar_loading;
   }
 
   /**

@@ -1,5 +1,6 @@
 package bi.team.graphics;
 
+import java.awt.ComponentOrientation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -34,11 +35,12 @@ public class EnemyLoad implements ActionListener {
    */
   public void nextTurn() {
     game.disableAttackButtons(); // Disable buttons to prevent simultaneous attacks
-    game.setProgBar_loading(0); // Reset loading bar
+    game.getBar_loading().setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+    game.setBar_loading(0); // Reset loading bar
     if (game.getEnemySelected().getTurnsStunned() > 0) {
-      i = 0;
+      i = 100;
     } else {
-      i = 100; // Reset count
+      i = 0; // Reset count
     }
 
     timer = new Timer(15, this); // Timer triggering actionlistener every 15ms
@@ -47,11 +49,10 @@ public class EnemyLoad implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    game.setProgBar_loading(i--); // Increment loading bar value
+    game.setBar_loading(i++); // Increment loading bar value
 
-    if (i < 0) { // Conditional check for who's turn
+    if (i > 100) { // Conditional check for who's turn
       timer.stop(); // Stop the loop
-      game.setProgBar_loading(100);
       if (!Game.getTurn()) { // If it's enemy's turn
         try { // Enemy attacks the player
           game.getEnemySelected().attackPlayer();

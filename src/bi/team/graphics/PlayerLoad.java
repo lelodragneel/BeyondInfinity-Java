@@ -1,5 +1,6 @@
 package bi.team.graphics;
 
+import java.awt.ComponentOrientation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -36,7 +37,8 @@ public class PlayerLoad implements ActionListener {
     this.attack = attack;
 
     game.disableAttackButtons(); // Disable buttons to prevent simultaneous attacks
-    game.setProgBar_loading(0); // Reset loading bar
+    game.getBar_loading().setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+    game.setBar_loading(0); // Reset loading bar
     if (hero.getTurnsStunned() > 0) {
       i = 100;
     } else {
@@ -49,7 +51,7 @@ public class PlayerLoad implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    game.setProgBar_loading(i++); // Increment loading bar value
+    game.setBar_loading(i++); // Increment loading bar value
 
     if (i > 100) { // Conditional check for who's turn
       timer.stop(); // Stop the loop
