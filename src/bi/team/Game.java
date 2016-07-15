@@ -1,6 +1,8 @@
 package bi.team;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ComponentOrientation;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -44,7 +46,6 @@ import bi.team.heroes.Swordsman;
 import bi.team.heroes.Warlock;
 import bi.team.heroes.attacks.barbarian.Attack;
 import bi.team.inventory.InventoryFrame;
-import java.awt.ComponentOrientation;
 
 @SuppressWarnings("serial")
 public class Game extends JFrame implements ActionListener {
@@ -155,6 +156,13 @@ public class Game extends JFrame implements ActionListener {
   private JLabel enemySlotPicture_10;
   private JLabel enemySlotPicture_11;
   private JLabel enemySlotPicture_12;
+  private JPanel panel_abilitiesContainer;
+  private JLabel enemyAbility_1;
+  private JLabel enemyAbility_2;
+  private JLabel enemyAbility_3;
+  private JLabel enemyAbility_4;
+  private JLabel enemyAbility_5;
+  private JLabel enemyAbility_6;
 
   /**
    * Class constructor
@@ -379,11 +387,17 @@ public class Game extends JFrame implements ActionListener {
     bar_enemyHealth.setForeground(new Color(68, 108, 179));
     panel_enemy.add(bar_enemyHealth);
 
-    /* Create subpanel to display enemy abilities */
+    /* Create subpanel to hold a gridlayout panel for enemy abilities */
     JPanel subpanel_enemyAbilities = new JPanel();
-    subpanel_enemyAbilities.setBounds(1, 38, 283, 48);
+    subpanel_enemyAbilities.setBounds(1, 40, 283, 45);
+    subpanel_enemyAbilities.setLayout(new BorderLayout(0, 0));
     panel_enemy.add(subpanel_enemyAbilities);
-    subpanel_enemyAbilities.setLayout(new GridLayout(1, 0, 0, 0));
+
+    /* Create panel to display enemy abilities */
+    panel_abilitiesContainer = new JPanel();
+    panel_abilitiesContainer.setLayout(new GridLayout(0, 6, 1, 0));
+    panel_abilitiesContainer.setBackground(new Color(204, 255, 153));
+    subpanel_enemyAbilities.add(panel_abilitiesContainer, BorderLayout.CENTER);
 
     /* Build panel for displaying player buffs & debuffs */
     panel_playerBuffs = new JPanel();
@@ -1545,6 +1559,13 @@ public class Game extends JFrame implements ActionListener {
    */
   public SimpleAttributeSet getaSet() {
     return aSet;
+  }
+
+  /**
+   * @return the panel that displays all enemy abilities in a grid
+   */
+  public JPanel getPanel_abilitiesContainer() {
+    return panel_abilitiesContainer;
   }
 
   /**

@@ -31,6 +31,7 @@ public abstract class Enemy extends JButton implements MouseListener {
   protected int experienceDrop;
   protected double criticalChance;
   protected ArrayList<Burn> enemyBurnArrayList = new ArrayList<Burn>();
+  protected ArrayList<JLabel> enemyAbilities = new ArrayList<JLabel>();
   protected int turnsStunned = 0;
   protected Burn burn;
 
@@ -95,6 +96,11 @@ public abstract class Enemy extends JButton implements MouseListener {
    * Enemy attacks player
    */
   public abstract void attackPlayer() throws BadLocationException, IOException;
+
+  /**
+   * Repaint the enemy abilities' tooltips and cooldowns
+   */
+  public abstract void repaintEnemyAbilities();
 
   /**
    * Enemy takes damage from hero
@@ -182,6 +188,13 @@ public abstract class Enemy extends JButton implements MouseListener {
    */
   public int getValign() {
     return valign;
+  }
+
+  /**
+   * @return the jlabels representing the enemy's abilities
+   */
+  public ArrayList<JLabel> getEnemyAbilities() {
+    return enemyAbilities;
   }
 
   /**

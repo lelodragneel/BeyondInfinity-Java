@@ -783,7 +783,14 @@ public class Barbarian extends Hero implements ActionListener {
       game.getLblEnemyImage().setIcon(enemy.getEnemyImage());
       game.getLblEnemyImage().setVerticalAlignment(enemy.getValign());
       game.getLblEnemyName().setText(enemy.getName());
-      game.getPanel_enemy().setVisible(true);
+
+      /* Draw enemy abilities */
+      for (int i = 0; i < 6; i++) {
+        if (i < enemy.getEnemyAbilities().size()) {
+          game.getPanel_abilitiesContainer().add(enemy.getEnemyAbilities().get(i));
+        }
+      }
+      game.getPanel_enemy().setVisible(true);;
 
       game.getTextPane().setText(""); // Clear event area
       game.setEnemySelected(enemy); // Set enemy to fight

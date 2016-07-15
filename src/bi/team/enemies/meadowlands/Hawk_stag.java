@@ -59,6 +59,11 @@ public class Hawk_stag extends Enemy {
   }
 
   @Override
+  public void repaintEnemyAbilities() {
+
+  }
+  
+  @Override
   public void prepareFight() {
 
     curHealth = getMaxHealth(); // Reset health

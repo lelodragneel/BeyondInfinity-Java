@@ -60,6 +60,11 @@ public class Shar_of_the_nacht extends Enemy {
   }
 
   @Override
+  public void repaintEnemyAbilities() {
+
+  }
+  
+  @Override
   public void prepareFight() {
 
     curHealth = getMaxHealth(); // Reset health
