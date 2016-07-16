@@ -60,8 +60,8 @@ public class Raise_shield extends Attack {
         + "<td><span id=\"title\">" + name + "</span><br><br>"
         + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
         + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
-        + "<span id=\"s02\"> Rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
-        + maxWarmup + "</b>" + "<span id=\"s02\"> Turns</span><br><br>" + "<p id=\"desc\">"
+        + "<span id=\"s02\"> rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
+        + maxWarmup + "</b>" + "<span id=\"s02\"> turns</span><br><br>" + "<p id=\"desc\">"
         + "Over the next <b id=\"val\">" + turnDuration + "</b> turns, " + hero.getName()
         + "'s shield will block <b id=\"val\">" + blockPercentage
         + "%</b> incoming damage, and reflects <b id=\"val\">" + reflectPercentage

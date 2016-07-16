@@ -55,8 +55,8 @@ public class True_assault extends Attack {
         + "<td><span id=\"title\">" + name + "</span><br><br>"
         + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
         + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
-        + "<span id=\"s02\"> Rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
-        + maxWarmup + "</b>" + "<span id=\"s02\"> Turns</span><br><br>" + "<p id=\"desc\">"
+        + "<span id=\"s02\"> rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
+        + maxWarmup + "</b>" + "<span id=\"s02\"> turns</span><br><br>" + "<p id=\"desc\">"
         + hero.getName() + " assaults an enemy for <b id=\"val\">" + baseDamage
         + "</b> + [<b id=\"val\">" + hero.getStrength() + "</b>] damage.</p><br>"
         + "</td></tr></table>" + "</body><html>");

@@ -129,7 +129,7 @@ public class Taobu extends Enemy {
             + BeyondInfinity.class.getResource("/images/attacks/taobu/ability_2.png") + "\"></td>"
             + "<td><span id=\"title\">" + abilityName_2 + "</span><br><br>"
             + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> " + abilityMaxCooldown_2 + "</b>"
-            + "<span id=\"s02\"> Turns</span><br><br>"
+            + "<span id=\"s02\"> turns</span><br><br>"
             + "<p id=\"desc\">The Taobu claws an enemy dealing <b id=\"val\">" + swipeDamage
             + "</b> + <b id=\"val\">[" + getDamage() + "]</b> damage.</p><br>"
             + "</td></tr></table>" + "</body><html>");

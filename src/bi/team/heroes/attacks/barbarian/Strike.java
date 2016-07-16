@@ -70,8 +70,8 @@ public class Strike extends Attack {
         + "<td><span id=\"title\">" + name + "</span><br><br>"
         + "<span id=\"s01\">Level:</span><b id=\"val\"> " + attackLevel + "</b><br>"
         + "<span id=\"s01\">Cost:</span><b id=\"val\"> " + rageNeeded + "</b>"
-        + "<span id=\"s02\"> Rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
-        + maxWarmup + "</b>" + "<span id=\"s02\"> Turns</span><br><br>"
+        + "<span id=\"s02\"> rage</span><br>" + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> "
+        + maxWarmup + "</b>" + "<span id=\"s02\"> turns</span><br><br>"
         + "<p id=\"desc\">A basic attack dealing <b id=\"val\">[" + hero.getStrength()
         + "]</b> damage and generates<b id=\"val\"> " + rageToGenerate
         + "</b> additional <span id=\"s02\">Rage</span>.</p><br>" + "</td></tr></table>"
