@@ -17,6 +17,7 @@ public class Hawk_stag extends Enemy {
 	private String abilityName_1 = "Charge";
 	private int abilityMaxCooldown_1 = 3;
 	private double chargeDamage = 20;
+	private int stunDuration = 1;
 
   /**
    * Class constructor
@@ -47,7 +48,7 @@ public class Hawk_stag extends Enemy {
   public void attackPlayer() {
     if (turnsStunned <= 0) {
         if (enemyAbilities.get(0).getCurCooldown() <= 0) { // Use ability 1
-            game.getHero().addTurnsStunned(1);
+            game.getHero().addTurnsStunned(stunDuration);
             enemyAbilities.get(0).setCurCooldown(enemyAbilities.get(0).getMaxCooldown());
             
             double dmg = chargeDamage + getDamage();
@@ -91,7 +92,23 @@ public class Hawk_stag extends Enemy {
 
   @Override
   public void repaintEnemyAbilities() {
-
+	    for (EnemyAttack x : enemyAbilities) {
+	        if (x.getCurCooldown() <= 0) {
+	          x.setBorder(new LineBorder(new Color(46, 204, 113), 2));
+	        } else {
+	          x.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+	        }
+	      }
+	      ability_1.setToolTipText(
+	          "<html>" + Game.styles + "<body> <table><tr>" + "<td valign=\"top\"><img src=\""
+	              + BeyondInfinity.class.getResource("/images/attacks/hawk_stag/ability_1.png")
+	              + "\"></td>" + "<td><span id=\"title\">" + abilityName_1 + "</span><br><br>"
+	              + "<span id=\"s01\">Cooldown:</span><b id=\"val\"> " + abilityMaxCooldown_1 + "</b>"
+	              + "<span id=\"s02\"> Turns</span><br><br>"
+	              + "<p id=\"desc\">The Hawk Stag charges at the opponent stunning him/her for <b id=\"val\">" + stunDuration
+	              + "</b> turn, and dealing <b id=\"val\">" + chargeDamage + "</b> + <b id=\"val\">[" + getDamage() + "]</b> damage.</p><br>"
+	              + "</td></tr></table>" + "</body><html>");
+	      game.repaint();
   }
   
   @Override
