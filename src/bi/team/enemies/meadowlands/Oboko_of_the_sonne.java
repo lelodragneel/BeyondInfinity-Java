@@ -41,6 +41,12 @@ public class Oboko_of_the_sonne extends Enemy {
     } else {
       turnsStunned--;
     }
+    
+    repaintEnemyAbilities();
+    try {
+      game.getHero().burn(); // Burn hero check
+    } catch (Exception e) {
+    }
   }
 
   @Override
@@ -66,7 +72,6 @@ public class Oboko_of_the_sonne extends Enemy {
   
   @Override
   public void prepareFight() {
-
     curHealth = getMaxHealth(); // Reset health
     game.repaintHealthBars();
   }

@@ -40,6 +40,12 @@ public class Mantisray extends Enemy {
     } else {
       turnsStunned--;
     }
+    
+    repaintEnemyAbilities();
+    try {
+      game.getHero().burn(); // Burn hero check
+    } catch (Exception e) {
+    }
   }
 
   @Override
@@ -55,6 +61,7 @@ public class Mantisray extends Enemy {
     
     game.repaintBuffs();
     game.repaintHealthBars();
+    repaintEnemyAbilities();
     game.repaint(); // Repaint health bars
   }
 
@@ -65,7 +72,6 @@ public class Mantisray extends Enemy {
   
   @Override
   public void prepareFight() {
-
     curHealth = getMaxHealth(); // Reset health
     game.repaintHealthBars();
   }

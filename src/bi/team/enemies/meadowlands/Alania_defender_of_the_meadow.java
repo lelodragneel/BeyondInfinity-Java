@@ -41,6 +41,12 @@ public class Alania_defender_of_the_meadow extends Enemy {
     } else {
       turnsStunned--;
     }
+    
+    repaintEnemyAbilities();
+    try {
+      game.getHero().burn(); // Burn hero check
+    } catch (Exception e) {
+    }
   }
 
   @Override
@@ -56,6 +62,7 @@ public class Alania_defender_of_the_meadow extends Enemy {
 
     game.repaintBuffs();
     game.repaintHealthBars();
+    repaintEnemyAbilities();
     game.repaint(); // Repaint health bars
   }
 
@@ -66,7 +73,6 @@ public class Alania_defender_of_the_meadow extends Enemy {
 
   @Override
   public void prepareFight() {
-
     curHealth = getMaxHealth(); // Reset health
     game.repaintHealthBars();
   }

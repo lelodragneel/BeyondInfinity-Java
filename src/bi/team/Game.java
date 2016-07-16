@@ -157,12 +157,6 @@ public class Game extends JFrame implements ActionListener {
   private JLabel enemySlotPicture_11;
   private JLabel enemySlotPicture_12;
   private JPanel panel_abilitiesContainer;
-  private JLabel enemyAbility_1;
-  private JLabel enemyAbility_2;
-  private JLabel enemyAbility_3;
-  private JLabel enemyAbility_4;
-  private JLabel enemyAbility_5;
-  private JLabel enemyAbility_6;
 
   /**
    * Class constructor

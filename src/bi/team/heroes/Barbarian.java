@@ -725,7 +725,6 @@ public class Barbarian extends Hero implements ActionListener {
           JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, "");
     }
 
-
     if ((game.getEnemySelected() == null) || (!game.getEnemySelected().isAlive())) {
       return;
     }
@@ -785,6 +784,7 @@ public class Barbarian extends Hero implements ActionListener {
       game.getLblEnemyName().setText(enemy.getName());
 
       /* Draw enemy abilities */
+      game.getPanel_abilitiesContainer().removeAll();
       for (int i = 0; i < 6; i++) {
         if (i < enemy.getEnemyAbilities().size()) {
           game.getPanel_abilitiesContainer().add(enemy.getEnemyAbilities().get(i));
