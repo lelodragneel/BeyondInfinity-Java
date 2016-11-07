@@ -62,6 +62,10 @@ public abstract class Attack {
       return Math.pow(rageNeeded, 1.1) / 2;
     }
   }
+  
+  public void resetWarmups() {
+    curWarmup = getMaxWarmup();
+  }
 
   /**
    * Execute player attack

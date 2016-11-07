@@ -167,7 +167,7 @@ public class Barbarian extends Hero implements ActionListener {
         + "<span id=\"s02\"> Rage</span><br><br>" + "<p id=\"desc\">" + getName()
         + " enters the offensive stance, activating <u>Determination</u>.<br><br>"
         + "<u>Determination</u>: " + getName() + "'s attacks deal <b id=\"val\">"
-        + offensiveDamagePercentage + "</b> more damage.</p><br>" + "</td></tr></table>"
+        + offensiveDamagePercentage + "%</b> more damage.</p><br>" + "</td></tr></table>"
         + "</body><html>");
     panel_stances.add(btnOffensive);
 
@@ -755,10 +755,18 @@ public class Barbarian extends Hero implements ActionListener {
       Game.setTurn(1); // Reset turns
       game.getTextPane().setText(""); // Clear event area
       game.repaintHealthBars(); // Reset health bars
+      resetHeroWarmups();
       game.repaint();
     }
   }
 
+  /* Reset all attack warmups */
+  public void resetHeroWarmups() {
+    for (Attack x : AttacksArrayList) {
+      x.resetWarmups();
+    }
+  }
+  
   @Override
   public void setEnemyToFight(Enemy enemy) {
     int s = 0;
@@ -801,6 +809,7 @@ public class Barbarian extends Hero implements ActionListener {
       dmgTakenPreviously = 0;
       game.repaintUpgradeButtons();
 
+      resetHeroWarmups();
       Game.setTurn(1); // Reset turns
       game.paintEvent(null, "Now facing:  " + game.getEnemySelected().getName(), null); // Display
                                                                                         // events
