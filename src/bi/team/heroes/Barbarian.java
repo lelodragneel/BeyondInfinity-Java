@@ -476,12 +476,16 @@ public class Barbarian extends Hero implements ActionListener {
 
     /* Stance buttons are clicked */
     if (e.getSource() == btnOffensive) {
-      if (haveEnoughRage(1)) {
+      if (haveEnoughRage(1) && !btnOffensive.isSelected()) {
+        btnOffensive.setSelected(true);
+        btnDefensive.setSelected(false);
         showOffensiveAttacks();
         consumeRage(1);
       }
     } else if (e.getSource() == btnDefensive) {
-      if (haveEnoughRage(1)) {
+      if (haveEnoughRage(1) && !btnDefensive.isSelected()) {
+        btnDefensive.setSelected(true);
+        btnOffensive.setSelected(false);
         showDefensiveAttacks();
         consumeRage(1);
       }
@@ -807,10 +811,6 @@ public class Barbarian extends Hero implements ActionListener {
    * Toggle offensive attacks
    */
   public void showOffensiveAttacks() {
-    if (btnOffensive.isSelected()) { // Error checking
-      return;
-    }
-
     /* Add the offensive set of attacks */
     game.getPanel_actions().removeAll();
     for (int i = 0; i < 6; i++) {
@@ -844,10 +844,6 @@ public class Barbarian extends Hero implements ActionListener {
    * Toggle defensive attacks
    */
   public void showDefensiveAttacks() {
-    if (btnDefensive.isSelected()) { // Error checking
-      return;
-    }
-
     /* Add the defensive set of attacks */
     game.getPanel_actions().removeAll();
     for (int i = 6; i < 12; i++) {

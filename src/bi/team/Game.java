@@ -210,7 +210,7 @@ public class Game extends JFrame implements ActionListener {
 
     /* Create a panel that dims the frame, this is used when toggling map */
     panel_frameOpacity = new JPanel();
-    panel_frameOpacity.setBounds(0, 11, 1134, 21);
+    panel_frameOpacity.setBounds(0, 11, 1134, 640);
     panel_frameOpacity.setBackground(new Color(0, 0, 0, 64));
     panel_frameOpacity.setOpaque(true);
     panel_frameOpacity.setVisible(false);
